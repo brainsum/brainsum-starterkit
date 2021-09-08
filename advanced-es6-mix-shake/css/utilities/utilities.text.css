@@ -16,26 +16,27 @@
 }
 
 .u-text--justify-left{
-  text-align:justify !important;
-  text-align-last:left !important;
   -webkit-hyphens:auto;
       -ms-hyphens:auto;
           hyphens:auto;
+  text-align:justify !important;
+  text-align-last:left !important;
 }
 
 .u-text--justify-right{
-  text-align:justify !important;
-  text-align-last:right !important;
   -webkit-hyphens:auto;
       -ms-hyphens:auto;
           hyphens:auto;
+  text-align:justify !important;
+  text-align-last:right !important;
 }
 
 .u-text--justify-center{
-  text-align:justify !important;
-  text-align-last:center !important;
   -webkit-hyphens:auto;
       -ms-hyphens:auto;
           hyphens:auto;
+  text-align:justify !important;
+  text-align-last:center !important;
 }
+
 /*# sourceMappingURL=utilities.text.css.map*/

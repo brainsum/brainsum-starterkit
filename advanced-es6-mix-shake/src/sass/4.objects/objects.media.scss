@@ -143,13 +143,13 @@
  */
 $objects-media-fixed                  : "fixed";
 $objects-media-fluid                  : "fluid";
-$objects-media-reversed               : "reversed";
-$objects-media-align-middle           : "middle";
-$objects-media-align-bottom           : "bottom";
-$objects-media-responsive             : "responsive";
+$objects-media-reversed              : "reversed";
+$objects-media-align-middle          : "middle";
+$objects-media-align-bottom          : "bottom";
+$objects-media-responsive            : "responsive";
 
-$objects-media-class-media            : "o-media";
-$objects-media-class-media-mod        : $objects-media-class-media + "--";
+$objects-media-class-media           : "o-media";
+$objects-media-class-media-mod       : $objects-media-class-media + "--";
 $objects-media-class-media-fixed      : $objects-media-class-media + "__" + $objects-media-fixed;
 $objects-media-class-media-fluid      : $objects-media-class-media + "__" + $objects-media-fluid;
 

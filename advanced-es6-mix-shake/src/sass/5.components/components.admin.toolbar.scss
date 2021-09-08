@@ -9,13 +9,19 @@
  */
 @import "../_global.importer";
 
+/**
+ * Settings
+ */
+$toolbar-link-color         : #565656;
+$toolbar-accent-state-color : $color-dark;
+
 .toolbar-tray a {
-  color: #565656;
+  color: $toolbar-link-color;
 
   &:hover,
   &:active,
   &:focus,
   &.is-active {
-    color: #000;
+    color: $toolbar-accent-state-color;
   }
 }

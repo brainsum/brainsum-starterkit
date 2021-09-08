@@ -11,57 +11,58 @@
   }
 }
 .ajax-progress-throbber{
-  position:relative;
-  display:inline-flex;
   align-content:center;
+  display:inline-flex;
   height:1.125rem;
+  line-height:1.125rem;
   margin:-.3rem 9rem 0;
+  position:relative;
   vertical-align:middle;
   white-space:nowrap;
-  line-height:1.125rem;
 }
 .ajax-progress-throbber .throbber{
-  width:1.125rem;
-  height:1.125rem;
-  border-width:2px;
   border-color:#f7ca00 transparent #f7ca00 #f7ca00;
+  border-width:2px;
+  height:1.125rem;
+  width:1.125rem;
 }
 .ajax-progress-throbber .message{
   display:inline-block;
-  padding-left:9rem;
   font-size:1.4rem;
   font-weight:400;
+  padding-left:9rem;
 }
 .ajax-progress-fullscreen{
-  position:fixed;
-  z-index:1000;
-  top:50%;
-  left:50%;
-  width:3.5rem;
-  height:3.5rem;
-  margin:-1.75rem;
+  background-color:#fff;
   border:1px solid #afb8be;
   border-radius:3.5rem;
-  background-color:#fff;
   box-shadow:0 .25rem .625rem rgba(34, 35, 48, .1);
+  height:3.5rem;
+  left:50%;
+  margin:-1.75rem;
+  position:fixed;
+  top:50%;
+  width:3.5rem;
+  z-index:1000;
 }
 .ajax-progress-fullscreen:before{
+  border-width:3px;
+  content:"";
+  height:1.75rem;
+  left:50%;
+  margin:-.875rem;
   position:absolute;
   top:50%;
-  left:50%;
   width:1.75rem;
-  height:1.75rem;
-  margin:-.875rem;
-  content:"";
-  border-width:3px;
 }
 .ajax-progress-fullscreen:before,.ajax-progress-throbber .throbber{
   animation:ajax-throbber .75s linear infinite;
-  border-style:solid dotted solid solid;
   border-color:#f7ca00 transparent #f7ca00 #f7ca00;
   border-radius:50%;
+  border-style:solid dotted solid solid;
 }
 html.js .button:not(.js-hide) + .ajax-progress-throbber{
   margin-left:0;
 }
+
 /*# sourceMappingURL=components.ajax-progress.css.map*/

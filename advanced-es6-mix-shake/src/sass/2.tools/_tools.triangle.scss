@@ -6,7 +6,7 @@
  *
  * Part of Shake.sass, borrowed from Bourbon.
  * @link https://www.bourbon.io/docs/latest#triangle
- * *
+ *
  * @example
  *   .button__arrow {
  *     @include make-triangle(right, 1.5rem, 1rem, $color-secondary);
@@ -49,7 +49,7 @@
     border-style: solid;
 
     @if $direction == "up" {
-      border-width: 0 ($width / 2) $height;
+      border-width: 0 ($width * 0.5) $height;
       border-color: transparent transparent $color;
     }
 
@@ -59,7 +59,7 @@
     }
 
     @else if $direction == "right" {
-      border-width: ($height / 2) 0 ($height / 2) $width;
+      border-width: ($height * 0.5) 0 ($height * 0.5) $width;
       border-color: transparent transparent transparent $color;
     }
 
@@ -69,7 +69,7 @@
     }
 
     @else if $direction == "down" {
-      border-width: $height ($width / 2) 0;
+      border-width: $height ($width * 0.5) 0;
       border-color: $color transparent transparent;
     }
 
@@ -79,7 +79,7 @@
     }
 
     @else if $direction == "left" {
-      border-width: ($height / 2) $width ($height / 2) 0;
+      border-width: ($height * 0.5) $width ($height * 0.5) 0;
       border-color: transparent $color transparent transparent;
     }
 

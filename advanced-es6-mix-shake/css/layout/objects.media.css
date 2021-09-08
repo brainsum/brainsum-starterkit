@@ -1,7 +1,7 @@
 @charset "UTF-8";
 .o-media{
-  display:flex;
   align-items:flex-start;
+  display:flex;
 }
 .o-media > .o-media__fixed{
   padding-right:1.5rem;
@@ -19,4 +19,5 @@
 .o-media > .o-media__fluid{
   flex:1;
 }
+
 /*# sourceMappingURL=objects.media.css.map*/

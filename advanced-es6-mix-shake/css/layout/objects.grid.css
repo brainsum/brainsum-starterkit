@@ -1,11 +1,11 @@
 @charset "UTF-8";
 .o-grid{
-  margin-left:-.75rem;
-  margin-right:-.75rem;
+  box-sizing:border-box;
   display:flex;
   flex-wrap:wrap;
-  box-sizing:border-box;
   list-style:none;
+  margin-left:-.75rem;
+  margin-right:-.75rem;
 }
 @media screen and (min-width: 36em){
   .o-grid{
@@ -28,12 +28,12 @@
   }
 }
 .o-grid > .o-grid__item{
+  box-sizing:inherit;
+  flex-basis:auto;
+  min-width:0;
   padding-left:.75rem;
   padding-right:.75rem;
-  flex-basis:auto;
-  box-sizing:inherit;
   width:100%;
-  min-width:0;
 }
 @media screen and (min-width: 36em){
   .o-grid > .o-grid__item{
@@ -55,4 +55,5 @@
     padding-right:3rem;
   }
 }
+
 /*# sourceMappingURL=objects.grid.css.map*/

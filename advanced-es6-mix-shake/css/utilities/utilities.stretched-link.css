@@ -1,12 +1,13 @@
 .u-stretched-link::after{
-  position:absolute;
-  z-index:1;
-  top:0;
-  right:0;
-  bottom:0;
-  left:0;
-  content:"";
-  pointer-events:auto;
   background-color:transparent;
+  bottom:0;
+  content:"";
+  left:0;
+  pointer-events:auto;
+  position:absolute;
+  right:0;
+  top:0;
+  z-index:1;
 }
+
 /*# sourceMappingURL=utilities.stretched-link.css.map*/

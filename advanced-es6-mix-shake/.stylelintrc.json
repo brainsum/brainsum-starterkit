@@ -488,6 +488,7 @@
           "include",
           "mixin",
           "return",
+          "use",
           "warn",
           "while"
         ]

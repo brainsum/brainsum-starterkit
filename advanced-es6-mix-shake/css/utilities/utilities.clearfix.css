@@ -1,6 +1,7 @@
 .u-clearfix::after{
-  display:table;
   clear:both;
   content:"";
+  display:table;
 }
+
 /*# sourceMappingURL=utilities.clearfix.css.map*/
