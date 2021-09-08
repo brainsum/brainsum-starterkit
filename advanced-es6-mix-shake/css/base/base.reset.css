@@ -1,10 +1,10 @@
 @charset "UTF-8";
 html{
-  overflow-y:scroll;
-  box-sizing:border-box;
   text-rendering:optimizeLegibility;
   -webkit-text-size-adjust:100%;
+  box-sizing:border-box;
   min-height:100%;
+  overflow-y:scroll;
 }
 *,*::after,*::before{
   box-sizing:inherit;
@@ -17,26 +17,26 @@ main{
   display:block;
 }
 hr{
-  overflow:visible;
   box-sizing:content-box;
   height:0;
+  overflow:visible;
 }
 h1,h2,h3,h4,h5,h6{
   font-size:inherit;
   font-weight:inherit;
 }
 a{
-  background-color:transparent;
   -webkit-text-decoration-skip:objects;
+  background-color:transparent;
 }
 a:active,a:hover{
   outline-width:0;
 }
 abbr[title]{
+  border-bottom:0;
   text-decoration:underline;
   -webkit-text-decoration:underline dotted;
           text-decoration:underline dotted;
-  border-bottom:0;
 }
 address{
   font-style:normal;
@@ -52,10 +52,10 @@ small{
   font-size:inherit;
 }
 sub,sup{
-  position:relative;
-  vertical-align:baseline;
   font-size:75%;
   line-height:0;
+  position:relative;
+  vertical-align:baseline;
 }
 
 sub{
@@ -66,15 +66,15 @@ sup{
   top:-.5em;
 }
 table{
-  width:100%;
-  border-spacing:0;
   border-collapse:collapse;
+  border-spacing:0;
+  width:100%;
 }
 img,object,svg{
-  max-width:100%;
-  height:auto;
-  vertical-align:middle;
   border-style:none;
+  height:auto;
+  max-width:100%;
+  vertical-align:middle;
 }
 audio:not([controls]){
   display:none;
@@ -84,10 +84,10 @@ svg:not(:root){
   overflow:hidden;
 }
 button,input,optgroup,select,textarea{
-  margin:0;
   font-family:inherit;
   font-size:inherit;
   line-height:inherit;
+  margin:0;
 }
 button,input{
   overflow:visible;
@@ -102,8 +102,8 @@ button,select{
   -webkit-appearance:button;
 }
 [type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{
-  padding:0;
   border-style:none;
+  padding:0;
 }
 [type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{
   outline:1px dotted ButtonText;
@@ -112,12 +112,12 @@ fieldset{
   border:0;
 }
 legend{
-  display:table;
   box-sizing:border-box;
+  color:inherit;
+  display:table;
   max-width:100%;
   padding:0;
   white-space:normal;
-  color:inherit;
 }
 textarea{
   overflow:auto;
@@ -149,4 +149,5 @@ summary{
 template{
   display:none;
 }
+
 /*# sourceMappingURL=base.reset.css.map*/

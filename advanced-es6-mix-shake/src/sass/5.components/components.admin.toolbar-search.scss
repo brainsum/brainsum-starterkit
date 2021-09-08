@@ -11,6 +11,14 @@
  */
 @import "../_global.importer";
 
+/**
+ * Settings
+ */
+$toolbar-search-input-color               : #3b3b3b;
+$toolbar-search-input-autocomplete-color  : rgba($color-dark, 0.5);
+$toolbar-search-input-border              : 1px solid #ccc;
+$toolbar-search-input-background          : #fcfcfa;
+
 #admin-toolbar-search-tab .js-form-item.c-form-item {
   margin-top: 0.48rem;
   margin-bottom: 0;
@@ -20,21 +28,21 @@
   min-height: 1.6rem;
   margin: 0;
   padding: 0 0.64rem;
-  color: #3b3b3b;
+  color: $toolbar-search-input-color;
   border: 1px solid #ccc;
   border-radius: unset;
-  background: #fcfcfa;
+  background: $toolbar-search-input-background;
   font-size: 1em;
   line-height: 2.8rem;
 }
 
 .ui-autocomplete .ui-menu-item span.admin-toolbar-search-url {
-  color: rgba(0, 0, 0, 0.5);
+  color: $toolbar-search-input-autocomplete-color;
 }
 
 .admin-toolbar-search-autocomplete-list {
   overflow-y: scroll;
-  max-height: 300px;
+  max-height: 30rem;
 
   .ui-menu-item .ui-state-active {
     margin: 0;

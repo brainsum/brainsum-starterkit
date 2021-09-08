@@ -2,7 +2,7 @@
 
 * Created by: [Krisztian Pinter](kpinter@brainsum.com)
 * Created in: 2020.
-* Updated on: 2021.07.02.
+* Updated on: 2021.09.08.
 
 ## Table of Contents
 
@@ -33,7 +33,7 @@ is also incorporated witch is a ITCSS- and BEMit-based Sass-only framework.
 * Installed Drush
 * Installed Drupal 8-9 via Composer
 * [Set asset-packagist to composer.json](https://www.drupal.org/docs/develop/using-composer/using-composer-to-install-drupal-and-manage-dependencies#third-party-libraries) of Drupal
-* Installed node.js (min. v13)
+* Installed node.js (min. v14)
 * Installed yarn or npm (Drupal Community recommends Yarn.)
 
 ## Theme installation
@@ -74,7 +74,7 @@ it's `starter_theme`. After you choose your theme name, rename
 * `starter_theme_path` in `includes/preload` twig,
 * usage comment in `icon` macro twig file
 
-You need at least v13. nodejs for this theme. You can use nvm for that:
+You need at least v14. nodejs for this theme. You can use nvm for that:
 
 ```bash
 cd web/themes/custom/starter_theme/
@@ -146,8 +146,9 @@ In the new file watch window fill the fields:
 * Program: path to stylelint execute file in npm_modules directory like: `ProjectFileDir$/web/themes/custom/clinic/node_modules/.bin/stylelint`
 * Arguments: `$FilePath$ --fix`
 * Output paths to refresh: `$ProjectFileDir$`
+* open down Advanced options, then uncheck _Auto-save edited files to trigger the watcher_
 
-![create new File Watcher window](https://i.imgur.com/cMG19BZ.png)
+![create new File Watcher window](https://i.imgur.com/DJ0NzYl.png)
 
 ## Theme overview
 

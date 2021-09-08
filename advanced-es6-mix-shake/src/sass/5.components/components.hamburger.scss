@@ -16,6 +16,8 @@
 /**
   * Imports
  */
+@use "sass:math";
+
 @import "../_global.importer";
 
 /**
@@ -27,7 +29,7 @@ $hamburger-spinner-width                : 3.1rem;
 $hamburger-spinner-width--middle        : 3.1rem;
 $hamburger-spinner-height               : 0.5rem;
 $hamburger-spinner-spacing              : 0.6rem;
-$hamburger-spinner-border-radius        : $hamburger-spinner-height / 2;
+$hamburger-spinner-border-radius        : $hamburger-spinner-height * 0.5;
 $hamburger-spinner-color                : $color-brand;
 
 .c-hamburger {
@@ -63,9 +65,9 @@ $hamburger-spinner-color                : $color-brand;
   }
 
   &__spinner {
-    top: $hamburger-spinner-height / 2;
+    top: $hamburger-spinner-height * 0.5;
     display: block;
-    margin-top: $hamburger-spinner-height / -2;
+    margin-top: math.div($hamburger-spinner-height, -2);
     transition: background 0s 0.13s linear;
 
     &::before,

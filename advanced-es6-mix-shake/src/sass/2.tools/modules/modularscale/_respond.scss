@@ -1,6 +1,8 @@
-// Generate calc() function
-// based on Mike Riethmuller's Precise control over responsive typography
-// http://madebymike.com.au/writing/precise-control-responsive-typography/
+/**
+ * Generate calc() function
+ * based on Mike Riethmuller"s Precise control over responsive typography
+ * http://madebymike.com.au/writing/precise-control-responsive-typography/
+ */
 @function ms-fluid($val1: 1em, $val2: 1em, $break1: 0, $break2: 0) {
   $diff: ms-unitless($val2) - ms-unitless($val1);
 
@@ -16,16 +18,16 @@
   $first-write: true;
   $last-break: null;
 
-  $important: '';
+  $important: "";
 
   @if $ms-important == true {
-    $important: ' !important';
+    $important: " !important";
   }
 
   // loop through all settings with a breakpoint type value
-  @each $v, $s in $map {
+  @each $v, $s in $map { // stylelint-disable-line
     @if type-of($v) == number {
-      @if unit($v) != '' {
+      @if unit($v) != "" {
 
         // Write out the first value without a media query.
         @if $first-write {
@@ -41,9 +43,10 @@
           @media (min-width: $last-break) and (max-width: $v) {
             $val1: ms-function($val, $thread: $last-break, $settings: $map);
             $val2: ms-function($val, $thread: $v, $settings: $map);
+
             #{$prop}: unquote("#{ms-fluid($val1,$val2,$last-break,$v)}#{$important}");
           }
-          $last-break: $v;
+          $last-break: $v; // stylelint-disable-line
         }
       }
     }

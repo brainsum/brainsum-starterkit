@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * @file
  * Define vertical tabs functionality.

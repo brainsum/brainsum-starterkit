@@ -7,16 +7,17 @@
   font-size:1.4rem;
 }
 .password-strength__meter{
-  height:1rem;
   background-color:#858585;
+  height:1rem;
 }
 .password-strength__indicator{
-  width:0;
-  height:100%;
   background-color:#f7ca00;
+  height:100%;
+  width:0;
 }
 
 .password-confirm-match{
   visibility:hidden;
 }
+
 /*# sourceMappingURL=components.user.css.map*/

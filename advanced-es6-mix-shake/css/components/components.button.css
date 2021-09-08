@@ -2,7 +2,8 @@
 a.c-button,input.button{
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
-  transition:all .2s ease;
   display:inline-flex;
+  transition:all .2s ease;
 }
+
 /*# sourceMappingURL=components.button.css.map*/

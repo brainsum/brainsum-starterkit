@@ -16,7 +16,7 @@
  */
 $form-padding-y               : $global-form-padding-y;
 $form-padding-x               : $global-form-padding-x;
-$form-border-radius           : ($form-padding-y * 2 + $global-line-height * 1.8rem) / 2;
+$form-border-radius           : ($form-padding-y * 2 + $global-line-height * 1.8rem) * 0.5;
 $form-border-color            : $color-brand;
 $form-focus-color             : $color-brand;
 $form-text-color              : $color-brand;

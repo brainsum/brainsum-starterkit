@@ -1,9 +1,9 @@
 @charset "UTF-8";
 .c-table{
+  border:0;
+  empty-cells:show;
   max-width:100%;
   padding:0;
-  empty-cells:show;
-  border:0;
 }
 .c-table *{
   box-sizing:border-box;
@@ -33,9 +33,9 @@
 }
 .c-table td .c-table__cell-label,.c-table th .c-table__cell-label{
   display:inline-block;
-  width:30%;
   padding:0 .6em 0 0;
   vertical-align:top;
+  width:30%;
 }
 @media screen and (min-width: 48em){
   .c-table td .c-table__cell-label,.c-table th .c-table__cell-label{
@@ -53,7 +53,7 @@
 }
 @media screen and (min-width: 48em){
   .c-table td .c-table__cell-content,.c-table th .c-table__cell-content{
-    display:inherit;
+    display:block;
     max-width:none;
   }
 }
@@ -88,4 +88,5 @@ tbody th.c-table__group{
 th.c-table__group .c-table__cell-label{
   display:none !important;
 }
+
 /*# sourceMappingURL=components.table.css.map*/

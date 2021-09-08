@@ -5,10 +5,10 @@ html{
 }
 
 body{
-  font-size:1.4rem;
-  line-height:1.6;
   font-family:Open Sans,-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+  font-size:1.4rem;
   font-weight:400;
+  line-height:1.6;
 }
 @media screen and (min-width: 48em){
   body{
@@ -16,23 +16,23 @@ body{
   }
 }
 ::selection{
-  color:#fff;
   background-color:#f7ca00;
+  color:#fff;
 }
 p:not(:last-child){
   margin-bottom:1em;
 }
 code,pre{
-  text-align:left;
-  word-spacing:normal;
   word-wrap:normal;
-  word-break:normal;
-  -moz-tab-size:2;
-    -o-tab-size:2;
-       tab-size:2;
   -webkit-hyphens:none;
       -ms-hyphens:none;
           hyphens:none;
+  -moz-tab-size:2;
+    -o-tab-size:2;
+       tab-size:2;
+  text-align:left;
+  word-break:normal;
+  word-spacing:normal;
 }
 a{
   transition:all .2s ease;
@@ -106,4 +106,5 @@ ol:not([class]),ul:not([class]){
   margin:1em 0;
   padding-left:1.1em;
 }
+
 /*# sourceMappingURL=base.type.css.map*/

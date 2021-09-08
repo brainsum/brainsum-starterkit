@@ -1,25 +1,25 @@
 @charset "UTF-8";
 .messages-list{
-  margin-top:3rem;
   margin-bottom:3rem;
+  margin-top:3rem;
 }
 
 .messages{
-  min-height:6.8rem;
-  padding:1.8rem 2.7rem;
-  border-left:1rem solid transparent;
-  outline:1px solid transparent;
   background-color:#333;
+  border-left:1rem solid transparent;
+  min-height:6.8rem;
+  outline:1px solid transparent;
+  padding:1.8rem 2.7rem;
 }
 .messages--error,.messages--info,.messages--status,.messages--warning{
   border-left-color:#53c2bc;
 }
 .messages.is-hidden{
-  visibility:hidden;
-  overflow:hidden;
   height:0;
   min-height:0;
+  overflow:hidden;
   padding:0;
+  visibility:hidden;
 }
 .messages.messages-list__item{
   background-image:none;
@@ -48,10 +48,10 @@
 }
 
 .messages__content{
+  color:#fff;
   flex:1;
   max-width:calc(100% - 11.7rem);
   padding-top:.3rem;
-  color:#fff;
 }
 
 .messages__button{
@@ -61,28 +61,28 @@
 }
 
 .messages__close{
-  position:relative;
-  width:2.5rem;
-  height:2.5rem;
-  padding:0;
-  cursor:pointer;
-  vertical-align:top;
-  border:0;
-  border-radius:50%;
-  background:none;
   -webkit-appearance:none;
      -moz-appearance:none;
           appearance:none;
+  background:none;
+  border:0;
+  border-radius:50%;
+  cursor:pointer;
+  height:2.5rem;
+  padding:0;
+  position:relative;
+  vertical-align:top;
+  width:2.5rem;
 }
 .messages__close::after,.messages__close::before{
+  background-color:#fff;
+  content:"";
+  display:block;
+  height:.2rem;
+  left:50%;
   position:absolute;
   top:50%;
-  left:50%;
-  display:block;
   width:3.3rem;
-  height:.2rem;
-  content:"";
-  background-color:#fff;
 }
 .messages__close::before{
   transform:translate(-50%, -50%) rotate(45deg);
@@ -99,8 +99,8 @@
 }
 
 .messages__icon{
-  vertical-align:top;
   fill:#fff;
+  vertical-align:top;
 }
 
 .messages a{
@@ -111,4 +111,5 @@
   margin:0;
   white-space:normal;
 }
+
 /*# sourceMappingURL=components.messages.css.map*/

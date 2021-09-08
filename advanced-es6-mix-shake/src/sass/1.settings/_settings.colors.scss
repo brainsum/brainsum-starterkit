@@ -11,16 +11,23 @@
 /**
  * Color Definitions
  */
-$color-blue             : #0091cc;
-$color-yellow           : #f7ca00;
-$color-turquoise        : #66d1ca;
-$color-turquoise--dark  : #53c2bc;
+// default most darkest color
+$color-dark             : #000;
+// default most lightest color
+$color-light            : #fff;
+// default grey color
 $color-grey             : #333;
+// different shades of the default grey color
 $color-grey-120         : scale-color($color-grey, $lightness: -20%);
 $color-grey-80          : scale-color($color-grey, $lightness: 20%);
 $color-grey-60          : scale-color($color-grey, $lightness: 40%);
 $color-grey-40          : scale-color($color-grey, $lightness: 60%);
 $color-grey-20          : scale-color($color-grey, $lightness: 80%);
+// design needed color definitions
+$color-blue             : #0091cc;
+$color-yellow           : #f7ca00;
+$color-turquoise        : #66d1ca;
+$color-turquoise--dark  : #53c2bc;
 
 /**
  * Colors by Functions

@@ -1,3 +1,5 @@
+"use strict";
+
 (function ($, Drupal) {
   Drupal.FieldGroup = Drupal.FieldGroup || {};
   Drupal.FieldGroup.Effects = Drupal.FieldGroup.Effects || {};

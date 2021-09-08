@@ -4,20 +4,20 @@
   font-weight:700;
 }
 .c-field--type-text-long h2,.c-field--type-text-long h3,.c-field--type-text-long h4,.c-field--type-text-long h5,.c-field--type-text-long h6,.c-field--type-text-with-summary h2,.c-field--type-text-with-summary h3,.c-field--type-text-with-summary h4,.c-field--type-text-with-summary h5,.c-field--type-text-with-summary h6{
-  margin:1.5em 0 1em;
   color:#f7ca00;
+  margin:1.5em 0 1em;
 }
 .c-field--type-text-long img,.c-field--type-text-with-summary img{
-  margin-top:1em;
   margin-bottom:1em;
+  margin-top:1em;
 }
 .c-field--type-text-long p + .c-media--type-image img,.c-field--type-text-long p + img,.c-field--type-text-with-summary p + .c-media--type-image img,.c-field--type-text-with-summary p + img{
   margin-top:0;
 }
 .c-field--type-text-long .align-center,.c-field--type-text-with-summary .align-center{
   display:block;
-  margin-right:auto;
   margin-left:auto;
+  margin-right:auto;
 }
 .c-field--type-text-long .align-left,.c-field--type-text-with-summary .align-left{
   float:left;
@@ -27,4 +27,5 @@
   float:right;
   margin-left:1em;
 }
+
 /*# sourceMappingURL=components.field.long-text.css.map*/

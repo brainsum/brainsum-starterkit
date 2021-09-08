@@ -37,7 +37,7 @@
 @mixin circle($value) {
   width: $value;
   height: $value;
-  border-radius: $value / 2;
+  border-radius: $value * 0.5;
 }
 
 /**
