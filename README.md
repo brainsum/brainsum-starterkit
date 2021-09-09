@@ -170,6 +170,15 @@ SMACSS, such as:
 There is a `_global.importer.scss` file in the sass root: we need to import it
 to all Sass files to get access to global tools and variables.
 
+Note: because this theme 100% compatible with Dart Sass 2.0.0, we can't use
+the `/` sign for regular Sass divisions. **We must use the `math.div()` function.** See in the [docs](https://sass-lang.com/documentation/breaking-changes/slash-div#automatic-migration).
+To do this, first place this code to the top of all sass files:
+`@use "sass:math";` Then if you need calculate a division, you must use the
+`math.div()` function. For example:
+`width 100% / 3;` -> `width: math.div(100%, 3);`.
+Sometimes you can use the multiple calculation too instead of division:
+`$hamburger-spinner-height / 2;` -> `$hamburger-spinner-height * 0.5;`.
+
 Because we have use Drupal libraries, we generate CSS files **from the most Sass
 files.** If you create a new Sass file, don't forget to add the generated SMACSS
 categorized CSS to the appropriated library.
