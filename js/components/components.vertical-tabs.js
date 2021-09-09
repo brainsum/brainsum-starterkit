@@ -219,8 +219,8 @@
         $firstTab.data('verticalTab').focus();
       } // Hide the vertical tabs (if no tabs remain).
       else {
-          this.item.closest('.js-form-type-vertical-tabs').hide();
-        }
+        this.item.closest('.js-form-type-vertical-tabs').hide();
+      }
 
       return this;
     }
