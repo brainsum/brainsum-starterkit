@@ -18,18 +18,24 @@ use Drupal\Core\Render\Element;
 function starter_theme_preprocess_html(&$variables) {
   $path = \Drupal::request()->getPathInfo();
   $path_args = explode('/', $path);
+  $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
   // store theme's path in a variable to access it from any Twig templates.
   $variables['starter_theme_path'] = drupal_get_path('theme', 'starter_theme');
 
   $variables['path_info']['args'] = FALSE;
 
+  // Generating class name from current path and added to html element
   if (count($path_args) >= 3) {
     $variables['path_info']['args'] = Html::cleanCssIdentifier(ltrim($path, '/'));
   }
 
+  // Added current ID as class to html element
   if ($node = \Drupal::request()->attributes->get('node')) {
     $variables['attributes']['class'][] = 'page-node-' . $node->id();
   }
+
+  // Added a class to html element according to current language
+  $variables['attributes']['class'][] = 'page--language-' . $language;
 }
 
 /**
