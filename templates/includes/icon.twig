@@ -21,13 +21,14 @@
  *
  * options:
  * - iconId   : name of icon (begin with `icon-`)
+ * - title    : translatable title (don't miss the trans filter)
  * - className: additional CSS class
  * - size     : custom width and height of icon (skip for default width and height: 24px)
  *
  * @code
- * {{ icon.svg('icon-partner-volunteer', 'partner__icon') }}
- * {{ icon.svg('icon-download', 'c-button__icon', '15') }}
- * {{ icon.svg('icon-facebook', 'c-social__icon c-social--facebook', '40') }}
+ * {{ icon.svg('icon-partner-volunteer', 'Partner icon'|t, 'partner__icon') }}
+ * {{ icon.svg('icon-download', 'Down arrow icon'|t, 'c-button__icon', '15') }}
+ * {{ icon.svg('icon-facebook', 'Facebook f icon'|t, 'c-social__icon c-social--facebook', '40') }}
  * @endcode
  */
 #}
@@ -39,7 +40,7 @@
     width="{{ size|default('24') }}px"
     height="{{ size|default('24') }}px">
     aria-label="{{ title }}">
-    <desc>{{ title }}</desc>
-    <use xlink:href="/{{ base_path ~ active_theme_path() ~ '/images/icons.svg#' ~ iconId }}"></use>
+    <title>{{ title }}</title>
+    <use xlink:href="/{{ base_path ~ active_theme_path() ~ '/images/icons.svg?v=' ~ "now"|date("Ymd") ~ '#' ~ iconId }}"></use>
   </svg>
 {% endmacro %}
