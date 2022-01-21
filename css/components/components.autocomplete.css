@@ -1,26 +1,26 @@
 @charset "UTF-8";
 html.js .form-autocomplete{
-  background:url(../../images/magnifying-glass.svg) no-repeat right 1.8rem top calc(1.8rem - 2px), linear-gradient(90deg, #7e96a7 6px, transparent 0, transparent) #f7f9fa;
-  background-size:1.9rem;
   padding-right:5.5rem;
+  background:url("../../images/magnifying-glass.svg") no-repeat right 1.8rem top calc(1.8rem - 2px), linear-gradient(to right, #7e96a7 6px, transparent 6px, transparent 100%) #f7f9fa;
+  background-size:1.9rem;
 }
 html.js .form-autocomplete:hover{
-  background:url(../../images/magnifying-glass.svg) no-repeat right 1.8rem top calc(1.8rem - 2px), linear-gradient(90deg, #d7e1e8 6px, transparent 0, transparent), linear-gradient(270deg, #d7e1e8 2px, transparent 0, transparent) #f7f9fa;
+  background:url("../../images/magnifying-glass.svg") no-repeat right 1.8rem top calc(1.8rem - 2px), linear-gradient(to right, #d7e1e8 6px, transparent 6px, transparent 100%), linear-gradient(to left, #d7e1e8 2px, transparent 2px, transparent 100%) #f7f9fa;
   background-size:1.9rem;
 }
 html.js .form-autocomplete:focus{
-  background:url(../../images/magnifying-glass.svg) no-repeat right 1.8rem top calc(1.8rem - 2px), linear-gradient(to right, #d7e1e8 6px, transparent var(--form-element-border-size-left), transparent 100%), linear-gradient(to left, #d7e1e8 2px, transparent 2px, transparent 100%) #f7f9fa;
+  background:url("../../images/magnifying-glass.svg") no-repeat right 1.8rem top calc(1.8rem - 2px), linear-gradient(to right, #d7e1e8 6px, transparent var(--form-element-border-size-left), transparent 100%), linear-gradient(to left, #d7e1e8 2px, transparent 2px, transparent 100%) #f7f9fa;
 }
 html.js .form-autocomplete.ui-autocomplete-loading{
-  background:url(../../images/magnifying-glass.svg) no-repeat right 1.8rem top 1.8rem, linear-gradient(90deg, #7e96a7 6px, transparent 0, transparent) #f7f9fa;
+  background:url("../../images/magnifying-glass.svg") no-repeat right 1.8rem top 1.8rem, linear-gradient(to right, #7e96a7 6px, transparent 6px, transparent 100%) #f7f9fa;
   background-size:1.9rem;
 }
 html.js .form-autocomplete.ui-autocomplete-loading:hover{
-  background:url(../../images/magnifying-glass.svg) no-repeat right 1.8rem top 1.8rem, linear-gradient(to right, #d7e1e8 6px, transparent var(--form-element-border-size-left), transparent 100%), linear-gradient(to left, #d7e1e8 2px, transparent 2px, transparent 100%) #f7f9fa;
+  background:url("../../images/magnifying-glass.svg") no-repeat right 1.8rem top 1.8rem, linear-gradient(to right, #d7e1e8 6px, transparent var(--form-element-border-size-left), transparent 100%), linear-gradient(to left, #d7e1e8 2px, transparent 2px, transparent 100%) #f7f9fa;
   background-size:1.9rem;
 }
 html.js .form-autocomplete.ui-autocomplete-loading:focus{
-  background:url(../../images/magnifying-glass.svg) no-repeat right 1.8rem top calc(1.8rem - 2px), linear-gradient(90deg, #d7e1e8 6px, transparent 0, transparent), linear-gradient(270deg, #d7e1e8 2px, transparent 0, transparent) #f7f9fa;
+  background:url("../../images/magnifying-glass.svg") no-repeat right 1.8rem top calc(1.8rem - 2px), linear-gradient(to right, #d7e1e8 6px, transparent 6px, transparent 100%), linear-gradient(to left, #d7e1e8 2px, transparent 2px, transparent 100%) #f7f9fa;
   background-size:1.9rem;
 }
 

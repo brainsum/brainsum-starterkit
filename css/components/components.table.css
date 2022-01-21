@@ -1,9 +1,9 @@
 @charset "UTF-8";
 .c-table{
-  border:0;
-  empty-cells:show;
   max-width:100%;
   padding:0;
+  empty-cells:show;
+  border:0;
 }
 .c-table *{
   box-sizing:border-box;
@@ -22,62 +22,75 @@
     display:table-row;
   }
 }
-.c-table td,.c-table th{
+.c-table td,
+.c-table th{
   display:block;
   text-align:left;
 }
 @media screen and (min-width: 48em){
-  .c-table td,.c-table th{
+  .c-table td,
+.c-table th{
     display:table-cell;
   }
 }
-.c-table td .c-table__cell-label,.c-table th .c-table__cell-label{
+.c-table td .c-table__cell-label,
+.c-table th .c-table__cell-label{
   display:inline-block;
-  padding:0 .6em 0 0;
-  vertical-align:top;
   width:30%;
+  padding:0 0.6em 0 0;
+  vertical-align:top;
 }
 @media screen and (min-width: 48em){
-  .c-table td .c-table__cell-label,.c-table th .c-table__cell-label{
+  .c-table td .c-table__cell-label,
+.c-table th .c-table__cell-label{
     display:none !important;
   }
 }
-.c-table td .c-table__cell-label--top,.c-table th .c-table__cell-label--top{
+.c-table td .c-table__cell-label--top,
+.c-table th .c-table__cell-label--top{
   display:block;
-  margin:.4em 0;
-  padding:.4em 0;
+  margin:0.4em 0;
+  padding:0.4em 0;
 }
-.c-table td .c-table__cell-content,.c-table th .c-table__cell-content{
+.c-table td .c-table__cell-content,
+.c-table th .c-table__cell-content{
   display:inline-block;
   max-width:67%;
 }
 @media screen and (min-width: 48em){
-  .c-table td .c-table__cell-content,.c-table th .c-table__cell-content{
+  .c-table td .c-table__cell-content,
+.c-table th .c-table__cell-content{
     display:block;
     max-width:none;
   }
 }
-.c-table thead td,.c-table thead th{
+.c-table thead th,
+.c-table thead td{
   display:none;
 }
 @media screen and (min-width: 48em){
-  .c-table thead td,.c-table thead th{
+  .c-table thead th,
+.c-table thead td{
     display:table-cell;
   }
 }
-.c-table tbody td,.c-table tbody th{
+.c-table tbody th,
+.c-table tbody td{
   width:100%;
 }
 @media screen and (min-width: 48em){
-  .c-table tbody td,.c-table tbody th{
+  .c-table tbody th,
+.c-table tbody td{
     width:auto;
   }
 }
-.c-table td:empty,.c-table th:empty{
+.c-table td:empty,
+.c-table th:empty{
   display:none;
 }
 @media screen and (min-width: 48em){
-  .c-table td:empty,.c-table th:empty{
+  .c-table td:empty,
+.c-table th:empty{
     display:table-cell;
   }
 }

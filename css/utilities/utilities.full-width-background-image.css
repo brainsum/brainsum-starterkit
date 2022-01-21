@@ -2,17 +2,17 @@
   position:relative;
 }
 .u-full-width-background-image img{
+  position:absolute;
+  top:0;
+  right:0;
   bottom:0;
-  height:100%;
   left:0;
+  width:100%;
+  height:100%;
   -o-object-fit:cover;
      object-fit:cover;
   -o-object-position:center;
      object-position:center;
-  position:absolute;
-  right:0;
-  top:0;
-  width:100%;
 }
 
 /*# sourceMappingURL=utilities.full-width-background-image.css.map*/

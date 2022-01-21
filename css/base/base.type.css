@@ -5,10 +5,10 @@ html{
 }
 
 body{
-  font-family:Open Sans,-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
   font-size:1.4rem;
-  font-weight:400;
   line-height:1.6;
+  font-family:"Open Sans", -apple-system, system-ui, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight:400;
 }
 @media screen and (min-width: 48em){
   body{
@@ -16,28 +16,29 @@ body{
   }
 }
 ::selection{
-  background-color:#f7ca00;
   color:#fff;
+  background-color:#f7ca00;
 }
 p:not(:last-child){
   margin-bottom:1em;
 }
-code,pre{
+pre,
+code{
+  text-align:left;
+  word-spacing:normal;
   word-wrap:normal;
-  -webkit-hyphens:none;
-      -ms-hyphens:none;
-          hyphens:none;
+  word-break:normal;
   -moz-tab-size:2;
     -o-tab-size:2;
        tab-size:2;
-  text-align:left;
-  word-break:normal;
-  word-spacing:normal;
+  -webkit-hyphens:none;
+      -ms-hyphens:none;
+          hyphens:none;
 }
 a{
-  transition:all .2s ease;
+  transition:all 0.2s ease;
 }
-a:link,a:visited{
+a:link, a:visited{
   text-decoration:none;
 }
 a:not([class]){
@@ -46,11 +47,16 @@ a:not([class]){
 a:not([class]):focus{
   outline:none;
 }
-a:not([class]):active,a:not([class]):focus,a:not([class]):hover,a:not([class]):visited{
+a:not([class]):focus, a:not([class]):hover, a:not([class]):visited, a:not([class]):active{
   color:#ab8b00;
 }
-h1:not([class]),h2:not([class]),h3:not([class]),h4:not([class]),h5:not([class]),h6:not([class]){
-  font-family:Open Sans,-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+h1:not([class]),
+h2:not([class]),
+h3:not([class]),
+h4:not([class]),
+h5:not([class]),
+h6:not([class]){
+  font-family:"Open Sans", -apple-system, system-ui, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 h1:not([class]){
@@ -102,7 +108,8 @@ h6:not([class]){
   font-size:1.2rem;
 }
 
-ol:not([class]),ul:not([class]){
+ul:not([class]),
+ol:not([class]){
   margin:1em 0;
   padding-left:1.1em;
 }

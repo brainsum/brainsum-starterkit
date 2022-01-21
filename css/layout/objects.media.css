@@ -1,7 +1,7 @@
 @charset "UTF-8";
 .o-media{
-  align-items:flex-start;
   display:flex;
+  align-items:flex-start;
 }
 .o-media > .o-media__fixed{
   padding-right:1.5rem;

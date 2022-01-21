@@ -8,12 +8,17 @@
  * Imports
  */
 const cssNano               = require('cssnano')({
-  preset: ['default', {
-    autoprefixer            : false,
+  preset: ['lite', {
+    colormin               : true,
+    discardDuplicates      : true,
+    discardOverridden      : true,
+    mergeLonghand          : true,
+    mergeRules             : true,
+    normalizeCharset       : true,
+    normalizePositions     : true,
+    normalizeRepeatStyle   : true,
+    normalizeString        : true,
     normalizeWhitespace    : false,
-    minifySelectors        : false,
-    minifyParams           : false,
-    normalizeCharset       : false
   }]
 });
 const customProperties      = require('postcss-custom-properties');

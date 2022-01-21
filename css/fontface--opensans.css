@@ -1,23 +1,23 @@
 @font-face{
-  font-display:swap;
-  font-family:Open Sans;
-  font-style:normal;
+  font-family:"Open Sans";
+  src:url("/themes/custom/starter_theme/fonts/opensans-regular-kern-latin.woff2") format("woff2"), url("/themes/custom/starter_theme/fonts/opensans-regular-kern-latin.woff") format("woff");
   font-weight:400;
-  src:url(/themes/custom/starter_theme/fonts/opensans-regular-kern-latin.woff2) format("woff2"), url(/themes/custom/starter_theme/fonts/opensans-regular-kern-latin.woff) format("woff");
+  font-style:normal;
+  font-display:swap;
 }
 @font-face{
-  font-display:swap;
-  font-family:Open Sans;
+  font-family:"Open Sans";
+  src:url("/themes/custom/starter_theme/fonts/opensans-italic-kern-latin.woff2") format("woff2"), url("/themes/custom/starter_theme/fonts/opensans-italic-kern-latin.woff") format("woff");
+  font-weight:400;
   font-style:italic;
-  font-weight:400;
-  src:url(/themes/custom/starter_theme/fonts/opensans-italic-kern-latin.woff2) format("woff2"), url(/themes/custom/starter_theme/fonts/opensans-italic-kern-latin.woff) format("woff");
+  font-display:swap;
 }
 @font-face{
-  font-display:swap;
-  font-family:Open Sans;
-  font-style:normal;
+  font-family:"Open Sans";
+  src:url("/themes/custom/starter_theme/fonts/opensans-bold-kern-latin.woff2") format("woff2"), url("/themes/custom/starter_theme/fonts/opensans-bold-kern-latin.woff") format("woff");
   font-weight:700;
-  src:url(/themes/custom/starter_theme/fonts/opensans-bold-kern-latin.woff2) format("woff2"), url(/themes/custom/starter_theme/fonts/opensans-bold-kern-latin.woff) format("woff");
+  font-style:normal;
+  font-display:swap;
 }
 
 /*# sourceMappingURL=fontface--opensans.css.map*/

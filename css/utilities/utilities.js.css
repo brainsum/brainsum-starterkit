@@ -1,5 +1,8 @@
 @charset "UTF-8";
-.js-show,.js .js-hide{
+.js .js-hide{
+  display:none !important;
+}
+.js-show{
   display:none !important;
 }
 
