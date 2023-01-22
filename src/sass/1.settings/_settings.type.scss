@@ -16,8 +16,7 @@
  */
 
 // System (sans-serif) font-stack
-$font-family--system:
-  -apple-system,
+$font-family--system: -apple-system,
   system-ui,
   "BlinkMacSystemFont",
   "Segoe UI",
@@ -31,8 +30,7 @@ $font-family--system:
   "Noto Color Emoji";
 
 // Monospace font-stack: required by 3.base/_base.reset
-$font-family--monospace:
-  "SFMono-Regular",
+$font-family--monospace: "SFMono-Regular",
   "Menlo",
   "Monaco",
   "Segoe UI Mono",
@@ -40,7 +38,6 @@ $font-family--monospace:
   "Liberation Mono",
   "Courier New",
   monospace;
-
 $global-font-family         : "Open Sans", $font-family--system;
 $global-font-family--code   : $font-family--monospace;
 $heading-font-family        : $global-font-family;
@@ -60,27 +57,7 @@ $global-line-height         : 1.2;
  * `1.settings/_settings.breakpoints`.
  *
  * 'null' means no breakpoint (default)
- *
- * We use Modularscale Tool for calculated font sizes.
- * @see https://www.modularscale.com/?12,14,16&px&1.5 for selected Modular
- * Scale table
- * @see tools.modularscale to change modularscale base and ratio!
 */
-
-$type-12                    : ms(0) !default;
-$type-14                    : ms(1) !default;
-$type-16                    : ms(2) !default;
-$type-18                    : ms(3) !default;
-$type-21                    : ms(4) !default;
-$type-24                    : ms(5) !default;
-$type-27                    : ms(6) !default;
-$type-31                    : ms(7) !default;
-$type-36                    : ms(8) !default;
-$type-40                    : ms(9) !default;
-$type-48                    : ms(10) !default;
-$type-54                    : ms(11) !default;
-$type-60                    : ms(12) !default;
-$type-71                    : ms(13) !default;
 
 // Body (global) Font-size
 $global-font-size: (
@@ -93,7 +70,10 @@ $global-font-size: (
   )
 ) !default;
 
-// Heading Font Sizes
+/**
+ * Heading Font Sizes
+ */
+// H1 Font size
 $heading1-font-size: (
   null: (
     $type-40
@@ -103,6 +83,7 @@ $heading1-font-size: (
   )
 ) !default;
 
+// H2 Font size
 $heading2-font-size: (
   null: (
     $type-27
@@ -112,6 +93,7 @@ $heading2-font-size: (
   )
 ) !default;
 
+// H3 Font size
 $heading3-font-size: (
   null: (
     $type-24
@@ -121,6 +103,7 @@ $heading3-font-size: (
   )
 ) !default;
 
+// H4 Font size
 $heading4-font-size: (
   null: (
     $type-21
@@ -130,6 +113,7 @@ $heading4-font-size: (
   )
 ) !default;
 
+// H5 Font size
 $heading5-font-size: (
   null: (
     $type-18
@@ -139,6 +123,7 @@ $heading5-font-size: (
   )
 ) !default;
 
+// H6 Font size
 $heading6-font-size: $type-12 !default;
 
 // Paragraph Font Size
