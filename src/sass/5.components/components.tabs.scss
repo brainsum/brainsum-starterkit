@@ -16,23 +16,20 @@ $tabs-tab-hover-background  : $color-grey-80;
 $tabs-tab-color             : $color-light;
 $tabs-tab-hover-color       : $color-light;
 $tabs-tab-border-color      : $color-brand;
-/**
- * Local Tasks Block
- */
-.c-block-local-tasks-block {
-  margin: 1em 0;
-}
+$tabs-active-color          : $color-light;
+$tabs-active-border-size    : 6px;
+$tabs-tab-font-size         : 1.4rem;
 
 /**
  * Tab List
  */
-.tabs {
+.c-tabs {
   display: flex;
   flex-direction: column;
   width: 100%;
   margin: 0;
-  padding: 0 0 1px;
-  background: $tabs-tab-background;
+  padding: 0;
+  list-style: none;
 
   @include breakpoint(medium) {
     flex-direction: row;
@@ -44,20 +41,20 @@ $tabs-tab-border-color      : $color-brand;
    */
   &__tab {
     display: none;
-    margin: 0 0 -1px;
+    margin: 0;
+    margin-block-end: -1px;
 
     @include breakpoint(medium) {
       display: flex;
-      margin: 0 -1px -1px 0;
     }
 
     html:not(.js) &,
-    .tabs.is-expanded &,
+    .c-tabs.is-expanded &,
     &.is-active {
       display: flex;
     }
 
-    .tabs--secondary & {
+    .c-tabs--secondary & {
       display: block;
 
       @include breakpoint(medium) {
@@ -73,18 +70,17 @@ $tabs-tab-border-color      : $color-brand;
     display: flex;
     flex-grow: 1;
     align-items: center;
-    height: 5rem;
+    height: $gutter * 3;
     padding: 0 2.5rem;
     transition: background-color 0.2s;
     text-decoration: none;
     letter-spacing: 1px;
-    text-transform: uppercase;
     color: $tabs-tab-color;
     border: 1px solid $tabs-tab-background;
     background: $tabs-tab-background;
-    font-size: 1.4rem;
+    font-size: $tabs-tab-font-size;
 
-    .tabs--secondary & {
+    .c-tabs--secondary & {
       text-transform: none;
 
       @include breakpoint(medium) {
@@ -98,8 +94,8 @@ $tabs-tab-border-color      : $color-brand;
     &:focus {
       position: relative;
       z-index: 1;
-      border-color: $color-brand;
-      outline: none;
+      outline: solid 3px $color-brand;
+      outline-offset: -3px;
     }
 
     &:hover {
@@ -111,22 +107,23 @@ $tabs-tab-border-color      : $color-brand;
       @include font-smooth;
 
       position: relative;
+      color: $tabs-active-color;
       font-weight: 700;
 
       &:after {
         position: absolute;
-        bottom: -1px;
-        left: -1px;
+        inset-block-end: -1px;
+        inset-inline-start: -1px;
         height: calc(100% + 2px);
         content: "";
-        border-left: 0.6rem solid $tabs-tab-border-color;
+        border-inline-start: $tabs-active-border-size solid $tabs-tab-border-color;
 
         @include breakpoint(medium) {
-          left: 0;
+          inset-inline-start: 0;
           width: 100%;
           height: auto;
-          border-top: 0.6rem solid $tabs-tab-border-color;
-          border-left: 0;
+          border-block-start: $tabs-active-border-size solid $tabs-tab-border-color;
+          border-inline-start: 0;
         }
       }
     }
@@ -139,8 +136,10 @@ $tabs-tab-border-color      : $color-brand;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 5rem;
-    margin: 0 0 0 -1px;
+    width: $gutter * 3;
+    margin-block: 0;
+    margin-inline-end: 0;
+    margin-inline-start: -1px;
     cursor: pointer;
     border: solid 1px $tabs-tab-background;
     background-color: $tabs-tab-background;
@@ -168,14 +167,35 @@ $tabs-tab-border-color      : $color-brand;
      */
     &-icon {
       position: relative;
-      width: 1.8rem;
-      height: 10px;
-      margin-top: -2px;
+      display: block;
+      width: $gutter;
+      height: 1rem;
+      margin-block-start: -2px;
 
-      .tabs__trigger[aria-expanded="true"] & {
-        > div {
+      > span {
+        position: absolute;
+        inset-inline-start: 0;
+        width: 100%;
+        transition: transform 0.2s, opacity 0.2s, top 0.2s;
+        border-block-start: solid 2px $tabs-tab-color;
+
+        &:nth-child(1) {
+          inset-block-start: 0;
+        }
+
+        &:nth-child(2) {
+          inset-block-start: calc(50% + 1px);
+        }
+
+        &:nth-child(3) {
+          inset-block-start: calc(100% + 2px);
+        }
+      }
+
+      .c-tabs__trigger[aria-expanded="true"] & {
+        > span {
           &:nth-child(1) {
-            top: calc(50% + 1px);
+            inset-block-start: calc(50% + 1px);
             transform: rotate(45deg);
           }
 
@@ -184,29 +204,9 @@ $tabs-tab-border-color      : $color-brand;
           }
 
           &:nth-child(3) {
-            top: calc(50% + 1px);
+            inset-block-start: calc(50% + 1px);
             transform: rotate(-45deg);
           }
-        }
-      }
-
-      > div {
-        position: absolute;
-        left: 0;
-        width: 100%;
-        transition: transform 0.2s, opacity 0.2s, top 0.2s;
-        border-top: solid 2px $tabs-tab-color;
-
-        &:nth-child(1) {
-          top: 0;
-        }
-
-        &:nth-child(2) {
-          top: calc(50% + 1px);
-        }
-
-        &:nth-child(3) {
-          top: calc(100% + 2px);
         }
       }
     }
