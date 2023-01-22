@@ -32,69 +32,163 @@
  * @ingroup themeable
  */
 #}
+
+{#
+  Building the template structure
+#}
 {% if items %}
   <nav class="c-pager" role="navigation" aria-labelledby="{{ heading_id }}">
-    <h4 id="{{ heading_id }}" class="u-visually-hide">{{ 'Pagination'|t }}</h4>
+    <span
+      id="{{ heading_id }}"
+      class="u-visually-hide u-visually-hide--focusable"
+    >
+        {{ 'Pagination'|t }}
+    </span>
+
     <ul class="c-pager__items js-pager__items">
       {# Print first item if we are not on the first page. #}
       {% if items.first %}
-        <li class="c-pager__item pager__item--first">
-          <a href="{{ items.first.href }}" title="{{ 'Go to first page'|t }}"{{ items.first.attributes|without('href', 'title') }}>
-            <span class="u-visually-hide">{{ 'First page'|t }}</span>
-            <span aria-hidden="true">{{ items.first.text|default('« First'|t) }}</span>
-          </a>
-        </li>
+        {% apply spaceless %}
+          <li class="c-pager__item c-pager__item--control c-pager__item--first">
+            <a href="{{ items.first.href }}" class="c-pager__link" title="{{ 'Go to first page'|t }}"{{ items.first.attributes|without('href', 'title', 'class') }}>
+              <span class="u-visually-hide">{{ 'First page'|t }}</span>
+              {#
+                angles-left icon from Font Awesome 6 Classic Solid
+                https://fontawesome.com/icons/angles-left?s=solid&f=classic
+              #}
+              <svg
+                class="c-icon c-pager__icon c-pager__icon--first"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 512 512"
+                role="img"
+                focusable="false"
+              >
+                <path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160zm352-160l-160 160c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L301.3 256 438.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0z"/>
+              </svg>
+              <span aria-hidden="true">{{ items.first.text|default('First'|t) }}</span>
+            </a>
+          </li>
+        {% endapply %}
       {% endif %}
+
       {# Print previous item if we are not on the first page. #}
       {% if items.previous %}
-        <li class="c-pager__item c-pager__item--previous">
-          <a href="{{ items.previous.href }}" title="{{ 'Go to previous page'|t }}" rel="prev"{{ items.previous.attributes|without('href', 'title', 'rel') }}>
-            <span class="u-visually-hide">{{ 'Previous page'|t }}</span>
-            <span aria-hidden="true">{{ items.previous.text|default('‹ Previous'|t) }}</span>
-          </a>
-        </li>
+        {% apply spaceless %}
+          <li class="c-pager__item c-pager__item--control c-pager__item--previous">
+            <a href="{{ items.previous.href }}" class="c-pager__link" title="{{ 'Go to previous page'|t }}" rel="prev"{{ items.previous.attributes|without('href', 'title', 'rel', 'class') }}>
+              <span class="u-visually-hide">{{ 'Previous page'|t }}</span>
+              {#
+                angle-left icon from Font Awesome 6 Classic Solid
+                https://fontawesome.com/icons/angle-left?s=solid&f=classic
+              #}
+              <svg
+                class="c-icon c-pager__icon c-pager__icon--previous"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 320 512"
+                role="img"
+                focusable="false"
+              >
+                <path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+              </svg>
+              <span aria-hidden="true">{{ items.previous.text|default('Previous'|t) }}</span>
+            </a>
+          </li>
+        {% endapply %}
       {% endif %}
+
       {# Add an ellipsis if there are further previous pages. #}
       {% if ellipses.previous %}
         <li class="c-pager__item c-pager__item--ellipsis" role="presentation">&hellip;</li>
       {% endif %}
+
       {# Now generate the actual pager piece. #}
       {% for key, item in items.pages %}
-        <li class="c-pager__item{{ current == key ? ' is-active' : '' }}">
-          {% if current == key %}
-            {% set title = 'Current page'|t %}
-          {% else %}
-            {% set title = 'Go to page @key'|t({'@key': key}) %}
-          {% endif %}
-          <a href="{{ item.href }}" title="{{ title }}"{{ item.attributes|without('href', 'title') }}>
+        {% apply spaceless %}
+          <li class="c-pager__item{{ current == key ? ' c-pager__item--active' : '' }} c-pager__item--number">
+            {% if current == key %}
+              {% set title = 'Current page'|t %}
+            {% else %}
+              {% set title = 'Go to page @key'|t({'@key': key}) %}
+            {% endif %}
+
+            {% if current != key %}
+              <a href="{{ item.href }}" class="c-pager__link" title="{{ title }}"{{ item.attributes|without('href', 'title', 'class') }}>
+            {% endif %}
+
             <span class="u-visually-hide">
               {{ current == key ? 'Current page'|t : 'Page'|t }}
             </span>
+
             {{- key -}}
-          </a>
-        </li>
+
+            {% if current != key %}
+              </a>
+            {% endif %}
+          </li>
+        {% endapply %}
       {% endfor %}
+
       {# Add an ellipsis if there are further next pages. #}
       {% if ellipses.next %}
         <li class="c-pager__item c-pager__item--ellipsis" role="presentation">&hellip;</li>
       {% endif %}
+
       {# Print next item if we are not on the last page. #}
       {% if items.next %}
-        <li class="c-pager__item c-pager__item--next">
-          <a href="{{ items.next.href }}" title="{{ 'Go to next page'|t }}" rel="next"{{ items.next.attributes|without('href', 'title', 'rel') }}>
-            <span class="u-visually-hide">{{ 'Next page'|t }}</span>
-            <span aria-hidden="true">{{ items.next.text|default('Next ›'|t) }}</span>
-          </a>
-        </li>
+        {% apply spaceless %}
+          <li class="c-pager__item c-pager__item--control c-pager__item--next">
+            <a href="{{ items.next.href }}" class="c-pager__link" title="{{ 'Go to next page'|t }}" rel="next"{{ items.next.attributes|without('href', 'title', 'rel', 'class') }}>
+              <span class="u-visually-hide">{{ 'Next page'|t }}</span>
+              <span aria-hidden="true">{{ items.next.text|default('Next'|t) }}</span>
+              {#
+                angle-right icon from Font Awesome 6 Classic Solid
+                https://fontawesome.com/icons/angle-right?s=solid&f=classic
+              #}
+              <svg
+                class="c-icon c-pager__icon c-pager__icon--next"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 320 512"
+                role="img"
+                focusable="false"
+              >
+                <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/>
+              </svg>
+            </a>
+          </li>
+        {% endapply %}
       {% endif %}
+
       {# Print last item if we are not on the last page. #}
       {% if items.last %}
-        <li class="c-pager__item c-pager__item--last">
-          <a href="{{ items.last.href }}" title="{{ 'Go to last page'|t }}"{{ items.last.attributes|without('href', 'title') }}>
-            <span class="u-visually-hide">{{ 'Last page'|t }}</span>
-            <span aria-hidden="true">{{ items.last.text|default('Last »'|t) }}</span>
-          </a>
-        </li>
+        {% apply spaceless %}
+          <li class="c-pager__item c-pager__item--control c-pager__item--last">
+            <a href="{{ items.last.href }}" class="pager__link" title="{{ 'Go to last page'|t }}"{{ items.last.attributes|without('href', 'title', 'class') }}>
+              <span class="u-visually-hide">{{ 'Last page'|t }}</span>
+              <span aria-hidden="true">{{ items.last.text|default('Last'|t) }}</span>
+              {#
+                angles-right icon from Font Awesome 6 Classic Solid
+                https://fontawesome.com/icons/angles-right?s=solid&f=classic
+              #}
+              <svg
+                class="c-icon c-pager__icon c-pager__icon--last"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 512 512"
+                role="img"
+                focusable="false"
+              >
+                <path d="M470.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 256 265.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160zm-352 160l160-160c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L210.7 256 73.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0z"/>
+              </svg>
+            </a>
+          </li>
+        {% endapply %}
       {% endif %}
     </ul>
   </nav>

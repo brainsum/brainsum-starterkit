@@ -4,6 +4,8 @@
  * Theme override to display a media item.
  *
  * Available variables:
+ * - media: The media item, with limited access to object properties and
+ *   methods.
  * - name: Name of the media.
  * - content: Media content.
  *
@@ -11,6 +13,10 @@
  *
  * @ingroup themeable
  */
+#}
+
+{#
+  Defining local variables
 #}
 {%
   set classes = [
@@ -20,6 +26,10 @@
     view_mode ? 'c-media--view-mode-' ~ view_mode|clean_class,
   ]
 %}
+
+{#
+  Building the template structure
+#}
 <div{{ attributes.addClass(classes) }}>
   {{ title_suffix.contextual_links }}
   {% if content %}

@@ -12,13 +12,20 @@
  * @see template_preprocess_region()
  */
 #}
+
+{#
+  Defining local variables
+#}
 {%
   set classes = [
     'c-region',
-    'c-region--' ~ region,
+    'c-region--' ~ region|clean_class,
   ]
 %}
 
+{#
+  Building the template structure
+#}
 {% if content %}
   <div{{ attributes.addClass(classes) }}>
     {{ content }}

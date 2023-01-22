@@ -15,12 +15,20 @@
  * @ingroup themeable
  */
 #}
+
+{#
+  Defining local variables
+#}
 {%
   set classes = [
     'c-block',
     'c-panel',
   ]
 %}
+
+{#
+  Building the template structure
+#}
 <div{{ attributes.addClass(classes) }}>
   {% if block.title %}
     <h3 class="c-panel__title">{{ block.title }}</h3>

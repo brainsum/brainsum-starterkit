@@ -1,0 +1,61 @@
+{#
+/**
+ * @file
+ * Theme override to display a single Drupal page while offline.
+ *
+ * All available variables are mirrored in page.html.twig.
+ * Some may be blank but they are provided for consistency.
+ *
+ * @see template_preprocess_maintenance_page()
+ */
+#}
+
+{#
+  Attaching Drupal libraries
+#}
+{% block includes %}
+{% endblock %}
+
+{#
+  Building the template structure
+#}
+
+<div class="c-page c-page--offline" id="c-page">
+  <header id="c-header" class="c-header" data-once="navigation">
+    <div class="o-container">
+      <div class="c-branding__text">
+        <div class="c-branding__name">
+          {{ site_name }}
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <span id="main-content" tabindex="-1"></span>
+
+    <section class="c-hero">
+      <div class="o-container">
+        {{ page.hero }}
+      </div>
+    </section>
+
+    {% if title %}
+      <h1 class="c-page__title c-title c-type-page__title" id="c-page-title">{{ title }}</h1>
+    {% endif %}
+
+    <section class="c-content">
+      <div class="o-container">
+        {{ page.content }}
+      </div>
+    </section>
+  </main>
+
+  <footer class="c-footer">
+    <div class="o-container">
+      {{ page.footer }}
+    </div>
+  </footer>
+</div>
+
+{{ page.admin }}

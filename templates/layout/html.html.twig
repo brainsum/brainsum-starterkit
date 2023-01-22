@@ -19,9 +19,15 @@
  * - db_offline: A flag indicating if the database is offline.
  * - placeholder_token: The token for generating head, css, js and js-bottom
  *   placeholders.
+ * - brainsum_starterkit_path: Returns the path to an Brainsum starterkit theme.
+ * - noscript_styles: <noscript> content.
  *
  * @see template_preprocess_html()
  */
+#}
+
+{#
+  Defining local variables
 #}
 {%
   set body_classes = [
@@ -33,16 +39,23 @@
   ]
 %}
 
+{#
+  Attaching Drupal libraries
+#}
 {% if not root_path %}
-  {{ attach_library('starter_theme/page.home') }}
+  {{ attach_library('brainsum_starterkit/page.home') }}
 {% else %}
-  {{ attach_library('starter_theme/page.subpage') }}
+  {{ attach_library('brainsum_starterkit/page.subpage') }}
 {% endif %}
+
+{#
+  Building the template structure
+#}
 <!DOCTYPE html>
 <html{{ html_attributes }}>
   <head>
-    {% include '@starter_theme/includes/preload.html.twig' %}
-    <style>{{ source('/' ~ directory ~ '/css/fontface--opensans.css') }}</style>
+    {% include 'preload.html.twig' with { current_theme_path: current_theme_path } only %}
+    <style>{{ source('/' ~ directory ~ '/css/fontface--global.css') }}</style>
     <link rel="apple-touch-icon" sizes="180x180" href="/{{ directory }}/images/favicon/apple-touch-icon.png?v=eEYabv4re7">
     <link rel="icon" type="image/png" sizes="32x32" href="/{{ directory }}/images/favicon/favicon-32x32.png?v=eEYabv4re7">
     <link rel="icon" type="image/png" sizes="16x16" href="/{{ directory }}/images/favicon/favicon-16x16.png?v=eEYabv4re7">
@@ -58,9 +71,9 @@
     <title>{{ head_title|safe_join(' | ') }}</title>
     <css-placeholder token="{{ placeholder_token }}">
     <js-placeholder token="{{ placeholder_token }}">
-    {# Webfont loading: Second Stage #}
-    <script>{{ source('/' ~ directory ~ '/js/tools/tools.webfontloading.js') }}</script>
+    {{ noscript_styles }}
   </head>
+
   <body{{ attributes.addClass(body_classes) }}>
     {#
       Keyboard navigation/accessibility link to main content section in

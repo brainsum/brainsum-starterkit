@@ -18,10 +18,10 @@
  * @ingroup themeable
  */
 #}
-<article{{ attributes }}>
+<div{ attributes.addClass('c-profile c-profile--full') }}>
   {% if content %}
     <div class="o-container">
       {{- content -}}
     </div>
   {% endif %}
-</article>
+</div>

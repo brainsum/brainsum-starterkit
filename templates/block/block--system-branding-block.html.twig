@@ -12,9 +12,20 @@
  * - site_slogan: Slogan for site as defined in Site information settings.
  */
 #}
-{% extends "block.html.twig" %}
+
+{#
+  Inherits from
+#}
+{% extends 'block.html.twig' %}
+
+{#
+  Defining local variables
+#}
 {% set attributes = attributes.addClass('c-branding') %}
 
+{#
+  Building the template structure
+#}
 {% block content %}
   {% if site_logo %}
     <a href="{{ path('<front>') }}" rel="home" class="c-branding__logo">

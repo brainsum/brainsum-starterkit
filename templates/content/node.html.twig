@@ -67,6 +67,9 @@
  */
 #}
 
+{#
+  Defining local variables
+#}
 {% set layout = layout ? 'layout--' ~ layout|clean_class %}
 
 {%
@@ -80,9 +83,12 @@
   ]
 %}
 
+{#
+  Building the template structure
+#}
 <article{{ attributes.addClass(classes) }}>
   {% if display_submitted %}
-    <header class="{{ layout }}">
+    <header class="c-node__header {{ layout }}">
       {{ title_prefix }}
 
       {% if label and not page %}
@@ -113,10 +119,4 @@
       {{ content|without('comment') }}
     {% endblock %}
   </div>
-
-  {% if content.comment %}
-    <div id="c-comments" class="{{ layout }}">
-      {{ content.comment }}
-    </div>
-  {% endif %}
 </article>

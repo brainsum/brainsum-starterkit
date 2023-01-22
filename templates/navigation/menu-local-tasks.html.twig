@@ -14,19 +14,32 @@
  */
 #}
 
-{{ attach_library('starter_theme/tabs') }}
+{#
+  Attaching Drupal libraries
+#}
+{{ attach_library('brainsum_starterkit/tabs') }}
 
+{#
+  Building the template structure
+#}
 <div class="o-container--large">
   {% if primary %}
-    <h2 id="primary-tabs-title" class="u-visually-hide">{{ 'Primary tabs'|t }}</h2>
-    <nav role="navigation" class="tabs-wrapper" aria-labelledby="primary-tabs-title" data-drupal-nav-tabs>
-      <ul class="tabs tabs--primary">{{ primary }}</ul>
+    <span id="primary-tabs-title" class="u-visually-hide u-visually-hide--focusable">
+    {{ 'Primary tabs'|t }}
+    </span>
+
+    <nav role="navigation" class="c-tabs__wrapper" aria-labelledby="primary-tabs-title" data-drupal-nav-primary-tabs>
+      <ul class="c-tabs c-tabs--primary">{{ primary }}</ul>
     </nav>
   {% endif %}
+
   {% if secondary %}
-    <h2 id="secondary-tabs-title" class="u-visually-hide">{{ 'Secondary tabs'|t }}</h2>
-    <nav role="navigation" class="tabs-wrapper" aria-labelledby="secondary-tabs-title" data-drupal-nav-tabs>
-      <ul class="tabs tabs--secondary">{{ secondary }}</ul>
+    <span id="secondary-tabs-title" class="u-visually-hide u-visually-hide--focusable">
+      {{ 'Secondary tabs'|t }}
+    </span>
+
+    <nav role="navigation" class="c-tabs__wrapper" aria-labelledby="secondary-tabs-title">
+      <ul class="c-tabs c-tabs--secondary">{{ secondary }}</ul>
     </nav>
   {% endif %}
 </div>

@@ -12,16 +12,26 @@
  * @ingroup themeable
  */
 #}
+
+{#
+  Attaching Drupal libraries
+#}
 {% block includes %}
-  {{ attach_library('starter_theme/form') }}
+  {{ attach_library('brainsum_starterkit/form') }}
 {% endblock %}
 
+{#
+  Defining local variables
+#}
 {%
   set classes = [
     'c-form'
   ]
 %}
 
+{#
+  Building the template structure
+#}
 <form{{ attributes.addClass(classes) }}>
   {{ children }}
 </form>

@@ -21,20 +21,30 @@
  * @ingroup themeable
  */
 #}
+
+{#
+  Defining local variables
+#}
+{%
+  set classes = [
+    'js-form-item',
+    'c-form-item'
+  ]
+%}
+
+{#
+  Building the template structure
+#}
 {% if multiple %}
-  {%
-    set classes = [
-      'js-form-item',
-      'c-form-item'
-    ]
-  %}
   <div{{ attributes.addClass(classes) }}>
     {{ table }}
+
     {% if description.content %}
       <div{{ description.attributes.addClass('c-form-item__description') }} >{{ description.content }}</div>
     {% endif %}
+
     {% if button %}
-      <div class="clearfix">{{ button }}</div>
+      <div class="c-form__actions">{{ button }}</div>
     {% endif %}
   </div>
 {% else %}

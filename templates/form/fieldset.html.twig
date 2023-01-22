@@ -6,6 +6,10 @@
  * @see template_preprocess_fieldset()
  */
 #}
+
+{#
+  Defining local variables
+#}
 {%
   set classes = [
     'c-fieldset',
@@ -16,12 +20,14 @@
     'c-form-wrapper',
   ]
 %}
+
 {%
   set wrapper_classes = [
     'c-fieldset__wrapper',
     attributes.hasClass('c-fieldgroup') ? 'c-fieldset__wrapper--group',
   ]
 %}
+
 {%
   set legend_span_classes = [
     'c-fieldset__label',
@@ -30,6 +36,7 @@
     required ? 'is-form-required',
   ]
 %}
+
 {%
   set legend_classes = [
     'c-fieldset__legend',
@@ -38,14 +45,18 @@
     title_display == 'invisible' ? 'c-fieldset__legend--invisible' : 'c-fieldset__legend--visible',
   ]
 %}
+
 {%
   set description_classes = [
    'c-fieldset__description',
   ]
 %}
 
+{#
+  Building the template structure
+#}
 <fieldset{{ attributes.addClass(classes) }}>
-  {#  Always wrap fieldset legends in a <span> for CSS positioning. #}
+  {# Always wrap fieldset legends in a <span> for CSS positioning. #}
   {% if legend.title %}
   <legend{{ legend.attributes.addClass(legend_classes) }}>
     <span{{ legend_span.attributes.addClass(legend_span_classes) }}>{{ legend.title }}</span>

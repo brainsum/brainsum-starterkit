@@ -15,6 +15,10 @@
  * @ingroup themeable
  */
 #}
+
+{#
+  Defining local variables
+#}
 {%
   set title_classes = [
     required ? 'js-form--required',
@@ -22,17 +26,22 @@
     required ? 'is-required',
   ]
 %}
+
+{# Building the template structure #}
 {% if title %}
   <h4{{ title_attributes.addClass(title_classes) }}>{{ title }}</h4>
 {% endif %}
+
 {{ content }}
+
 {% if errors %}
-  <div>
+  <div class="c-form__errors">
     {{ errors }}
   </div>
 {% endif %}
+
 {% if description %}
-  <div{{ description_attributes }}>
+  <div{{ description_attributes.addClass('c-form__description') }}>
     {{ description }}
   </div>
 {% endif %}

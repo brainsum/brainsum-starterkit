@@ -15,6 +15,15 @@
 * @ingroup themeable
 */
 #}
+
+{#
+  Attaching Drupal libraries
+#}
+{{ attach_library('brainsum_starterkit/file') }}
+
+{#
+  Building the template structure
+#}
 <video {{ attributes.addClass('u-video-responsive') }}>
   {% for file in files %}
     <source {{ file.source_attributes }} />

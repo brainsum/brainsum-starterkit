@@ -37,8 +37,15 @@
  * @see template_preprocess_field()
  */
 #}
-{% extends "field.html.twig" %}
 
+{#
+  Inherits from
+#}
+{% extends 'field--text.html.twig' %}
+
+{#
+  Attaching Drupal libraries
+#}
 {% block includes %}
-  {{ attach_library('starter_theme/field.long-text') }}
+  {{ attach_library('brainsum_starterkit/field.long-text') }}
 {% endblock %}

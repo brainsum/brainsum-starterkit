@@ -29,34 +29,47 @@
   @see https://twig.symfony.com/doc/1.x/tags/macro.html
 #}
 {% set attributes = attributes.addClass('c-menu') %}
+
 {{ menus.menu_links(items, attributes, 0, menu_name) }}
 
-{% macro menu_links(items, attributes, menu_level, menu_name) %}
-  {% set primary_nav_level = 'c-menu--level-' ~ (menu_level + 1) %}
-  {% import _self as menus %}
-  {% if items %}
-    <ul {{ attributes.addClass('c-menu', 'c-menu--' ~ menu_name, primary_nav_level) }}>
-      {% set attributes = attributes.removeClass(primary_nav_level) %}
-      {% for item in items %}
+{% macro menu_links(items, attributes, menu_level, menu_name, aria_id) %}
+  {% set nav_level = 'c-menu--level-' ~ (menu_level + 1) %}
+  {% set drupal_selector_nav_level = menu_level <= 1 ? 'menu--level-' ~ (menu_level + 1) : false %}
+  {% set is_top_level_menu = menu_level == 0 %}
 
-        {% if item.url.isrouted and item.url.routeName == '<nolink>' %}
+  {% import _self as menus %}
+
+  {% if items %}
+    <ul {{ attributes
+      .addClass('c-menu', 'c-menu--' ~ menu_name, nav_level)
+      .setAttribute('data-drupal-selector', drupal_selector_nav_level)
+      .setAttribute('id', aria_id)
+    }}>
+      {% set attributes = attributes.removeClass(nav_level) %}
+
+      {% for key, item in items %}
+        {% if item.url.isRouted and item.url.routeName == '<nolink>' %}
           {% set menu_item_type = 'nolink' %}
-        {% elseif item.url.isrouted and item.url.routeName == '<button>' %}
+        {% elseif item.url.isRouted and item.url.routeName == '<button>' %}
           {% set menu_item_type = 'button' %}
         {% else %}
           {% set menu_item_type = 'link' %}
         {% endif %}
 
-        {% set item_classes = [
+        {%
+          set item_classes = [
             'c-menu__item',
             'c-menu__item--' ~ menu_item_type,
             'c-menu__item--level-' ~ (menu_level + 1),
+            item.is_expanded ? 'menu-item--expanded',
+            item.is_collapsed ? 'menu-item--collapsed',
             item.in_active_trail ? 'c-menu__item--active-trail',
             item.below ? 'c-menu__item--has-children',
           ]
         %}
 
-        {% set link_classes = [
+        {%
+          set link_classes = [
             'c-menu__link',
             'c-menu__link--' ~ menu_item_type,
             'c-menu__link--level-' ~ (menu_level + 1),
@@ -65,30 +78,76 @@
           ]
         %}
 
-        <li{{ item.attributes.addClass(item_classes) }}>
+        <li{{ item.attributes
+          .addClass(item_classes)
+          .setAttribute('data-drupal-selector', is_top_level_menu and item.below ? 'menu-item-has-children': false)
+        }}>
           {#
             A unique HTML ID should be used, but that isn't available through
             Twig yet, so the |clean_id filter is used for now.
             @see https://www.drupal.org/project/drupal/issues/3115445
           #}
-          {% set aria_id = (item.title ~ '-submenu-' ~ loop.index )|clean_id %}
+          {% set aria_id = ( key ~ '-' ~ loop.index )|clean_id %}
 
           {% if menu_item_type == 'link' or menu_item_type == 'nolink' %}
-            {{ link(item.title, item.url, { 'class': link_classes }) }}
+            {{ link(item.title, item.url, {
+              'class': link_classes,
+              'data-drupal-selector': is_top_level_menu ? 'menu-link-has-children' : false
+            }) }}
 
             {% if item.below %}
-              {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+              {#
+                Aria-hidden  and tabindex attributes are removed via JS. Button is non-functional,
+                but still visible in non-JS environments so that chevron can indicate presence of
+                drop menu).
+              #}
+              {% if is_top_level_menu %}
+              {%
+                set toggle_button_attributes = create_attribute({
+                  'class': 'c-menu__button-toggle',
+                  'data-drupal-selector': 'menu__submenu-toggle-button',
+                  'aria-controls': aria_id,
+                  'aria-expanded': 'false',
+                  'aria-hidden': 'true',
+                  'tabindex': '-1',
+                })
+              %}
+
+            <button{{ toggle_button_attributes }}>
+              <span class="u-visually-hide">{{ '@title sub-navigation'|t({'@title': item.title}) }}</span>
+              {#
+                angle-down icon from Font Awesome 6 Classic Solid
+                https://fontawesome.com/icons/angle-down?s=solid&f=classic
+              #}
+              <svg
+                class="c-icon c-menu__toggle-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 448 512"
+                role="img"
+                focusable="false"
+              >
+                <path d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/>
+              </svg>
+            </button>
+          {% endif %}
+
+          {% set attributes = attributes.setAttribute('id', aria_id) %}
+          {{ menus.menu_links(item.below, attributes, menu_level + 1, aria_id) }}
             {% endif %}
 
           {% elseif menu_item_type == 'button' %}
             {{ link(link_title, item.url, {
               'class': link_classes,
-              'data-ariacontrols': item.below ? aria_id : false,
+              'aria-controls': is_top_level_menu and item.below ? aria_id : false,
+              'aria-expanded': is_top_level_menu and item.below ? 'false' : false,
+              'data-drupal-selector': is_top_level_menu and item.below ? 'submenu-toggle-button' : false,
               })
             }}
 
             {% set attributes = attributes.setAttribute('id', aria_id) %}
-            {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+            {{ menus.menu_links(item.below, attributes, menu_level + 1, aria_id) }}
           {% endif %}
         </li>
       {% endfor %}

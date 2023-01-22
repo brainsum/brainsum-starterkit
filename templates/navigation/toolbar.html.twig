@@ -22,21 +22,44 @@
  * @ingroup themeable
  */
 #}
+
+{#
+  Building the template structure
+#}
 <div{{ attributes.addClass('toolbar') }}>
-  <nav{{ toolbar_attributes.addClass('toolbar-bar') }}>
-    <h2 class="u-visually-hide">{{ toolbar_heading }}</h2>
+  <nav{{ toolbar_attributes
+    .addClass('toolbar-bar')
+    .setAttribute('aria-labelledby', 'toolbar-bar-name')
+  }}>
+    <span
+      class="u-visually-hide u-visually-hide--focusable"
+      id="toolbar-bar-name"
+    >
+        {{ toolbar_heading }}
+    </span>
     {% for key, tab in tabs %}
       {% set tray = trays[key] %}
+
       <div{{ tab.attributes.addClass('toolbar-tab') }}>
         {{ tab.link }}
+
         {% spaceless %}
           <div{{ tray.attributes }}>
             {% if tray.label %}
-              <nav class="toolbar-lining clearfix" role="navigation" aria-label="{{ tray.label }}">
-                <h3 class="toolbar-tray-name u-visually-hide">{{ tray.label }}</h3>
+              <nav
+                class="toolbar-lining clearfix"
+                aria-labelledby="toolbar-tray-name--{{ key }}"
+              >
+                <span
+                  class="toolbar-tray-name u-visually-hide u-visually-hide--focusable"
+                  id="toolbar-tray-name--{{ key }}"
+                >
+                  {{ tray.label }}
+                </span>
             {% else %}
-              <nav class="toolbar-lining clearfix" role="navigation">
+              <nav class="toolbar-lining clearfix">
             {% endif %}
+
             {{ tray.links }}
             </nav>
           </div>
@@ -44,5 +67,6 @@
       </div>
     {% endfor %}
   </nav>
+
   {{ remainder }}
 </div>

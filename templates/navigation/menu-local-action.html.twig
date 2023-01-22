@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Theme override for a single local action link.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the wrapper element.
+ * - link: A rendered link element.
+ *
+ * @see template_preprocess_menu_local_action()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{#
+  Attaching Drupal libraries
+#}
+{{ attach_library('brainsum_starterkit/local-actions') }}
+
+{#
+  Building the template structure
+#}
+<li{{ attributes }} class="action-links-item">{{ link }}</li>

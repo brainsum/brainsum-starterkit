@@ -37,17 +37,26 @@
  * @see template_preprocess_field()
  */
 #}
+
+{#
+  Attaching Drupal libraries
+#}
 {% block includes %}
 {% endblock %}
 
+{#
+  Defining local variables
+#}
 {%
   set classes = [
     'c-field',
     'c-field--name-' ~ field_name|clean_class,
     'c-field--type-' ~ field_type|clean_class,
     'c-field--label-' ~ label_display,
+    label_display == 't-inline' ? 'clearfix',
   ]
 %}
+
 {%
   set title_classes = [
     'c-field__label',
@@ -55,6 +64,9 @@
   ]
 %}
 
+{#
+  Building the template structure
+#}
 {% if label_hidden %}
   {% if multiple %}
     <div{{ attributes.addClass(classes, 'c-field__items') }}>
@@ -70,12 +82,15 @@
 {% else %}
   <div{{ attributes.addClass(classes) }}>
     <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+
     {% if multiple %}
       <div class="c-field__items">
     {% endif %}
+
     {% for item in items %}
       <div{{ item.attributes.addClass('c-field__item') }}>{{ item.content }}</div>
     {% endfor %}
+
     {% if multiple %}
       </div>
     {% endif %}

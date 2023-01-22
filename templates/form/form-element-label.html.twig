@@ -14,6 +14,10 @@
  * @ingroup themeable
  */
 #}
+
+{#
+  Defining local variables
+#}
 {%
   set classes = [
     title_display == 'after' ? 'option',
@@ -22,6 +26,10 @@
     required ? 'c-form-required',
   ]
 %}
+
+{#
+  Building the template structure
+#}
 {% if title is not empty or required -%}
   <label{{ attributes.addClass(classes) }}>{{ title }}</label>
 {%- endif %}

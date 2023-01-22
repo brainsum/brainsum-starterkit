@@ -38,6 +38,10 @@
  * @ingroup themeable
  */
 #}
+
+{#
+  Defining local variables
+#}
 {%
   set classes = [
     'c-field__item',
@@ -47,6 +51,10 @@
     not paragraph.isPublished() ? 'c-paragraph--unpublished'
   ]
 %}
+
+{#
+  Building the template structure
+#}
 {% block paragraph %}
   <section{{ attributes.addClass(classes) }}>
     {% block content %}

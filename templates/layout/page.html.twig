@@ -46,50 +46,68 @@
  * @see html.html.twig
  */
 #}
+
+{#
+  Attaching Drupal libraries
+#}
 {% block includes %}
 {% endblock %}
 
+{#
+  Defining local variables
+#}
 {%
   set page_classes = [
-  'c-page'
-]
+    'c-page'
+  ]
 %}
 
+{#
+  Building the template structure
+#}
 <div{{ attributes.addClass(page_classes) }} id="c-page">
   {% if page.top_bar or page.header or page.navigation %}
-    {{ attach_library('starter_theme/header') }}
-    <header id="c-header" class="c-header" role="banner">
+    {{ attach_library('brainsum_starterkit/header') }}
+
+    <header id="c-header" class="c-header" data-drupal-selector="header">
       {% if page.top_bar %}
-        <div class="c-top-bar">
+        <div class="c-top-bar" data-drupal-selector="top-bar">
           <div class="o-container">
             {{ page.top_bar }}
           </div>
         </div>
       {% endif %}
+
       {% if page.header %}
         <div class="o-container">
           {{ page.header }}
         </div>
       {% endif %}
+
       {% if page.navigation %}
         <div class="o-container">
-          {{ page.navigation }}
+          <div class="c-header__navigation" data-drupal-selector="header__navigation">
+            {{ page.navigation }}
+          </div>
+
           <button
-            class="c-hamburger"
-            aria-label="{{ 'Toggle Main Menu'|t }}" aria-controls="c-navigation"
+            class="c-header__hamburger c-hamburger"
+            data-drupal-selector="hamburger"
+            aria-controls="c-navigation"
             aria-expanded="false"
           >
             <span class="c-hamburger__box">
               <span class="c-hamburger__spinner"></span>
             </span>
-            <span class="c-hamburger__label u-visually-hide">{{ 'Menu'|t }}</span>
+
+            <span class="c-hamburger__label u-visually-hide">{{ 'Toggle Main Menu'|t }}</span>
           </button>
         </div>
       {% endif %}
     </header>
   {% endif %}
 
-  <main id="main" role="main">
+  <main id="main">
     <span id="main-content" tabindex="-1"></a>
 
     {% if page.breadcrumb %}
@@ -131,15 +149,15 @@
     </section>
 
     {% if page.sidebar %}
-      <aside class="c-sidebar c-sidebar--first" role="complementary">
+      <div class="c-sidebar c-sidebar--first">
         {{ page.sidebar }}
-      </aside>
+      </div>
     {% endif %}
 
     {% if page.sidebar_second %}
-      <aside class="c-sidebar c-sidebar--second" role="complementary">
+      <div class="c-sidebar c-sidebar--second">
         {{ page.sidebar_second }}
-      </aside>
+      </div>
     {% endif %}
 
     {% if page.bottom %}
@@ -152,12 +170,14 @@
   </main>
 
   {% if page.footer %}
-    <footer class="c-footer" role="contentinfo">
+    <footer class="c-footer">
       <div class="o-container">
         {{ page.footer }}
       </div>
     </footer>
   {% endif %}
+
+  <div class="c-overlay" data-drupal-selector="overlay"></div>
 </div>
 
 {{ page.admin }}

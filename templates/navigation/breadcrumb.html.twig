@@ -7,9 +7,13 @@
  * - breadcrumb: Breadcrumb trail items.
  */
 #}
+
+{#
+  Building the template structure
+#}
 {% if breadcrumb %}
   <nav class="c-breadcrumb" role="navigation" aria-labelledby="system-breadcrumb">
-    <h2 id="system-breadcrumb" class="u-visually-hide">{{ 'Breadcrumb'|t }}</h2>
+    <span id="system-breadcrumb" class="u-visually-hide u-visually-hide--focusable">{{ 'Breadcrumb'|t }}</span>
     <div class="c-breadcrumb__content">
       <ol class="c-breadcrumb__list">
         {% for item in breadcrumb %}
