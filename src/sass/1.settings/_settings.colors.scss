@@ -8,29 +8,46 @@
  * - Here are only color variables and maps, no any assigned color variables.
  */
 
+@use "sass:color";
+
 /**
- * Color Definitions
+ * Color definitions
+ *
+ * Named colors stored as shades. If it's possible choose from these colors
+ * only.
  */
-// default most darkest color
 $color-dark             : #000;
-// default most lightest color
 $color-light            : #fff;
+
 // default grey color
 $color-grey             : #333;
-// different shades of the default grey color
-$color-grey-120         : scale-color($color-grey, $lightness: -20%);
-$color-grey-80          : scale-color($color-grey, $lightness: 20%);
-$color-grey-60          : scale-color($color-grey, $lightness: 40%);
-$color-grey-40          : scale-color($color-grey, $lightness: 60%);
-$color-grey-20          : scale-color($color-grey, $lightness: 80%);
-// design needed color definitions
+
+/**
+ * Different shades of the default grey color
+ */
+$color-grey-120         : color.scale($color-grey, $lightness: -20%);
+$color-grey-110         : color.scale($color-grey, $lightness: -10%);
+$color-grey-100         : $color-grey;
+$color-grey-90          : color.scale($color-grey, $lightness: 10%);
+$color-grey-80          : color.scale($color-grey, $lightness: 20%);
+$color-grey-70          : color.scale($color-grey, $lightness: 30%);
+$color-grey-60          : color.scale($color-grey, $lightness: 40%);
+$color-grey-50          : color.scale($color-grey, $lightness: 50%);
+$color-grey-40          : color.scale($color-grey, $lightness: 60%);
+$color-grey-30          : color.scale($color-grey, $lightness: 70%);
+$color-grey-20          : color.scale($color-grey, $lightness: 80%);
+$color-grey-10          : color.scale($color-grey, $lightness: 90%);
+
+/**
+ * Design needed global color definitions
+ */
 $color-blue             : #0091cc;
 $color-yellow           : #f7ca00;
 $color-turquoise        : #66d1ca;
 $color-turquoise--dark  : #53c2bc;
 
 /**
- * Colors by Functions
+ * Global colors by functions
  */
 $color-brand            : $color-yellow;
 $color-primary          : $color-blue;

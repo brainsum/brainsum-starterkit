@@ -9,9 +9,8 @@
 /**
  * Form Borders
  */
-$global-form-border-size-base  : 2px;
-$global-form-border-size-left  : 6px;
-$global-form-border-radius     : 2px;
-
-$global-form-padding-y         : 1.4rem;
-$global-form-padding-x         : 2.4rem;
+$global-form-border-size-base         : 0.2rem;
+$global-form-border-size-inline-start : 0.6rem;
+$global-form-border-radius            : 0.2rem;
+$global-form-padding-block            : 1.4rem;
+$global-form-padding-inline           : 2.4rem;
