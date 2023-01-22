@@ -34,6 +34,12 @@ button:
     component:
       css/components/components.button.css: { preprocess: false }
 
+details:
+  version: 1.0.0
+  css:
+    theme:
+      css/components/components.details.css: { preprocess: false }
+
 field.long-text:
   version: 1.0.0
   css:
@@ -70,6 +76,12 @@ page.home:
   css:
     theme:
       css/pages/pages.home.css: { preprocess: false }
+
+page.maintenance:
+  version: 1.0.0
+  css:
+    theme:
+      css/pages/pages.maintenance.css: { preprocess: false }
 
 page.subpage:
   version: 1.0.0

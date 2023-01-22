@@ -1,20 +1,29 @@
 # Theme's name for admin UI, change for your project, like Diginomica Theme
-name: "BRAINSUM's Drupal 8-9 startertheme"
+name: "BRAINSUM's Drupal 10 startertkit"
 type: theme
-# Short description text for admin UI, change for your project
-description: "Drupal 8 and 9 coding standards ready startertheme powered by Laravel Mix (Webpack), bundled with Shake.sass sass framework without any dependency (no base theme too)."
-core: 8.x
-core_version_requirement: ^8 || ^9
-# website logo, begin with Drupal 8.6 you can use SVG or PNG format too
-logo: logo.svg
-# screenshot cover image for admin UI (588x438): take a screenshot about home page
-screenshot: screenshot.png
-package: brainsum
 # Defines the base theme, change it for your needs
 base theme: false
+# This is a startkerkit theme.
+starterkit: true
+# We don't want to display this theme in the Drupal admin.
+hidden: true
+# Short description text for admin UI, change for your project
+description: "Drupal 10 coding standards ready startertheme powered by Laravel Mix (Webpack), bundled with Shake.sass sass framework without any dependency (no base theme too)."
+# Screenshot cover image for admin UI (588x438): take a screenshot about the home page
+screenshot: screenshot.png
+# Grouping
+package: brainsum
+# Version number
+version: 3.0.0
+# Drupal core version
+core: 8.x
+# Dependency resolving for Composer.
+core_version_requirement: ^10
+# website logo, begin with Drupal 8.6 you can use SVG or PNG format too
+logo: logo.svg
 # Defines libraries group in which we can add css/js.
 libraries:
-  - starter_theme/global
+  - brainsum_starterkit/global
 # Regions, change it for your needs (don't forget change page template too)
 regions:
   top_bar: Top Bar
@@ -37,7 +46,7 @@ libraries-override:
       component:
         css/components/ajax-progress.module.css: css/components/components.ajax-progress.css
         css/components/align.module.css: false
-        css/components/autocomplete-loading.module.css: css/components/components.autocomplete.css
+        css/components/autocomplete-loading.module.css: css/components/components.autocomplete-loading.css
         css/components/fieldgroup.module.css: false
         css/components/container-inline.module.css: false
         css/components/clearfix.module.css: false
@@ -52,27 +61,24 @@ libraries-override:
         css/components/sticky-header.module.css: false
         css/components/tabledrag.module.css: false
         css/components/tablesort.module.css: false
+        css/components/tree-child.module.css: false
   core/drupal.checkbox: false
-  core/drupal.announce:
-    js:
-      misc/announce.js: js/tools/tools.announce.js
   core/drupal.dropbutton: false
   core/drupal.vertical-tabs:
-    js:
-      misc/vertical-tabs.js: false
+    css:
+      component:
+        misc/vertical-tabs.css: css/components/components.vertical-tabs.css
   admin_toolbar_search/search:
     css:
       theme:
         css/admin.toolbar_search.css: css/components/components.admin.toolbar-search.css
   dropdown_language/dropdown-language-selector: false
-  field_group/element.horizontal_tabs:
-    js:
-      formatters/tabs/horizontal-tabs.js: js/components/components.horizontal-tabs.js
   user/drupal.user:
     css:
       component:
         css/user.module.css: css/components/components.user.css
   views.module:
     css:
-      component:
-        css/views.module.css: false
+  core/drupal.message: brainsum_starterkit/messages
+  core/drupal.collapse: brainsum_starterkit/details
+
