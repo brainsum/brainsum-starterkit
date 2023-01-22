@@ -9,14 +9,14 @@
  * Borrowed from Olivero Theme.
  */
 (function (Drupal) {
-  var messages = document.querySelectorAll('.messages');
+  var messages = document.querySelectorAll('.c-messages');
   messages.forEach(function (el) {
-    var messageContainer = el.querySelector('.messages__container');
+    var messageContainer = el.querySelector('.c-messages__container');
     var closeBtnWrapper = document.createElement('div');
-    closeBtnWrapper.setAttribute('class', 'messages__button');
+    closeBtnWrapper.setAttribute('class', 'c-messages__button');
     var closeBtn = document.createElement('button');
     closeBtn.setAttribute('type', 'button');
-    closeBtn.setAttribute('class', 'messages__close');
+    closeBtn.setAttribute('class', 'c-messages__close');
     var closeBtnText = document.createElement('span');
     closeBtnText.setAttribute('class', 'u-visually-hide');
     closeBtnText.innerText = Drupal.t('Close message');

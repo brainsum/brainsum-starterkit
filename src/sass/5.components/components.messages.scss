@@ -23,32 +23,18 @@ $messages-color--status     : $color-turquoise--dark;
 $messages-color--info       : $color-turquoise--dark;
 $messages-focus-color       : $color-yellow;
 
-.messages-list {
-  margin-top: $gutter--2x;
-  margin-bottom: $gutter--2x;
-}
-
-.messages {
-  min-height: $messages-icon-size + 3.6rem;
-  padding: 1.8rem 2.7rem;
+.c-messages {
+  min-height: $messages-icon-size + $gutter--2x;
+  padding-block: $gutter;
+  padding-inline-start: $gutter $gutter * 1.5;
+  padding-inline-end: $gutter $gutter * 1.5;
   border-left: 1rem solid transparent;
+  color: $messages-color;
   outline: solid 1px transparent;
   background-color: $color-grey;
 
-  &--error {
-    border-left-color: $messages-color--error;
-  }
-
-  &--warning {
-    border-left-color: $messages-color--warning;
-  }
-
-  &--status {
-    border-left-color: $messages-color--status;
-  }
-
-  &--info {
-    border-left-color: $messages-color--info;
+  & * {
+    color: inherit;
   }
 
   &.is-hidden {
@@ -59,102 +45,131 @@ $messages-focus-color       : $color-yellow;
     padding: 0;
   }
 
+  &-list {
+    margin-block: $gutter;
+    padding-block: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+    list-style: none;
+  }
+
   /* Additional specificity to override contrib modules. */
   &.messages-list__item {
     background-image: none;
   }
-}
 
-.messages__list {
-  margin: 0;
-  padding: 0;
-}
-
-.messages:not(.hidden) ~ .messages {
-  margin-top: $gutter--2x;
-}
-
-.messages__item + .messages__item {
-  margin-top: $gutter;
-}
-
-.messages__container {
-  display: flex;
-}
-
-.messages__header {
-  flex-shrink: 0;
-  margin-right: $gutter--2x;
-}
-
-.messages__content {
-  flex: 1;
-  max-width: calc(100% - (#{$messages-icon-size} + #{$gutter--2x} + #{$messages-close-icon-size} + #{$gutter--2x}));
-  padding-top: 0.3rem;
-  color: #fff;
-}
-
-.messages__button {
-  flex-shrink: 0;
-  margin-left: $gutter--2x;
-  padding-top: 0.3rem;
-}
-
-.messages__close {
-  position: relative;
-  width: $messages-close-icon-size;
-  height: $messages-close-icon-size;
-  padding: 0;
-  cursor: pointer;
-  vertical-align: top;
-  border: 0;
-  border-radius: 50%;
-  background: none;
-  appearance: none;
-
-  &::before,
-  &::after {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    display: block;
-    width: 3.3rem;
-    height: 0.2rem;
-    content: "";
-    background-color: #fff;
+  &:not(.is-hidden) ~ .messages {
+    margin-block-start: $gutter;
   }
 
-  &::before {
-    transform: translate(-50%, -50%) rotate(45deg);
+  &__item + .messages__item {
+    margin-block-start: $gutter * 0.5;
   }
 
-  &::after {
-    transform: translate(-50%, -50%) rotate(-45deg);
+  &__container {
+    display: flex;
   }
 
-  &:hover {
-    &::before,
-    &::after {
-      background-color: #fff;
+  &__header {
+    flex-shrink: 0;
+    margin-inline-end: $gutter;
+
+    &.no-icon {
+      margin-inline-end: 0;
     }
   }
 
-  &:focus {
-    outline: 2px solid $messages-focus-color;
-    outline-offset: 1px;
+  &__content {
+    // Ensure large code blocks can be scrolled to.
+    overflow: auto;
+    flex: 1;
+    padding-block-start: 0.3rem;
   }
-}
 
-.messages__icon {
-  vertical-align: top;
-  fill: #fff;
-}
+  &__button {
+    flex-shrink: 0;
+    margin-inline-start: $gutter;
+    padding-block-start: 0.3rem;
+  }
 
-.messages a {
-  color: #fff !important;
-}
+  &__close {
+    @include square($messages-close-icon-size);
 
-.messages pre {
-  margin: 0;
-  white-space: normal;
+    position: relative;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+    cursor: pointer;
+    vertical-align: top;
+    border: 0;
+    background: none;
+    appearance: none;
+
+    &::before,
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: block;
+      width: 3.3rem;
+      height: 0;
+      content: "";
+      border-top: solid 2px $color-grey-70;
+    }
+
+    &::before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &::after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    &:hover {
+      &::before,
+      &::after {
+        border-color: #fff;
+      }
+    }
+
+    &:focus {
+      outline: 0.2rem solid $messages-focus-color;
+      outline-offset: 0.2rem;
+    }
+  }
+
+  &__icon {
+    svg {
+      vertical-align: top;
+
+      .messages--error & {
+        fill: $messages-color--error;
+      }
+
+      .messages--warning & {
+        fill: $messages-color--warning;
+      }
+
+      .messages--status & {
+        fill: $messages-color--status;
+      }
+
+      .messages--info & {
+        fill: $messages-color--info;
+      }
+    }
+  }
+
+  a {
+    color: #fff;
+  }
+
+  pre {
+    margin: 0;
+    white-space: normal;
+  }
+
+  .js-form-managed-file & {
+    margin-block-end: $gutter;
+    border-inline-start: solid 0.6rem $messages-color--error;
+  }
 }

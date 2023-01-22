@@ -8,17 +8,17 @@
  */
 
 (Drupal => {
-  const messages = document.querySelectorAll('.messages');
+  const messages = document.querySelectorAll('.c-messages');
 
   messages.forEach(el => {
-    const messageContainer = el.querySelector('.messages__container');
+    const messageContainer = el.querySelector('.c-messages__container');
 
     const closeBtnWrapper = document.createElement('div');
-    closeBtnWrapper.setAttribute('class', 'messages__button');
+    closeBtnWrapper.setAttribute('class', 'c-messages__button');
 
     const closeBtn = document.createElement('button');
     closeBtn.setAttribute('type', 'button');
-    closeBtn.setAttribute('class', 'messages__close');
+    closeBtn.setAttribute('class', 'c-messages__close');
 
     const closeBtnText = document.createElement('span');
     closeBtnText.setAttribute('class', 'u-visually-hide');
