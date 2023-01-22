@@ -1,0 +1,46 @@
+/**
+ * @file
+ * Override Drupal Autocomplete Component
+ *
+ * Visual styles for autocomplete input field.
+ * Based on Olivero.
+ */
+
+/**
+  * Imports
+ */
+@import "../_global.importer";
+
+/**
+ * Settings
+ */
+$autocomplete-border-size-base                : $global-form-border-size-base;
+$autocomplete-border-size-inline-start        : $global-form-border-size-inline-start;
+$autocomplete-search-icon                     : url("../../images/magnifying-glass.svg");
+$autocomplete-throbber-icon                   : url("../../images/throbber.svg");
+$autocomplete-throbber-icon-size              : 1.9rem;
+$autocomplete-throbber-icon-inline-end-offset : 1.8rem;
+$autocomplete-throbber-icon-block-start-offset: calc(#{$autocomplete-throbber-icon-inline-end-offset} - #{$autocomplete-border-size-base});
+
+.form-autocomplete {
+  html.js & {
+    padding-inline-end: $autocomplete-throbber-icon-size + 2 * $autocomplete-throbber-icon-inline-end-offset;
+    background: $color-light $autocomplete-search-icon no-repeat right $autocomplete-throbber-icon-inline-end-offset center;
+
+    &:disabled {
+      background-color: $color-grey-10;
+    }
+
+    &.ui-autocomplete-loading {
+      background: $color-light $autocomplete-search-icon no-repeat right $autocomplete-throbber-icon-inline-end-offset center;
+    }
+  }
+
+  html.js[dir="rtl"] & {
+    background: $color-light $autocomplete-search-icon no-repeat left $autocomplete-throbber-icon-inline-end-offset center;
+
+    &.ui-autocomplete-loading {
+      background: $color-light $autocomplete-search-icon no-repeat left $autocomplete-throbber-icon-inline-end-offset center;
+    }
+  }
+}
