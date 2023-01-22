@@ -181,8 +181,7 @@ $tools-grid-gutter-extra       : $global-grid-gutter-extra;
  *   }
  */
 @mixin make-column($gutter: $tools-grid-gutter-default) {
-  @include _generate-unit("padding", "left", $gutter, half);
-  @include _generate-unit("padding", "right", $gutter, half);
+  @include _generate-unit("padding", "inline", $gutter, half);
 
   flex-basis: auto;
   box-sizing: inherit;
@@ -253,10 +252,10 @@ $tools-grid-gutter-extra       : $global-grid-gutter-extra;
  */
 @mixin column-offset($size, $position: start) {
   @if ($position == start) {
-    margin-left: percentage($size);
+    margin-inline-start: percentage($size);
   }
 
   @else if($position == end) {
-    margin-right: percentage($size);
+    margin-inline-end: percentage($size);
   }
 }

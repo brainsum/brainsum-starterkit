@@ -23,33 +23,33 @@
   h4,
   h5,
   h6 {
-    margin: 1.5em 0 1em;
+    margin-block-start: 1.5em;
+    margin-block-end: 1em;
+    margin-inline: 0;
     color: $color-brand;
   }
 
   img {
-    margin-top: 1em;
-    margin-bottom: 1em;
+    margin-block: 1em;
   }
 
   p + img,
   p + .c-media--type-image img {
-    margin-top: 0;
+    margin-block-start: 0;
   }
 
   .align-center {
     display: block;
-    margin-right: auto;
-    margin-left: auto;
+    margin-inline: auto;
   }
 
   .align-left {
-    float: left;
-    margin-right: 1em;
+    float: inline-start;
+    margin-inline-end: 1em;
   }
 
   .align-right {
-    float: right;
-    margin-left: 1em;
+    float: inline-end;
+    margin-inline-start: 1em;
   }
 }

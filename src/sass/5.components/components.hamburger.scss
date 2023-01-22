@@ -23,8 +23,8 @@
 /**
  * Settings
  */
-$hamburger-padding-x                    : 0;
-$hamburger-padding-y                    : 0;
+$hamburger-padding-inline               : 0;
+$hamburger-padding-block                : 0;
 $hamburger-spinner-width                : 3.1rem;
 $hamburger-spinner-width--middle        : 3.1rem;
 $hamburger-spinner-height               : 0.5rem;
@@ -34,8 +34,11 @@ $hamburger-spinner-color                : $color-brand;
 
 .c-hamburger {
   overflow: visible;
-  margin: 3rem 0 3.5rem 4rem;
-  padding: $hamburger-padding-y $hamburger-padding-x;
+  margin-block-start: 3rem;
+  margin-block-end: 3.5rem;
+  margin-inline-end: 0;
+  margin-inline-start: 4rem;
+  padding: $hamburger-padding-block $hamburger-padding-inline;
   cursor: pointer;
   transition: opacity 0.5s ease;
   color: inherit;
@@ -65,9 +68,9 @@ $hamburger-spinner-color                : $color-brand;
   }
 
   &__spinner {
-    top: $hamburger-spinner-height * 0.5;
+    inset-block-start: $hamburger-spinner-height * 0.5;
     display: block;
-    margin-top: math.div($hamburger-spinner-height, -2);
+    margin-block-start: math.div($hamburger-spinner-height, -2);
     transition: background 0s 0.13s linear;
 
     &::before,
@@ -88,18 +91,18 @@ $hamburger-spinner-color                : $color-brand;
     }
 
     &::before {
-      top:
+      inset-block-start:
         $hamburger-spinner-height +
         $hamburger-spinner-spacing;
-      right: 0;
+      inset-inline-end: 0;
       width: $hamburger-spinner-width--middle;
       transition:
         top 0.1s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1),
         transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 
       .c-hamburger.is-active & {
-        top: 0;
-        right: auto;
+        inset-block-start: 0;
+        inset-inline-end: auto;
         width: $hamburger-spinner-width;
         transition:
           top 0.1s 0.15s cubic-bezier(0.33333, 0, 0.66667, 0.33333),
@@ -112,14 +115,14 @@ $hamburger-spinner-color                : $color-brand;
     }
 
     &::after {
-      top: ($hamburger-spinner-height * 2) + ($hamburger-spinner-spacing * 2);
-      bottom: ($hamburger-spinner-spacing + $hamburger-spinner-height) * -1;
+      inset-block-start: ($hamburger-spinner-height * 2) + ($hamburger-spinner-spacing * 2);
+      inset-block-end: ($hamburger-spinner-spacing + $hamburger-spinner-height) * -1;
       transition:
         top 0.2s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1),
         transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 
       .c-hamburger.is-active & {
-        top: 0;
+        inset-block-start: 0;
         transition:
           top 0.2s cubic-bezier(0.33333, 0, 0.66667, 0.33333),
           transform 0.13s 0.22s cubic-bezier(0.215, 0.61, 0.355, 1);

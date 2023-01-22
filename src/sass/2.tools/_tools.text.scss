@@ -11,7 +11,7 @@
 /**
  * Text-align Mixin
  *
- * @parameter {string} $align - Align value ex.: left.
+ * @parameter {string} $align - Align value ex.: start.
  * @parameter {string} $last - Optional, align value for justify aligned last line.
  *
  * Examples
@@ -27,7 +27,7 @@
  *
  * @example
  *   .section__lead {
- *     @include text-align(justify, left);
+ *     @include text-align(justify, start);
  *   }
  */
 @mixin text-align($align, $last: null) {

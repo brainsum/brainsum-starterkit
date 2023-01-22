@@ -226,7 +226,7 @@ $objects-media-collapse-at          : 47.93em; // 767px
   align-items: flex-start;
 
   & > .#{$objects-media-class-media-fixed} {
-    @include _generate-unit("padding", "right", $objects-media-gutter-default);
+    @include _generate-unit("padding", "inline-end", $objects-media-gutter-default);
   }
 
   & > .#{$objects-media-class-media-fluid} {
@@ -240,8 +240,8 @@ $objects-media-collapse-at          : 47.93em; // 767px
 @if ($objects-media-is-reversed == true) {
   .#{$objects-media-class-media-mod + $objects-media-reversed} {
     & > .#{$objects-media-class-media-fixed} {
-      @include _generate-unit("padding", "right", 0);
-      @include _generate-unit("padding", "left", $objects-media-gutter-default);
+      @include _generate-unit("padding", "inline-end", 0);
+      @include _generate-unit("padding", "inline-start", $objects-media-gutter-default);
 
       order: 1;
     }
@@ -273,17 +273,16 @@ $objects-media-collapse-at          : 47.93em; // 767px
       & > .#{$objects-media-class-media-fluid} {
         display: block;
         width: 100%;
-        padding-right: 0;
-        padding-left: 0;
+        padding-inline: 0;
       }
 
       & > .#{$objects-media-class-media-fixed} {
         @if ($objects-media-is-reversed == true) {
-          @include _generate-unit("margin", "top", $objects-media-gutter-default);
+          @include _generate-unit("margin", "block-start", $objects-media-gutter-default);
         }
 
         @else {
-          @include _generate-unit("margin", "bottom", $objects-media-gutter-default);
+          @include _generate-unit("margin", "block-end", $objects-media-gutter-default);
         }
       }
     }
@@ -305,10 +304,9 @@ $objects-media-collapse-at          : 47.93em; // 767px
           display: block;
 
           & > .#{$objects-media-class-media-fixed} {
-            @include _generate-unit("margin", "bottom", $media-gutter-size);
+            @include _generate-unit("margin", "block-end", $media-gutter-size);
 
-            padding-right: 0;
-            padding-left: 0;
+            padding-inline: 0;
           }
         }
       }
@@ -325,14 +323,14 @@ $objects-media-collapse-at          : 47.93em; // 767px
       &.#{$objects-media-class-media-mod + $objects-media-reversed} {
         @media screen and (min-width: ($objects-media-collapse-at + 1)) {
           & > .#{$objects-media-class-media-fixed} {
-            @include _generate-unit("padding", "right", 0);
-            @include _generate-unit("padding", "left", $media-gutter-size);
+            @include _generate-unit("padding", "inline-end", 0);
+            @include _generate-unit("padding", "inline-start", $media-gutter-size);
           }
         }
       }
 
       & > .#{$objects-media-class-media-fixed} {
-        @include _generate-unit("padding", "right", $media-gutter-size);
+        @include _generate-unit("padding", "inline-end", $media-gutter-size);
       }
 
       /**
@@ -341,8 +339,8 @@ $objects-media-collapse-at          : 47.93em; // 767px
       &.#{$objects-media-class-media-mod + $objects-media-reversed + ":not(." + $objects-media-class-media-mod + $objects-media-responsive + ")"} {
         @media screen and (max-width: $objects-media-collapse-at) {
           & > .#{$objects-media-class-media-fixed} {
-            @include _generate-unit("padding", "right", 0);
-            @include _generate-unit("padding", "left", $media-gutter-size);
+            @include _generate-unit("padding", "inline-end", 0);
+            @include _generate-unit("padding", "inline-start", $media-gutter-size);
           }
         }
       }

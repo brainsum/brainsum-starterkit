@@ -104,7 +104,7 @@ $components-responsive-table-content-width    : 67%;
     td,
     th {
       display: block; // 1.
-      text-align: left;
+      text-align: start;
 
       @include breakpoint(medium) {
         display: table-cell; // 5.
@@ -173,7 +173,7 @@ $components-responsive-table-content-width    : 67%;
   // Theming table head
   th.c-table__group {
     tbody & {
-      margin-top: -1px; // 4.
+      margin-block-start: -1px; // 4.
     }
 
     .c-table__cell-label {

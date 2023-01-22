@@ -14,13 +14,13 @@
 /**
  * Settings
  */
-$form-padding-y               : $global-form-padding-y;
-$form-padding-x               : $global-form-padding-x;
-$form-border-radius           : ($form-padding-y * 2 + $global-line-height * 1.8rem) * 0.5;
+$form-padding-block           : $global-form-padding-block;
+$form-padding-inline          : $global-form-padding-inline;
+$form-border-radius           : ($form-padding-block * 2 + $global-line-height * 1.8rem) * 0.5;
 $form-border-color            : $color-brand;
 $form-focus-color             : $color-brand;
 $form-text-color              : $color-brand;
-$form-background-color        : #fff;
+$form-background-color        : $color-light;
 $form-placeholder-color       : rgba($form-text-color, 0.66);
 $form-boolean-border-color    : #979797;
 $form-boolean-checked-color   : $form-text-color;
@@ -41,7 +41,7 @@ textarea {
   &-element {
     appearance: none;
     width: 100%;
-    padding: $form-padding-y $form-padding-x;
+    padding: $form-padding-block $form-padding-inline;
     color: $form-text-color;
     border: 1px solid $form-border-color;
     border-radius: $form-border-radius;
@@ -57,10 +57,10 @@ textarea {
     }
 
     &.form-textarea {
-      min-height: $form-padding-y * 2 + 9 * $global-line-height * 1.8rem;
+      min-height: $form-padding-block * 2 + 9 * $global-line-height * 1.8rem;
 
       @include breakpoint(medium) {
-        min-height: $form-padding-y * 2 + 11 * $global-line-height * 1.8rem;
+        min-height: $form-padding-block * 2 + 11 * $global-line-height * 1.8rem;
       }
     }
   }
@@ -102,37 +102,37 @@ textarea {
 
     label {
       position: relative;
-      padding-left: $form-boolean-size-touch + 2rem;
+      padding-inline-start: $form-boolean-size-touch + 2rem;
       cursor: pointer;
 
       @include breakpoint(medium) {
-        padding-left: $form-boolean-size-mouse + 1.5rem;
+        padding-inline-start: $form-boolean-size-mouse + 1.5rem;
       }
 
       &::before {
+        @include square($form-boolean-size-touch * 0.6);
+
         position: absolute;
         z-index: 9;
-        top: $form-boolean-size-touch * 0.2;
-        left: $form-boolean-size-touch * 0.2;
-        width: $form-boolean-size-touch * 0.6;
-        height: $form-boolean-size-touch * 0.6;
+        inset-block-start: $form-boolean-size-touch * 0.2;
+        inset-inline-start: $form-boolean-size-touch * 0.2;
         content: "";
 
         @include breakpoint(medium) {
-          top: $form-boolean-size-mouse * 0.2;
-          left: $form-boolean-size-mouse * 0.2;
-          width: $form-boolean-size-mouse * 0.6;
-          height: $form-boolean-size-mouse * 0.6;
+          @include square($form-boolean-size-mouse * 0.6);
+
+          inset-block-start: $form-boolean-size-mouse * 0.2;
+          inset-inline-start: $form-boolean-size-mouse * 0.2;
         }
       }
 
       &::after {
+        @include square($form-boolean-size-touch);
+
         position: absolute;
-        top: 0;
-        left: 0;
+        inset-block-start: 0;
+        inset-inline-start: 0;
         display: inline-block;
-        width: $form-boolean-size-touch;
-        height: $form-boolean-size-touch;
         content: "";
         cursor: pointer;
         transition:
@@ -144,8 +144,7 @@ textarea {
         background: $form-background-color;
 
         @include breakpoint(medium) {
-          width: $form-boolean-size-mouse;
-          height: $form-boolean-size-mouse;
+          @include square($form-boolean-size-mouse);
         }
       }
     }
@@ -187,12 +186,12 @@ textarea {
   position: relative;
 
   &::after {
+    @include square(0.9rem);
+
     position: absolute;
-    top: 50%;
-    right: $form-padding-x;
+    inset-block-start: 50%;
+    inset-inline-start: $form-padding-inline;
     display: block;
-    width: 0.9rem;
-    height: 0.9rem;
     content: "";
     transform: translateY(-50%);
     pointer-events: none;
@@ -201,13 +200,12 @@ textarea {
     background-size: contain;
 
     @include breakpoint(medium) {
-      width: 1.2rem;
-      height: 1.2rem;
+      @include square(1.2rem);
     }
   }
 
   select {
-    padding-right: $form-padding-x * 2;
+    padding-inline-end: $form-padding-inline * 2;
     cursor: pointer;
   }
 }

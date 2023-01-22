@@ -120,6 +120,5 @@ $tools-container-size-default     : $global-container-size-default;
   @include _container-size($size);
 
   width: 100%;
-  margin-right: auto;
-  margin-left: auto;
+  margin-inline: auto;
 }

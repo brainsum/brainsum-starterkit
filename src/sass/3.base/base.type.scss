@@ -82,7 +82,7 @@ body {
 @if ($base-paragraph-margins == true) {
   p {
     &:not(:last-child) {
-      margin-bottom: $base-paragraph-margin-size;
+      margin-block-end: $base-paragraph-margin-size;
     }
   }
 }
@@ -92,7 +92,7 @@ body {
  */
 pre,
 code {
-  text-align: left;
+  text-align: start;
   word-spacing: normal;
   word-wrap: normal;
   word-break: normal;
@@ -166,6 +166,7 @@ h6:not([class]) {
 
 ul:not([class]),
 ol:not([class]) {
-  margin: 1em 0;
-  padding-left: 1.1em;
+  margin-block: 1em;
+  margin-inline: 0;
+  padding-inline-start: 1.1em;
 }

@@ -13,7 +13,8 @@
 /**
  * Settings
  */
-$ajax-color   : $color-brand;
+$ajax-color     : $color-brand;
+$throbber-size  : $gutter;
 
 .ajax-progress {
   display: inline-block;
@@ -40,7 +41,9 @@ $ajax-color   : $color-brand;
   display: inline-flex;
   align-content: center;
   height: 1.125rem;
-  margin: -0.3rem 9rem 0;
+  margin-block-start: -0.3rem;
+  margin-block-end: 0;
+  margin-inline: $throbber-size * 0.5;
   vertical-align: middle;
   white-space: nowrap;
   line-height: 1.125rem;
@@ -54,7 +57,7 @@ $ajax-color   : $color-brand;
 
   .message {
     display: inline-block;
-    padding-left: 9rem;
+    padding-inline-start: $throbber-size * 0.5;
     font-size: 1.4rem;
     font-weight: 400;
   }
@@ -66,23 +69,26 @@ $ajax-color   : $color-brand;
 .ajax-progress-fullscreen {
   position: fixed;
   z-index: 1000;
-  top: 50%;
-  left: 50%;
   width: 3.5rem;
   height: 3.5rem;
   margin: -1.75rem;
   border: 1px solid #afb8be;
   border-radius: 3.5rem;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
   background-color: $color-light;
-  box-shadow: 0 0.25rem 0.625rem rgba(34, 35, 48, 0.1);
+  box-shadow: 0 0.4rem 1rem rgba(34, 35, 48, 0.1); /* LTR */
+
+  [dir="rtl"] & {
+    box-shadow: 0 -0.4rem 1rem rgba(34, 35, 48, 0.1);
 
   &:before {
     position: absolute;
-    top: 50%;
-    left: 50%;
     width: 1.75rem;
     height: 1.75rem;
     margin: -0.875rem;
+    inset-block-start: 50%;
+    inset-inline-start: 50%;
     content: "";
     border-width: 3px;
   }
@@ -104,5 +110,5 @@ $ajax-color   : $color-brand;
  * have a large margin set.
  */
 html.js .button:not(.js-hide) + .ajax-progress-throbber {
-  margin-left: 0;
+  margin-inline-start: 0;
 }

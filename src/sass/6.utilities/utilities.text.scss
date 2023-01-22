@@ -57,11 +57,11 @@ $utilities-text-breakpoints  : $global-breakpoints;
  */
 
 .u-text--left {
-  @include text-align(left);
+  @include text-align(start);
 }
 
 .u-text--right {
-  @include text-align(right);
+  @include text-align(end);
 }
 
 .u-text--center {
@@ -73,11 +73,11 @@ $utilities-text-breakpoints  : $global-breakpoints;
 }
 
 .u-text--justify-left {
-  @include text-align(justify, left);
+  @include text-align(justify, start);
 }
 
 .u-text--justify-right {
-  @include text-align(justify, right);
+  @include text-align(justify, end);
 }
 
 .u-text--justify-center {
@@ -91,11 +91,11 @@ $utilities-text-breakpoints  : $global-breakpoints;
   @each $breakpoint-name, $breakpoint-size in $utilities-text-breakpoints {
     @media #{$breakpoint-size} {
       .#{"u-text--left" + $global-breakpoint-separator + $breakpoint-name} {
-        @include text-align(left);
+        @include text-align(start);
       }
 
       .#{"u-text--right" + $global-breakpoint-separator + $breakpoint-name} {
-        @include text-align(right);
+        @include text-align(end);
       }
 
       .#{"u-text--center" + $global-breakpoint-separator + $breakpoint-name} {
@@ -107,11 +107,11 @@ $utilities-text-breakpoints  : $global-breakpoints;
       }
 
       .#{"u-text--justify-left" + $global-breakpoint-separator + $breakpoint-name} {
-        @include text-align(justify, left);
+        @include text-align(justify, start);
       }
 
       .#{"u-text--justify-right" + $global-breakpoint-separator + $breakpoint-name} {
-        @include text-align(justify, right);
+        @include text-align(justify, end);
       }
 
       .#{"u-text--justify-center" + $global-breakpoint-separator + $breakpoint-name} {
