@@ -1,5 +1,3 @@
+js/**/*
 node_modules/**/*
 src/js/vendors/**/*
-src/js/tools/tools.webfontloading.js
-*.js
-!*.es6.js

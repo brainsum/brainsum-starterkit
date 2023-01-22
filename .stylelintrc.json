@@ -1,19 +1,26 @@
 {
   "extends": "stylelint-config-standard-scss",
   "plugins": [
-    "stylelint-no-browser-hacks/lib",
     "stylelint-scss",
     "stylelint-order",
     "stylelint-use-logical"
   ],
   "rules": {
     "csstools/use-logical": true,
+    "alpha-value-notation": "number",
+    "color-function-notation": "legacy",
     "comment-empty-line-before": null,
+    "custom-property-pattern": "^[a-z][-_a-z0-9IE]*$",
+    "declaration-block-no-redundant-longhand-properties": null,
     "function-linear-gradient-no-nonstandard-direction": null,
+    "function-url-quotes": null,
     "function-whitespace-after": null,
+    "hue-degree-notation": "number",
+    "import-notation": "string",
     "no-descending-specificity": null,
     "no-duplicate-selectors": null,
     "no-unknown-animations": true,
+    "max-line-length": null,
     "media-feature-name-no-unknown": [
       true,
       {
@@ -23,9 +30,13 @@
         ]
       }
     ],
+    "media-feature-name-no-vendor-prefix": null,
     "number-leading-zero": "always",
+    "number-max-precision": 5,
+    "scss/dollar-variable-colon-space-before": null,
     "scss/dollar-variable-pattern": "^_?[a-z]+[\\w-]*$",
     "scss/at-extend-no-missing-placeholder": true,
+    "scss/at-import-partial-extension": null,
     "order/order": [
       "custom-properties",
       "dollar-variables",
@@ -86,6 +97,7 @@
       "right",
       "bottom",
       "left",
+
       "display",
       "visibility",
       "float",
@@ -98,6 +110,7 @@
       "-webkit-overflow-scrolling",
       "clip",
       "zoom",
+
       "flex",
       "flex-flow",
       "flex-direction",
@@ -107,6 +120,7 @@
       "flex-shrink",
       "flex-order",
       "flex-pack",
+
       "-ms-grid",
       "grid",
       "grid-area",
@@ -132,6 +146,7 @@
       "grid-column-gap",
       "-ms-grid-row-align",
       "-ms-grid-column-align",
+
       "place-content",
       "place-items",
       "align-content",
@@ -140,7 +155,9 @@
       "justify-content",
       "justify-items",
       "justify-self",
+
       "order",
+
       "-webkit-box-sizing",
       "-moz-box-sizing",
       "box-sizing",
@@ -168,6 +185,7 @@
       "padding-block-end",
       "padding-inline-start",
       "padding-inline-end",
+
       "table-layout",
       "-webkit-columns",
       "-moz-columns",
@@ -208,6 +226,7 @@
       "list-style-position",
       "list-style-type",
       "list-style-image",
+
       "content",
       "quotes",
       "counter-reset",
@@ -342,6 +361,7 @@
       "widows",
       "object-fit",
       "object-position",
+
       "opacity",
       "filter:progid:DXImageTransform.Microsoft.Alpha(Opacity",
       "-ms-filter:\\'progid:DXImageTransform.Microsoft.Alpha",
@@ -457,6 +477,7 @@
       "filter:progid:DXImageTransform.Microsoft.gradient",
       "-ms-filter:\\'progid:DXImageTransform.Microsoft.gradient",
       "text-shadow",
+
       "$font-face",
       "font",
       "font-family",
@@ -482,27 +503,20 @@
       "font-smooth",
       "line-height"
     ],
-    "plugin/no-browser-hacks": [
-      true,
-      {
-        "browsers": [
-          "ie >= 9",
-          "edge >= 13",
-          "firefox >= 5",
-          "opera >= 12",
-          "safari >= 5",
-          "chrome >= 56"
-        ]
-      }
-    ],
     "property-no-unknown": null,
+    "property-no-vendor-prefix": null,
     "rule-empty-line-before": null,
+    "selector-attribute-quotes": null,
+    "selector-class-pattern": null,
+    "selector-id-pattern": "^[a-z][-_a-z0-9]*$",
+    "selector-no-vendor-prefix": null,
     "selector-pseudo-element-colon-notation": null,
     "shorthand-property-no-redundant-values": null,
     "string-quotes": "double",
     "unit-allowed-list": [
       "ch",
       "deg",
+      "dpcm",
       "em",
       "ex",
       "fr",
@@ -514,6 +528,17 @@
       "vw",
       "vh"
     ],
+    "value-keyword-case": [
+      "lower",
+      {
+        "camelCaseSvgKeywords": true,
+        "ignoreProperties": [
+          "--font-family",
+          "font-family"
+        ]
+      }
+    ],
+    "value-no-vendor-prefix": null,
     "at-rule-no-unknown": [
       true,
       {

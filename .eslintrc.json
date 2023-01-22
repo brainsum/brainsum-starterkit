@@ -1,7 +1,6 @@
 {
   "extends": [
-    "airbnb-base",
-    "plugin:prettier/recommended"
+    "airbnb-base"
   ],
   "root": true,
   "env": {
@@ -22,7 +21,6 @@
     "CKEDITOR": true
   },
   "rules": {
-    "prettier/prettier": "error",
     "consistent-return": ["off"],
     "no-underscore-dangle": ["off"],
     "max-nested-callbacks": ["warn", 3],
