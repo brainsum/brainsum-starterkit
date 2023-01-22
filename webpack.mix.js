@@ -24,6 +24,7 @@ const cssNano               = require('cssnano')({
 const customProperties      = require('postcss-custom-properties');
 const mix                   = require('laravel-mix');
 const MixGlob               = require('laravel-mix-glob');
+const presetEnv             = require('postcss-preset-env');
 const StyleLintPlugin       = require('stylelint-webpack-plugin');
 require('laravel-mix-eslint');
 
@@ -60,7 +61,23 @@ mixGlob
     processCssUrls: false,
     postCss: [
       customProperties,
-      cssNano
+      presetEnv({
+        stage: 1,
+        preserve: false,
+        autoprefixer: {
+          cascade: false,
+          grid: 'no-autoplace',
+        },
+        features: {
+          'blank-pseudo-class': false,
+          'focus-visible-pseudo-class': false,
+          'focus-within-pseudo-class': false,
+          'has-pseudo-class': false,
+          'image-set-function': false,
+          'prefers-color-scheme-query': false,
+        }
+      }),
+      cssNano,
     ],
   });
 
@@ -73,17 +90,9 @@ mix
   //   'src/js/base/base.global.js',
   //   'js/base/base.global.js'
   // )
-  .babel(
-    'src/js/tools/tools.announce.js',
-    'js/tools/tools.announce.js'
-  )
   .copy(
     'src/js/tools/tools.webfontloading.js',
     'js/tools/tools.webfontloading.js'
-  )
-  .babel(
-    'src/js/components/components.horizontal-tabs.js',
-    'js/components/components.horizontal-tabs.js'
   )
   .babel(
     'src/js/components/components.messages.js',
@@ -96,10 +105,6 @@ mix
   .babel(
     'src/js/components/components.tabs.js',
     'js/components/components.tabs.js'
-  )
-  .babel(
-    'src/js/components/components.vertical-tabs.js',
-    'js/components/components.vertical-tabs.js'
   )
   .eslint({
     fix: false,
