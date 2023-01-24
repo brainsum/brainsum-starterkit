@@ -1,0 +1,7 @@
+@charset "UTF-8";
+.toolbar-tray a{
+  color:#565656;
+}
+.toolbar-tray a:hover, .toolbar-tray a:active, .toolbar-tray a:focus, .toolbar-tray a.is-active{
+  color:#000;
+}

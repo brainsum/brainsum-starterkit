@@ -1,0 +1,20 @@
+@charset "UTF-8";
+html[dir="ltr"].js .form-autocomplete{
+  padding-right:5.5rem;}
+html[dir="rtl"].js .form-autocomplete{
+  padding-left:5.5rem;}
+html.js .form-autocomplete{
+  background:#fff url("../../images/magnifying-glass.svg") no-repeat right 1.8rem center;
+}
+html.js .form-autocomplete:disabled{
+  background-color:#ebebeb;
+}
+html.js .form-autocomplete.ui-autocomplete-loading{
+  background:#fff url("../../images/magnifying-glass.svg") no-repeat right 1.8rem center;
+}
+html.js[dir=rtl] .form-autocomplete{
+  background:#fff url("../../images/magnifying-glass.svg") no-repeat left 1.8rem center;
+}
+html.js[dir=rtl] .form-autocomplete.ui-autocomplete-loading{
+  background:#fff url("../../images/magnifying-glass.svg") no-repeat left 1.8rem center;
+}

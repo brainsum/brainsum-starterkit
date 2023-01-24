@@ -1,0 +1,8 @@
+@charset "UTF-8";
+a.c-button,
+input.button{
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  transition:all 0.2s ease;
+  display:inline-flex;
+}
