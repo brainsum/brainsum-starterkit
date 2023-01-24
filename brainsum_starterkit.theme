@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Functions to support theming in the BRAINSUM's Drupal 8-9 startertheme.
+ * Functions to support theming in the BRAINSUM's Drupal 10 starterkit.
  */
 
 use Drupal\Component\Utility\Html;
@@ -30,7 +30,7 @@ function brainsum_starterkit_preprocess_html(&$variables) {
   $path_args = explode('/', $path);
   $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
   // store theme's path in a variable to access it from any Twig templates.
-  $variables['current_theme_path'] = drupal_get_path('theme', 'brainsum_starterkit');
+  $variables['current_theme_path'] = \Drupal::request()->getBasePath() . '/' . \Drupal::service('extension.list.theme')->getPath('brainsum_starterkit');
 
   $variables['path_info']['args'] = FALSE;
 
@@ -92,7 +92,7 @@ function brainsum_starterkit_preprocess_maintenance_page(&$variables)
   }
 
   // startertheme has custom styling for the maintenance page.
-  $variables['#attached']['library'][] = 'starter_theme/page.maintenance';
+  $variables['#attached']['library'][] = 'brainsum_starterkit/page.maintenance';
 }
 
 /**
@@ -117,7 +117,7 @@ function brainsum_starterkit_suggestions_page_alter(array &$suggestions, array $
  */
 function brainsum_starterkit_preprocess_page(array &$variables) {
   if ($variables['logged_in'] == TRUE) {
-    $variables['#attached']['library'][] = 'starter_theme/admin.toolbar';
+    $variables['#attached']['library'][] = 'brainsum_starterkit/admin.toolbar';
   }
 }
 
