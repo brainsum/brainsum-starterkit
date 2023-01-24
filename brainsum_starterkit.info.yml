@@ -44,16 +44,16 @@ libraries-override:
   system/base:
     css:
       component:
-        css/components/ajax-progress.module.css: css/components/components.ajax-progress.css
+        css/components/ajax-progress.module.css: css/5.components/components.ajax-progress.css
         css/components/align.module.css: false
-        css/components/autocomplete-loading.module.css: css/components/components.autocomplete-loading.css
+        css/components/autocomplete-loading.module.css: css/5.components/components.autocomplete-loading.css
         css/components/fieldgroup.module.css: false
         css/components/container-inline.module.css: false
         css/components/clearfix.module.css: false
         css/components/details.module.css: false
         css/components/hidden.module.css: false
         css/components/item-list.module.css: false
-        css/components/js.module.css: css/utilities/utilities.js.css
+        css/components/js.module.css: css/6.utilities/utilities.js.css
         css/components/nowrap.module.css: false
         css/components/position-container.module.css: false
         css/components/reset-appearance.module.css: false
@@ -67,18 +67,17 @@ libraries-override:
   core/drupal.vertical-tabs:
     css:
       component:
-        misc/vertical-tabs.css: css/components/components.vertical-tabs.css
+        misc/vertical-tabs.css: css/5.components/components.vertical-tabs.css
   admin_toolbar_search/search:
     css:
       theme:
-        css/admin.toolbar_search.css: css/components/components.admin.toolbar-search.css
+        css/admin.toolbar_search.css: css/5.components/components.admin.toolbar-search.css
   dropdown_language/dropdown-language-selector: false
   user/drupal.user:
     css:
       component:
-        css/user.module.css: css/components/components.user.css
+        css/user.module.css: css/components/5.components.user.css
   views.module:
     css:
   core/drupal.message: brainsum_starterkit/messages
   core/drupal.collapse: brainsum_starterkit/details
-
