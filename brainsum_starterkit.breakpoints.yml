@@ -1,40 +1,40 @@
-starter_theme.xsmall:
+brainsum_starterkit.xsmall:
   label: Small (368px)
   mediaQuery: 'screen and (min-width: 23em)'
   weight: 0
   multipliers:
     - 1x
-starter_theme.small:
+brainsum_starterkit.small:
   label: Small (576px)
   mediaQuery: 'screen and (min-width: 36em)'
   weight: 1
   multipliers:
     - 1x
-starter_theme.medium:
+brainsum_starterkit.medium:
   label: Medium (768px)
   mediaQuery: 'screen and (min-width: 48em)'
   weight: 2
   multipliers:
     - 1x
-starter_theme.large:
+brainsum_starterkit.large:
   label: Large (992px)
   mediaQuery: 'screen and (min-width: 62em)'
   weight: 3
   multipliers:
     - 1x
-starter_theme.xlarge:
+brainsum_starterkit.xlarge:
   label: XLarge (1200px)
   mediaQuery: 'screen and (min-width: 75em)'
   weight: 4
   multipliers:
     - 1x
-starter_theme.xxlarge:
+brainsum_starterkit.xxlarge:
   label: XXLarge (1440px)
   mediaQuery: 'screen and (min-width: 90em)'
   weight: 5
   multipliers:
     - 1x
-starter_theme.xxxlarge:
+brainsum_starterkit.xxxlarge:
   label: XXXLarge (1800px)
   mediaQuery: 'screen and (min-width: 112.5em)'
   weight: 6
