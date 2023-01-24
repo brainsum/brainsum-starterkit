@@ -6,7 +6,7 @@
 /**
   * Imports
  */
-@import "../_global.importer";
+@import "../global.importer";
 
 /**
  * Settings
@@ -84,9 +84,8 @@ $tabs-tab-font-size         : 1.4rem;
       text-transform: none;
 
       @include breakpoint(medium) {
-        border-top-color: transparent;
-        border-right-color: transparent;
-        border-left-color: transparent;
+        border-block-start-color: transparent;
+        border-inline-color: transparent;
         background-color: transparent;
       }
     }
@@ -138,8 +137,8 @@ $tabs-tab-font-size         : 1.4rem;
     justify-content: center;
     width: $gutter * 3;
     margin-block: 0;
-    margin-inline-end: 0;
     margin-inline-start: -1px;
+    margin-inline-end: 0;
     cursor: pointer;
     border: solid 1px $tabs-tab-background;
     background-color: $tabs-tab-background;

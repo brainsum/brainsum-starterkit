@@ -5,10 +5,12 @@
  * Theming text elements.
  */
 
+@use "sass:color";
+
 /**
   * Imports
  */
-@import "../_global.importer";
+@import "../global.importer";
 
 /**
  * Settings
@@ -40,7 +42,7 @@ $base-code-tab-size             : 2;
 $base-link-color                : $color-brand;
 
 // :hover, :focus, :active states
-$base-link-color-accent         : darken($base-link-color, 15%);
+$base-link-color-accent         : color.adjust($base-link-color, $lightness: -15%);
 
 // underlined links
 $base-link-text-decoration      : none;
@@ -59,7 +61,7 @@ html {
 body {
   @include type($global-font-size);
 
-  font-family: $global-font-family;
+  font-family: $primary-font-family;
   font-weight: 400;
 }
 
@@ -70,7 +72,7 @@ body {
 /**
  * Styling selected text
  */
-@if ($base-selected-text == true) {
+@if $base-selected-text == true {
   ::selection {
     @include colors($base-selected-text-color, $base-selected-text-background);
   }
@@ -79,7 +81,7 @@ body {
 /**
  * Paragraph Element
  */
-@if ($base-paragraph-margins == true) {
+@if $base-paragraph-margins == true {
   p {
     &:not(:last-child) {
       margin-block-end: $base-paragraph-margin-size;

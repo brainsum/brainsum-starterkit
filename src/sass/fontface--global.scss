@@ -4,9 +4,9 @@
  * for First state webfont loading strategy
  */
 
-$theme-root: "/themes/custom/starter_theme";
+$theme-root: "/themes/custom/brainsum_starterkit";
 
-@font-face {
+/* @font-face {
   font-family: "Open Sans";
   src:
     url("#{$theme-root}/fonts/opensans-regular-kern-latin.woff2") format("woff2"),
@@ -34,4 +34,4 @@ $theme-root: "/themes/custom/starter_theme";
   font-weight: 700;
   font-style: normal;
   font-display: swap;
-}
+} */

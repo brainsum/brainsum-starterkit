@@ -55,6 +55,8 @@
  *   }
  */
 
+@use "sass:math";
+
 /**
  * Settings
  *
@@ -62,8 +64,8 @@
  * define additional gutters. There is an empty `$tools-grid-gutter-extra`
  * Sass map for that, but if you need, you can create more.
  */
-$tools-grid-gutter-default     : $global-gutter-default;
-$tools-grid-gutter-extra       : $global-grid-gutter-extra;
+$tools-grid-gutter-default : $global-gutter-default;
+$tools-grid-gutter-extra : $global-grid-gutter-extra;
 
 /**
  * Create Grid
@@ -144,6 +146,7 @@ $tools-grid-gutter-extra       : $global-grid-gutter-extra;
  * the last `half` parameter this value will be divide by 2!
  * @require {mixin} _generate-unit <2.tools/libraries/generate-unit>
  *
+ *
  * Examples
  *
  * Columns with default gutter
@@ -181,7 +184,8 @@ $tools-grid-gutter-extra       : $global-grid-gutter-extra;
  *   }
  */
 @mixin make-column($gutter: $tools-grid-gutter-default) {
-  @include _generate-unit("padding", "inline", $gutter, half);
+  @include _generate-unit("padding", "left", $gutter, half);
+  @include _generate-unit("padding", "right", $gutter, half);
 
   flex-basis: auto;
   box-sizing: inherit;
@@ -195,22 +199,25 @@ $tools-grid-gutter-extra       : $global-grid-gutter-extra;
  * Use the `column-size` mixin to set the size of columns. We use dedicated
  * mixin for this, so you can set individually for each columns and different
  * breakpoints.
- * It except one parameter: the column size. You can give it as fraction,like:
- * `4/12`, this means: four columns of total twelve. (you will get 33.3333%)
+ * It accept two parameter: the column size and the total number of the columns.
+ * Actually it's a fraction, like: `4, 12` -> `4/12`; this means: four columns
+ * of total twelve. (you will get 33.3333%).
  *
  * @type Mixin
- * @parameter {number} $size - like 4/12.
+ * @parameter {number} $column - like 4.
+ * @parameter {number} $columns - like 12.
  * @require {function} _calc-column-size
+ *
  *
  * @example
  *   .entry {
  *     @include make-column();
- *     @include column-size(4/12);
+ *     @include column-size(4,12);
  *   }
  */
-@mixin column-size($size) {
-  flex: 0 0 percentage($size);
-  max-width: percentage($size);
+@mixin column-size($column, $all-columns) {
+  flex: 0 0 math.percentage(math.div($column, $all-columns));
+  max-width: math.percentage(math.div($column, $all-columns));
 }
 
 /**
@@ -220,12 +227,17 @@ $tools-grid-gutter-extra       : $global-grid-gutter-extra;
  * In normal way you can do this easily with custom left or right margins,
  * but if you want one or more column sized gap between columns, you can do
  * it easily with this mixin.
- * It has two parameters: first the size of offset, second is the optionally
- * position (before or after of column). By default before.
+ * It has two required parameters to calculate the offset size: the column size
+ * and the total number of the columns.
+ * There is an optionally third parameter too: the position (before (`start`)
+ * or after (`end`) of the column). By default before (`start`).
  *
  * @type Mixin
- * @parameter {number} $size - like 4/12.
+ * @parameter {number} $column - like 4.
+ * @parameter {number} $columns - like 12.
+ * @parameter {string} $position - start or end.
  * @require {function} _calc-column-size
+ *
  *
  * Examples
  *
@@ -234,10 +246,10 @@ $tools-grid-gutter-extra       : $global-grid-gutter-extra;
  * @example
  *   .entry {
  *     @include make-column();
- *     @include column-size(3/12);
+ *     @include column-size(3,12);
  *
  *     &--center {
- *       @include column-offset(3/12);
+ *       @include column-offset(3,12);
  *     }
  *   }
  *
@@ -246,16 +258,16 @@ $tools-grid-gutter-extra       : $global-grid-gutter-extra;
  * @example
  *   .article__column--center {
  *     @include make-column();
- *     @include column-size(3/12);
- *     @include column-offset(3/12, end);
+ *     @include column-size(3,12);
+ *     @include column-offset(3,12, end);
  *   }
  */
-@mixin column-offset($size, $position: start) {
-  @if ($position == start) {
-    margin-inline-start: percentage($size);
+@mixin column-offset($column, $all-columns, $position: start) {
+  @if $position == start {
+    margin-inline-end: math.percentage(math.div($column, $all-columns));
   }
 
-  @else if($position == end) {
-    margin-inline-end: percentage($size);
+  @else if$position == end {
+    margin-inline-start: math.percentage(math.div($column, $all-columns));
   }
 }

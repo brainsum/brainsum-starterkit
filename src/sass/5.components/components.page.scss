@@ -5,6 +5,11 @@
  * Theming the main layout element: Page Component.
  */
 
+/**
+  * Imports
+ */
+@import "../global.importer";
+
 .c-page {
   position: relative;
   display: flex;

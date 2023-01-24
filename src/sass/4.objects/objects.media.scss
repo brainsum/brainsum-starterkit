@@ -130,7 +130,7 @@
 /**
   * Imports
  */
-@import "../_global.importer";
+@import "../global.importer";
 
 /**
  * Settings
@@ -147,7 +147,6 @@ $objects-media-reversed              : "reversed";
 $objects-media-align-middle          : "middle";
 $objects-media-align-bottom          : "bottom";
 $objects-media-responsive            : "responsive";
-
 $objects-media-class-media           : "o-media";
 $objects-media-class-media-mod       : $objects-media-class-media + "--";
 $objects-media-class-media-fixed      : $objects-media-class-media + "__" + $objects-media-fixed;
@@ -237,7 +236,7 @@ $objects-media-collapse-at          : 47.93em; // 767px
 /**
  * Flex Media Object Reversed
  */
-@if ($objects-media-is-reversed == true) {
+@if $objects-media-is-reversed == true {
   .#{$objects-media-class-media-mod + $objects-media-reversed} {
     & > .#{$objects-media-class-media-fixed} {
       @include _generate-unit("padding", "inline-end", 0);
@@ -251,7 +250,7 @@ $objects-media-collapse-at          : 47.93em; // 767px
 /**
  * Media Object Aligned
  */
-@if ($objects-media-is-aligned == true) {
+@if $objects-media-is-aligned == true {
   .#{$objects-media-class-media-mod + $objects-media-align-middle} {
     align-items: center;
   }
@@ -264,7 +263,7 @@ $objects-media-collapse-at          : 47.93em; // 767px
 /**
  * Responsive Media Object
  */
-@if ($objects-media-is-responsive == true) {
+@if $objects-media-is-responsive == true {
   @media screen and (max-width: $objects-media-collapse-at) {
     .#{$objects-media-class-media-mod + $objects-media-responsive} {
       display: block;
@@ -277,7 +276,7 @@ $objects-media-collapse-at          : 47.93em; // 767px
       }
 
       & > .#{$objects-media-class-media-fixed} {
-        @if ($objects-media-is-reversed == true) {
+        @if $objects-media-is-reversed == true {
           @include _generate-unit("margin", "block-start", $objects-media-gutter-default);
         }
 
@@ -298,7 +297,7 @@ $objects-media-collapse-at          : 47.93em; // 767px
     /**
      * Media Object Responsive
      */
-    @if ($objects-media-is-responsive == true) {
+    @if $objects-media-is-responsive == true {
       @media screen and (max-width: $objects-media-collapse-at) {
         &.#{$objects-media-class-media-mod + $objects-media-responsive} {
           display: block;
@@ -315,7 +314,7 @@ $objects-media-collapse-at          : 47.93em; // 767px
     /**
      * Media Object Reserved
      */
-    @if ($objects-media-is-reversed == true) {
+    @if $objects-media-is-reversed == true {
 
       /**
        * Media Object Reserved with Extra Sizes

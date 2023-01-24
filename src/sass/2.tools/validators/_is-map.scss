@@ -11,7 +11,7 @@
  * @parameter {string | number | map} $number - The given css value.
  * @access private
  */
-
+/* stylelint-disable-next-line scss/at-function-pattern */
 @function _is-map($map) {
   @return type-of($map) == "map";
 }

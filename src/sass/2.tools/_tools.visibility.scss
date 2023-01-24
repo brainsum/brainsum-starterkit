@@ -48,6 +48,7 @@
  *      @include visually-hidden--focusable;
  *   }
  */
+/* stylelint-disable-next-line scss/at-mixin-pattern */
 @mixin visually-hidden--focusable {
   &:active,
   &:focus {

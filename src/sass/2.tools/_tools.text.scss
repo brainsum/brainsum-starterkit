@@ -31,7 +31,7 @@
  *   }
  */
 @mixin text-align($align, $last: null) {
-  @if ($last != null) {
+  @if $last {
     text-align: $align !important; // for Edge
     text-align-last: $last !important;
     hyphens: auto;

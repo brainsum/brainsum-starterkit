@@ -34,13 +34,11 @@
     "up" "up-right" "right" "down-right" "down" "down-left" "left" "up-left",
     $direction
   ) {
-    @error "Direction must be `up`, `up-right`, `right`, `down-right`, " +
-      "`down`, `down-left`, `left` or `up-left`.";
+    @error "Direction must be `up`, `up-right`, `right`, `down-right`, `down`, `down-left`, `left` or `up-left`.";
   }
 
   @else if not _is-color($color) {
-    @error "`#{$color}` is not a valid color for the `$color` argument in " +
-      "the `triangle` mixin.";
+    @error "`#{$color}` is not a valid color for the `$color` argument in the `triangle` mixin.";
   }
 
   @else {

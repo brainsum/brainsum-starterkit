@@ -46,6 +46,23 @@
         "optionalDependencies": false,
         "peerDependencies": false
       }
+    ],
+    "key-spacing": [
+      "error",
+      {
+        "align": {},
+        "multiLine": {}
+      }
+    ],
+    "no-multi-spaces": [
+      "error",
+      {
+        "exceptions": {
+          "ImportDeclaration": true,
+          "VariableDeclarator": true,
+          "Property": true
+        }
+      }
     ]
   }
 }

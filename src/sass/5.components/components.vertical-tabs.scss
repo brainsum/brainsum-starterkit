@@ -1,0 +1,103 @@
+/**
+ * @file
+ * Vertical Tabs.
+ *
+ * Based on Olivero.
+ */
+
+/**
+  * Imports
+ */
+@import "../global.importer";
+
+/**
+ * Settings
+ */
+$vertical-tabs-menu-width         : 24rem;
+$vertical-tabs-menu-border-width  : 1px;
+
+.vertical-tabs {
+  @include breakpoint(large) {
+    display: flex;
+  }
+
+  &__menu {
+    position: relative;
+    align-self: flex-start;
+    margin: 0;
+    list-style: none;
+    border-width: $vertical-tabs-menu-border-width;
+    border-style: solid;
+    border-color: $color-grey-20;
+
+    @include breakpoint(large) {
+      width: $vertical-tabs-menu-width;
+      border-width: $vertical-tabs-menu-border-width 0 $vertical-tabs-menu-border-width $vertical-tabs-menu-border-width;
+    }
+
+    &-item {
+      &:nth-child(n+2) {
+        border-block-start: $vertical-tabs-menu-border-width solid $color-grey-20;
+      }
+
+      a {
+        display: block;
+        padding-block: $gutter * 0.5;
+        padding-inline-start: $gutter * 0.75;
+        padding-inline-end: $gutter * 0.75;
+        text-decoration: none;
+        background-color: $color-grey-20;
+
+        &:focus,
+        &:hover,
+        &:active {
+          background-color: $color-grey-10;
+        }
+      }
+
+      &.is-selected {
+        background-color: #fff;
+
+        @include breakpoint(large) {
+          margin-inline-end: calc($vertical-tabs-menu-border-width * -1);
+          padding-inline-end: $vertical-tabs-menu-border-width;
+        }
+
+        a {
+          background-color: transparent;
+        }
+      }
+
+      &-summary {
+        display: block;
+        font-size: 1.4rem;
+        line-height: 1.28;
+      }
+    }
+  }
+
+  &__panes {
+    margin-block-start: calc($vertical-tabs-menu-border-width * -1);
+
+    @include breakpoint(large) {
+      width: calc(100% - $vertical-tabs-menu-width);
+      margin-block-start: 0;
+    }
+  }
+
+  &__pane {
+    @include breakpoint(large) {
+      min-height: 100%;
+    }
+
+    &.c-details {
+      margin: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    > summary {
+      display: none;
+    }
+  }
+}

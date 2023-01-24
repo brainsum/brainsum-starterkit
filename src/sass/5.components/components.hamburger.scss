@@ -18,7 +18,7 @@
  */
 @use "sass:math";
 
-@import "../_global.importer";
+@import "../global.importer";
 
 /**
  * Settings
@@ -36,8 +36,8 @@ $hamburger-spinner-color                : $color-brand;
   overflow: visible;
   margin-block-start: 3rem;
   margin-block-end: 3.5rem;
-  margin-inline-end: 0;
   margin-inline-start: 4rem;
+  margin-inline-end: 0;
   padding: $hamburger-padding-block $hamburger-padding-inline;
   cursor: pointer;
   transition: opacity 0.5s ease;
@@ -62,9 +62,7 @@ $hamburger-spinner-color                : $color-brand;
     position: relative;
     display: block;
     width: $hamburger-spinner-width;
-    height:
-      $hamburger-spinner-height * 3 +
-      $hamburger-spinner-spacing * 2;
+    height: $hamburger-spinner-height * 3 + $hamburger-spinner-spacing * 2;
   }
 
   &__spinner {
@@ -91,9 +89,7 @@ $hamburger-spinner-color                : $color-brand;
     }
 
     &::before {
-      inset-block-start:
-        $hamburger-spinner-height +
-        $hamburger-spinner-spacing;
+      inset-block-start: $hamburger-spinner-height + $hamburger-spinner-spacing;
       inset-inline-end: 0;
       width: $hamburger-spinner-width--middle;
       transition:

@@ -8,7 +8,7 @@
 /**
   * Imports
  */
-@import "../_global.importer";
+@import "../global.importer";
 
 /**
  * Settings
@@ -67,7 +67,7 @@ $components-responsive-table-content-width    : 67%;
  * 5. Show the table header rows.
  * 6. Hide the labels in each cell.
  */
-@if ($components-responsive-table == true) {
+@if $components-responsive-table == true {
   .c-table {
     max-width: 100%;
     padding: 0;

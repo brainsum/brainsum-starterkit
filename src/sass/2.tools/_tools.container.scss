@@ -51,6 +51,7 @@ $tools-container-size-default     : $global-container-size-default;
  * @parameter {number | map} $size - Padding values.
  * @access private
  */
+/* stylelint-disable-next-line scss/at-mixin-pattern */
 @mixin _container-padding($size) {
   @include _generate-unit("padding", "right", $size);
   @include _generate-unit("padding", "left", $size);
@@ -65,6 +66,7 @@ $tools-container-size-default     : $global-container-size-default;
  * @parameter {number | map} $size - Max-width values.
  * @access private
  */
+/* stylelint-disable-next-line scss/at-mixin-pattern */
 @mixin _container-size($size) {
   @include _generate-unit("max", "width", $size);
 }

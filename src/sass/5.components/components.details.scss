@@ -1,0 +1,171 @@
+/**
+ * @file
+ * Collapsible details.
+ *
+ * Based on Olivero.
+ */
+
+/**
+  * Imports
+ */
+@import "../global.importer";
+
+/**
+ * Settings
+ */
+$details-border-width       : 1px;
+$details-summary-transition : background-color 0.12s ease-in-out;
+
+.c-details {
+  display: block;
+  margin-block: $gutter;
+  color: inherit;
+  border: $details-border-width solid $color-grey-20;
+  border-radius: 0.2rem;
+  box-shadow: 0 1px 4px $color-grey-30;
+
+  /* Details summary styles */
+  &__summary {
+    position: relative;
+    padding-block: $gutter;
+    padding-inline-start: $gutter--2x;
+    padding-inline-end: $gutter;
+    list-style: none;
+    cursor: pointer;
+    transition: $details-summary-transition;
+    word-wrap: break-word;
+    hyphens: auto;
+    color: inherit;
+    background-color: $color-grey-10;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.28;
+
+    /* Arrow icon */
+    &,
+    .collapse-processed > & .details-title {
+      &::before {
+        @include square(1rem);
+
+        position: absolute;
+        inset-block-start: 50%;
+        inset-inline-start: $gutter * 0.75;
+        display: block;
+        content: "";
+
+        // LTR
+        transform: translateY(-50%) rotate(45deg);
+        border: solid 2px currentColor;
+
+        // RTL
+        [dir="rtl"] & {
+          transform: translateY(-50%) rotate(-135deg);
+        }
+      }
+
+      // Pseudo-selector to manage focus styles
+      &::after {
+        position: absolute;
+        inset: calc($details-border-width * -1);
+        content: "";
+        pointer-events: none;
+        opacity: 0;
+        border-radius: 0.2rem;
+        box-shadow: inset 0 0 0 0.2rem $color-brand;
+      }
+    }
+
+    /* Hide the marker */
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    /* Disable default outline for summary, since we have own implementation */
+    &:focus {
+      outline: solid 2px transparent;
+      outline-offset: -0.4rem;
+    }
+
+    /* Details summary, hover state */
+    &:hover {
+      background-color: $color-grey-20;
+    }
+
+    /* Details summary, focus and active states */
+    &:focus,
+    &:active,
+    .collapse-processed > & .details-title:focus,
+    .collapse-processed > & .details-title:active {
+      &::after {
+        opacity: 1;
+      }
+    }
+
+    /* Rotate arrow icon of the details summary, when details expanded */
+    .c-details[open] > &,
+    .collapse-processed[open] > & .details-title {
+      &::before {
+        margin-block-start: -2px;
+        transform: translateY(-50%) rotate(135deg);
+      }
+    }
+
+    /* Collapse processed for non-supporting browsers like IE or Edge */
+    .collapse-processed > & {
+      padding: 0;
+
+      &::before {
+        content: none;
+      }
+
+      &::after {
+        content: none;
+      }
+
+      .details-title {
+        position: relative;
+        display: block;
+        padding-block: $gutter;
+        padding-inline-start: $gutter--2x;
+        padding-inline-end: $gutter;
+        transition: $details-summary-transition;
+        text-decoration: none;
+        color: inherit;
+        background-color: $color-grey-10;
+
+        &:focus {
+          outline: solid 0.2rem transparent;
+        }
+
+        &:hover {
+          background-color: $color-grey-20;
+        }
+
+        &::after {
+          @media screen and (-ms-high-contrast: active) {
+            inset: -0.5rem;
+            border: 2px dotted;
+          }
+        }
+      }
+    }
+  }
+
+  /* Details content wrapper */
+  &__wrapper {
+    margin: $gutter;
+
+    @include breakpoint(large) {
+      margin-block: $gutter * 1.5;
+      margin-inline: $gutter--2x;
+    }
+  }
+
+  /* Description */
+  &__description {
+    margin-block-end: $gutter;
+    color: $color-grey-90;
+    font-size: 1.3rem;
+    line-height: 1.38;
+  }
+}

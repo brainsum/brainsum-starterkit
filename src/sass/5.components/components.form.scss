@@ -9,7 +9,7 @@
 /**
   * Imports
  */
-@import "../_global.importer";
+@import "../global.importer";
 
 /**
  * Settings
@@ -169,7 +169,7 @@ textarea {
     label {
       &::before {
         // Font Awesome's check icon (https://fontawesome.com/icons/check?style=solid) with white fill has been encoded with https://www.base64encode.org/.
-        background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMTczLjg5OCA0MzkuNDA0bC0xNjYuNC0xNjYuNGMtOS45OTctOS45OTctOS45OTctMjYuMjA2IDAtMzYuMjA0bDM2LjIwMy0zNi4yMDRjOS45OTctOS45OTggMjYuMjA3LTkuOTk4IDM2LjIwNCAwTDE5MiAzMTIuNjkgNDMyLjA5NSA3Mi41OTZjOS45OTctOS45OTcgMjYuMjA3LTkuOTk3IDM2LjIwNCAwbDM2LjIwMyAzNi4yMDRjOS45OTcgOS45OTcgOS45OTcgMjYuMjA2IDAgMzYuMjA0bC0yOTQuNCAyOTQuNDAxYy05Ljk5OCA5Ljk5Ny0yNi4yMDcgOS45OTctMzYuMjA0LS4wMDF6Ij48L3BhdGg+PC9zdmc+) no-repeat center center;
+        background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMTczLjg5OCA0MzkuNDA0bC0xNjYuNC0xNjYuNGMtOS45OTctOS45OTctOS45OTctMjYuMjA2IDAtMzYuMjA0bDM2LjIwMy0zNi4yMDRjOS45OTctOS45OTggMjYuMjA3LTkuOTk4IDM2LjIwNCAwTDE5MiAzMTIuNjkgNDMyLjA5NSA3Mi41OTZjOS45OTctOS45OTcgMjYuMjA3LTkuOTk3IDM2LjIwNCAwbDM2LjIwMyAzNi4yMDRjOS45OTcgOS45OTcgOS45OTcgMjYuMjA2IDAgMzYuMjA0bC0yOTQuNCAyOTQuNDAxYy05Ljk5OCA5Ljk5Ny0yNi4yMDcgOS45OTctMzYuMjA0LS4wMDF6Ij48L3BhdGg+PC9zdmc+") no-repeat center center;
         background-size: contain;
       }
 
@@ -195,8 +195,9 @@ textarea {
     content: "";
     transform: translateY(-50%);
     pointer-events: none;
+
     // Font Awesome's angle-down pro icon (https://fontawesome.com/icons/angle-down?style=regular) with branding color fill has been encoded with https://www.base64encode.org/.
-    background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMjAgNTEyIj48cGF0aCBmaWxsPSIjZjdjYTAwIiBkPSJNMTUxLjUgMzQ3LjhMMy41IDIwMWMtNC43LTQuNy00LjctMTIuMyAwLTE3bDE5LjgtMTkuOGM0LjctNC43IDEyLjMtNC43IDE3IDBMMTYwIDI4Mi43bDExOS43LTExOC41YzQuNy00LjcgMTIuMy00LjcgMTcgMGwxOS44IDE5LjhjNC43IDQuNyA0LjcgMTIuMyAwIDE3bC0xNDggMTQ2LjhjLTQuNyA0LjctMTIuMyA0LjctMTcgMHoiPjwvcGF0aD48L3N2Zz4=) no-repeat center center;
+    background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMjAgNTEyIj48cGF0aCBmaWxsPSIjZjdjYTAwIiBkPSJNMTUxLjUgMzQ3LjhMMy41IDIwMWMtNC43LTQuNy00LjctMTIuMyAwLTE3bDE5LjgtMTkuOGM0LjctNC43IDEyLjMtNC43IDE3IDBMMTYwIDI4Mi43bDExOS43LTExOC41YzQuNy00LjcgMTIuMy00LjcgMTcgMGwxOS44IDE5LjhjNC43IDQuNyA0LjcgMTIuMyAwIDE3bC0xNDggMTQ2LjhjLTQuNyA0LjctMTIuMyA0LjctMTcgMHoiPjwvcGF0aD48L3N2Zz4=") no-repeat center center;
     background-size: contain;
 
     @include breakpoint(medium) {

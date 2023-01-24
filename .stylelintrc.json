@@ -33,10 +33,6 @@
     "media-feature-name-no-vendor-prefix": null,
     "number-leading-zero": "always",
     "number-max-precision": 5,
-    "scss/dollar-variable-colon-space-before": null,
-    "scss/dollar-variable-pattern": "^_?[a-z]+[\\w-]*$",
-    "scss/at-extend-no-missing-placeholder": true,
-    "scss/at-import-partial-extension": null,
     "order/order": [
       "custom-properties",
       "dollar-variables",
@@ -538,7 +534,6 @@
         ]
       }
     ],
-    "value-no-vendor-prefix": null,
     "at-rule-no-unknown": [
       true,
       {
@@ -577,15 +572,17 @@
       "/^border/": [
         "none"
       ]
-    }
-  },
-  "media-feature-name-no-unknown": [
-    true,
-    {
-      "ignoreMediaFeatureNames": [
-        "prefers-reduced-motion",
-        "/device-pixel-ratio$/"
-      ]
-    }
-  ]
+    },
+
+    "value-no-vendor-prefix": null,
+    "scss/dollar-variable-colon-space-before": null,
+    "scss/dollar-variable-pattern": "^_?[a-z]+[\\w-]*$",
+    "scss/at-extend-no-missing-placeholder": true,
+    "scss/at-import-partial-extension": null,
+    "scss/at-else-empty-line-before": null,
+    "scss/at-if-closing-brace-newline-after": null,
+    "scss/at-if-closing-brace-space-after": null,
+    "scss/at-else-closing-brace-space-after": null,
+    "scss/at-else-closing-brace-newline-after": null
+  }
 }

@@ -26,7 +26,7 @@
 /**
   * Imports
  */
-@import "../_global.importer";
+@import "../global.importer";
 
 /**
  * Settings
@@ -123,7 +123,7 @@ html {
   -webkit-text-size-adjust: 100%; // 3
   min-height: 100%; // 4
 
-  @if ($base-font-antialiasing == true) {
+  @if $base-font-antialiasing == true {
     -webkit-font-smoothing: antialiased; // 5
     -moz-osx-font-smoothing: grayscale; // 5
   }
@@ -197,7 +197,7 @@ hr {
  *    Opinionated and disabled by default.
  * 2. Reset font-weight of all heading elements.
  */
-@if ($base-heading-size == true) {
+@if $base-heading-size == true {
   h1,
   h2,
   h3,
@@ -238,7 +238,7 @@ a {
 abbr[title] {
   text-decoration: underline; // 2
   text-decoration: underline dotted; // 2
-  border-bottom: 0; // 1
+  border-block-end: 0; // 1
 }
 
 /**
@@ -274,7 +274,7 @@ samp {
  * 2. Add the correct font size in all browsers.
  */
 small {
-  @if ($base-small-size == true) {
+  @if $base-small-size == true {
     font-size: inherit; // 1
   }
 
@@ -296,11 +296,11 @@ sup {
 }
 
 sub {
-  bottom: -0.25em;
+  inset-block-end: -0.25em;
 }
 
 sup {
-  top: -0.5em;
+  inset-block-start: -0.5em;
 }
 
 /**
@@ -311,7 +311,7 @@ sup {
  * Opinionated and disabled by default.
  */
 
-@if ($base-no-list-bullets == true) {
+@if $base-no-list-bullets == true {
   ul[class],
   ol[class] {
     list-style: none;
@@ -322,7 +322,7 @@ sup {
  * 1. Removes default border spacing and collapse.
  * 2. Ensure tables fill up as much space as possible.
  */
-@if ($base-table-normalize == true) {
+@if $base-table-normalize == true {
   table {
     width: 100%; // 2
     border-spacing: 0; // 1
@@ -365,7 +365,7 @@ svg:not(:root) {
 /**
  * Normalizing html4 form elements
  */
-@if ($base-form-elements == true) {
+@if $base-form-elements == true {
   /**
    * 1. Change the font styles in all browsers (opinionated).
    * 2. Remove the margin in Firefox and Safari.
@@ -475,7 +475,7 @@ svg:not(:root) {
 /**
  *** Normalizing of html5 form elements ***
  */
-@if ($base-html5-form-elements == true) {
+@if $base-html5-form-elements == true {
   // Correct the cursor style of increment and decrement buttons in Chrome.
   [type="number"]::-webkit-inner-spin-button,
   [type="number"]::-webkit-outer-spin-button {

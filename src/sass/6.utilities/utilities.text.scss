@@ -44,7 +44,7 @@
 /**
   * Imports
  */
-@import "../_global.importer";
+@import "../global.importer";
 
 /**
  * Settings
@@ -87,7 +87,7 @@ $utilities-text-breakpoints  : $global-breakpoints;
 /**
  * Text Responsive Utilities
  */
-@if ($utilities-text-responsive == true) {
+@if $utilities-text-responsive == true {
   @each $breakpoint-name, $breakpoint-size in $utilities-text-breakpoints {
     @media #{$breakpoint-size} {
       .#{"u-text--left" + $global-breakpoint-separator + $breakpoint-name} {
