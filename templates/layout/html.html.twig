@@ -54,7 +54,7 @@
 <!DOCTYPE html>
 <html{{ html_attributes }}>
   <head>
-    {% include 'preload.html.twig' with { current_theme_path: current_theme_path } only %}
+    {% include '@brainsum_starterkit/includes/preload.html.twig' with { current_theme_path: current_theme_path } only %}
     <style>{{ source('/' ~ directory ~ '/css/fontface--global.css') }}</style>
     <link rel="apple-touch-icon" sizes="180x180" href="/{{ directory }}/images/favicon/apple-touch-icon.png?v=eEYabv4re7">
     <link rel="icon" type="image/png" sizes="32x32" href="/{{ directory }}/images/favicon/favicon-32x32.png?v=eEYabv4re7">

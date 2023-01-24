@@ -42,8 +42,6 @@
 
       <div{{ tab.attributes.addClass('toolbar-tab') }}>
         {{ tab.link }}
-
-        {% spaceless %}
           <div{{ tray.attributes }}>
             {% if tray.label %}
               <nav
@@ -63,7 +61,6 @@
             {{ tray.links }}
             </nav>
           </div>
-        {% endspaceless %}
       </div>
     {% endfor %}
   </nav>
