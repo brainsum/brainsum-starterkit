@@ -76,12 +76,15 @@ $utilities-visibility-breakpoints         : $global-breakpoints;
  * Hide an element to all devices except screen readers with `.u-visually-hide`
  * class.
  *
+ * Note: for legacy reasons the `.visually-hidden` class is present too.
+ *
  * @example
  *   <h1 class="page__title u-visually-hide">
  *     Page title
  *   </h1>
  */
-.u-visually-hide {
+.u-visually-hide,
+.visually-hidden {
   @include visually-hidden;
 }
 
