@@ -151,17 +151,17 @@ function sassLintTask(done) {
 }
 
 /**
- * JavaScript Task
+ * JavaScript DEV Task
  *
- * Currently, there is only one JavaScript task (not separated for dev and prod).
- * And only run ESlint to detect errors.
+ * Generate sourcemaps for debugging, linting with ESlint and transpile ES6
+ * code to legacy ES5 via Babel.
  * @param {string} done The done argument is passed into the callback function;
  * executing that done function tells Gulp "a hint to tell it when the task is done".
  */
-function scriptsTask(done) {
+function scriptsDev(done) {
   gulp
-    .src(config.paths.scripts.src, { sourcemaps: true })
-    .pipe(sourcemaps.init({ largeFile: true }))
+    .src(config.paths.scripts.src)
+    .pipe(sourcemaps.init())
     .pipe(eslint({ fix: true }))
     .pipe(eslint.format())
     .pipe(
@@ -172,6 +172,29 @@ function scriptsTask(done) {
       }),
     )
     .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(config.paths.scripts.dest));
+  done();
+}
+
+/**
+ * JavaScript Prod Task
+ *
+ * Linting with ESlint and transpile ES6 code to legacy ES5 via Babel.
+ * @param {string} done The done argument is passed into the callback function;
+ * executing that done function tells Gulp "a hint to tell it when the task is done".
+ */
+function scriptsProd(done) {
+  gulp
+    .src(config.paths.scripts.src)
+    .pipe(eslint({ fix: true }))
+    .pipe(eslint.format())
+    .pipe(
+      babel({
+        presets: [
+          '@babel/env',
+        ],
+      }),
+    )
     .pipe(gulp.dest(config.paths.scripts.dest));
   done();
 }
@@ -211,12 +234,7 @@ function browserSyncReloadTask(done) {
   done();
 }
 
-/**
- * Watching Task
- *
- * Watching all Sass files; if it sees any .scss file has been changed, it runs
- * sassCompileTask then browserSyncReloadTask tasks after each other.
- */
+// Watching with Sync Task
 const watch = () => gulp.watch(
   [
     config.paths.styles.src,
@@ -224,11 +242,12 @@ const watch = () => gulp.watch(
   ],
   gulp.series(
     sassCompileDev,
-    scriptsTask,
+    scriptsDev,
     browserSyncReloadTask,
   ),
 );
 
+// Watching without Sync Task
 const watchNoSync = () => gulp.watch(
   [
     config.paths.styles.src,
@@ -236,12 +255,12 @@ const watchNoSync = () => gulp.watch(
   ],
   gulp.series(
     sassCompileDev,
-    scriptsTask,
+    scriptsDev,
   ),
 );
 
 // Define complex tasks
-compileTask = gulp.parallel(sassCompileDev, scriptsTask);
+compileTask = gulp.parallel(sassCompileDev, scriptsDev);
 watchTask = gulp.series(compileTask, browserSyncTask, watch);
 watchTaskNoSync = gulp.series(compileTask, watchNoSync);
 
@@ -250,8 +269,8 @@ watchTaskNoSync = gulp.series(compileTask, watchNoSync);
  */
 exports.default = watchTask;
 exports.defaultNoSync = watchTaskNoSync;
-exports.prod = gulp.parallel(sassCompileProd, scriptsTask);
+exports.prod = gulp.parallel(sassCompileProd, scriptsProd);
 exports.sassDev = sassCompileDev;
 exports.sassProd = sassCompileProd;
-exports.scripts = scriptsTask;
+exports.scripts = scriptsProd;
 exports.lint = sassLintTask;
