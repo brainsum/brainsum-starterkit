@@ -16,8 +16,8 @@
  */
 $autocomplete-border-size-base                : $global-form-border-size-base;
 $autocomplete-border-size-inline-start        : $global-form-border-size-inline-start;
-$autocomplete-search-icon                     : url("../../images/magnifying-glass.svg");
-$autocomplete-throbber-icon                   : url("../../images/throbber.svg");
+$autocomplete-search-icon                     : url(../../images/icons/magnifying-glass.svg);
+$autocomplete-throbber-icon                   : url(../../images/icons/throbber.svg);
 $autocomplete-throbber-icon-size              : 1.9rem;
 $autocomplete-throbber-icon-inline-end-offset : 1.8rem;
 $autocomplete-throbber-icon-block-start-offset: calc(#{$autocomplete-throbber-icon-inline-end-offset} - #{$autocomplete-border-size-base});
