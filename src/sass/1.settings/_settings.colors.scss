@@ -25,9 +25,9 @@ $color-grey             : #333;
 /**
  * Different shades of the default grey color
  */
-$color-grey-120         : color.scale($color-grey, $lightness: -20%);
+$color-grey-120         : color.scale($color-grey, $lightness: -20%); // darkest grey
 $color-grey-110         : color.scale($color-grey, $lightness: -10%);
-$color-grey-100         : $color-grey;
+$color-grey-100         : $color-grey;                                // default grey
 $color-grey-90          : color.scale($color-grey, $lightness: 10%);
 $color-grey-80          : color.scale($color-grey, $lightness: 20%);
 $color-grey-70          : color.scale($color-grey, $lightness: 30%);
@@ -36,7 +36,7 @@ $color-grey-50          : color.scale($color-grey, $lightness: 50%);
 $color-grey-40          : color.scale($color-grey, $lightness: 60%);
 $color-grey-30          : color.scale($color-grey, $lightness: 70%);
 $color-grey-20          : color.scale($color-grey, $lightness: 80%);
-$color-grey-10          : color.scale($color-grey, $lightness: 90%);
+$color-grey-10          : color.scale($color-grey, $lightness: 90%); // lightest grey
 
 /**
  * Design needed global color definitions
@@ -52,5 +52,5 @@ $color-turquoise--dark  : #53c2bc;
 $color-brand            : $color-yellow;
 $color-primary          : $color-blue;
 $color-secondary        : $color-turquoise;
-$global-color           : #000;
-$global-background      : #fff;
+$global-color           : $color-dark;
+$global-background      : $color-light;

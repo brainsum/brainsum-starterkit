@@ -20,16 +20,16 @@
 {#
   Building the template structure
 #}
-<div class="c-progress" data-drupal-progress>
+<div class="progress" data-drupal-progress>
   {% if label %}
-    <div class="c-progress__label">{{ label }}</div>
+    <div class="progress__label">{{ label }}</div>
   {% endif %}
 
-  <div class="c-progress__track">
-    <div class="c-progress__bar" style="width: {{ percent }}%"></div>
+  <div class="progress__track">
+    <div class="progress__bar" style="width: {{ percent }}%"></div>
   </div>
 
-  <div class="c-progress__percentage">{{ percent }}%</div>
+  <div class="progress__percentage">{{ percent }}%</div>
 
-  <div class="c-progress__description">{{ message }}</div>
+  <div class="progress__description">{{ message }}</div>
 </div>

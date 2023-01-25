@@ -22,25 +22,19 @@ $autocomplete-throbber-icon-size              : 1.9rem;
 $autocomplete-throbber-icon-inline-end-offset : 1.8rem;
 $autocomplete-throbber-icon-block-start-offset: calc(#{$autocomplete-throbber-icon-inline-end-offset} - #{$autocomplete-border-size-base});
 
-.form-autocomplete {
-  html.js & {
-    padding-inline-end: $autocomplete-throbber-icon-size + 2 * $autocomplete-throbber-icon-inline-end-offset;
-    background: $color-light $autocomplete-search-icon no-repeat right $autocomplete-throbber-icon-inline-end-offset center;
+[type].form-autocomplete {
+  padding-inline-end: $autocomplete-throbber-icon-size + 2 * $autocomplete-throbber-icon-inline-end-offset;
+  background: $color-light $autocomplete-search-icon no-repeat right $autocomplete-throbber-icon-inline-end-offset center;
 
-    &:disabled {
-      background-color: $color-grey-10;
-    }
-
-    &.ui-autocomplete-loading {
-      background: $color-light $autocomplete-search-icon no-repeat right $autocomplete-throbber-icon-inline-end-offset center;
-    }
+  &:disabled {
+    background-color: $color-grey-10;
   }
 
-  html.js[dir="rtl"] & {
-    background: $color-light $autocomplete-search-icon no-repeat left $autocomplete-throbber-icon-inline-end-offset center;
+  &.ui-autocomplete-loading {
+    background-image: $autocomplete-search-icon;
+  }
 
-    &.ui-autocomplete-loading {
-      background: $color-light $autocomplete-search-icon no-repeat left $autocomplete-throbber-icon-inline-end-offset center;
-    }
+  &:dir(rtl) {
+    background-position: left $autocomplete-throbber-icon-inline-end-offset center;
   }
 }

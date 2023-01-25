@@ -3,9 +3,11 @@
  * Navigation Component.
  */
 
-(Drupal => {
+/* global once */
+
+((Drupal, once) => {
   function init(el) {
-    const mainNav = document.querySelector('#block-starter_theme-main-menu');
+    const mainNav = document.querySelector('[data-drupal-selector="menu--main"]');
     const parentItem = document.querySelectorAll('.c-menu__item--has-children');
     const activeClass = 'is-active';
 
@@ -45,12 +47,16 @@
     el.addEventListener('click', mobileMenu);
 
     // activate submenus on mobile
-    parentItem.forEach(link => link.addEventListener('click', dropdown));
+    parentItem.forEach((link) => link.addEventListener('click', dropdown));
   }
 
-  Drupal.behaviors.starterThemeNavigation = {
+  Drupal.behaviors.brainsumStarterkitNavigation = {
     attach(context) {
-      context.querySelectorAll('.c-hamburger').forEach(el => init(el));
+      const header = once('navigation', '[data-drupal-selector="header"]', context).shift();
+
+      if (header) {
+        context.querySelectorAll('.c-hamburger').forEach((el) => init(el));
+      }
     },
   };
-})(Drupal);
+})(Drupal, once);

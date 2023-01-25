@@ -1,0 +1,29 @@
+/**
+ * @file
+ * Action links Components
+ *
+ * Styles for action links.
+*/
+
+/**
+  * Imports
+ */
+@import "../global.importer";
+
+.c-action-links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: inline-block;
+
+    a {
+      color: $global-color;
+    }
+  }
+}
+
+.c-action-links__item {
+  display: inline-block;
+}

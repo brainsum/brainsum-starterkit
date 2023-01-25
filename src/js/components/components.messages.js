@@ -7,10 +7,10 @@
  * Borrowed from Olivero Theme.
  */
 
-(Drupal => {
+((Drupal) => {
   const messages = document.querySelectorAll('.c-messages');
 
-  messages.forEach(el => {
+  messages.forEach((el) => {
     const messageContainer = el.querySelector('.c-messages__container');
 
     const closeBtnWrapper = document.createElement('div');

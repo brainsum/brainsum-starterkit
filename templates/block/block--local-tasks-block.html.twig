@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Theme override for tabs.
+ */
+#}
+
+{#
+  Inherits from
+#}
+{% extends '@brainsum_starterkit/block/block.html.twig' %}
+
+{#
+  Building the template structure
+#}
+{% block content %}
+  {% if content %}
+    <nav class="c-tabs" aria-label="{{ 'Tabs'|t }}">
+      {{ content }}
+    </nav>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Theme override for local actions (primary admin actions.)
+ */
+#}
+
+{#
+  Inherits from
+#}
+{% extends '@brainsum_starterkit/block/block.html.twig' %}
+
+{#
+  Building the template structure
+#}
+{% block content %}
+  {% if content %}
+    <nav class="c-action-links" aria-label="{{ 'Primary admin actions'|t }}">
+      {{ content }}
+    </nav>
+  {% endif %}
+{% endblock %}

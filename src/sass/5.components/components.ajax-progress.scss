@@ -90,7 +90,7 @@ $throbber-size  : $gutter;
     inset-inline-start: 50%;
     margin: -1.4rem;
     content: "";
-    border-width: 3px;
+    border-width: 0.3rem;
   }
 }
 
@@ -103,6 +103,12 @@ $throbber-size  : $gutter;
   border-style: solid dotted solid solid;
   border-color: $ajax-color transparent $ajax-color $ajax-color;
   border-radius: 50%;
+
+  @if $prefers-reduced-motion {
+    @media screen and (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
 }
 
 /**

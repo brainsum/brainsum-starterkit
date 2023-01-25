@@ -10,6 +10,7 @@ global:
       css/4.objects/objects.grid.css: {}
       css/4.objects/objects.media.css: {}
     component:
+      css/5.components/components.icon.css: {}
       css/5.components/components.page.css: {}
       css/5.components/components.type.css: {}
     theme:
@@ -46,22 +47,34 @@ field.long-text:
     component:
       css/5.components/components.field.long-text.css: { preprocess: false }
 
+file:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.file.css: { preprocess: false }
+
 form:
   version: 1.0.0
   css:
     component:
       css/5.components/components.form.css: { preprocess: false }
 
-header:
+local-actions:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.action-links.css: { preprocess: false }
+
+navigation:
   version: 1.0.0
   css:
     component:
       css/5.components/components.hamburger.css: { preprocess: false }
-
-navigation:
-  version: 1.0.0
   js:
-    js/5.components/components.navigation.js: { preprocess: false }
+    js/components/components.navigation.js: { preprocess: false }
+  dependencies:
+    - core/drupal
+    - core/once
 
 messages:
   version: 1.0.0
@@ -70,6 +83,9 @@ messages:
       css/5.components/components.messages.css: { preprocess: false }
   js:
     js/components/components.messages.js: { preprocess: false }
+  dependencies:
+    - core/drupal
+    - core/once
 
 page.home:
   version: 1.0.0
@@ -89,6 +105,12 @@ page.subpage:
     theme:
       css/7.pages/pages.subpage.css: { preprocess: false }
 
+progress:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.progress.css: { preprocess: false }
+
 tabs:
   version: 1.0.0
   css:
@@ -96,3 +118,6 @@ tabs:
       css/5.components/components.tabs.css: { preprocess: false }
   js:
     js/components/components.tabs.js: { preprocess: false }
+  dependencies:
+    - core/drupal
+    - core/once

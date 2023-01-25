@@ -8,6 +8,7 @@
  *
  * Borrowed from Olivero Theme.
  */
+
 (function (Drupal) {
   var messages = document.querySelectorAll('.c-messages');
   messages.forEach(function (el) {

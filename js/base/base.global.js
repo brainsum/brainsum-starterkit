@@ -50,3 +50,4 @@
 //     },
 //   };
 // })(jQuery, Drupal, once, context);
+"use strict";

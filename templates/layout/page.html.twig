@@ -67,8 +67,6 @@
 #}
 <div{{ attributes.addClass(page_classes) }} id="c-page">
   {% if page.top_bar or page.header or page.navigation %}
-    {{ attach_library('brainsum_starterkit/header') }}
-
     <header id="c-header" class="c-header" data-drupal-selector="header">
       {% if page.top_bar %}
         <div class="c-top-bar" data-drupal-selector="top-bar">

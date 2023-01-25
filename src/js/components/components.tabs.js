@@ -7,6 +7,8 @@
  * Borrowed from Olivero Theme.
  */
 
+/* global once */
+
 ((Drupal, once) => {
   /**
    * Initialize the primary tabs.
@@ -65,7 +67,7 @@
    * @prop {Drupal~behaviorAttach} attach
    *   Display primary tabs according to the screen width.
    */
-  Drupal.behaviors.starterThemeTabs = {
+  Drupal.behaviors.brainsumStarterkitTabs = {
     attach(context) {
       once('starter_theme-tabs', '[data-drupal-nav-primary-tabs]', context)
         .forEach(

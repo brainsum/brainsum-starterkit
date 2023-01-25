@@ -56,6 +56,7 @@ libraries-override:
         css/components/js.module.css: css/6.utilities/utilities.js.css
         css/components/nowrap.module.css: false
         css/components/position-container.module.css: false
+        css/components/progress.module.css: css/5.components/components.progress.css
         css/components/reset-appearance.module.css: false
         css/components/resize.module.css: false
         css/components/sticky-header.module.css: false
