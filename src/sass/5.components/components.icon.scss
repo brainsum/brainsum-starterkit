@@ -1,0 +1,15 @@
+/**
+ * @file
+ * Icon Component
+ *
+ * Theming SVG icons.
+ */
+
+/**
+  * Imports
+ */
+@import "../global.importer";
+
+svg.c-icon {
+  fill: currentColor;
+}
