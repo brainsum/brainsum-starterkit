@@ -6,4 +6,10 @@
 /**
  * Global Border Radius
  */
-$global-border-radius : 0.8rem;
+$global-border-radius   : 0.8rem;
+
+/**
+ * Accessibility
+ * Respect user's OS settings for transitions and animations.
+ */
+$prefers-reduced-motion : true;

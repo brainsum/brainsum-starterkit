@@ -143,6 +143,12 @@ textarea {
         border: 1px solid $form-boolean-border-color;
         background: $form-background-color;
 
+        @if $prefers-reduced-motion {
+          @media screen and (prefers-reduced-motion: reduce) {
+            transition: none;
+          }
+        }
+
         @include breakpoint(medium) {
           @include square($form-boolean-size-mouse);
         }

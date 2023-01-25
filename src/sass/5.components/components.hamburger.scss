@@ -13,10 +13,11 @@
  * @link https://github.com/jonsuh/hamburgers/tree/master/_sass/hamburgers/types
  */
 
+@use "sass:math";
+
 /**
   * Imports
  */
-@use "sass:math";
 
 @import "../global.importer";
 
@@ -45,6 +46,12 @@ $hamburger-spinner-color                : $color-brand;
   border: 0;
   background: none;
 
+  @if $prefers-reduced-motion {
+    @media screen and (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
   @include breakpoint(small) {
     display: none;
   }
@@ -71,6 +78,12 @@ $hamburger-spinner-color                : $color-brand;
     margin-block-start: math.div($hamburger-spinner-height, -2);
     transition: background 0s 0.13s linear;
 
+    @if $prefers-reduced-motion {
+      @media screen and (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+    }
+
     &::before,
     &::after {
       display: block;
@@ -86,6 +99,12 @@ $hamburger-spinner-color                : $color-brand;
       transition: transform 0.15s ease;
       border-radius: $hamburger-spinner-border-radius;
       background: $hamburger-spinner-color;
+
+      @if $prefers-reduced-motion {
+        @media screen and (prefers-reduced-motion: reduce) {
+          transition: none;
+        }
+      }
     }
 
     &::before {
@@ -95,6 +114,12 @@ $hamburger-spinner-color                : $color-brand;
       transition:
         top 0.1s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1),
         transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+      @if $prefers-reduced-motion {
+        @media screen and (prefers-reduced-motion: reduce) {
+          transition: none;
+        }
+      }
 
       .c-hamburger.is-active & {
         inset-block-start: 0;
@@ -107,6 +132,12 @@ $hamburger-spinner-color                : $color-brand;
           translate3d(0, $hamburger-spinner-spacing + $hamburger-spinner-height, 0)
           rotate(45deg);
         background: $hamburger-spinner-color;
+
+        @if $prefers-reduced-motion {
+          @media screen and (prefers-reduced-motion: reduce) {
+            transition: none;
+          }
+        }
       }
     }
 
@@ -117,6 +148,12 @@ $hamburger-spinner-color                : $color-brand;
         top 0.2s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1),
         transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 
+      @if $prefers-reduced-motion {
+        @media screen and (prefers-reduced-motion: reduce) {
+          transition: none;
+        }
+      }
+
       .c-hamburger.is-active & {
         inset-block-start: 0;
         transition:
@@ -126,6 +163,12 @@ $hamburger-spinner-color                : $color-brand;
           translate3d(0, $hamburger-spinner-spacing + $hamburger-spinner-height, 0)
           rotate(-45deg);
         background: $hamburger-spinner-color;
+
+        @if $prefers-reduced-motion {
+          @media screen and (prefers-reduced-motion: reduce) {
+            transition: none;
+          }
+        }
       }
     }
 

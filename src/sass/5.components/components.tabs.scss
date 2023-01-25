@@ -80,6 +80,12 @@ $tabs-tab-font-size         : 1.4rem;
     background: $tabs-tab-background;
     font-size: $tabs-tab-font-size;
 
+    @if $prefers-reduced-motion {
+      @media screen and (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+    }
+
     .c-tabs--secondary & {
       text-transform: none;
 
@@ -177,6 +183,12 @@ $tabs-tab-font-size         : 1.4rem;
         width: 100%;
         transition: transform 0.2s, opacity 0.2s, top 0.2s;
         border-block-start: solid 2px $tabs-tab-color;
+
+        @if $prefers-reduced-motion {
+          @media screen and (prefers-reduced-motion: reduce) {
+            transition: none;
+          }
+        }
 
         &:nth-child(1) {
           inset-block-start: 0;

@@ -8,4 +8,10 @@
  */
 @mixin global-transition {
   transition: all 0.2s ease;
+
+  @if $prefers-reduced-motion {
+    @media screen and (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
 }
