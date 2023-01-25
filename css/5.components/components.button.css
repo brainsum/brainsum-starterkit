@@ -1,8 +1,1 @@
-@charset "UTF-8";
-a.c-button,
-input.button{
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  transition:all 0.2s ease;
-  display:inline-flex;
-}
+a.c-button,input.button{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;transition:all .2s ease;display:inline-flex}@media screen and (prefers-reduced-motion: reduce){a.c-button,input.button{transition:none}}

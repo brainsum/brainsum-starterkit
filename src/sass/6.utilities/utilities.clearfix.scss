@@ -26,7 +26,10 @@
 
 /**
  * Clearfix Utility
+ *
+ *  * Note: for legacy reasons the `.clearfix` class is present too.
  */
-.u-clearfix {
+.u-clearfix,
+.clearfix {
   @include clearfix;
 }

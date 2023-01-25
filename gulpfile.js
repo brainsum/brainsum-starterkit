@@ -60,10 +60,6 @@ const config = {
       'prefers-color-scheme-query': false,
     },
   },
-  sass: {
-    outputStyle: 'expanded',
-    precision  : 10,
-  },
   browserSync: {
     proxy   : process.env.BROWSERSYC_PROXY,
     autoOpen: false,
@@ -94,7 +90,10 @@ function sassCompileDev(done) {
     .src(config.paths.styles.src)
     .pipe(sourcemaps.init())
     .pipe(sassGlob())
-    .pipe(sass.sync(config.sass))
+    .pipe(sass.sync({
+      outputStyle: 'expanded',
+      precision  : 10,
+    }))
     .on('error', sass.logError)
     .pipe(
       postcss([
@@ -112,7 +111,10 @@ function sassCompileProd(done) {
   gulp
     .src(config.paths.styles.src)
     .pipe(sassGlob())
-    .pipe(sass.sync(config.sass))
+    .pipe(sass.sync({
+      outputStyle: 'compressed',
+      precision  : 10,
+    }))
     .on('error', sass.logError)
     .pipe(
       postcss([
