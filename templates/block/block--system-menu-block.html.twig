@@ -56,13 +56,18 @@
 {#
   Building the template structure
 #}
-<nav {{ attributes.addClass(classes).setAttribute('aria-labelledby', heading_id) }}>
+<nav {{
+  attributes
+    .addClass(classes)
+    .setAttribute('data-drupal-selector', 'menu--' ~ derivative_plugin_id|clean_class,)
+    .setAttribute('aria-labelledby', heading_id)
+}}>
   {# Label. If not displayed, we still provide it for screen readers. #}
   {% if not configuration.label_display %}
-    {% set title_element = span %}
+    {% set title_element = 'span' %}
     {% set title_attributes = title_attributes.addClass('u-visually-hide') %}
   {% else %}
-    {% set title_element = h2 %}
+    {% set title_element = 'h2' %}
   {% endif %}
 
   {{ title_prefix }}
