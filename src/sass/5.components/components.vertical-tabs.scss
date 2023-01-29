@@ -14,7 +14,7 @@
  * Settings
  */
 $vertical-tabs-menu-width         : 24rem;
-$vertical-tabs-menu-border-width  : 1px;
+$vertical-tabs-menu-border-width  : 0.1rem;
 
 .vertical-tabs {
   @include breakpoint(large) {
@@ -56,7 +56,7 @@ $vertical-tabs-menu-border-width  : 1px;
       }
 
       &.is-selected {
-        background-color: #fff;
+        background-color: $color-light;
 
         @include breakpoint(large) {
           margin-inline-end: calc($vertical-tabs-menu-border-width * -1);

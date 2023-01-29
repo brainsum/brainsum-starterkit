@@ -24,8 +24,8 @@ $form-background-color        : $color-light;
 $form-placeholder-color       : rgba($form-text-color, 0.66);
 $form-boolean-border-color    : #979797;
 $form-boolean-checked-color   : $form-text-color;
-$form-boolean-size-touch      : 3.5rem;
-$form-boolean-size-mouse      : 2.6rem;
+$form-boolean-size-touch      : 3.5rem; // size for mobile devices
+$form-boolean-size-mouse      : 2.6rem; // size for desktop
 $form-checkbox-border-radius  : 0.2rem;
 
 textarea {
@@ -41,9 +41,10 @@ textarea {
   &-element {
     appearance: none;
     width: 100%;
-    padding: $form-padding-block $form-padding-inline;
+    padding-block: $form-padding-block;
+    padding-inline: $form-padding-inline;
     color: $form-text-color;
-    border: 1px solid $form-border-color;
+    border: 0.1rem solid $form-border-color;
     border-radius: $form-border-radius;
     background: $form-background-color;
 
@@ -76,13 +77,14 @@ textarea {
     flex-direction: row;
     align-items: center;
     min-height: $form-boolean-size-touch;
-    margin: 2rem 0;
+    margin-block: 2rem;
+    margin-inline: 0;
     cursor: pointer;
     line-height: $form-boolean-size-touch;
 
     @include breakpoint(medium) {
       min-height: $form-boolean-size-mouse;
-      margin: 1.5rem 0;
+      margin-block: 1.5rem;
       line-height: $form-boolean-size-mouse;
     }
 

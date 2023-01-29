@@ -45,20 +45,19 @@ const config = {
     ],
   },
   postcssPresetEnv: {
-    stage       : 1,
-    preserve    : false,
-    autoprefixer: {
-      cascade: false,
-      grid   : 'no-autoplace',
-    },
-    features: {
-      'blank-pseudo-class'        : false,
-      'focus-visible-pseudo-class': false,
-      'focus-within-pseudo-class' : false,
-      'has-pseudo-class'          : false,
-      'image-set-function'        : false,
-      'prefers-color-scheme-query': false,
-    },
+    stage   : 3,
+    preserve: false,
+  },
+  stylelint: {
+    reporters: [
+      {
+        formatter: 'verbose',
+        console  : true,
+      },
+    ],
+    debug         : true,
+    failAfterError: false,
+    fix           : true,
   },
   browserSync: {
     proxy   : process.env.BROWSERSYC_PROXY,
@@ -111,6 +110,7 @@ function sassCompileProd(done) {
   gulp
     .src(config.paths.styles.src)
     .pipe(sassGlob())
+    .pipe(stylelint(config.stylelint))
     .pipe(sass.sync({
       outputStyle: 'compressed',
       precision  : 10,
@@ -136,19 +136,8 @@ function sassCompileProd(done) {
  * executing that done function tells Gulp "a hint to tell it when the task is done".
  */
 function sassLintTask(done) {
-  gulp.src(config.paths.styles.src).pipe(
-    stylelint({
-      reporters: [
-        {
-          formatter: 'verbose',
-          console  : true,
-        },
-      ],
-      debug         : true,
-      failAfterError: false,
-      fix           : true,
-    }),
-  );
+  gulp.src(config.paths.styles.src)
+    .pipe(stylelint(config.stylelint));
   done();
 }
 

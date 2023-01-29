@@ -14,7 +14,6 @@
 .c-field--type-text-with-summary {
   strong,
   b {
-    color: $color-brand;
     font-weight: 700;
   }
 
@@ -26,7 +25,6 @@
     margin-block-start: 1.5em;
     margin-block-end: 1em;
     margin-inline: 0;
-    color: $color-brand;
   }
 
   img {
@@ -44,12 +42,28 @@
   }
 
   .align-left {
-    float: inline-start;
+    float: left;
     margin-inline-end: 1em;
   }
 
   .align-right {
-    float: inline-end;
+    float: right;
     margin-inline-start: 1em;
+  }
+
+  .text-align-left {
+    @include text-align(start);
+  }
+
+  .text-align-right {
+    @include text-align(end);
+  }
+
+  .text-align-center {
+    @include text-align(center);
+  }
+
+  .text-align-justify {
+    @include text-align(justify, start);
   }
 }

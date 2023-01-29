@@ -239,8 +239,8 @@ $objects-media-collapse-at          : 47.93em; // 767px
 @if $objects-media-is-reversed == true {
   .#{$objects-media-class-media-mod + $objects-media-reversed} {
     & > .#{$objects-media-class-media-fixed} {
-      @include _generate-unit("padding", "inline-end", 0);
       @include _generate-unit("padding", "inline-start", $objects-media-gutter-default);
+      @include _generate-unit("padding", "inline-end", 0);
 
       order: 1;
     }
@@ -322,8 +322,8 @@ $objects-media-collapse-at          : 47.93em; // 767px
       &.#{$objects-media-class-media-mod + $objects-media-reversed} {
         @media screen and (min-width: ($objects-media-collapse-at + 1)) {
           & > .#{$objects-media-class-media-fixed} {
-            @include _generate-unit("padding", "inline-end", 0);
             @include _generate-unit("padding", "inline-start", $media-gutter-size);
+            @include _generate-unit("padding", "inline-end", 0);
           }
         }
       }
@@ -338,8 +338,8 @@ $objects-media-collapse-at          : 47.93em; // 767px
       &.#{$objects-media-class-media-mod + $objects-media-reversed + ":not(." + $objects-media-class-media-mod + $objects-media-responsive + ")"} {
         @media screen and (max-width: $objects-media-collapse-at) {
           & > .#{$objects-media-class-media-fixed} {
-            @include _generate-unit("padding", "inline-end", 0);
             @include _generate-unit("padding", "inline-start", $media-gutter-size);
+            @include _generate-unit("padding", "inline-end", 0);
           }
         }
       }

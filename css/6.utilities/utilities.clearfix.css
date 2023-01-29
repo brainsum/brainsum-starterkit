@@ -1,1 +1,1 @@
-.u-clearfix::after{display:table;clear:both;content:""}
+.u-clearfix::after,.clearfix::after{display:table;clear:both;content:""}

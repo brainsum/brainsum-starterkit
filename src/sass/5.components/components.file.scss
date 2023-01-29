@@ -15,9 +15,9 @@
 .file {
   display: inline-block;
   min-height: 1.6rem;
-  padding-inline-end: 2rem;
+  padding-inline-start: 2rem;
   background-repeat: no-repeat;
-  background-position: left center;
+  background-position: left center; // RTL
 
   [dir="rtl"] & {
     background-position: right center;

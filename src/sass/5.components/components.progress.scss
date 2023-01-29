@@ -64,12 +64,12 @@ $progress-bar-background    : color.adjust($color-primary, $lightness: 15%)
 
   &__bar {
     height: 1.6rem;
-    margin-block-start: -1px;
-    margin-inline-end: -1px;
+    margin-block-start: -0.1rem;
+    margin-inline-end: -0.1rem;
     padding: 0 0.1rem;
     transition: width 0.5s ease-out;
     animation: animate-stripes 3s linear infinite;
-    border: 1px $progress-bar-border-color solid;
+    border: 0.1rem $progress-bar-border-color solid;
     border-radius: 10em;
     background: $progress-bar-background;
     background-size: 4rem 4rem;

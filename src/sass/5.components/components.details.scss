@@ -13,7 +13,8 @@
 /**
  * Settings
  */
-$details-border-width       : 1px;
+$details-border-width       : 0.1rem;
+$details-border-radius      : 0.2rem;
 $details-summary-transition : background-color 0.12s ease-in-out;
 
 .c-details {
@@ -21,8 +22,8 @@ $details-summary-transition : background-color 0.12s ease-in-out;
   margin-block: $gutter;
   color: inherit;
   border: $details-border-width solid $color-grey-20;
-  border-radius: 0.2rem;
-  box-shadow: 0 1px 4px $color-grey-30;
+  border-radius: $details-border-radius;
+  box-shadow: 0 0.1rem 0.4rem $color-grey-30;
 
   /* Details summary styles */
   &__summary {
@@ -48,37 +49,33 @@ $details-summary-transition : background-color 0.12s ease-in-out;
     }
 
     /* Arrow icon */
-    &,
-    .collapse-processed > & .details-title {
-      &::before {
-        @include square(1rem);
+    &::before {
+      @include square(1rem);
 
-        position: absolute;
-        inset-block-start: 50%;
-        inset-inline-start: $gutter * 0.75;
-        display: block;
-        content: "";
+      position: absolute;
+      inset-block-start: 50%;
+      inset-inline-start: $gutter * 0.75;
+      display: block;
+      content: "";
+      transform: translateY(-50%) rotate(45deg); // LTR
+      border-block-start: solid 0.2rem currentColor;
+      border-inline-end: solid 0.2rem currentColor;
 
-        // LTR
-        transform: translateY(-50%) rotate(45deg);
-        border: solid 2px currentColor;
-
-        // RTL
-        [dir="rtl"] & {
-          transform: translateY(-50%) rotate(-135deg);
-        }
+      // RTL
+      [dir="rtl"] & {
+        transform: translateY(-50%) rotate(-135deg);
       }
+    }
 
-      // Pseudo-selector to manage focus styles
-      &::after {
-        position: absolute;
-        inset: calc($details-border-width * -1);
-        content: "";
-        pointer-events: none;
-        opacity: 0;
-        border-radius: 0.2rem;
-        box-shadow: inset 0 0 0 0.2rem $color-brand;
-      }
+    // Pseudo-selector to manage focus styles
+    &::after {
+      position: absolute;
+      inset: calc($details-border-width * -1);
+      content: "";
+      pointer-events: none;
+      opacity: 0;
+      border-radius: $details-border-radius;
+      box-shadow: inset 0 0 0 0.2rem $color-brand;
     }
 
     /* Hide the marker */
@@ -88,7 +85,7 @@ $details-summary-transition : background-color 0.12s ease-in-out;
 
     /* Disable default outline for summary, since we have own implementation */
     &:focus {
-      outline: solid 2px transparent;
+      outline: solid 0.2rem transparent;
       outline-offset: -0.4rem;
     }
 
@@ -99,66 +96,17 @@ $details-summary-transition : background-color 0.12s ease-in-out;
 
     /* Details summary, focus and active states */
     &:focus,
-    &:active,
-    .collapse-processed > & .details-title:focus,
-    .collapse-processed > & .details-title:active {
+    &:active {
       &::after {
         opacity: 1;
       }
     }
 
     /* Rotate arrow icon of the details summary, when details expanded */
-    .c-details[open] > &,
-    .collapse-processed[open] > & .details-title {
+    .c-details[open] > & {
       &::before {
-        margin-block-start: -2px;
+        margin-block-start: -0.2rem;
         transform: translateY(-50%) rotate(135deg);
-      }
-    }
-
-    /* Collapse processed for non-supporting browsers like IE or Edge */
-    .collapse-processed > & {
-      padding: 0;
-
-      &::before {
-        content: none;
-      }
-
-      &::after {
-        content: none;
-      }
-
-      .details-title {
-        position: relative;
-        display: block;
-        padding-block: $gutter;
-        padding-inline-start: $gutter--2x;
-        padding-inline-end: $gutter;
-        transition: $details-summary-transition;
-        text-decoration: none;
-        color: inherit;
-        background-color: $color-grey-10;
-
-        @if $prefers-reduced-motion {
-          @media screen and (prefers-reduced-motion: reduce) {
-            transition: none;
-          }
-        }
-
-        &:focus {
-          outline: solid 0.2rem transparent;
-        }
-
-        &:hover {
-          background-color: $color-grey-20;
-        }
-
-        &::after {
-          @media screen and (-ms-high-contrast: active) {
-            inset: -0.5rem;
-            border: 2px dotted;
-          }
-        }
       }
     }
   }

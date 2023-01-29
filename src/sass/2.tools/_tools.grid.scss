@@ -122,8 +122,7 @@ $tools-grid-gutter-extra : $global-grid-gutter-extra;
  *   }
  */
 @mixin make-grid($gutter: $tools-grid-gutter-default) {
-  @include _generate-unit("margin", "left", _negative-unit($gutter), half);
-  @include _generate-unit("margin", "right", _negative-unit($gutter), half);
+  @include _generate-unit("margin", "inline", _negative-unit($gutter), half);
 
   display: flex;
   flex-wrap: wrap;
@@ -184,8 +183,7 @@ $tools-grid-gutter-extra : $global-grid-gutter-extra;
  *   }
  */
 @mixin make-column($gutter: $tools-grid-gutter-default) {
-  @include _generate-unit("padding", "left", $gutter, half);
-  @include _generate-unit("padding", "right", $gutter, half);
+  @include _generate-unit("padding", "inline", $gutter, half);
 
   flex-basis: auto;
   box-sizing: inherit;
@@ -264,10 +262,10 @@ $tools-grid-gutter-extra : $global-grid-gutter-extra;
  */
 @mixin column-offset($column, $all-columns, $position: start) {
   @if $position == start {
-    margin-inline-end: math.percentage(math.div($column, $all-columns));
+    margin-inline-start: math.percentage(math.div($column, $all-columns));
   }
 
-  @else if$position == end {
-    margin-inline-start: math.percentage(math.div($column, $all-columns));
+  @else if $position == end {
+    margin-inline-end: math.percentage(math.div($column, $all-columns));
   }
 }

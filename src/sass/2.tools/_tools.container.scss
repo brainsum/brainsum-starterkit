@@ -53,8 +53,7 @@ $tools-container-size-default     : $global-container-size-default;
  */
 /* stylelint-disable-next-line scss/at-mixin-pattern */
 @mixin _container-padding($size) {
-  @include _generate-unit("padding", "right", $size);
-  @include _generate-unit("padding", "left", $size);
+  @include _generate-unit("padding", "inline", $size);
 }
 
 /**

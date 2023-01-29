@@ -8,6 +8,11 @@
  */
 
 /**
+ * Import settings
+ */
+@import "../1.settings/settings._all";
+
+/**
  * Square mixin
  *
  * Use it, when you need similar width and height with square shape.
@@ -17,7 +22,6 @@
  * @example
  *   @include square(6rem);
  */
-
 @mixin square($value) {
   width: $value;
   height: $value;
@@ -33,7 +37,6 @@
  * @example
  *   @include circle(6rem);
  */
-
 @mixin circle($value) {
   width: $value;
   height: $value;
