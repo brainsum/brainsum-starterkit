@@ -15,6 +15,10 @@
 $toolbar-link-color         : #565656;
 $toolbar-accent-state-color : $color-dark;
 
+#toolbar-administration {
+  font-size: 1.3rem;
+}
+
 .toolbar-tray a {
   color: $toolbar-link-color;
 
