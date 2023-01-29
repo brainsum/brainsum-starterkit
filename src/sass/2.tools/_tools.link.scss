@@ -1,0 +1,71 @@
+/**
+ * @file
+ * Link Tool
+ *
+ * Part of Shake.sass.
+ * @author Krisztian Pinter <krisz@keeteean.com>
+ *
+ * Easily theming anchor elements.
+ *
+ * @parameter {string} $color - Text color of the link.
+ * @parameter {string} $visited - Optionally you can use the same effect for :visited state as :hover, :focus and :active if you use here the `visited` string; default: none
+ * @parameter {string} $text-decoration - Optional text-decoration for :link and :visited states; default: none.
+ * @parameter {string} $outline - Optional outline for :focus state; default: none.
+ *
+ * @example
+ * Given a color, use the same :visited color as :link, use different color for
+ * other states, no text-decoration, no focus style
+ * a {
+ *     @include link($color-link);
+ * }
+ *
+ * Given a color, use the same :visited color as for other states, use
+ * text-decoration: underlined, no focus style
+ * a {
+ *     @include link($color-link, visited, underlined);
+ * }
+ *
+ * Given a color, use the same :visited color as for other states, no
+ * text-decoration, given a focus style
+ * a {
+ *     @include link($color-link, none, none, 0.8rem solid $color-outline);
+ * }
+ */
+
+@use "sass:color";
+
+@mixin link($color, $visited: none, $text-decoration: none, $outline: none) {
+  @include global-transition;
+
+  color: $color;
+
+  @if $visited == visited {
+    &:focus,
+    &:hover,
+    &:visited,
+    &:active {
+      color: color.adjust($color, $lightness: -15%);
+    }
+  }
+
+  @else {
+    &:visited {
+      color: $color;
+    }
+
+    &:focus,
+    &:hover,
+    &:active {
+      color: color.adjust($color, $lightness: -15%);
+    }
+  }
+
+  &:link,
+  &:visited {
+    text-decoration: $text-decoration;
+  }
+
+  &:focus {
+    outline: $outline;
+  }
+}

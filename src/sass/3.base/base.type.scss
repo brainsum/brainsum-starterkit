@@ -20,7 +20,7 @@
  * Global selected text
  */
 $base-selected-text             : true;
-$base-selected-text-color       : #fff;
+$base-selected-text-color       : $color-light;
 $base-selected-text-background  : $color-brand;
 
 /**
@@ -40,9 +40,6 @@ $base-code-tab-size             : 2;
 
 // :link, :visited states
 $base-link-color                : $color-brand;
-
-// :hover, :focus, :active states
-$base-link-color-accent         : color.adjust($base-link-color, $lightness: -15%);
 
 // underlined links
 $base-link-text-decoration      : none;
@@ -105,28 +102,8 @@ code {
 /**
  * Global Link Element
  */
-a {
-  @include global-transition;
-
-  &:link,
-  &:visited {
-    text-decoration: $base-link-text-decoration;
-  }
-
-  &:not([class]) {
-    color: $base-link-color;
-
-    &:focus {
-      outline: $base-link-outline;
-    }
-
-    &:focus,
-    &:hover,
-    &:visited,
-    &:active {
-      color: $base-link-color-accent;
-    }
-  }
+a:not([class]) {
+  @include link($base-link-color, visited, $base-link-text-decoration, $base-link-outline);
 }
 
 /**
