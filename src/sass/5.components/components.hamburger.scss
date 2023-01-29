@@ -44,7 +44,8 @@ $hamburger-spinner-color                : $color-brand;
   cursor: pointer;
   transition: opacity 0.5s ease;
   color: inherit;
-  border: 0;
+  border-block: 0;
+  border-inline: 0;
   background: none;
 
   @if $prefers-reduced-motion {
@@ -98,7 +99,8 @@ $hamburger-spinner-color                : $color-brand;
       width: $hamburger-spinner-width;
       height: $hamburger-spinner-height;
       transition: transform 0.15s ease;
-      border-radius: $hamburger-spinner-border-radius;
+      border-block-radius: $hamburger-spinner-border-radius;
+      border-inline-radius: $hamburger-spinner-border-radius;
       background: $hamburger-spinner-color;
 
       @if $prefers-reduced-motion {

@@ -97,7 +97,8 @@ body div.tabledrag-changed-warning {
   .menu-item__link {
     .touchevents & {
       display: inline-block;
-      padding: 0;
+      padding-block: 0;
+      padding-inline: 0;
     }
   }
 }
@@ -131,7 +132,8 @@ a.tabledrag-handle {
   .handle {
     @include square($gutter * 2);
 
-    margin: 0;
+    margin-block: 0;
+    margin-inline: 0;
     padding-block: 0.42em;
     padding-inline: 0.5em;
     background: $tabledrag-move-icon-normal no-repeat 50% 0.7rem;

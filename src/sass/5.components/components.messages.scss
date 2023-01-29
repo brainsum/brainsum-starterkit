@@ -39,17 +39,20 @@ $messages-focus-color       : $color-note;
     overflow: hidden;
     height: 0;
     min-height: 0;
-    padding: 0;
+    padding-block: 0;
+    padding-inline: 0;
   }
 
   &-list {
     margin-block: $gutter;
-    padding: 0;
+    padding-block: 0;
+    padding-inline: 0;
     list-style: none;
   }
 
   &__list {
-    margin: 0;
+    margin-block: 0;
+    margin-inline: 0;
     padding-block: 0;
     list-style: none;
   }
@@ -97,10 +100,12 @@ $messages-focus-color       : $color-note;
     @include square($messages-close-icon-size);
 
     position: relative;
-    padding: 0;
+    padding-block: 0;
+    padding-inline: 0;
     cursor: pointer;
     vertical-align: top;
-    border: 0;
+    border-block: 0;
+    border-inline: 0;
     background: none;
     appearance: none;
 
@@ -162,7 +167,8 @@ $messages-focus-color       : $color-note;
   }
 
   pre {
-    margin: 0;
+    margin-block: 0;
+    margin-inline: 0;
     white-space: normal;
   }
 

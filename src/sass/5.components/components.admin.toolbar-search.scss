@@ -26,12 +26,15 @@ $toolbar-search-input-background          : #fcfcfa;
 
 #admin-toolbar-search-input {
   min-height: 1.6rem;
-  margin: 0;
+  margin-block: 0;
+  margin-inline: 0;
   padding-block: 0;
   padding-inline: 0.64rem;
   color: $toolbar-search-input-color;
-  border: 1px solid #ccc;
-  border-radius: unset;
+  border-block: 0.1rem solid #ccc;
+  border-inline: 0.1rem solid #ccc;
+  border-block-radius: unset;
+  border-inline-radius: unset;
   background: $toolbar-search-input-background;
   font-size: 1em;
   line-height: 2.8rem;
@@ -46,6 +49,7 @@ $toolbar-search-input-background          : #fcfcfa;
   max-height: 30rem;
 
   .ui-menu-item .ui-state-active {
-    margin: 0;
+    margin-block: 0;
+    margin-inline: 0;
   }
 }

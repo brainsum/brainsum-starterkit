@@ -9,7 +9,8 @@
 @import "../global.importer";
 
 .password-strength {
-  margin: $gutter 2.4rem;
+  margin-block: $gutter;
+  margin-inline: 2.4rem;
 
   &__title,
   &__text {

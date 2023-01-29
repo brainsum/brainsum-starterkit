@@ -70,9 +70,11 @@ $components-responsive-table-content-width    : 67%;
 @if $components-responsive-table == true {
   .c-table {
     max-width: 100%;
-    padding: 0;
+    padding-block: 0;
+    padding-inline: 0;
     empty-cells: show;
-    border: 0;
+    border-block: 0;
+    border-inline: 0;
 
     * {
       box-sizing: border-box;
@@ -113,7 +115,8 @@ $components-responsive-table-content-width    : 67%;
       .c-table__cell-label {
         display: inline-block;
         width: $components-responsive-table-label-width; // 2.
-        padding: $components-responsive-table-label-padding;
+        padding-block: $components-responsive-table-label-padding;
+        padding-inline: $components-responsive-table-label-padding;
         vertical-align: top;
 
         @include breakpoint(medium) {
@@ -123,8 +126,10 @@ $components-responsive-table-content-width    : 67%;
 
       .c-table__cell-label--top {
         display: block; // 3.
-        margin: 0.4em 0; // 3.
-        padding: 0.4em 0; // 3.
+        margin-block: 0.4em; // 3.
+        margin-inline: 0; // 3.
+        padding-block: 0.4em; // 3.
+        padding-inline: 0; // 3.
       }
 
       .c-table__cell-content {
@@ -173,7 +178,7 @@ $components-responsive-table-content-width    : 67%;
   // Theming table head
   th.c-table__group {
     tbody & {
-      margin-block-start: -1px; // 4.
+      margin-block-start: -0.1rem; // 4.
     }
 
     .c-table__cell-label {

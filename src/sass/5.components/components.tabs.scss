@@ -27,8 +27,10 @@ $tabs-tab-font-size         : 1.4rem;
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: 0;
-  padding: 0;
+  margin-block: 0;
+  margin-inline: 0;
+  padding-block: 0;
+  padding-inline: 0;
   list-style: none;
 
   @include breakpoint(medium) {
@@ -41,8 +43,9 @@ $tabs-tab-font-size         : 1.4rem;
    */
   &__tab {
     display: none;
-    margin: 0;
+    margin-block-start: 0;
     margin-block-end: -0.1rem;
+    margin-inline: 0;
 
     @include breakpoint(medium) {
       display: flex;
@@ -71,12 +74,14 @@ $tabs-tab-font-size         : 1.4rem;
     flex-grow: 1;
     align-items: center;
     height: $gutter * 3;
-    padding: 0 2.5rem;
+    padding-block: 0;
+    padding-inline: 2.5rem;
     transition: background-color 0.2s;
     text-decoration: none;
     letter-spacing: 0.1rem;
     color: $tabs-tab-color;
-    border: 0.1rem solid $tabs-tab-background;
+    border-block: 0.1rem solid $tabs-tab-background;
+    border-inline: 0.1rem solid $tabs-tab-background;
     background: $tabs-tab-background;
     font-size: $tabs-tab-font-size;
 
@@ -146,7 +151,8 @@ $tabs-tab-font-size         : 1.4rem;
     margin-inline-start: -0.1rem;
     margin-inline-end: 0;
     cursor: pointer;
-    border: solid 0.1rem $tabs-tab-background;
+    border-block: solid 0.1rem $tabs-tab-background;
+    border-inline: solid 0.1rem $tabs-tab-background;
     background-color: $tabs-tab-background;
 
     @include breakpoint(medium) {

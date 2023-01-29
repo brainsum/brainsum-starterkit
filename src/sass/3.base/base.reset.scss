@@ -164,8 +164,10 @@ figure,
 hr,
 fieldset,
 legend {
-  margin: 0;
-  padding: 0;
+  margin-block: 0;
+  margin-inline: 0;
+  padding-block: 0;
+  padding-inline: 0;
 }
 
 /**
@@ -375,7 +377,8 @@ svg:not(:root) {
   optgroup,
   select,
   textarea {
-    margin: 0; // 2
+    margin-block: 0; // 2
+    margin-inline: 0; // 2
     font-family: inherit; // 1
     font-size: inherit; // 1
     line-height: inherit; // 1
@@ -406,7 +409,8 @@ svg:not(:root) {
    */
   [type="checkbox"],
   [type="radio"] {
-    padding: 0; // 1
+    padding-block: 0; // 1
+    padding-inline: 0; // 1
   }
 
   /**
@@ -428,7 +432,8 @@ svg:not(:root) {
   [type="button"]::-moz-focus-inner,
   [type="reset"]::-moz-focus-inner,
   [type="submit"]::-moz-focus-inner {
-    padding: 0;
+    padding-block: 0;
+    padding-inline: 0;
     border-style: none; // stylelint-disable-line
   }
 
@@ -446,7 +451,8 @@ svg:not(:root) {
    * 1. Change the border, margin, and padding in all browsers (opinionated)..
    */
   fieldset {
-    border: 0; // 1
+    border-block: 0; // 1
+    border-inline: 0; // 1
   }
 
   /**
@@ -459,7 +465,8 @@ svg:not(:root) {
     display: table; // 1
     box-sizing: border-box; // 1
     max-width: 100%; // 1
-    padding: 0; // 3
+    padding-block: 0; // 3
+    padding-inline: 0; // 3
     white-space: normal; // 1
     color: inherit; // 2
   }

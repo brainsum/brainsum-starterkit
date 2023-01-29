@@ -73,8 +73,10 @@ $throbber-size  : $gutter;
   inset-block-start: 50%;
   inset-inline-start: 50%;
   z-index: 1000;
-  margin: -2.8rem;
-  border: 0.1rem solid $color-grey-60;
+  margin-block: -2.8rem;
+  margin-inline: -2.8rem;
+  border-block: 0.1rem solid $color-grey-60;
+  border-inline: 0.1rem solid $color-grey-60;
   background-color: $color-light;
   box-shadow: 0 0.4rem 1rem rgba(34, 35, 48, 0.1); /* LTR */
 
@@ -88,7 +90,8 @@ $throbber-size  : $gutter;
     position: absolute;
     inset-block-start: 50%;
     inset-inline-start: 50%;
-    margin: -1.4rem;
+    margin-block: -1.4rem;
+    margin-inline: -1.4rem;
     content: "";
     border-width: 0.3rem;
   }
@@ -102,7 +105,8 @@ $throbber-size  : $gutter;
   animation: ajax-throbber 0.75s linear infinite;
   border-style: solid dotted solid solid;
   border-color: $ajax-color transparent $ajax-color $ajax-color;
-  border-radius: 50%;
+  border-block-radius: 50%;
+  border-inline-radius: 50%;
 
   @if $prefers-reduced-motion {
     @media screen and (prefers-reduced-motion: reduce) {

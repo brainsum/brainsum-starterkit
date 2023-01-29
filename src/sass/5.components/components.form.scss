@@ -59,8 +59,10 @@ textarea {
     padding-block: $form-padding-block;
     padding-inline: $form-padding-inline;
     color: $form-text-color;
-    border: 0.1rem solid $form-border-color;
-    border-radius: $form-border-radius;
+    border-block: 0.1rem solid $form-border-color;
+    border-inline: 0.1rem solid $form-border-color;
+    border-block-radius: $form-border-radius;
+    border-inline-radius: $form-border-radius;
     background: $form-background-color;
 
     @include input-placeholder {
@@ -157,7 +159,8 @@ textarea {
           border 0.2s,
           box-shadow 0.2s,
           color 0.2s;
-        border: 1px solid $form-boolean-border-color;
+        border-block: 0.1rem solid $form-boolean-border-color;
+        border-inline: 0.1rem solid $form-boolean-border-color;
         background: $form-background-color;
 
         @if $prefers-reduced-motion {
@@ -178,12 +181,14 @@ textarea {
   &-type-radio {
     label {
       &::before {
-        border-radius: 50%;
+        border-block-radius: 50%;
+        border-inline-radius: 50%;
         background: $form-background-color;
       }
 
       &::after {
-        border-radius: 50%;
+        border-block-radius: 50%;
+        border-inline-radius: 50%;
       }
     }
   }
@@ -197,7 +202,8 @@ textarea {
       }
 
       &::after {
-        border-radius: $form-checkbox-border-radius;
+        border-block-radius: $form-checkbox-border-radius;
+        border-inline-radius: $form-checkbox-border-radius;
       }
     }
   }
