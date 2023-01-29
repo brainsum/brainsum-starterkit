@@ -84,7 +84,7 @@
 {#
   Building the template structure
 #}
-<article{{ attributes.addClass(classes) }}>
+<article{{ attributes.addClass(classes)|without('role', 'lang', 'dir') }}>
   <header class="c-node__header">
     {% if display_submitted %}
       <div class="c-node__meta">

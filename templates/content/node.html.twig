@@ -86,7 +86,7 @@
 {#
   Building the template structure
 #}
-<article{{ attributes.addClass(classes) }}>
+<article{{ attributes.addClass(classes)|without('role', 'lang', 'dir') }}>
   <header class="{{ layout ? layout }}">
     {{ title_prefix }}
 
