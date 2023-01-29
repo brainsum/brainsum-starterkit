@@ -42,9 +42,12 @@ $color-grey-10          : color.scale($color-grey, $lightness: 90%); // lightest
  * Design needed global color definitions
  */
 $color-blue             : #0091cc;
-$color-yellow           : #f7ca00;
 $color-turquoise        : #66d1ca;
-$color-turquoise--dark  : #53c2bc;
+$color-turquoise--dark  : #40c5bb;
+$color-green            : #6ae96a;
+$color-yellow           : #f7ca00;
+$color-orange           : #fda408;
+$color-red              : #fd4f46;
 
 /**
  * Global colors by functions
@@ -54,3 +57,7 @@ $color-primary          : $color-blue;
 $color-secondary        : $color-turquoise;
 $global-color           : $color-dark;
 $global-background      : $color-light;
+$color-success          : $color-green;
+$color-warning          : $color-orange;
+$color-error            : $color-red;
+$color-note             : $color-secondary;
