@@ -14,25 +14,40 @@
 /**
  * Settings
  */
+$form-browser-input-icons     : false;
+$form-gutter-block            : $global-form-gutter;
 $form-padding-block           : $global-form-padding-block;
 $form-padding-inline          : $global-form-padding-inline;
 $form-border-radius           : ($form-padding-block * 2 + $global-line-height * 1.8rem) * 0.5;
-$form-border-color            : $color-brand;
+$form-border-color            : #979797;
 $form-focus-color             : $color-brand;
-$form-text-color              : $color-brand;
+$form-text-color              : $global-color;
 $form-background-color        : $color-light;
 $form-placeholder-color       : rgba($form-text-color, 0.66);
 $form-boolean-border-color    : #979797;
-$form-boolean-checked-color   : $form-text-color;
+$form-boolean-checked-color   : $color-brand;
 $form-boolean-size-touch      : 3.5rem; // size for mobile devices
 $form-boolean-size-mouse      : 2.6rem; // size for desktop
 $form-checkbox-border-radius  : 0.2rem;
+$form-select-arrow-size       : 2.8rem;
 
 textarea {
   resize: vertical;
 }
 
+// Reset webkit date and time fields (hide calendar and clock icons)
+@if $form-browser-input-icons == false {
+  input[type="date" i]::-webkit-calendar-picker-indicator,
+  input[type="time" i]::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+}
+
 .c-form {
+  &-item:not(:first-child) {
+    margin-block-start: $form-gutter-block;
+  }
+
   /**
    * Text form elements
    *   - input type: text, email, number, date, time, password...
@@ -194,11 +209,11 @@ textarea {
   position: relative;
 
   &::after {
-    @include square(0.9rem);
+    @include square($form-select-arrow-size);
 
     position: absolute;
     inset-block-start: 50%;
-    inset-inline-start: $form-padding-inline;
+    inset-inline-end: $form-padding-inline;
     display: block;
     content: "";
     transform: translateY(-50%);
@@ -207,10 +222,6 @@ textarea {
     // Font Awesome's angle-down pro icon (https://fontawesome.com/icons/angle-down?style=regular) with branding color fill has been encoded with https://www.base64encode.org/.
     background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMjAgNTEyIj48cGF0aCBmaWxsPSIjZjdjYTAwIiBkPSJNMTUxLjUgMzQ3LjhMMy41IDIwMWMtNC43LTQuNy00LjctMTIuMyAwLTE3bDE5LjgtMTkuOGM0LjctNC43IDEyLjMtNC43IDE3IDBMMTYwIDI4Mi43bDExOS43LTExOC41YzQuNy00LjcgMTIuMy00LjcgMTcgMGwxOS44IDE5LjhjNC43IDQuNyA0LjcgMTIuMyAwIDE3bC0xNDggMTQ2LjhjLTQuNyA0LjctMTIuMyA0LjctMTcgMHoiPjwvcGF0aD48L3N2Zz4=") no-repeat center center;
     background-size: contain;
-
-    @include breakpoint(medium) {
-      @include square(1.2rem);
-    }
   }
 
   select {

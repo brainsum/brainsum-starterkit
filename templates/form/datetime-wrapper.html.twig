@@ -29,7 +29,9 @@
 
 {# Building the template structure #}
 {% if title %}
-  <h4{{ title_attributes.addClass(title_classes) }}>{{ title }}</h4>
+  <h4{{ title_attributes.addClass(title_classes) }} class="field--type-datetime__title">
+    {{ title }}
+  </h4>
 {% endif %}
 
 {{ content }}
