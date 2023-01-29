@@ -58,6 +58,8 @@ form:
   css:
     component:
       css/5.components/components.form.css: { preprocess: false }
+  dependencies:
+    - brainsum_starterkit/button
 
 local-actions:
   version: 1.0.0

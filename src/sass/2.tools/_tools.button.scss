@@ -10,4 +10,15 @@
   @include global-transition;
 
   display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 0.5rem;
+  padding-inline: 2rem;
+  cursor: pointer;
+  color: $color-light;
+  border-block: 0;
+  border-inline: 0;
+  background: $color-primary;
+  font-weight: 700;
 }

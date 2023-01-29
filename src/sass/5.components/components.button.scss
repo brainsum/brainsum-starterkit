@@ -11,6 +11,7 @@
 @import "../global.importer";
 
 a.c-button,
-input.button {
+input.button,
+button {
   @include button;
 }
