@@ -39,7 +39,7 @@ details:
   version: 1.0.0
   css:
     theme:
-      css/components/components.details.css: { preprocess: false }
+      css/5.components/components.details.css: { preprocess: false }
 
 field.long-text:
   version: 1.0.0
