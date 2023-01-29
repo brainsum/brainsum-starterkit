@@ -60,8 +60,7 @@ libraries-override:
         css/components/reset-appearance.module.css: false
         css/components/resize.module.css: false
         css/components/sticky-header.module.css: false
-        css/components/tabledrag.module.css: false
-        css/components/tablesort.module.css: false
+        css/components/tabledrag.module.css: css/5.components/components.tabledrag.css
         css/components/tree-child.module.css: false
   core/drupal.checkbox: false
   core/drupal.dropbutton: false
