@@ -76,6 +76,13 @@ navigation:
     - core/drupal
     - core/once
 
+message:
+  version: 1.0.0
+  js:
+    js/components/components.message.js: { preprocess: false }
+  dependencies:
+    - brainsum_starterkit/messages
+
 messages:
   version: 1.0.0
   css:

@@ -9,10 +9,17 @@
  * Borrowed from Olivero Theme.
  */
 
-(function (Drupal) {
-  var messages = document.querySelectorAll('.c-messages');
-  messages.forEach(function (el) {
-    var messageContainer = el.querySelector('.c-messages__container');
+/* global once */
+
+(function (Drupal, once) {
+  /**
+   * Adds a close button to the message.
+   *
+   * @param {object} message
+   *   The message object.
+   */
+  var closeMessage = function closeMessage(message) {
+    var messageContainer = message.querySelector('[data-drupal-selector="messages-container"]');
     var closeBtnWrapper = document.createElement('div');
     closeBtnWrapper.setAttribute('class', 'c-messages__button');
     var closeBtn = document.createElement('button');
@@ -25,7 +32,23 @@
     closeBtnWrapper.appendChild(closeBtn);
     closeBtn.appendChild(closeBtnText);
     closeBtn.addEventListener('click', function () {
-      el.classList.add('is-hidden');
+      message.classList.add('is-hidden');
     });
-  });
-})(Drupal);
+  };
+
+  /**
+   * Get messages from context.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~behaviorAttach} attach
+   *   Attaches the close button behavior for messages.
+   */
+  Drupal.behaviors.brainsumStarterkitMessages = {
+    attach: function attach(context) {
+      once('messages', '[data-drupal-selector="messages"]', context).forEach(closeMessage);
+    }
+  };
+
+  // Drupal.olivero.closeMessage = closeMessage;
+})(Drupal, once);

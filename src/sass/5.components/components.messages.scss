@@ -15,22 +15,19 @@
  */
 $messages-icon-size         : 3.2rem;
 $messages-close-icon-size   : 2.5rem;
-$messages-color             : #fff;
-$messages-background-color  : $color-turquoise--dark;
-$messages-color--error      : $color-turquoise--dark;
-$messages-color--warning    : $color-turquoise--dark;
-$messages-color--status     : $color-turquoise--dark;
-$messages-color--info       : $color-turquoise--dark;
-$messages-focus-color       : $color-yellow;
+$messages-color             : $color-light;
+$messages-color--error      : $color-error;
+$messages-color--warning    : $color-warning;
+$messages-color--status     : $color-note;
+$messages-color--info       : $color-note;
+$messages-focus-color       : $color-note;
 
 .c-messages {
   min-height: $messages-icon-size + $gutter--2x;
   padding-block: $gutter;
-  padding-inline-start: $gutter $gutter * 1.5;
-  padding-inline-end: $gutter $gutter * 1.5;
+  padding-inline: $gutter * 1.5;
   color: $messages-color;
-  border-inline-end: 1rem solid transparent;
-  outline: solid 1px transparent;
+  outline: solid 0.1rem transparent;
   background-color: $color-grey;
 
   & * {
@@ -47,22 +44,26 @@ $messages-focus-color       : $color-yellow;
 
   &-list {
     margin-block: $gutter;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__list {
+    margin: 0;
     padding-block: 0;
-    padding-inline-start: 0;
-    padding-inline-end: 0;
     list-style: none;
   }
 
   /* Additional specificity to override contrib modules. */
-  &.messages-list__item {
+  &.c-messages-list__item {
     background-image: none;
   }
 
-  &:not(.is-hidden) ~ .messages {
+  &:not(.is-hidden) ~ .c-messages {
     margin-block-start: $gutter;
   }
 
-  &__item + .messages__item {
+  &__item + .c-messages__item {
     margin-block-start: $gutter * 0.5;
   }
 
@@ -96,8 +97,7 @@ $messages-focus-color       : $color-yellow;
     @include square($messages-close-icon-size);
 
     position: relative;
-    padding-inline-start: 0;
-    padding-inline-end: 0;
+    padding: 0;
     cursor: pointer;
     vertical-align: top;
     border: 0;
@@ -108,12 +108,12 @@ $messages-focus-color       : $color-yellow;
     &::after {
       position: absolute;
       inset-block-start: 50%;
-      inset-inline-end: 50%;
+      inset-inline-start: 50%;
       display: block;
       width: 3.3rem;
       height: 0;
       content: "";
-      border-block-start: solid 2px $color-grey-70;
+      border-block-start: solid 0.2rem $color-grey-70;
     }
 
     &::before {
@@ -127,7 +127,7 @@ $messages-focus-color       : $color-yellow;
     &:hover {
       &::before,
       &::after {
-        border-color: #fff;
+        border-color: $messages-color;
       }
     }
 
@@ -138,29 +138,27 @@ $messages-focus-color       : $color-yellow;
   }
 
   &__icon {
-    svg {
-      vertical-align: top;
+    vertical-align: top;
 
-      .messages--error & {
-        fill: $messages-color--error;
-      }
+    .c-messages--error & {
+      fill: $messages-color--error;
+    }
 
-      .messages--warning & {
-        fill: $messages-color--warning;
-      }
+    .c-messages--warning & {
+      fill: $messages-color--warning;
+    }
 
-      .messages--status & {
-        fill: $messages-color--status;
-      }
+    .c-messages--status & {
+      fill: $messages-color--status;
+    }
 
-      .messages--info & {
-        fill: $messages-color--info;
-      }
+    .c-messages--info & {
+      fill: $messages-color--info;
     }
   }
 
-  a {
-    color: #fff;
+  a:not([class]) {
+    @include link($messages-color);
   }
 
   pre {

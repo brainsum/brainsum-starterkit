@@ -80,5 +80,5 @@ libraries-override:
         css/user.module.css: css/components/5.components.user.css
   views.module:
     css:
-  core/drupal.message: brainsum_starterkit/messages
+  core/drupal.message: brainsum_starterkit/message
   core/drupal.collapse: brainsum_starterkit/details

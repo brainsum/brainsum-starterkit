@@ -7,11 +7,19 @@
  * Borrowed from Olivero Theme.
  */
 
-((Drupal) => {
-  const messages = document.querySelectorAll('.c-messages');
+/* global once */
 
-  messages.forEach((el) => {
-    const messageContainer = el.querySelector('.c-messages__container');
+((Drupal, once) => {
+  /**
+   * Adds a close button to the message.
+   *
+   * @param {object} message
+   *   The message object.
+   */
+  const closeMessage = (message) => {
+    const messageContainer = message.querySelector(
+      '[data-drupal-selector="messages-container"]',
+    );
 
     const closeBtnWrapper = document.createElement('div');
     closeBtnWrapper.setAttribute('class', 'c-messages__button');
@@ -29,7 +37,25 @@
     closeBtn.appendChild(closeBtnText);
 
     closeBtn.addEventListener('click', () => {
-      el.classList.add('is-hidden');
+      message.classList.add('is-hidden');
     });
-  });
-})(Drupal);
+  };
+
+  /**
+   * Get messages from context.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~behaviorAttach} attach
+   *   Attaches the close button behavior for messages.
+   */
+  Drupal.behaviors.brainsumStarterkitMessages = {
+    attach(context) {
+      once('messages', '[data-drupal-selector="messages"]', context).forEach(
+        closeMessage,
+      );
+    },
+  };
+
+  // Drupal.olivero.closeMessage = closeMessage;
+})(Drupal, once);
