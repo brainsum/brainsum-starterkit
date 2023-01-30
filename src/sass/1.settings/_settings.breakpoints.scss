@@ -23,8 +23,8 @@ $global-breakpoints: (
   medium    : "screen and (min-width: 48em)",     // 768px
   large     : "screen and (min-width: 62em)",     // 992px
   xlarge    : "screen and (min-width: 75em)",     // 1200px
-  xxlarge   : "screen and (min-width: 112.5em)",  // 1800px
-  xxxlarge  : "screen and (min-width: 131.25em)"  // 2100px
+  xxlarge   : "screen and (min-width: 90em)",     // 1440px
+  xxxlarge  : "screen and (min-width: 112.5em)"   // 1800px
 );
 
 /**
@@ -81,6 +81,6 @@ $max-width: (
   medium    : "screen and (max-width: 47.94em)",    // 767px
   large     : "screen and (max-width: 61.94em)",    // 991px
   xlarge    : "screen and (max-width: 74.94em)",    // 1199px
-  xxlarge   : "screen and (max-width: 112.44em)",   // 1799px
-  xxxlarge  : "screen and (max-width: 131.18em)"    // 2099px
+  xxlarge   : "screen and (max-width: 89.94em)",    // 1439px
+  xxxlarge  : "screen and (max-width: 112.44em)"    // 1799px
 );
