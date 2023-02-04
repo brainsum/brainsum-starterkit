@@ -26,14 +26,19 @@
  */
 $hamburger-padding-inline               : 0;
 $hamburger-padding-block                : 0;
+$hamburger-background                   : none;
+$hamburger-border-radius                : 0;
 $hamburger-spinner-width                : 3.1rem;
-$hamburger-spinner-width--middle        : 3.1rem;
+$hamburger-spinner-width--middle        : $hamburger-spinner-width;
 $hamburger-spinner-height               : 0.5rem;
-$hamburger-spinner-spacing              : 0.6rem;
+$hamburger-spinner-spacing              : 0.6rem; // vertical distance between horizontal lines
 $hamburger-spinner-border-radius        : $hamburger-spinner-height * 0.5;
 $hamburger-spinner-color                : $color-brand;
+$hamburger-spinner-color--active        : $hamburger-spinner-color;
 
 .c-hamburger {
+  @include round($hamburger-border-radius);
+
   overflow: visible;
   margin-block-start: 3rem;
   margin-block-end: 3.5rem;
@@ -46,7 +51,7 @@ $hamburger-spinner-color                : $color-brand;
   color: inherit;
   border-block: 0;
   border-inline: 0;
-  background: none;
+  background: $hamburger-background;
 
   @if $prefers-reduced-motion {
     @media screen and (prefers-reduced-motion: reduce) {
@@ -95,12 +100,12 @@ $hamburger-spinner-color                : $color-brand;
     &,
     &::before,
     &::after {
+      @include round($hamburger-spinner-border-radius);
+
       position: absolute;
       width: $hamburger-spinner-width;
       height: $hamburger-spinner-height;
       transition: transform 0.15s ease;
-      border-block-radius: $hamburger-spinner-border-radius;
-      border-inline-radius: $hamburger-spinner-border-radius;
       background: $hamburger-spinner-color;
 
       @if $prefers-reduced-motion {
@@ -134,7 +139,7 @@ $hamburger-spinner-color                : $color-brand;
         transform:
           translate3d(0, $hamburger-spinner-spacing + $hamburger-spinner-height, 0)
           rotate(45deg);
-        background: $hamburger-spinner-color;
+        background: $hamburger-spinner-color--active;
 
         @if $prefers-reduced-motion {
           @media screen and (prefers-reduced-motion: reduce) {
@@ -165,7 +170,7 @@ $hamburger-spinner-color                : $color-brand;
         transform:
           translate3d(0, $hamburger-spinner-spacing + $hamburger-spinner-height, 0)
           rotate(-45deg);
-        background: $hamburger-spinner-color;
+        background: $hamburger-spinner-color--active;
 
         @if $prefers-reduced-motion {
           @media screen and (prefers-reduced-motion: reduce) {

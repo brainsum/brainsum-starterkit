@@ -28,15 +28,19 @@
 #}
 {% block content %}
   {% if site_logo %}
-    <a href="{{ path('<front>') }}" rel="home" class="c-branding__logo">
-      <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" width="68" height="84" />
-    </a>
+    <div class="c-branding__logo">
+      <a href="{{ path('<front>') }}" rel="home" class="c-branding__logo-link">
+        <img class="c-branding__logo-image" src="{{ site_logo }}" alt="{{ 'Home'|t }}" />
+      </a>
+    </div>
   {% endif %}
   {% if site_name %}
     <div class="c-branding__text">
       {% if site_name %}
         <div class="c-branding__name">
-          <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">{{ site_name }}</a>
+          <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">
+            {{ site_name }}
+          </a>
         </div>
       {% endif %}
     </div>

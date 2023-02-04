@@ -106,7 +106,7 @@
   {% endif %}
 
   <main id="main">
-    <span id="main-content" tabindex="-1"></a>
+    <span id="main-content" tabindex="-1"></span>
 
     {% if page.breadcrumb %}
       <section class="c-breadcrumb__section">
@@ -167,13 +167,13 @@
     {% endif %}
   </main>
 
-  {% if page.footer %}
-    <footer class="c-footer">
-      <div class="o-container">
+  <footer class="c-footer">
+    <div class="o-container">
+      {% if page.footer %}
         {{ page.footer }}
-      </div>
-    </footer>
-  {% endif %}
+      {% endif %}
+    </div>
+  </footer>
 
   <div class="c-overlay" data-drupal-selector="overlay"></div>
 </div>

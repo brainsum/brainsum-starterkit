@@ -15,7 +15,7 @@
 /**
  * Square mixin
  *
- * Use it, when you need similar width and height with square shape.
+ * Use it, when you need the same width and height with square shape.
  *
  * @parameter {string} $value - Amount of desired width and height in any unit.
  *
@@ -28,9 +28,26 @@
 }
 
 /**
+ * Rounding mixin
+ *
+ * Use it, when you need to achieve the same four rounded corners.
+ *
+ * @parameter {string} $radius - The radius value for all four corners.
+ *
+ * @example
+ *   @include round(0.4rem);
+ */
+@mixin round($radius) {
+  border-start-start-radius: $radius;
+  border-start-end-radius: $radius;
+  border-end-end-radius: $radius;
+  border-end-start-radius: $radius;
+}
+
+/**
  * Circle mixin
  *
- * Use it, when you need similar width and height width circle shape.
+ * Use it, when you need the same width and height width circle shape.
  *
  * @parameter {string} $value - Amount of desired width and height in any unit.
  *
@@ -40,6 +57,8 @@
 @mixin circle($value) {
   width: $value;
   height: $value;
-  border-block-radius: $value * 0.5;
-  border-inline-radius: $value * 0.5;
+  border-start-start-radius: $value * 0.5;
+  border-start-end-radius: $value * 0.5;
+  border-end-end-radius: $value * 0.5;
+  border-end-start-radius: $value * 0.5;
 }

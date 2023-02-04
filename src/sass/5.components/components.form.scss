@@ -54,15 +54,15 @@ textarea {
    *   - textarea
    */
   &-element {
+    @include round($form-border-radius);
+
     appearance: none;
     width: 100%;
     padding-block: $form-padding-block;
     padding-inline: $form-padding-inline;
     color: $form-text-color;
     border-block: 0.1rem solid $form-border-color;
-    border-inline: 0.1rem solid $form-border-color;
-    border-block-radius: $form-border-radius;
-    border-inline-radius: $form-border-radius;
+    border-inline: 0.1rem solid $form-border-color;;
     background: $form-background-color;
 
     @include input-placeholder {
@@ -181,14 +181,13 @@ textarea {
   &-type-radio {
     label {
       &::before {
-        border-block-radius: 50%;
-        border-inline-radius: 50%;
+        @include round(50%);
+
         background: $form-background-color;
       }
 
       &::after {
-        border-block-radius: 50%;
-        border-inline-radius: 50%;
+        @include round(50%);
       }
     }
   }
@@ -202,8 +201,7 @@ textarea {
       }
 
       &::after {
-        border-block-radius: $form-checkbox-border-radius;
-        border-inline-radius: $form-checkbox-border-radius;
+        @include round($form-checkbox-border-radius);
       }
     }
   }

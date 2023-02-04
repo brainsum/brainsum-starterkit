@@ -18,20 +18,20 @@ $details-border-radius      : 0.2rem;
 $details-summary-transition : background-color 0.12s ease-in-out;
 
 .c-details {
+  @include round($details-border-radius);
+
   display: block;
   margin-block: $gutter;
   color: inherit;
   border-block: $details-border-width solid $color-grey-20;
   border-inline: $details-border-width solid $color-grey-20;
-  border-block-radius: $details-border-radius;
-  border-inline-radius: $details-border-radius;
   box-shadow: 0 0.1rem 0.4rem $color-grey-30;
 
   /* Details summary styles */
   &__summary {
     position: relative;
     padding-block: $gutter;
-    padding-inline-start: $gutter--2x;
+    padding-inline-start: $gutter * 2;
     padding-inline-end: $gutter;
     list-style: none;
     cursor: pointer;
@@ -71,13 +71,13 @@ $details-summary-transition : background-color 0.12s ease-in-out;
 
     // Pseudo-selector to manage focus styles
     &::after {
+      @include round($details-border-radius);
+
       position: absolute;
       inset: calc($details-border-width * -1);
       content: "";
       pointer-events: none;
       opacity: 0;
-      border-block-radius: $details-border-radius;
-      border-inline-radius: $details-border-radius;
       box-shadow: inset 0 0 0 0.2rem $color-brand;
     }
 
@@ -121,7 +121,7 @@ $details-summary-transition : background-color 0.12s ease-in-out;
 
     @include breakpoint(large) {
       margin-block: $gutter * 1.5;
-      margin-inline: $gutter--2x;
+      margin-inline: $gutter * 2;
     }
   }
 

@@ -17,8 +17,7 @@
     "Sass",
     "Shake.sass",
     "theme",
-    "Twig",
-    "Webpack"
+    "Twig"
   ],
   "license": "ISC",
   "scripts": {

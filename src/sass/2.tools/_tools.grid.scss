@@ -36,20 +36,20 @@
  *   .entry {
  *     @include make-column();
  *     @include breakpoint(medium) {
- *       @include column-size(6/12);
+ *       @include column-size(6,12);
  *     }
 
  *     @include breakpoint(large) {
- *       @include column-size(4/12);
+ *       @include column-size(4,12);
  *     }
 
  *     &--double {
  *       @include breakpoint(medium) {
- *         @include column-size(6/12);
+ *         @include column-size(6,12);
  *       }
 
  *       @include breakpoint(large) {
- *         @include column-size(8/12);
+ *         @include column-size(8,12);
  *       }
  *     }
  *   }

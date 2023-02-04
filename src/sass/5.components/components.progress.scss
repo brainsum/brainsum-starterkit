@@ -56,14 +56,16 @@ $progress-bar-background    : color.adjust($color-primary, $lightness: 15%)
 
 .progress {
   &__track {
+    @include round(10em);
+
     border-color: $progress-track-border-color;
-    border-block-radius: 10em;
-    border-inline-radius: 10em;
     background: $progress-track-background;
     box-shadow: inset 0 0.1rem 0.3rem hsla(0, 0%, 0%, 0.16);
   }
 
   &__bar {
+    @include round(10em);
+
     height: 1.6rem;
     margin-block-start: -0.1rem;
     margin-inline-end: -0.1rem;
@@ -73,8 +75,6 @@ $progress-bar-background    : color.adjust($color-primary, $lightness: 15%)
     animation: animate-stripes 3s linear infinite;
     border-block: 0.1rem $progress-bar-border-color solid;
     border-inline: 0.1rem $progress-bar-border-color solid;
-    border-block-radius: 10em;
-    border-inline-radius: 10em;
     background: $progress-bar-background;
     background-size: 4rem 4rem;
 

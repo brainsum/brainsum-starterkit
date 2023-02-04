@@ -102,11 +102,11 @@ $throbber-size  : $gutter;
  */
 .ajax-progress-throbber .throbber,
 .ajax-progress-fullscreen::before {
+  @include round(50%);
+
   animation: ajax-throbber 0.75s linear infinite;
   border-style: solid dotted solid solid;
   border-color: $ajax-color transparent $ajax-color $ajax-color;
-  border-block-radius: 50%;
-  border-inline-radius: 50%;
 
   @if $prefers-reduced-motion {
     @media screen and (prefers-reduced-motion: reduce) {

@@ -92,10 +92,10 @@ $vertical-tabs-menu-border-width  : 0.1rem;
     }
 
     &.c-details {
+      @include round(0);
+
       margin-block: 0;
       margin-inline: 0;
-      border-block-radius: 0;
-      border-inline-radius: 0;
       box-shadow: none;
     }
 
