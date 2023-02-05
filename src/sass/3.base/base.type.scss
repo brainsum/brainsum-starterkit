@@ -41,11 +41,17 @@ $base-code-tab-size             : 2;
 // :link, :visited states
 $base-link-color                : $color-brand;
 
+// link color type @see link mixin in 2.tools/_link
+$base-link-type                 : light !default;
+
+// :visited state effect @see link mixin in 2.tools/_link
+$base-link-visited              : visited !default;
+
 // underlined links
 $base-link-text-decoration      : none;
 
 // outlined links in :focus state
-$base-link-outline              : none;
+$base-link-outline              : initial;
 
 /**
  * Base typography
@@ -106,7 +112,13 @@ var {
  * Global Link Element
  */
 a:not([class]) {
-  @include link($base-link-color, visited, $base-link-text-decoration, $base-link-outline);
+  @include link(
+    $base-link-color,
+    $base-link-type,
+    $base-link-visited,
+    $base-link-text-decoration,
+    $base-link-outline
+  );
 }
 
 /**

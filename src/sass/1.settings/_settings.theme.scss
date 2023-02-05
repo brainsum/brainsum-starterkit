@@ -7,3 +7,10 @@
  * Global Border Radius
  */
 $global-border-radius   : 0.8rem;
+
+/**
+ * Transitions
+ */
+$global-transition-property : all !default;
+$global-transition-timing   : 0.2s !default;
+$global-transition-easing   : ease !default;

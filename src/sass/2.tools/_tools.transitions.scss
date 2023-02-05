@@ -7,7 +7,7 @@
  * Global transition
  */
 @mixin global-transition {
-  transition: all 0.2s ease;
+  transition: $global-transition-property $global-transition-timing $global-transition-easing;
 
   @if $prefers-reduced-motion {
     @media screen and (prefers-reduced-motion: reduce) {
