@@ -89,8 +89,11 @@ body {
 /**
  * Code and Preformatted Elements
  */
+code,
+kbd,
 pre,
-code {
+samp,
+var {
   text-align: start;
   word-spacing: normal;
   word-wrap: normal;
