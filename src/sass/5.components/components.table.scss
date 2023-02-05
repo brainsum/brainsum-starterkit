@@ -80,29 +80,14 @@ $components-responsive-table-content-width    : 67%;
       box-sizing: border-box;
     }
 
-    /**
-     * Theming table rows.
-     */
+    // Theming table rows.
     tr {
       @include breakpoint(medium) {
         display: table-row;
       }
     }
 
-    tbody {
-      tr {
-        display: block;
-        width: 100%;
-
-        @include breakpoint(medium) {
-          display: table-row;
-        }
-      }
-    }
-
-    /**
-     * Theming table cells.
-     */
+    // Theming table cells.
     td,
     th {
       display: block; // 1.
@@ -155,6 +140,15 @@ $components-responsive-table-content-width    : 67%;
     }
 
     tbody {
+      tr {
+        display: block;
+        width: 100%;
+
+        @include breakpoint(medium) {
+          display: table-row;
+        }
+      }
+
       th,
       td {
         width: 100%;
