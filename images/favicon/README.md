@@ -10,14 +10,15 @@ Extract this package in <code>&lt;web site&gt;/images/favicon/</code>. If your s
 
 Insert the following code in the `head` section of your pages:
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/images/favicon/site.webmanifest">
-    <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#ffdd00">
-    <link rel="shortcut icon" href="/images/favicon/favicon.ico">
-    <meta name="msapplication-TileColor" content="#000000">
-    <meta name="msapplication-config" content="/images/favicon/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png?v=2023">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png?v=2023">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png?v=2023">
+    <link rel="manifest" href="/images/favicon/site.webmanifest?v=2023">
+    <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg?v=2023" color="#ffdd0b">
+    <link rel="shortcut icon" href="/images/favicon/favicon.ico?v=2023">
+    <meta name="msapplication-TileColor" content="#ffdd0b">
+    <meta name="msapplication-TileImage" content="/images/favicon/mstile-144x144.png?v=2023">
+    <meta name="msapplication-config" content="/images/favicon/browserconfig.xml?v=2023">
+    <meta name="theme-color" content="#ffdd0b">
 
 *Optional* - Check your favicon with the [favicon checker](https://realfavicongenerator.net/favicon_checker)
