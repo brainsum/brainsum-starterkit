@@ -1,0 +1,70 @@
+/**
+ * @file
+ * Language Dropdown Component
+ *
+ * Theming Language Dropdown block.
+ */
+
+/**
+  * Imports
+ */
+@import "../global.importer";
+
+.c-block-dropdown-language {
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 0.3rem;
+
+  .language-link {
+    @include font-smooth;
+
+    display: block;
+    padding: 1rem 1.1rem;
+    cursor: pointer;
+    color: $color-brand;
+    font-size: 1.4rem;
+  }
+
+  .dropdown {
+    @include global-transition;
+
+    position: absolute;
+    z-index: 700;
+    overflow: hidden;
+    height: auto;
+    max-height: 0;
+    opacity: 0;
+    background: $color-brand;
+
+    &.is-active {
+      max-height: 10rem;
+      opacity: 1;
+    }
+
+    .language-link {
+      color: $color-light;
+    }
+  }
+
+  .c-dropbutton {
+    &__wrapper {
+      position: relative;
+    }
+
+    &__icon {
+      @include global-transition;
+
+      position: absolute;
+      top: 2.1rem;
+      right: -1rem;
+      display: block;
+      margin-top: -0.5rem;
+      cursor: pointer;
+      fill: $color-brand;
+    }
+  }
+
+  .is-active .c-dropbutton__icon {
+    transform: rotate(-180deg);
+  }
+}

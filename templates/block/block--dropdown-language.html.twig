@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme overridden to display a block.
+ * Theme overridden to display the Languge dropdown block.
  *
  * Available variables:
  * - layout: String that will determine the layout of the block.
@@ -33,38 +33,21 @@
 #}
 
 {#
+  Inherits from
+#}
+{% extends '@brainsum_starterkit/block/block.html.twig' %}
+
+{#
   Attaching Drupal libraries
 #}
 {% block attachments %}
+  {{ attach_library('brainsum_starterkit/block.language-dropdown') }}
 {% endblock %}
 
 {#
   Defining local variables
 #}
-{%
-  set classes = [
-    'c-block',
-    'c-block-' ~ configuration.provider|clean_class,
-    'c-block-' ~ plugin_id|clean_class,
-    layout ? 'o-layout--' ~ layout|clean_class,
-  ]
+{% set attributes = attributes
+  .addClass('js-block-' ~ configuration.provider|clean_class)
+  .setAttribute('data-drupal-selector', 'block-' ~ configuration.provider|clean_class)
 %}
-
-{#
-  Building the template structure
-#}
-<div{{ attributes.addClass(classes) }}>
-  {{ title_prefix }}
-
-  {% if label %}
-    <h2{{ title_attributes.addClass('c-block__title') }}>{{ label }}</h2>
-  {% endif %}
-
-  {{ title_suffix }}
-
-  {% block content %}
-    <div{{ content_attributes.addClass('c-block__content') }}>
-      {{ content }}
-    </div>
-  {% endblock %}
-</div>
