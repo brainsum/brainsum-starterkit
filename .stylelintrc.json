@@ -73,7 +73,6 @@
     "no-unknown-animations": true,
     "number-leading-zero": "always",
     "number-max-precision": 5,
-    "number-leading-zero": "never",
     "property-no-vendor-prefix": null,
     "rule-empty-line-before": null,
     "selector-attribute-quotes": null,
