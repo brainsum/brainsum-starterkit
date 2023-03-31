@@ -1,44 +1,45 @@
 {#
 /**
  * @file
- * Icon Macro
+ * Icon Component
  *
- * You can create SVG sprite icons easily with this icon macro.
+ * You can create SVG sprite icons easily with this icon component.
  *
- * Before you can use it in a template, you have to import it with this:
- * @code
- * {% import '@brainsum_starterkit/includes/icon.twig' as icon %}
- * @endcode
- *
- * If you need it within an another macro, import inside that macro.
- */
-#}
-
-
-{#
-/**
- * SVG icon
  *
  * options:
  * - iconId   : name of icon (begin with `icon-`)
  * - className: additional CSS class
- * - size     : custom width and height of icon (skip for default width and height: 24px)
+ * - size     : custom width and height of icon
+ *              (skip for default width and height defined in the `default_size`
+ *              variable below)
  *
  * @code
- * {{ icon.svg('icon-partner-volunteer', 'partner__icon') }}
- * {{ icon.svg('icon-download', 'c-button__icon', '15') }}
- * {{ icon.svg('icon-facebook', 'c-social__icon c-social--facebook', '40') }}
+ * {% include '@brainsum_starterkit/includes/icon.twig' with {
+ *   icon_id: 'icon-partner-volunteer',
+ *   class_name: 'partner__icon'
+ * } %}
+ * {% include '@brainsum_starterkit/includes/icon.twig' with {
+ *   icon_id: 'icon-download', '
+ *   class_name: 'c-button__icon',
+ *   size: '15'
+ * } %}
+ * {% include '@brainsum_starterkit/includes/icon.twig' with {
+ *   icon_id: 'icon-facebook',
+ *   class_name: 'c-social__icon c-social--facebook',
+ *   size: '40'
+ *  } %}
  * @endcode
  */
 #}
-{% macro svg(iconId, className, size) %}
-  <svg
-    class="c-icon {{ className }}"
-    role="img"
-    width="{{ size|default('24') }}px"
-    height="{{ size|default('24') }}px"
-    focusable="false"
-  >
-    <use xlink:href="/{{ base_path ~ active_theme_path() ~ '/images/icons.svg?v=' ~ "now"|date("Ymd") ~ '#' ~ iconId }}"></use>
-  </svg>
-{% endmacro %}
+
+{% set default_size = 24 %}
+
+<svg
+  class="c-icon {{ class_name }}"
+  role="img"
+  width="{{ size ? size : default_size }}px"
+  height="{{ size ? size : default_size }}px"
+  focusable="false"
+>
+  <use xlink:href="/{{ base_path ~ active_theme_path() ~ '/images/icons.svg?v=' ~ "now"|date("Ymd") ~ '#' ~ icon_id }}"></use>
+</svg>
