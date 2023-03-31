@@ -37,8 +37,8 @@
 <svg
   class="c-icon {{ class_name }}"
   role="img"
-  width="{{ size ? size : default_size }}px"
-  height="{{ size ? size : default_size }}px"
+  width="{{ size ? size : default_size }}"
+  height="{{ size ? size : default_size }}"
   focusable="false"
 >
   <use xlink:href="/{{ base_path ~ active_theme_path() ~ '/images/icons.svg?v=' ~ "now"|date("Ymd") ~ '#' ~ icon_id }}"></use>
