@@ -7,8 +7,6 @@
  * Borrowed from Olivero Theme.
  */
 
-/* global once */
-
 ((Drupal, once) => {
   /**
    * Adds a close button to the message.

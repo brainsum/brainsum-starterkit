@@ -9,6 +9,8 @@
     "node": true
   },
   "globals": {
+    "Backbone": true,
+    "CKEDITOR": true,
     "Drupal": true,
     "drupalSettings": true,
     "drupalTranslations": true,
@@ -16,9 +18,8 @@
     "jQuery": true,
     "_": true,
     "matchMedia": true,
-    "Backbone": true,
     "Modernizr": true,
-    "CKEDITOR": true
+    "once": true
   },
   "rules": {
     "consistent-return": ["off"],

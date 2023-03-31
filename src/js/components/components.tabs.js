@@ -7,8 +7,6 @@
  * Borrowed from Olivero Theme.
  */
 
-/* global once */
-
 ((Drupal, once) => {
   /**
    * Initialize the primary tabs.
@@ -69,7 +67,7 @@
    */
   Drupal.behaviors.brainsumStarterkitTabs = {
     attach(context) {
-      once('starter_theme-tabs', '[data-drupal-nav-primary-tabs]', context)
+      once('tabs', '[data-drupal-nav-primary-tabs]', context)
         .forEach(
           init,
         );

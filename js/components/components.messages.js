@@ -9,8 +9,6 @@
  * Borrowed from Olivero Theme.
  */
 
-/* global once */
-
 (function (Drupal, once) {
   /**
    * Adds a close button to the message.
