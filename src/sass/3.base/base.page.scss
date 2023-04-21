@@ -6,9 +6,9 @@
  */
 
 /**
-  * Imports
+ * Imports
  */
-@import "../global.importer";
+@use "../settings";
 
 /**
  * Settings
@@ -20,19 +20,19 @@
  * Set text- and background-color to body. Turn this off if you need anything
  * else background property than background-color, like background-image.
  */
-$base-body-colors           : true;
-$body-color                 : $global-color;
-$body-background-color      : $global-background;
+$body-colors               : true !default;
+$body-color                 : settings.$color-text !default;
+$body-background-color      : settings.$color-background !default;
 
 html {
   overflow-x: hidden;
-  min-height: 100%;
+  min-block-size: 100%;
 }
 
 body {
-  min-height: 100vh;
+  min-block-size: 100vh;
 
-  @if $base-body-colors == true {
+  @if $body-colors == true {
     color: $body-color;
     background-color: $body-background-color;
   }

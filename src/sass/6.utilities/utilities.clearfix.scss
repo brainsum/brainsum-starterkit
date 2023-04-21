@@ -22,12 +22,12 @@
 /**
   * Imports
  */
-@import "../2.tools/tools.clearfix";
+@use "../2.tools/_tools.clearfix" as *;
 
 /**
  * Clearfix Utility
  *
- *  * Note: for legacy reasons the `.clearfix` class is present too.
+ * Note: for legacy reasons the `.clearfix` class is present too.
  */
 .u-clearfix,
 .clearfix {

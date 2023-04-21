@@ -6,14 +6,19 @@
  */
 
 /**
+ * Imports
+ */
+@use "settings.grid" as *;
+
+/**
  * Default container
  */
-$global-container-size-default     : (
+$container-size-default     : (
   null        : 90%,
   small       : 91%,
   medium      : 93%,
   large       : 129.6rem
-);
+) !default;
 
 /**
  * Additional container sizes
@@ -24,14 +29,14 @@ $global-container-size-default     : (
  * @type Map
  *
  * @example
- *   $global-container-size-extra: (
+ *   $container-size-extra: (
  *     large: (
  *       null : 30rem,
  *       small: 120rem
  *     )
  *   );
  */
-$global-container-size-extra     : () !default;
+$container-size-extra     : () !default;
 
 /**
  * Default container gutters
@@ -58,7 +63,7 @@ $global-container-size-extra     : () !default;
  *   );
  */
 
-$global-container-gutter-default  : $global-gutter-default !default;
+$container-gutter-default  : $gutter-default !default;
 
 /**
  * Additional container gutters
@@ -70,11 +75,11 @@ $global-container-gutter-default  : $global-gutter-default !default;
  * @type Map
  *
  * @example
- *   $global-container-gutter-extra: (
+ *   $container-gutter-extra: (
  *     large: (
  *       null : 2rem,
  *       small: 4rem
  *     )
  *   );
  */
-$global-container-gutter-extra: () !default;
+$container-gutter-extra: () !default;

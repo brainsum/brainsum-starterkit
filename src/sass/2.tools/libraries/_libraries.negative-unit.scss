@@ -9,15 +9,21 @@
  * @type Function
  *
  * @parameter {string | number | map} $values - The given css value.
- * @access private
  */
 
+/**
+ * Imports
+ */
 @use "sass:map";
+@use "../validators";
 
-/* stylelint-disable-next-line scss/at-function-pattern */
-@function _negative-unit($values) {
-
-  @if _is-map($values) {
+/**
+ * Negative Units Function
+ *
+ * @parameter {string | number | map} $values - The given css value.
+ */
+@function negative-unit($values) {
+  @if validators.is-map($values) {
     @each $key, $value in $values {
       $values: map.merge($values, ($key: ($value * -1)));
     }

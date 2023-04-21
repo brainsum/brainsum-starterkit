@@ -9,34 +9,35 @@
 /**
   * Imports
  */
-@import "../global.importer";
+@use "../settings";
+@use "../tools";
 
 /**
  * Settings
  */
-$form-browser-input-icons     : false;
-$form-gutter-block            : $global-form-gutter;
-$form-padding-block           : $global-form-padding-block;
-$form-padding-inline          : $global-form-padding-inline;
-$form-border-radius           : ($form-padding-block * 2 + $global-line-height * 1.8rem) * 0.5;
-$form-border-color            : #979797;
-$form-focus-color             : $color-brand;
-$form-text-color              : $global-color;
-$form-background-color        : $color-light;
-$form-placeholder-color       : rgba($form-text-color, 0.66);
-$form-boolean-border-color    : #979797;
-$form-boolean-checked-color   : $color-brand;
-$form-boolean-size-touch      : 3.5rem; // size for mobile devices
-$form-boolean-size-mouse      : 2.6rem; // size for desktop
-$form-checkbox-border-radius  : 0.2rem;
-$form-select-arrow-size       : 2.8rem;
+$browser-input-icons     : false;
+$gutter-block            : settings.$form-gutter;
+$padding-block           : settings.$form-padding-block;
+$padding-inline          : settings.$form-padding-inline;
+$border-radius           : ($padding-block * 2 + settings.$line-height * 1.8rem) * 0.5;
+$border-color            : #979797;
+$focus-color             : settings.$color-primary;
+$text-color              : settings.$color-text;
+$background-color        : settings.$color-light;
+$placeholder-color       : rgba($text-color, 0.66);
+$boolean-border-color    : #979797;
+$boolean-checked-color   : settings.$color-primary;
+$boolean-size-touch      : 3.5rem; // size for mobile devices
+$boolean-size-mouse      : 2.6rem; // size for desktop
+$checkbox-border-radius  : 0.2rem;
+$select-arrow-size       : 2.8rem;
 
 textarea {
   resize: vertical;
 }
 
 // Reset webkit date and time fields (hide calendar and clock icons)
-@if $form-browser-input-icons == false {
+@if $browser-input-icons == false {
   input[type="date" i]::-webkit-calendar-picker-indicator,
   input[type="time" i]::-webkit-calendar-picker-indicator {
     display: none;
@@ -45,7 +46,7 @@ textarea {
 
 .c-form {
   &-item:not(:first-child) {
-    margin-block-start: $form-gutter-block;
+    margin-block-start: $gutter-block;
   }
 
   /**
@@ -54,31 +55,31 @@ textarea {
    *   - textarea
    */
   &-element {
-    @include round($form-border-radius);
+    @include tools.round($border-radius);
 
     appearance: none;
-    width: 100%;
-    padding-block: $form-padding-block;
-    padding-inline: $form-padding-inline;
-    color: $form-text-color;
-    border-block: 0.1rem solid $form-border-color;
-    border-inline: 0.1rem solid $form-border-color;;
-    background: $form-background-color;
+    inline-size: 100%;
+    padding-block: $padding-block;
+    padding-inline: $padding-inline;
+    color: $text-color;
+    border-block: 0.1rem solid $border-color;
+    border-inline: 0.1rem solid $border-color;;
+    background: $background-color;
 
-    @include input-placeholder {
-      color: $form-placeholder-color;
+    &::placeholder {
+      color: $placeholder-color;
     }
 
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 1rem rgba($form-focus-color, 0.5);
+    &:focus-visible {
+      outline: 0;
+      box-shadow: 0 0 1rem rgba($focus-color, 0.5);
     }
 
     &.form-textarea {
-      min-height: $form-padding-block * 2 + 9 * $global-line-height * 1.8rem;
+      min-block-size: $padding-block * 2 + 9 * settings.$line-height * 1.8rem;
 
-      @include breakpoint(medium) {
-        min-height: $form-padding-block * 2 + 11 * $global-line-height * 1.8rem;
+      @include tools.breakpoint(medium) {
+        min-block-size: $padding-block * 2 + 11 * settings.$line-height * 1.8rem;
       }
     }
   }
@@ -93,24 +94,24 @@ textarea {
     display: flex;
     flex-direction: row;
     align-items: center;
-    min-height: $form-boolean-size-touch;
+    min-block-size: $boolean-size-touch;
     margin-block: 2rem;
     margin-inline: 0;
     cursor: pointer;
-    line-height: $form-boolean-size-touch;
+    line-height: $boolean-size-touch;
 
-    @include breakpoint(medium) {
-      min-height: $form-boolean-size-mouse;
+    @include tools.breakpoint(medium) {
+      min-block-size: $boolean-size-mouse;
       margin-block: 1.5rem;
-      line-height: $form-boolean-size-mouse;
+      line-height: $boolean-size-mouse;
     }
 
     input {
-      @include visually-hidden;
+      @include tools.visually-hidden;
 
       &:checked + label::after {
-        border-color: $form-boolean-checked-color;
-        background: $form-boolean-checked-color;
+        border-color: $boolean-checked-color;
+        background: $boolean-checked-color;
       }
 
       &:disabled,
@@ -121,32 +122,32 @@ textarea {
 
     label {
       position: relative;
-      padding-inline-start: $form-boolean-size-touch + 2rem;
+      padding-inline-start: $boolean-size-touch + 2rem;
       cursor: pointer;
 
-      @include breakpoint(medium) {
-        padding-inline-start: $form-boolean-size-mouse + 1.5rem;
+      @include tools.breakpoint(medium) {
+        padding-inline-start: $boolean-size-mouse + 1.5rem;
       }
 
       &::before {
-        @include square($form-boolean-size-touch * 0.6);
+        @include tools.square($boolean-size-touch * 0.6);
 
         position: absolute;
         z-index: 9;
-        inset-block-start: $form-boolean-size-touch * 0.2;
-        inset-inline-start: $form-boolean-size-touch * 0.2;
+        inset-block-start: $boolean-size-touch * 0.2;
+        inset-inline-start: $boolean-size-touch * 0.2;
         content: "";
 
-        @include breakpoint(medium) {
-          @include square($form-boolean-size-mouse * 0.6);
+        @include tools.breakpoint(medium) {
+          @include tools.square($boolean-size-mouse * 0.6);
 
-          inset-block-start: $form-boolean-size-mouse * 0.2;
-          inset-inline-start: $form-boolean-size-mouse * 0.2;
+          inset-block-start: $boolean-size-mouse * 0.2;
+          inset-inline-start: $boolean-size-mouse * 0.2;
         }
       }
 
       &::after {
-        @include square($form-boolean-size-touch);
+        @include tools.square($boolean-size-touch);
 
         position: absolute;
         inset-block-start: 0;
@@ -159,18 +160,18 @@ textarea {
           border 0.2s,
           box-shadow 0.2s,
           color 0.2s;
-        border-block: 0.1rem solid $form-boolean-border-color;
-        border-inline: 0.1rem solid $form-boolean-border-color;
-        background: $form-background-color;
+        border-block: 0.1rem solid $boolean-border-color;
+        border-inline: 0.1rem solid $boolean-border-color;
+        background: $background-color;
 
-        @if $prefers-reduced-motion {
+        @if settings.$prefers-reduced-motion {
           @media screen and (prefers-reduced-motion: reduce) {
             transition: none;
           }
         }
 
-        @include breakpoint(medium) {
-          @include square($form-boolean-size-mouse);
+        @include tools.breakpoint(medium) {
+          @include tools.square($boolean-size-mouse);
         }
       }
     }
@@ -181,13 +182,13 @@ textarea {
   &-type-radio {
     label {
       &::before {
-        @include round(50%);
+        @include tools.round(50%);
 
-        background: $form-background-color;
+        background: $background-color;
       }
 
       &::after {
-        @include round(50%);
+        @include tools.round(50%);
       }
     }
   }
@@ -201,7 +202,7 @@ textarea {
       }
 
       &::after {
-        @include round($form-checkbox-border-radius);
+        @include tools.round($checkbox-border-radius);
       }
     }
   }
@@ -213,11 +214,11 @@ textarea {
   position: relative;
 
   &::after {
-    @include square($form-select-arrow-size);
+    @include tools.square($select-arrow-size);
 
     position: absolute;
     inset-block-start: 50%;
-    inset-inline-end: $form-padding-inline;
+    inset-inline-end: $padding-inline;
     display: block;
     content: "";
     transform: translateY(-50%);
@@ -229,7 +230,7 @@ textarea {
   }
 
   select {
-    padding-inline-end: $form-padding-inline * 2;
+    padding-inline-end: $padding-inline * 2;
     cursor: pointer;
   }
 }

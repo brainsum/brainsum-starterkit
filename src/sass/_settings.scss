@@ -1,0 +1,11 @@
+/**
+ * @file
+ * Global Settings
+ *
+ * Setting files contain **global** configurations that are shared by more than
+ * one modules.
+ * Local configurations should be contained into the modules (objects,
+ * components, etc.) that are related to.
+ */
+
+@forward "1.settings";

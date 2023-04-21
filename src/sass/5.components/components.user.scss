@@ -6,10 +6,11 @@
 /**
   * Imports
  */
-@import "../global.importer";
+@use "../settings";
+@use "../tools";
 
 .password-strength {
-  margin-block: $gutter;
+  margin-block: settings.$gutter;
   margin-inline: 2.4rem;
 
   &__title,
@@ -19,14 +20,14 @@
   }
 
   &__meter {
-    height: 1rem;
-    background-color: $color-grey-60;
+    block-size: 1rem;
+    background-color: settings.$color-grey-60;
   }
 
   &__indicator {
-    width: 0;
-    height: 100%;
-    background-color: $color-brand;
+    inline-size: 0;
+    block-size: 100%;
+    background-color: settings.$color-primary;
   }
 }
 

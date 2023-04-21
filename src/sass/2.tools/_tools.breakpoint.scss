@@ -8,6 +8,7 @@
  *
  * @require {map} breakpoint settings <1.settings/_settings.breakpoints.scss>
  *
+ *
  * Use it wherever you need it.
  *
  * @parameter {map} $breakpoint-size
@@ -21,9 +22,12 @@
  *
  * Examples
  *
- * Using the global default $global-breakpoints breakpoints map.
+ * Using the global default settings.$breakpoints breakpoints map.
  * @example
- *   $global-breakpoints: (
+ *   @use "../settings";
+ *   @use "../tools";
+ *
+ *   settings.$breakpoints: (
  *     small  : "screen and (min-width: 30em)", // 480px
  *     medium : "screen and (min-width: 48px)", // 768px
  *     large  : "screen and (min-width: 64px)", // 1024px
@@ -34,7 +38,7 @@
  *   .c-header {
  *      margin-right: 3rem;
  *
- *      @include breakpoint(small) {
+ *      @include tools.breakpoint(small) {
  *        margin-right: 0;
  *      }
  *   }
@@ -47,10 +51,13 @@
  *   );
  *
  * @example
+ *   @use "../settings";
+ *   @use "../tools";
+ *
  *   .c-header {
  *     margin-right: 3rem;
  *
- *     @include breakpoint(xlarge, $my-breakpoints) {
+ *     @include tools.breakpoint(xlarge, settings.$my-breakpoints) {
  *       margin-right: 0;
  *     }
  *   }
@@ -66,18 +73,37 @@
  *   );
  *
  * @example
+ *   @use "../settings";
+ *   @use "../tools";
+ *
  *   .c-header {
  *     margin-right: 3rem;
  *
- *     @include breakpoint($portrait) {
+ *     @include tools.breakpoint(settings.$portrait) {
  *       margin-right: 0;
  *     }
  *   }
  */
 
+/**
+ * Imports
+ */
 @use "sass:map";
+@use "../settings";
 
-@mixin breakpoint($size, $breakpoints: $global-breakpoints) {
+/**
+ * Breakpoint Mixin
+ *
+ * @parameter {map} $breakpoint-size
+ *   Size of the breakpoint you want to use from the $breakpoint-sizes map.
+ *
+ * @parameter {map} $breakpoint-sizes
+ *   A Sass map that contains all the breakpoints
+ *
+ * @example
+ *   @include breakpoint($breakpoint-size, $breakpoint-sizes);
+ */
+@mixin breakpoint($size, $breakpoints: settings.$breakpoints) {
   $breakpoint-found: map.has-key($breakpoints, $size);
 
   @if $breakpoint-found == true {

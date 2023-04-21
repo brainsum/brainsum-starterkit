@@ -15,4 +15,3 @@ in SMACCS.
 
 All Sass files will begin without an underscore, so don't forget to add each
 of them to the libraries yaml file as **layout** SMACSS level.
-

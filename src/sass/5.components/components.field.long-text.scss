@@ -8,7 +8,8 @@
 /**
   * Imports
  */
-@import "../global.importer";
+@use "../settings";
+@use "../tools";
 
 .c-field--type-text-long,
 .c-field--type-text-with-summary {
@@ -52,18 +53,18 @@
   }
 
   .text-align-left {
-    @include text-align(start);
+    @include tools.text-align(start);
   }
 
   .text-align-right {
-    @include text-align(end);
+    @include tools.text-align(end);
   }
 
   .text-align-center {
-    @include text-align(center);
+    @include tools.text-align(center);
   }
 
   .text-align-justify {
-    @include text-align(justify, start);
+    @include tools.text-align(justify, start);
   }
 }

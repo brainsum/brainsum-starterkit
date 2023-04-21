@@ -8,7 +8,7 @@
 /**
   * Imports
  */
-@import "../global.importer";
+@use "../tools";
 
 /**
  * Settings
@@ -17,10 +17,10 @@
 /**
  * Responsive Table
  */
-$components-responsive-table                  : true;
-$components-responsive-table-label-padding    : 0 0.6em 0 0;
-$components-responsive-table-label-width      : 30%;
-$components-responsive-table-content-width    : 67%;
+$responsive-table                  : true !default;
+$responsive-table-label-padding    : 0 0.6em 0 0 !default;
+$responsive-table-label-width      : 30% !default;
+$responsive-table-content-width    : 67% !default;
 
 /**
  * Responsive Table Component
@@ -30,7 +30,8 @@ $components-responsive-table-content-width    : 67%;
  * @see `3.base/_base.table.scss` for base theming `<table>` element.
  * @link https://github.com/filamentgroup/tablesaw
  *
- * @require {boolean} $base-table-normalize Should be true! <3.base/_base.reset.scss>
+ * @require {boolean} $base-table-normalize Should be true!
+ * <3.base/_base.reset.scss>
  *
  * @example
  *   <table class="c-table">
@@ -67,9 +68,9 @@ $components-responsive-table-content-width    : 67%;
  * 5. Show the table header rows.
  * 6. Hide the labels in each cell.
  */
-@if $components-responsive-table == true {
+@if $responsive-table == true {
   .c-table {
-    max-width: 100%;
+    max-inline-size: 100%;
     padding-block: 0;
     padding-inline: 0;
     empty-cells: show;
@@ -82,7 +83,7 @@ $components-responsive-table-content-width    : 67%;
 
     // Theming table rows.
     tr {
-      @include breakpoint(medium) {
+      @include tools.breakpoint(medium) {
         display: table-row;
       }
     }
@@ -93,18 +94,18 @@ $components-responsive-table-content-width    : 67%;
       display: block; // 1.
       text-align: start;
 
-      @include breakpoint(medium) {
+      @include tools.breakpoint(medium) {
         display: table-cell; // 5.
       }
 
       .c-table__cell-label {
         display: inline-block;
-        width: $components-responsive-table-label-width; // 2.
-        padding-block: $components-responsive-table-label-padding;
-        padding-inline: $components-responsive-table-label-padding;
+        inline-size: $responsive-table-label-width; // 2.
+        padding-block: $responsive-table-label-padding;
+        padding-inline: $responsive-table-label-padding;
         vertical-align: top;
 
-        @include breakpoint(medium) {
+        @include tools.breakpoint(medium) {
           display: none !important; // 6.
         }
       }
@@ -119,11 +120,11 @@ $components-responsive-table-content-width    : 67%;
 
       .c-table__cell-content {
         display: inline-block;
-        max-width: $components-responsive-table-content-width;
+        max-inline-size: $responsive-table-content-width;
 
-        @include breakpoint(medium) {
+        @include tools.breakpoint(medium) {
           display: block;
-          max-width: none;
+          max-inline-size: none;
         }
       }
     }
@@ -133,7 +134,7 @@ $components-responsive-table-content-width    : 67%;
       td {
         display: none;
 
-        @include breakpoint(medium) {
+        @include tools.breakpoint(medium) {
           display: table-cell; // 5.
         }
       }
@@ -142,19 +143,19 @@ $components-responsive-table-content-width    : 67%;
     tbody {
       tr {
         display: block;
-        width: 100%;
+        inline-size: 100%;
 
-        @include breakpoint(medium) {
+        @include tools.breakpoint(medium) {
           display: table-row;
         }
       }
 
       th,
       td {
-        width: 100%;
+        inline-size: 100%;
 
-        @include breakpoint(medium) {
-          width: auto;
+        @include tools.breakpoint(medium) {
+          inline-size: auto;
         }
       }
     }
@@ -163,7 +164,7 @@ $components-responsive-table-content-width    : 67%;
     th:empty {
       display: none;
 
-      @include breakpoint(medium) {
+      @include tools.breakpoint(medium) {
         display: table-cell;
       }
     }

@@ -9,15 +9,16 @@
 /**
   * Imports
  */
-@import "../global.importer";
+@use "../settings";
+@use "../tools";
 
 /**
  * Settings
  */
-$toolbar-search-input-color               : #3b3b3b;
-$toolbar-search-input-autocomplete-color  : rgba($color-dark, 0.5);
-$toolbar-search-input-border              : 0.1rem solid #ccc;
-$toolbar-search-input-background          : #fcfcfa;
+$search-input-color               : #3b3b3b;
+$search-input-autocomplete-color  : rgba(settings.$color-dark, 0.5);
+$search-input-border              : 0.1rem solid #ccc;
+$search-input-background          : #fcfcfa;
 
 #admin-toolbar-search-tab .js-form-item.c-form-item {
   margin-block-start: 0.48rem;
@@ -25,28 +26,28 @@ $toolbar-search-input-background          : #fcfcfa;
 }
 
 #admin-toolbar-search-input {
-  @include round(unset);
+  @include tools.round(unset);
 
-  min-height: 1.6rem;
+  min-block-size: 1.6rem;
   margin-block: 0;
   margin-inline: 0;
   padding-block: 0;
   padding-inline: 0.64rem;
-  color: $toolbar-search-input-color;
-  border-block: 0.1rem solid #ccc;
-  border-inline: 0.1rem solid #ccc;
-  background: $toolbar-search-input-background;
+  color: $search-input-color;
+  border-block: $search-input-border ;
+  border-inline: $search-input-border ;
+  background: $search-input-background;
   font-size: 1em;
   line-height: 2.8rem;
 }
 
 .ui-autocomplete .ui-menu-item span.admin-toolbar-search-url {
-  color: $toolbar-search-input-autocomplete-color;
+  color: $search-input-autocomplete-color;
 }
 
 .admin-toolbar-search-autocomplete-list {
   overflow-y: scroll;
-  max-height: 30rem;
+  max-block-size: 30rem;
 
   .ui-menu-item .ui-state-active {
     margin-block: 0;

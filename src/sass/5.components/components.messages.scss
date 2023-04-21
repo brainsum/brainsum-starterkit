@@ -8,27 +8,28 @@
 /**
   * Imports
  */
-@import "../global.importer";
+@use "../settings";
+@use "../tools";
 
 /**
  * Settings
  */
-$messages-icon-size         : 3.2rem;
-$messages-close-icon-size   : 2.5rem;
-$messages-color             : $color-light;
-$messages-color--error      : $color-error;
-$messages-color--warning    : $color-warning;
-$messages-color--status     : $color-note;
-$messages-color--info       : $color-note;
-$messages-focus-color       : $color-note;
+$icon-size         : 3.2rem;
+$close-icon-size   : 2.5rem;
+$color             : settings.$color-light;
+$color--error      : settings.$color-error;
+$color--warning    : settings.$color-warning;
+$color--status     : settings.$color-note;
+$color--info       : settings.$color-note;
+$focus-color       : settings.$color-note;
 
 .c-messages {
-  min-height: $messages-icon-size + $gutter--2x;
-  padding-block: $gutter;
-  padding-inline: $gutter * 1.5;
-  color: $messages-color;
+  min-block-size: $icon-size + settings.$gutter--2x;
+  padding-block: settings.$gutter;
+  padding-inline: settings.$gutter * 1.5;
+  color: $color;
   outline: solid 0.1rem transparent;
-  background-color: $color-grey;
+  background-color: settings.$color-grey;
 
   & * {
     color: inherit;
@@ -37,14 +38,14 @@ $messages-focus-color       : $color-note;
   &.is-hidden {
     visibility: hidden;
     overflow: hidden;
-    height: 0;
-    min-height: 0;
+    block-size: 0;
+    min-block-size: 0;
     padding-block: 0;
     padding-inline: 0;
   }
 
   &-list {
-    margin-block: $gutter;
+    margin-block: settings.$gutter;
     padding-block: 0;
     padding-inline: 0;
     list-style: none;
@@ -63,11 +64,11 @@ $messages-focus-color       : $color-note;
   }
 
   &:not(.is-hidden) ~ .c-messages {
-    margin-block-start: $gutter;
+    margin-block-start: settings.$gutter;
   }
 
   &__item + .c-messages__item {
-    margin-block-start: $gutter * 0.5;
+    margin-block-start: settings.$gutter * 0.5;
   }
 
   &__container {
@@ -76,7 +77,7 @@ $messages-focus-color       : $color-note;
 
   &__header {
     flex-shrink: 0;
-    margin-inline-end: $gutter;
+    margin-inline-end: settings.$gutter;
 
     &.no-icon {
       margin-inline-end: 0;
@@ -92,12 +93,12 @@ $messages-focus-color       : $color-note;
 
   &__button {
     flex-shrink: 0;
-    margin-inline-start: $gutter;
+    margin-inline-start: settings.$gutter;
     padding-block-start: 0.3rem;
   }
 
   &__close {
-    @include square($messages-close-icon-size);
+    @include tools.square($close-icon-size);
 
     position: relative;
     padding-block: 0;
@@ -115,10 +116,10 @@ $messages-focus-color       : $color-note;
       inset-block-start: 50%;
       inset-inline-start: 50%;
       display: block;
-      width: 3.3rem;
-      height: 0;
+      inline-size: 3.3rem;
+      block-size: 0;
       content: "";
-      border-block-start: solid 0.2rem $color-grey-70;
+      border-block-start: solid 0.2rem settings.$color-grey-70;
     }
 
     &::before {
@@ -132,12 +133,12 @@ $messages-focus-color       : $color-note;
     &:hover {
       &::before,
       &::after {
-        border-color: $messages-color;
+        border-color: $color;
       }
     }
 
     &:focus {
-      outline: 0.2rem solid $messages-focus-color;
+      outline: 0.2rem solid $focus-color;
       outline-offset: 0.2rem;
     }
   }
@@ -146,24 +147,24 @@ $messages-focus-color       : $color-note;
     vertical-align: top;
 
     .c-messages--error & {
-      fill: $messages-color--error;
+      fill: $color--error;
     }
 
     .c-messages--warning & {
-      fill: $messages-color--warning;
+      fill: $color--warning;
     }
 
     .c-messages--status & {
-      fill: $messages-color--status;
+      fill: $color--status;
     }
 
     .c-messages--info & {
-      fill: $messages-color--info;
+      fill: $color--info;
     }
   }
 
   a:not([class]) {
-    @include link($messages-color);
+    @include tools.link($color);
   }
 
   pre {
@@ -173,7 +174,7 @@ $messages-focus-color       : $color-note;
   }
 
   .js-form-managed-file & {
-    margin-block-end: $gutter;
-    border-inline-start: solid 0.6rem $messages-color--error;
+    margin-block-end: settings.$gutter;
+    border-inline-start: solid 0.6rem $color--error;
   }
 }

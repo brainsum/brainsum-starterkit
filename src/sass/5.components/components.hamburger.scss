@@ -13,53 +13,52 @@
  * @link https://github.com/jonsuh/hamburgers/tree/master/_sass/hamburgers/types
  */
 
-@use "sass:math";
-
 /**
   * Imports
  */
-
-@import "../global.importer";
+@use "sass:math";
+@use "../settings";
+@use "../tools";
 
 /**
  * Settings
  */
-$hamburger-padding-inline               : 0;
-$hamburger-padding-block                : 0;
-$hamburger-background                   : none;
-$hamburger-border-radius                : 0;
-$hamburger-spinner-width                : 3.1rem;
-$hamburger-spinner-width--middle        : $hamburger-spinner-width;
-$hamburger-spinner-height               : 0.5rem;
-$hamburger-spinner-spacing              : 0.6rem; // vertical distance between horizontal lines
-$hamburger-spinner-border-radius        : $hamburger-spinner-height * 0.5;
-$hamburger-spinner-color                : $color-brand;
-$hamburger-spinner-color--active        : $hamburger-spinner-color;
+$padding-inline               : 0;
+$padding-block                : 0;
+$background                   : none;
+$border-radius                : 0;
+$spinner-width                : 3.1rem;
+$spinner-width--middle        : $spinner-width;
+$spinner-height               : 0.5rem;
+$spinner-spacing              : 0.6rem; // vertical distance between horizontal lines
+$spinner-border-radius        : $spinner-height * 0.5;
+$spinner-color                : settings.$color-primary;
+$spinner-color--active        : $spinner-color;
 
 .c-hamburger {
-  @include round($hamburger-border-radius);
+  @include tools.round($border-radius);
 
   overflow: visible;
   margin-block-start: 3rem;
   margin-block-end: 3.5rem;
   margin-inline-start: 4rem;
   margin-inline-end: 0;
-  padding-block: $hamburger-padding-block;
-  padding-inline: $hamburger-padding-inline;
+  padding-block: $padding-block;
+  padding-inline: $padding-inline;
   cursor: pointer;
   transition: opacity 0.5s ease;
   color: inherit;
   border-block: 0;
   border-inline: 0;
-  background: $hamburger-background;
+  background: $background;
 
-  @if $prefers-reduced-motion {
+  @if settings.$prefers-reduced-motion {
     @media screen and (prefers-reduced-motion: reduce) {
       transition: none;
     }
   }
 
-  @include breakpoint(small) {
+  @include tools.breakpoint(small) {
     display: none;
   }
 
@@ -75,17 +74,17 @@ $hamburger-spinner-color--active        : $hamburger-spinner-color;
   &__box {
     position: relative;
     display: block;
-    width: $hamburger-spinner-width;
-    height: $hamburger-spinner-height * 3 + $hamburger-spinner-spacing * 2;
+    inline-size: $spinner-width;
+    block-size: $spinner-height * 3 + $spinner-spacing * 2;
   }
 
   &__spinner {
-    inset-block-start: $hamburger-spinner-height * 0.5;
+    inset-block-start: $spinner-height * 0.5;
     display: block;
-    margin-block-start: math.div($hamburger-spinner-height, -2);
+    margin-block-start: math.div($spinner-height, -2);
     transition: background 0s 0.13s linear;
 
-    @if $prefers-reduced-motion {
+    @if settings.$prefers-reduced-motion {
       @media screen and (prefers-reduced-motion: reduce) {
         transition: none;
       }
@@ -100,15 +99,15 @@ $hamburger-spinner-color--active        : $hamburger-spinner-color;
     &,
     &::before,
     &::after {
-      @include round($hamburger-spinner-border-radius);
+      @include tools.round($spinner-border-radius);
 
       position: absolute;
-      width: $hamburger-spinner-width;
-      height: $hamburger-spinner-height;
+      inline-size: $spinner-width;
+      block-size: $spinner-height;
       transition: transform 0.15s ease;
-      background: $hamburger-spinner-color;
+      background: $spinner-color;
 
-      @if $prefers-reduced-motion {
+      @if settings.$prefers-reduced-motion {
         @media screen and (prefers-reduced-motion: reduce) {
           transition: none;
         }
@@ -116,14 +115,14 @@ $hamburger-spinner-color--active        : $hamburger-spinner-color;
     }
 
     &::before {
-      inset-block-start: $hamburger-spinner-height + $hamburger-spinner-spacing;
+      inset-block-start: $spinner-height + $spinner-spacing;
       inset-inline-end: 0;
-      width: $hamburger-spinner-width--middle;
+      inline-size: $spinner-width--middle;
       transition:
         top 0.1s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1),
         transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 
-      @if $prefers-reduced-motion {
+      @if settings.$prefers-reduced-motion {
         @media screen and (prefers-reduced-motion: reduce) {
           transition: none;
         }
@@ -132,16 +131,16 @@ $hamburger-spinner-color--active        : $hamburger-spinner-color;
       .c-hamburger.is-active & {
         inset-block-start: 0;
         inset-inline-end: auto;
-        width: $hamburger-spinner-width;
+        inline-size: $spinner-width;
         transition:
           top 0.1s 0.15s cubic-bezier(0.33333, 0, 0.66667, 0.33333),
           transform 0.13s 0.22s cubic-bezier(0.215, 0.61, 0.355, 1);
         transform:
-          translate3d(0, $hamburger-spinner-spacing + $hamburger-spinner-height, 0)
+          translate3d(0, $spinner-spacing + $spinner-height, 0)
           rotate(45deg);
-        background: $hamburger-spinner-color--active;
+        background: $spinner-color--active;
 
-        @if $prefers-reduced-motion {
+        @if settings.$prefers-reduced-motion {
           @media screen and (prefers-reduced-motion: reduce) {
             transition: none;
           }
@@ -150,13 +149,13 @@ $hamburger-spinner-color--active        : $hamburger-spinner-color;
     }
 
     &::after {
-      inset-block-start: ($hamburger-spinner-height * 2) + ($hamburger-spinner-spacing * 2);
-      inset-block-end: ($hamburger-spinner-spacing + $hamburger-spinner-height) * -1;
+      inset-block-start: ($spinner-height * 2) + ($spinner-spacing * 2);
+      inset-block-end: ($spinner-spacing + $spinner-height) * -1;
       transition:
         top 0.2s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1),
         transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 
-      @if $prefers-reduced-motion {
+      @if settings.$prefers-reduced-motion {
         @media screen and (prefers-reduced-motion: reduce) {
           transition: none;
         }
@@ -168,11 +167,11 @@ $hamburger-spinner-color--active        : $hamburger-spinner-color;
           top 0.2s cubic-bezier(0.33333, 0, 0.66667, 0.33333),
           transform 0.13s 0.22s cubic-bezier(0.215, 0.61, 0.355, 1);
         transform:
-          translate3d(0, $hamburger-spinner-spacing + $hamburger-spinner-height, 0)
+          translate3d(0, $spinner-spacing + $spinner-height, 0)
           rotate(-45deg);
-        background: $hamburger-spinner-color--active;
+        background: $spinner-color--active;
 
-        @if $prefers-reduced-motion {
+        @if settings.$prefers-reduced-motion {
           @media screen and (prefers-reduced-motion: reduce) {
             transition: none;
           }

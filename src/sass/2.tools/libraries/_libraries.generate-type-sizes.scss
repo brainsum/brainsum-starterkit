@@ -13,28 +13,36 @@
  *
  * @parameter {map | string} $values - font-sizes
  * @parameter {map} $breakpoints - given breakpoint map
- * @access private
  */
 
+/**
+ * Imports
+ */
 @use "sass:map";
+@use "libraries.extract-type-sizes" as validators;
 
-/* stylelint-disable-next-line scss/at-mixin-pattern */
-@mixin _generate-type-sizes($values, $breakpoints) {
+/**
+ * Generate Type Sizes Mixin
+ *
+ * @parameter {map | string} $values - font-sizes
+ * @parameter {map} $breakpoints - given breakpoint map
+ */
+@mixin generate-type-sizes($values, $breakpoints) {
   @if type-of($values) == "map" {
     @each $breakpoint, $sizes in $values {
       @if map.has-key($breakpoints, $breakpoint) {
         @media #{map.get($breakpoints, $breakpoint)} {
-          @include _extract-type-sizes($sizes);
+          @include validators.extract-type-sizes($sizes);
         }
       }
     }
 
     @if map.has-key($values, null) {
-      @include _extract-type-sizes(map.get($values, null));
+      @include validators.extract-type-sizes(map.get($values, null));
     }
   }
 
   @if type-of($values) == "number" or type-of($values) == "list" {
-    @include _extract-type-sizes($values);
+    @include validators.extract-type-sizes($values);
   }
 }

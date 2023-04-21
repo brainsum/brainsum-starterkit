@@ -20,43 +20,47 @@
  * @link https://www.iotacss.com/docs/utilities/display
  *
  * @example
+ *   @use "../tools";
+ *
  *   .page__title {
- *     @include visually-hidden;
+ *     @include tools.visually-hidden;
  *   }
  */
 @mixin visually-hidden {
   position: absolute !important;
   overflow: hidden !important;
-  clip: rect(1px 1px 1px 1px) !important; /* IE6, IE7 */
-  clip: rect(1px, 1px, 1px, 1px) !important;
-  width: 1px !important;
-  height: 1px !important;
+  clip: rect(0.1rem 0.1rem 0.1rem 0.1rem) !important; /* IE6, IE7 */
+  clip: rect(0.1rem, 0.1rem, 0.1rem, 0.1rem) !important;
+  inline-size: 0.1rem !important;
+  block-size: 0.1rem !important;
 }
 
 /**
  * Focusable Visually hidden
  *
- * Use in conjunction with `visually-hidden` to only display content when it's focused.
+ * Use in conjunction with `visually-hidden` to only display content when it's
+ * focused.
  * Useful for "Skip to main content" links.
  * @see https://www.w3.org/TR/2013/NOTE-WCAG20-TECHS-20130905/G1
  *
  * borrowed from HTML5 Boilerplate
  *
  * @example
+ *   @use "../tools";
+ *
  *   .skip-navigation {
  *      @include visually-hidden;
  *      @include visually-hidden--focusable;
  *   }
  */
-/* stylelint-disable-next-line scss/at-mixin-pattern */
 @mixin visually-hidden--focusable {
   &:active,
   &:focus {
     position: static !important;
     overflow: visible !important;
     clip: auto !important;
-    width: auto !important;
-    height: auto !important;
+    inline-size: auto !important;
+    block-size: auto !important;
     white-space: normal !important;
   }
 }

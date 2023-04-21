@@ -8,10 +8,18 @@
  * @link https://www.bourbon.io/docs/latest#triangle
  *
  * @example
+ *   @use "../tools";
+ *
  *   .button__arrow {
- *     @include make-triangle(right, 1.5rem, 1rem, $color-secondary);
+ *     @include tools.make-triangle(right, 10.5rem, 1rem, $color-secondary);
  *   }
  */
+
+/**
+ * Imports
+ */
+
+@use "validators";
 
 /**
  * Make Triangle mixin
@@ -37,13 +45,13 @@
     @error "Direction must be `up`, `up-right`, `right`, `down-right`, `down`, `down-left`, `left` or `up-left`.";
   }
 
-  @else if not _is-color($color) {
+  @else if not validators.is-color($color) {
     @error "`#{$color}` is not a valid color for the `$color` argument in the `triangle` mixin.";
   }
 
   @else {
-    width: 0;
-    height: 0;
+    inline-size: 0;
+    block-size: 0;
     border-style: solid;
 
     @if $direction == "up" {
@@ -77,7 +85,6 @@
     }
 
     @else if $direction == "left" {
-      border-width: ($height * 0.5) $width ($height * 0.5) 0;
       border-color: transparent $color transparent transparent;
     }
 

@@ -3,12 +3,9 @@
  * Icon Component
  *
  * Theming SVG icons.
+ * Set the stroke and fill color of the `svg.c-icon` component with
+ * `currentColor` value.
  */
-
-/**
-  * Imports
- */
-@import "../global.importer";
 
 svg.c-icon {
   stroke: currentColor;

@@ -8,8 +8,9 @@
 /**
   * Imports
  */
-@import "../global.importer";
+@use "../settings";
+@use "../tools";
 
 .c-type {
-  // here come all variants
+  // here should go all variants
 }

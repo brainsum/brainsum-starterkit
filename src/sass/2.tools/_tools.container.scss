@@ -6,7 +6,7 @@
  * responsive containers.
  *
  * Here you can setup the default and custom containers with size (`max-with`)
- * and padding. Then use it as mixin.
+ * and paddings. Then use it as mixin.
  *
  * Part of Shake.sass, based on iota.css
  * @author Dimitris Psaropoulos <info@harby.me>
@@ -16,6 +16,12 @@
  * @see 4.objects/_objects.container.scss for BEM class based default and custom
  * containers
  */
+
+/**
+ * Imports
+ */
+@use "libraries";
+@use "../settings";
 
 /**
  * Settings
@@ -29,8 +35,9 @@
  * gutter sizes.
  *
  * @type Number | List | Map
+ * @access private
  */
-$tools-container-gutter-default   : $global-container-gutter-default;
+$container-gutter-default   : settings.$container-gutter-default;
 
 /**
  * Default container size
@@ -39,8 +46,10 @@ $tools-container-gutter-default   : $global-container-gutter-default;
  * map in case you would like to specify a responsive size.
  *
  * @type String | Map
+ * @access private
  */
-$tools-container-size-default     : $global-container-size-default;
+
+$container-size-default     : settings.$container-size-default;
 
 /**
  * Container padding
@@ -51,9 +60,8 @@ $tools-container-size-default     : $global-container-size-default;
  * @parameter {number | map} $size - Padding values.
  * @access private
  */
-/* stylelint-disable-next-line scss/at-mixin-pattern */
-@mixin _container-padding($size) {
-  @include _generate-unit("padding", "inline", $size);
+@mixin container-padding($size) {
+  @include libraries.generate-unit("padding", "inline", $size);
 }
 
 /**
@@ -65,9 +73,8 @@ $tools-container-size-default     : $global-container-size-default;
  * @parameter {number | map} $size - Max-width values.
  * @access private
  */
-/* stylelint-disable-next-line scss/at-mixin-pattern */
-@mixin _container-size($size) {
-  @include _generate-unit("max", "width", $size);
+@mixin container-size($size) {
+  @include libraries.generate-unit("max", "width", $size);
 }
 
 /**
@@ -82,44 +89,48 @@ $tools-container-size-default     : $global-container-size-default;
  * @require {mixin} _container-padding
  * @require {mixin} _container-size
  *
+ *
  * Examples
  *
  * Default container
  *
  * @example
+ *   @use "../tools";
+ *
  *   .section__container {
- *      @include make-container;
+ *      @include tools.make-container;
  *   }
  *
  * Custom container
  *
  * You can define custom padding and sizes (widths) but you can use the
- * default `$tools-container-gutter-default` and
- * `$tools-container-size-default` ones too.
+ * default `$container-gutter-default` and
+ * `$container-size-default` ones too.
  *
  * @example
- *   $tools-container-gutter-gallery : (
+ *   @use "../tools";
+ *
+ *   $container-gutter-gallery : (
  *     null   : 1.2rem,
  *     medium : 2.4rem
  *   );
- *   $tools-container-size-gallery : (
+ *   $container-size-gallery : (
  *     null   : 100%,
  *     medium : 102.4rem
  *   );
  *
  *   .gallery__container {
- *     @include make-container(
- *       $padding: $tools-container-gutter-gallery,
- *       $size: $tools-container-size-gallery
+ *     @include tools.make-container(
+ *       $padding: $container-gutter-gallery,
+ *       $size: $container-size-gallery
  *     )
- *   }
  */
 @mixin make-container(
-  $padding: $tools-container-gutter-default,
-  $size: $tools-container-size-default) {
-  @include _container-padding($padding);
-  @include _container-size($size);
+  $padding: $container-gutter-default,
+  $size: $container-size-default) {
+  @include container-padding($padding);
+  @include container-size($size);
 
-  width: 100%;
+  inline-size: 100%;
   margin-inline: auto;
 }

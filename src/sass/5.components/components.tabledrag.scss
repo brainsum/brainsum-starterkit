@@ -8,26 +8,27 @@
 /**
   * Imports
  */
-@import "../global.importer";
+@use "../settings";
+@use "../tools";
 
 /**
  * Settings
  */
-$tabledrag-manual-weight-input      : false;
-$tabledrag-region-message-color     : #999;
-$tabledrag-background-hover         : $color-grey-10;
-$tabledrag-background-drag          : $tabledrag-background-hover;
-$tabledrag-background-previous-drag : $color-grey-20;
+$manual-weight-input      : false;
+$region-message-color     : #999;
+$background-hover         : settings.$color-grey-10;
+$background-drag          : $background-hover;
+$background-previous-drag : settings.$color-grey-20;
 
 // Drupal's move.svg in #787878 color
 // web/core/misc/icons/787878/move.svg
 // base64 encoded by https://yoksel.github.io/url-encoder/
-$tabledrag-move-icon-normal         : url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath fill='%23787878' d='M14.904 7.753l-2.373-2.372c-.291-.292-.529-.193-.529.22v1.399h-3v-3h1.398c.414 0 .512-.239.221-.53l-2.371-2.372c-.137-.136-.36-.136-.497 0l-2.372 2.372c-.292.292-.193.53.22.53h1.399v3h-3v-1.369c0-.413-.239-.511-.53-.22l-2.372 2.372c-.136.136-.136.359 0 .494l2.372 2.372c.291.292.53.192.53-.219v-1.43h3v3h-1.4c-.413 0-.511.238-.22.529l2.374 2.373c.137.137.36.137.495 0l2.373-2.373c.29-.291.19-.529-.222-.529h-1.398v-3h3v1.4c0 .412.238.511.529.219l2.373-2.371c.137-.137.137-.359 0-.495z'/%3E%3C/svg%3E");
+$move-icon-normal         : url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath fill='%23787878' d='M14.904 7.753l-2.373-2.372c-.291-.292-.529-.193-.529.22v1.399h-3v-3h1.398c.414 0 .512-.239.221-.53l-2.371-2.372c-.137-.136-.36-.136-.497 0l-2.372 2.372c-.292.292-.193.53.22.53h1.399v3h-3v-1.369c0-.413-.239-.511-.53-.22l-2.372 2.372c-.136.136-.136.359 0 .494l2.372 2.372c.291.292.53.192.53-.219v-1.43h3v3h-1.4c-.413 0-.511.238-.22.529l2.374 2.373c.137.137.36.137.495 0l2.373-2.373c.29-.291.19-.529-.222-.529h-1.398v-3h3v1.4c0 .412.238.511.529.219l2.373-2.371c.137-.137.137-.359 0-.495z'/%3E%3C/svg%3E");
 
 // Drupal's move.svg in #000000 color
 // web/core/misc/icons/000000/move.svg
 // base64 encoded by https://yoksel.github.io/url-encoder/
-$tabledrag-move-icon-hover          : url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath fill='%23000000' d='M14.904 7.753l-2.373-2.372c-.291-.292-.529-.193-.529.22v1.399h-3v-3h1.398c.414 0 .512-.239.221-.53l-2.371-2.372c-.137-.136-.36-.136-.497 0l-2.372 2.372c-.292.292-.193.53.22.53h1.399v3h-3v-1.369c0-.413-.239-.511-.53-.22l-2.372 2.372c-.136.136-.136.359 0 .494l2.372 2.372c.291.292.53.192.53-.219v-1.43h3v3h-1.4c-.413 0-.511.238-.22.529l2.374 2.373c.137.137.36.137.495 0l2.373-2.373c.29-.291.19-.529-.222-.529h-1.398v-3h3v1.4c0 .412.238.511.529.219l2.373-2.371c.137-.137.137-.359 0-.495z'/%3E%3C/svg%3E");
+$move-icon-hover          : url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath fill='%23000000' d='M14.904 7.753l-2.373-2.372c-.291-.292-.529-.193-.529.22v1.399h-3v-3h1.398c.414 0 .512-.239.221-.53l-2.371-2.372c-.137-.136-.36-.136-.497 0l-2.372 2.372c-.292.292-.193.53.22.53h1.399v3h-3v-1.369c0-.413-.239-.511-.53-.22l-2.372 2.372c-.136.136-.136.359 0 .494l2.372 2.372c.291.292.53.192.53-.219v-1.43h3v3h-1.4c-.413 0-.511.238-.22.529l2.374 2.373c.137.137.36.137.495 0l2.373-2.373c.29-.291.19-.529-.222-.529h-1.398v-3h3v1.4c0 .412.238.511.529.219l2.373-2.371c.137-.137.137-.359 0-.495z'/%3E%3C/svg%3E");
 
 body.drag {
   cursor: move;
@@ -38,7 +39,7 @@ tr.region-title {
 }
 
 tr.region-message {
-  color: $tabledrag-region-message-color;
+  color: $region-message-color;
 }
 
 tr.region-populated {
@@ -55,8 +56,8 @@ tr.add-new .tabledrag-changed {
 
 .indentation {
   float: left; // LTR
-  width: 2rem;
-  height: 1.7em;
+  inline-size: 2rem;
+  block-size: 1.7em;
   margin-block: -0.4em;
   margin-inline-start: -0.4em;
   margin-inline-end: 0.2em;
@@ -75,22 +76,22 @@ body div.tabledrag-changed-warning {
 
 .draggable {
   &:hover {
-    background: $color-grey-10;
+    background: settings.$color-grey-10;
   }
 
   &.drag {
-    background: $color-grey-10;
+    background: settings.$color-grey-10;
 
     &-previous {
-      background: $color-grey-20;
+      background: settings.$color-grey-20;
     }
   }
 
   td {
     .touchevents & {
-      padding-block: $gutter * 0.5;
+      padding-block: settings.$gutter * 0.5;
       padding-inline-start: 0;
-      padding-inline-end: $gutter * 0.5;
+      padding-inline-end: settings.$gutter * 0.5;
     }
   }
 
@@ -106,20 +107,20 @@ body div.tabledrag-changed-warning {
 .drag-previous {
   a {
     // Ensure proper contrast.
-    color: $color-grey-120;
+    color: settings.$color-grey-120;
   }
 }
 
 a.tabledrag-handle {
   &,
   .touchevents & {
-    @include square(3.6rem);
+    @include tools.square(3.6rem);
   }
 
   .draggable & {
     float: left; // LTR
     overflow: hidden;
-    height: 1.7em;
+    block-size: 1.7em;
     margin-inline-start: 0;
     cursor: move;
     text-decoration: none;
@@ -130,22 +131,22 @@ a.tabledrag-handle {
   }
 
   .handle {
-    @include square($gutter * 2);
+    @include tools.square(settings.$gutter * 2);
 
     margin-block: 0;
     margin-inline: 0;
     padding-block: 0.42em;
     padding-inline: 0.5em;
-    background: $tabledrag-move-icon-normal no-repeat 50% 0.7rem;
+    background: $move-icon-normal no-repeat 50% 0.7rem;
 
     @media (forced-colors: active) {
       background: linktext;
-      -webkit-mask: $tabledrag-move-icon-normal no-repeat 50% 0.7rem;
-      mask: $tabledrag-move-icon-normal no-repeat 50% 0.7rem;
+      -webkit-mask: $move-icon-normal no-repeat 50% 0.7rem;
+      mask: $move-icon-normal no-repeat 50% 0.7rem;
     }
 
     .touchevents & {
-      height: $gutter * 2;
+      block-size: settings.$gutter * 2;
       background-position: 50% 0.5rem;
 
       [dir="rtl"] & {
@@ -157,12 +158,12 @@ a.tabledrag-handle {
   &:hover,
   &:focus {
     .handle {
-      background-image: $tabledrag-move-icon-hover;
+      background-image: $move-icon-hover;
 
       @media (forced-colors: active) {
         background: linktext;
-        -webkit-mask: $tabledrag-move-icon-normal no-repeat 50% 0.7rem;
-        mask: $tabledrag-move-icon-normal no-repeat 50% 0.7rem;
+        -webkit-mask: $move-icon-normal no-repeat 50% 0.7rem;
+        mask: $move-icon-normal no-repeat 50% 0.7rem;
       }
     }
   }
@@ -193,7 +194,7 @@ a.tabledrag-handle {
   }
 }
 
-@if $tabledrag-manual-weight-input == false {
+@if $manual-weight-input == false {
   [data-drupal-selector="tabledrag-toggle-weight"] {
     display: none !important;
   }

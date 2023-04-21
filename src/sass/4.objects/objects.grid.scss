@@ -55,7 +55,8 @@
 /**
   * Imports
  */
-@import "../global.importer";
+@use "../settings";
+@use "../2.tools/tools.grid" as grid;
 
 /**
  * Settings
@@ -67,8 +68,8 @@
 /**
  * Namespace settings
  */
-$objects-grid-class          : "o-grid";
-$objects-grid-class-mod      : $objects-grid-class + "--";
+$class          : "o-grid" !default;
+$class-mod      : $class + "--" !default;
 
 /**
  * Additional grid gutters
@@ -82,13 +83,13 @@ $objects-grid-class-mod      : $objects-grid-class + "--";
  * Each gutter size will be available as a BEM modifier that will be named
  * according to the gutter name.
  *
- * Example if `$objects-grid-gutter-extra: (large: 30px);`
+ * Example if `$gutter-extra: (large: 30px);`
  * then `.o-grid--large` will be available for use.
  *
  * @type Map
  *
  * @example
- *   $objects-grid-gutter-extra: (
+ *   $gutter-extra: (
  *     large: (
  *       null : 2rem,
  *       small: 4rem
@@ -105,7 +106,7 @@ $objects-grid-class-mod      : $objects-grid-class + "--";
  *     </div>
  *   </div>
  */
-$objects-grid-gutter-extra    : $global-grid-gutter-extra;
+$gutter-extra    : settings.$grid-gutter-extra !default;
 
 /**
  * Grid Object
@@ -114,23 +115,23 @@ $objects-grid-gutter-extra    : $global-grid-gutter-extra;
 /**
  * Default Grid Object
  */
-.#{$objects-grid-class} {
-  @include make-grid;
+.#{$class} {
+  @include grid.make-grid;
 
   & > &__item {
-    @include make-column;
+    @include grid.make-column;
   }
 }
 
 /**
  * Grid Object Extra Gutters
  */
-@each $gutter-name, $gutter-size in $objects-grid-gutter-extra {
-  .#{$objects-grid-class-mod + quote($gutter-name)} {
-    @include make-grid($gutter-size);
+@each $gutter-name, $gutter-size in $gutter-extra {
+  .#{$class-mod + quote($gutter-name)} {
+    @include grid.make-grid($gutter-size);
 
     & > &__item {
-      @include make-column($gutter-size);
+      @include grid.make-column($gutter-size);
     }
   }
 }

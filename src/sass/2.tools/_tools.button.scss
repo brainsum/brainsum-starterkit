@@ -5,9 +5,19 @@
  * Button mixins for different DOMs.
  */
 
+/**
+ * Imports
+ */
+@use "../settings";
+@use "./tools.transitions" as transitions;
+@use "./tools.type" as type;
+
+/**
+ * Button mixin
+ */
 @mixin button {
-  @include font-smooth;
-  @include global-transition;
+  @include type.font-smooth;
+  @include transitions.global-transition;
 
   display: inline-flex;
   flex-direction: row;
@@ -16,9 +26,9 @@
   padding-block: 0.5rem;
   padding-inline: 2rem;
   cursor: pointer;
-  color: $color-light;
+  color: settings.$color-light;
   border-block: 0;
   border-inline: 0;
-  background: $color-primary;
+  background: settings.$color-primary;
   font-weight: 700;
 }

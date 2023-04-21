@@ -29,7 +29,7 @@ $gutter--large  : $gutter--4x !default;
  *
  * @type Number | List | Map
  */
-$global-gutter-default: (
+$gutter-default: (
   null          : $gutter--small,
   small         : $gutter--medium,
   large         : $gutter--large
@@ -47,11 +47,11 @@ $global-gutter-default: (
  * @type Map
  *
  * @example
- *   $global-grid-gutter-extra: (
+ *   $grid-gutter-extra: (
  *     large: (
  *       null : 2rem,
  *       small: 4rem
  *     )
  *   );
  */
-$global-grid-gutter-extra: () !default;
+$grid-gutter-extra: () !default;

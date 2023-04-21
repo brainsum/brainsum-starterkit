@@ -8,7 +8,8 @@
 /**
   * Imports
  */
-@import "../global.importer";
+@use "../settings";
+@use "../tools";
 
 .c-action-links {
   margin-block: 0;
@@ -21,7 +22,7 @@
     display: inline-block;
 
     a {
-      color: $global-color;
+      color: settings.$color-text;
     }
   }
 }

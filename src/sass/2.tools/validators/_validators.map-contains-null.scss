@@ -9,10 +9,14 @@
  * @type Function
  *
  * @parameter {map} $map - The given Sass map.
- * @access private
  */
-/* stylelint-disable-next-line scss/at-function-pattern */
-@function _map-contains-null($map) {
+
+/**
+ * Does Sass Map Contain a Null Key Function
+ *
+ * @parameter {map} $map - The given Sass map.
+ */
+@function map-contains-null($map) {
   @each $key, $value in $map {
     @if $key {
       @return true;

@@ -6,19 +6,20 @@
 /**
   * Imports
  */
-@import "../global.importer";
+@use "../settings";
+@use "../tools";
 
 /**
  * Settings
  */
-$tabs-tab-background        : $color-grey;
-$tabs-tab-hover-background  : $color-grey-80;
-$tabs-tab-color             : $color-light;
-$tabs-tab-hover-color       : $color-light;
-$tabs-tab-border-color      : $color-brand;
-$tabs-active-color          : $color-light;
-$tabs-active-border-size    : 0.6rem;
-$tabs-tab-font-size         : 1.4rem;
+$tab-background        : settings.$color-grey;
+$tab-hover-background  : settings.$color-grey-80;
+$tab-color             : settings.$color-light;
+$tab-hover-color       : settings.$color-light;
+$tab-border-color      : settings.$color-primary;
+$active-color          : settings.$color-light;
+$active-border-size    : 0.6rem;
+$tab-font-size         : 1.4rem;
 
 /**
  * Tab List
@@ -26,14 +27,14 @@ $tabs-tab-font-size         : 1.4rem;
 .c-tabs {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  inline-size: 100%;
   margin-block: 0;
   margin-inline: 0;
   padding-block: 0;
   padding-inline: 0;
   list-style: none;
 
-  @include breakpoint(medium) {
+  @include tools.breakpoint(medium) {
     flex-direction: row;
     flex-wrap: wrap;
   }
@@ -47,7 +48,7 @@ $tabs-tab-font-size         : 1.4rem;
     margin-block-end: -0.1rem;
     margin-inline: 0;
 
-    @include breakpoint(medium) {
+    @include tools.breakpoint(medium) {
       display: flex;
     }
 
@@ -60,7 +61,7 @@ $tabs-tab-font-size         : 1.4rem;
     .c-tabs--secondary & {
       display: block;
 
-      @include breakpoint(medium) {
+      @include tools.breakpoint(medium) {
         display: flex;
       }
     }
@@ -73,19 +74,19 @@ $tabs-tab-font-size         : 1.4rem;
     display: flex;
     flex-grow: 1;
     align-items: center;
-    height: $gutter * 3;
+    block-size: settings.$gutter * 3;
     padding-block: 0;
     padding-inline: 2.5rem;
     transition: background-color 0.2s;
     text-decoration: none;
     letter-spacing: 0.1rem;
-    color: $tabs-tab-color;
-    border-block: 0.1rem solid $tabs-tab-background;
-    border-inline: 0.1rem solid $tabs-tab-background;
-    background: $tabs-tab-background;
-    font-size: $tabs-tab-font-size;
+    color: $tab-color;
+    border-block: 0.1rem solid $tab-background;
+    border-inline: 0.1rem solid $tab-background;
+    background: $tab-background;
+    font-size: $tab-font-size;
 
-    @if $prefers-reduced-motion {
+    @if settings.$prefers-reduced-motion {
       @media screen and (prefers-reduced-motion: reduce) {
         transition: none;
       }
@@ -94,7 +95,7 @@ $tabs-tab-font-size         : 1.4rem;
     .c-tabs--secondary & {
       text-transform: none;
 
-      @include breakpoint(medium) {
+      @include tools.breakpoint(medium) {
         border-block-start-color: transparent;
         border-inline-color: transparent;
         background-color: transparent;
@@ -104,35 +105,35 @@ $tabs-tab-font-size         : 1.4rem;
     &:focus {
       position: relative;
       z-index: 1;
-      outline: solid 0.3rem $color-brand;
+      outline: solid 0.3rem settings.$color-primary;
       outline-offset: -0.3rem;
     }
 
     &:hover {
-      color: $tabs-tab-hover-color;
-      background: $tabs-tab-hover-background;
+      color: $tab-hover-color;
+      background: $tab-hover-background;
     }
 
     &.is-active {
-      @include font-smooth;
+      @include tools.font-smooth;
 
       position: relative;
-      color: $tabs-active-color;
+      color: $active-color;
       font-weight: 700;
 
       &:after {
         position: absolute;
         inset-block-end: -0.1rem;
         inset-inline-start: -0.1rem;
-        height: calc(100% + 0.2rem);
+        block-size: calc(100% + 0.2rem);
         content: "";
-        border-inline-start: $tabs-active-border-size solid $tabs-tab-border-color;
+        border-inline-start: $active-border-size solid $tab-border-color;
 
-        @include breakpoint(medium) {
+        @include tools.breakpoint(medium) {
           inset-inline-start: 0;
-          width: 100%;
-          height: auto;
-          border-block-start: $tabs-active-border-size solid $tabs-tab-border-color;
+          inline-size: 100%;
+          block-size: auto;
+          border-block-start: $active-border-size solid $tab-border-color;
           border-inline-start: 0;
         }
       }
@@ -146,26 +147,26 @@ $tabs-tab-font-size         : 1.4rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: $gutter * 3;
+    inline-size: settings.$gutter * 3;
     margin-block: 0;
     margin-inline-start: -0.1rem;
     margin-inline-end: 0;
     cursor: pointer;
-    border-block: solid 0.1rem $tabs-tab-background;
-    border-inline: solid 0.1rem $tabs-tab-background;
-    background-color: $tabs-tab-background;
+    border-block: solid 0.1rem $tab-background;
+    border-inline: solid 0.1rem $tab-background;
+    background-color: $tab-background;
 
-    @include breakpoint(medium) {
+    @include tools.breakpoint(medium) {
       display: none;
     }
 
     &:hover {
-      background-color: $tabs-tab-hover-background;
+      background-color: $tab-hover-background;
     }
 
     &:focus {
       position: relative;
-      border-color: $tabs-tab-border-color;
+      border-color: $tab-border-color;
       outline: none;
     }
 
@@ -179,18 +180,18 @@ $tabs-tab-font-size         : 1.4rem;
     &-icon {
       position: relative;
       display: block;
-      width: $gutter;
-      height: 1rem;
+      inline-size: settings.$gutter;
+      block-size: 1rem;
       margin-block-start: -0.2rem;
 
       > span {
         position: absolute;
         inset-inline-start: 0;
-        width: 100%;
+        inline-size: 100%;
         transition: transform 0.2s, opacity 0.2s, top 0.2s;
-        border-block-start: solid 0.2rem $tabs-tab-color;
+        border-block-start: solid 0.2rem $tab-color;
 
-        @if $prefers-reduced-motion {
+        @if settings.$prefers-reduced-motion {
           @media screen and (prefers-reduced-motion: reduce) {
             transition: none;
           }

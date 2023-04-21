@@ -15,9 +15,16 @@
  * the essential ones. Then you can extend (not @extend) that more properties
  * as you need, like: `flex-direction`, `justify-content` or vertical spacing.
  *
+ * **IMPORTANT!** Don't use grid mixins alone only together, or it will cause
+ * wrong paddings and even broke your layout! So please don't use just
+ * `make-grid` or `make-column` alone only both together. In case of you don't
+ * need the exact column with (e.x. `25%`), just write custom flexbox rules.
+ *
  * Let's see a semantic example for a typical responsive entry lister:
  *
  * @example
+ *   index.html
+ *
  *   <div class="o-container">
  *     <ul class="entry__list">
  *       <li class="entry">an entry</li>
@@ -28,44 +35,53 @@
  *     </ul>
  *   </div>
  *
+ *   style.scss
+ *   @use "../tools";
+ *
  *   .entry__list {
- *     @include make-grid();
+ *     @include tools.make-grid();
  *     flex-direction: row;
  *   }
  *
  *   .entry {
- *     @include make-column();
- *     @include breakpoint(medium) {
- *       @include column-size(6,12);
+ *     @include tools.make-column();
+ *     @include tools.breakpoint(medium) {
+ *       @include tools.column-size(6,12);
  *     }
 
- *     @include breakpoint(large) {
- *       @include column-size(4,12);
+ *     @include tools.breakpoint(large) {
+ *       @include tools.column-size(4,12);
  *     }
 
  *     &--double {
- *       @include breakpoint(medium) {
- *         @include column-size(6,12);
+ *       @include tools.breakpoint(medium) {
+ *         @include tools.column-size(6,12);
  *       }
 
- *       @include breakpoint(large) {
- *         @include column-size(8,12);
+ *       @include tools.breakpoint(large) {
+ *         @include tools.column-size(8,12);
  *       }
  *     }
  *   }
  */
 
+/**
+ * Imports
+ */
 @use "sass:math";
+@use "libraries";
+@use "../settings";
 
 /**
  * Settings
  *
  * We use the default global gutters for gaps between columns. But you can
- * define additional gutters. There is an empty `$tools-grid-gutter-extra`
+ * define additional gutters. There is an empty `$grid-gutter-extra`
  * Sass map for that, but if you need, you can create more.
+ * @access private
  */
-$tools-grid-gutter-default : $global-gutter-default;
-$tools-grid-gutter-extra : $global-grid-gutter-extra;
+$grid-gutter-default     : settings.$gutter-default;
+$grid-gutter-extra       : settings.$grid-gutter-extra;
 
 /**
  * Create Grid
@@ -79,8 +95,9 @@ $tools-grid-gutter-extra : $global-grid-gutter-extra;
  * @type Mixin
  * @parameter {map | number} $gutter - The gutter size between columns: with
  * the last `half` parameter this value will be divide by 2!
- * @require {mixin} _generate-unit <2.tools/libraries/generate-unit>
- * @require {mixin} _negative-unit <2.tools/libraries/negative-unit>
+ * @require {mixin} libraries.generate-unit <2.tools/libraries/generate-unit>
+ * @require {mixin} libraries.negative-unit <2.tools/libraries/negative-unit>
+ *
  *
  * Examples
  *
@@ -90,39 +107,52 @@ $tools-grid-gutter-extra : $global-grid-gutter-extra;
  * we divide that by 2 for two sides.
  *
  * @example
+ *   @use "../tools";
+ *
  *   .entry__list {
- *     @include make-grid();
+ *     @include tools.make-grid();
  *   }
  *
  * Grid with custom responsive gutters
  *
  * @example
- *   $tools-grid-gutter-extra: (
+ *   @use "../tools";
+ *
+ *   $grid-gutter-extra: (
  *       null    : .6rem,
  *       medium  : 1.2rem,
  *       large   : 2.4rem
  *   );
  *
  *   .entry__list {
- *     @include make-grid($tools-grid-gutter-extra);
+ *     @include tools.make-grid($grid-gutter-extra);
  *   }
  *
- * Grid with simple, non responsive gutters
+ * Grid with simple, non-responsive gutters
  *
  * @example
+ *   @use "../tools";
+ *
  *   .entry__list {
- *     @include make-grid(1.5rem);
+ *     @include tools.make-grid(1.5rem);
  *   }
  *
  * Grid without any gutters (collapsed)
  *
  * @example
+ *   @use "../tools";
+ *
  *   .entry__list {
- *     @include make-grid(0);
+ *     @include tools.make-grid(0);
  *   }
  */
-@mixin make-grid($gutter: $tools-grid-gutter-default) {
-  @include _generate-unit("margin", "inline", _negative-unit($gutter), half);
+@mixin make-grid($gutter: $grid-gutter-default) {
+  @include libraries.generate-unit(
+    "margin",
+    "inline",
+    libraries.negative-unit($gutter),
+    half
+  );
 
   display: flex;
   flex-wrap: wrap;
@@ -143,52 +173,63 @@ $tools-grid-gutter-extra : $global-grid-gutter-extra;
  * @type Mixin
  * @parameter {map | number} $gutter - The gutter size between columns: with
  * the last `half` parameter this value will be divide by 2!
- * @require {mixin} _generate-unit <2.tools/libraries/generate-unit>
+ * @require {mixin} libraries.generate-unit <2.tools/libraries/generate-unit>
  *
  *
  * Examples
  *
  * Columns with default gutter
  *
+ * The default gutter comes from `1.settings/_settings.grid.scss` and here
+ * we divide that by 2 for two sides.
+ *
  * @example
+ *   @use "../tools";
+ *
  *   .entry {
- *     @include make-column();
+ *     @include tools.make-column();
  *   }
  *
  * Columns with custom responsive gutters
  *
  * @example
- *   $tools-grid-gutter-extra: (
+ *   @use "../tools";
+ *
+ *   $grid-gutter-extra: (
  *       null    : .6rem,
  *       medium  : 1.2rem,
  *       large   : 2.4rem
  *   );
  *
  *   .entry {
- *     @include make-column($tools-grid-gutter-extra);
+ *     @include tools.make-column($grid-gutter-extra);
  *   }
  *
  * Columns with simple, non responsive gutters
  *
  * @example
+ *   @use "../tools";
+ *
  *   .entry {
- *     @include make-column(1.5rem);
+ *     @include tools.make-column(1.5rem);
  *   }
  *
  * Columns without any gutters (collapsed)
  *
  * @example
+ *   @use "../tools";
+ *
  *   .entry {
- *     @include make-column(0);
+ *     @include tools.make-column(0);
  *   }
  */
-@mixin make-column($gutter: $tools-grid-gutter-default) {
-  @include _generate-unit("padding", "inline", $gutter, half);
+@mixin make-column($gutter: $grid-gutter-default) {
+  @include libraries.generate-unit("padding", "inline", $gutter, half);
 
   flex-basis: auto;
   box-sizing: inherit;
-  width: 100%;
-  min-width: 0;
+  inline-size: 100%;
+  min-inline-size: 0;
 }
 
 /**
@@ -204,18 +245,20 @@ $tools-grid-gutter-extra : $global-grid-gutter-extra;
  * @type Mixin
  * @parameter {number} $column - like 4.
  * @parameter {number} $columns - like 12.
- * @require {function} _calc-column-size
+ * @require {function} calc-column-size
  *
  *
  * @example
+ *   @use "../tools";
+ *
  *   .entry {
- *     @include make-column();
- *     @include column-size(4,12);
+ *     @include tools.make-column();
+ *     @include tools.column-size(4,12);
  *   }
  */
 @mixin column-size($column, $all-columns) {
   flex: 0 0 math.percentage(math.div($column, $all-columns));
-  max-width: math.percentage(math.div($column, $all-columns));
+  max-inline-size: math.percentage(math.div($column, $all-columns));
 }
 
 /**
@@ -234,7 +277,7 @@ $tools-grid-gutter-extra : $global-grid-gutter-extra;
  * @parameter {number} $column - like 4.
  * @parameter {number} $columns - like 12.
  * @parameter {string} $position - start or end.
- * @require {function} _calc-column-size
+ * @require {function} calc-column-size
  *
  *
  * Examples
@@ -242,22 +285,26 @@ $tools-grid-gutter-extra : $global-grid-gutter-extra;
  * Push the column on left side
  *
  * @example
+ *   @use "../tools";
+ *
  *   .entry {
- *     @include make-column();
- *     @include column-size(3,12);
+ *     @include tools.make-column();
+ *     @include tools.column-size(3,12);
  *
  *     &--center {
- *       @include column-offset(3,12);
+ *       @include tools.column-offset(3,12);
  *     }
  *   }
  *
  * Pull the column on right side
  *
  * @example
+ *   @use "../tools";
+ *
  *   .article__column--center {
- *     @include make-column();
- *     @include column-size(3,12);
- *     @include column-offset(3,12, end);
+ *     @include tools.make-column();
+ *     @include tools.column-size(3,12);
+ *     @include tools.column-offset(3,12, end);
  *   }
  */
 @mixin column-offset($column, $all-columns, $position: start) {

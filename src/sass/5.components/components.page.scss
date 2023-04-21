@@ -6,15 +6,16 @@
  */
 
 /**
-  * Imports
+ * Imports
  */
-@import "../global.importer";
+@use "../settings";
+@use "../tools";
 
 .c-page {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-block-size: 100vh;
 }
 
 main {

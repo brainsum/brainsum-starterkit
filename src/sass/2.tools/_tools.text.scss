@@ -4,6 +4,7 @@
  *
  * Text block related tools
  *
+ * Part of Shake.sass.
  * @author Krisztian Pinter <krisz@keeteean.com>
  * @see 6.utilities/_utilities.text.scss for BEM based class named version
  */
@@ -11,23 +12,29 @@
 /**
  * Text-align Mixin
  *
- * @parameter {string} $align - Align value ex.: start.
- * @parameter {string} $last - Optional, align value for justify aligned last line.
+ * @parameter {string} $align - Align value ex.: left.
+ * @parameter {string} $last - Optional, align value for justify aligned last
+ * line.
+ *
  *
  * Examples
  *
  * Simple text align.
  *
  * @example
+ *   @use "../tools";
+ *
  *   .c-button {
- *     @include text-align(center);
+ *     @include tools.text-align(center);
  *   }
  *
  * Align last line of a justify text.
  *
  * @example
+ *   @use "../tools";
+ *
  *   .section__lead {
- *     @include text-align(justify, start);
+ *     @include tools.text-align(justify, left);
  *   }
  */
 @mixin text-align($align, $last: null) {
@@ -56,8 +63,10 @@
  * @link https://picturepan2.github.io/spectre/utilities/text.html
  *
  * @example
+ *   @use "../tools";
+ *
  *   .article__lead {
- *     @include text-ellipsis;
+ *     @include tools.text-ellipsis;
  *   }
  */
 @mixin text-ellipsis {
@@ -77,8 +86,10 @@
  * @link https://picturepan2.github.io/spectre/utilities/text.html
  *
  * @example
+ *   @use "../tools";
+ *
  *   .article__lead {
- *     @include text-clip;
+ *     @include tools.text-clip;
  *   }
  */
 @mixin text-clip {
@@ -92,14 +103,16 @@
  *
  * Text may be broken at arbitrary points.
  *
- * Part of Shake.sass, borrowed from Spectre.css.
+ * Borrowed from Spectre.css
  * @author Yan Zhu <picturepan2@hotmail.com>
  * @author Krisztian Pinter <krisz@keeteean.com>
  * @link https://picturepan2.github.io/spectre/utilities/text.html
  *
  * @example
+ *   @use "../tools";
+ *
  *   .article__body {
- *     @include text-break;
+ *     @include tools.text-break;
  *   }
  */
 @mixin text-break {

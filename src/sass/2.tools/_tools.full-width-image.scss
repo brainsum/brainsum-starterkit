@@ -1,0 +1,44 @@
+/**
+ * @file
+ * Full Width Image Tool
+ *
+ * Apply it to an img element or use Utility version of it.
+ * You will need a parent element with relative position.
+ *
+ * @parameter {string} $fit - Object-fit property. You can use `cover` or
+ * `contain`. Default is `cover`.
+ *
+ * @example
+ *   @use "../tools";
+ *
+ *   .c-slider {
+ *     &__slide {
+ *       position: relative;
+ *
+ *       img {
+ *         @include tools.full-width-image(contain);
+ *       }
+ *     }
+ *   }
+ */
+
+/**
+ * Full Width Image mixin
+ * @parameter {string} $fit - Object-fit property. You can use `cover` or
+ *   `contain`. Default is `cover`.
+ */
+@mixin full-width-image($fit: cover) {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  object-position: center;
+
+  @if $fit == cover {
+    object-fit: cover;
+  }
+
+  @if $fit == contain {
+    object-fit: contain;
+  }
+}

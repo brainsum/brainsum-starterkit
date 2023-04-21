@@ -29,7 +29,7 @@ $font-family--system: -apple-system,
   "Segoe UI Symbol",
   "Noto Color Emoji" !default;
 
-// Monospace font-stack: required by 3.base/_base.reset
+// Monospace font-stack
 $font-family--monospace: "SFMono-Regular",
   "Menlo",
   "Monaco",
@@ -43,13 +43,13 @@ $font-family--monospace: "SFMono-Regular",
  * Font-stacks by functions
  */
 $primary-font-family        : "Open Sans", $font-family--system !default;
-$global-font-family--code   : $font-family--monospace !default;
+$code-font-family           : $font-family--monospace !default; // required by 3.base/_base.reset
 $heading-font-family        : $primary-font-family !default;
 
 /**
  * Line-height
  */
-$global-line-height         : 1.2;
+$line-height                : 1.2 !default;
 
 /**
  * Responsive font sizes
@@ -57,14 +57,14 @@ $global-line-height         : 1.2;
  * @example
  *   breakpoint-name: ( font-size, optional-line-height )
  *
- * Breakpoint names come from $global-breakpoints declared in
+ * Breakpoint names come from $breakpoints declared in
  * `1.settings/_settings.breakpoints`.
  *
  * 'null' means no breakpoint (default)
 */
 
 // Body (global) Font-size
-$global-font-size: (
+$default-font-size: (
   null: (
     1.4rem,
     1.6

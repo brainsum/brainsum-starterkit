@@ -8,13 +8,14 @@
 /**
   * Imports
  */
-@import "../global.importer";
+@use "../settings";
+@use "../tools";
 
 /* File icons. */
 
 .file {
   display: inline-block;
-  min-height: 1.6rem;
+  min-block-size: 1.6rem;
   padding-inline-start: 2rem;
   background-repeat: no-repeat;
   background-position: left center; // RTL

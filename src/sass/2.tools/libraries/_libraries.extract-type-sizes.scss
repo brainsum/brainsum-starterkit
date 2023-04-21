@@ -9,14 +9,20 @@
  *
  * @type Mixin
  *
- * @parameter {Map} $sizes - font-sizes and line-heights
- * @access private
+ * @parameter {map} $sizes - font-sizes and line-heights
  */
 
+/**
+ * Imports
+ */
 @use "sass:list";
 
-/* stylelint-disable-next-line scss/at-mixin-pattern */
-@mixin _extract-type-sizes($sizes) {
+/**
+ * Extract Type Sizes Mixin
+ *
+ * @parameter {map} $sizes - font-sizes and line-heights
+ */
+@mixin extract-type-sizes($sizes) {
   @if length($sizes) == 2 {
     font-size: list.nth($sizes, 1);
     line-height: list.nth($sizes, 2);

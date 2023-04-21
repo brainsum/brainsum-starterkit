@@ -6,7 +6,8 @@
 /**
   * Imports
  */
-@import "../global.importer";
+@use "../settings";
+@use "../tools";
 
 .path-subpage {
   // only subpage related rules

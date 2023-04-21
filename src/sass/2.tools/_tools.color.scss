@@ -15,9 +15,19 @@
  *
  *
  * @example
- *  @include colors($body-color, $body-background);
+ *   @use "../settings";
+ *   @use "../tools";
+ *
+ *  @include tools.colors(settings.$color-text, settings.$color-background);
  */
-@mixin colors($color, $bgcolor) {
+
+/**
+ * Colors mixin
+ *
+ * @parameter {string} $color - Color variable.
+ * @parameter {string} $background-color - Background color variable.
+ */
+@mixin colors($color, $background-color) {
   color: $color;
-  background-color: $bgcolor;
+  background-color: $background-color;
 }

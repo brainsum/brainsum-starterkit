@@ -8,9 +8,10 @@
 /**
   * Imports
  */
-@import "../global.importer";
+@use "../settings";
+@use "../tools";
 
 .c-button,
 input.button {
-  @include button;
+  @include tools.button;
 }

@@ -9,9 +9,13 @@
  * @type Function
  *
  * @parameter {string | number | map} $number - The given css value.
- * @access private
  */
-/* stylelint-disable-next-line scss/at-function-pattern */
-@function _is-map($map) {
+
+/**
+ * Is Sass Map Function
+ *
+ * @parameter {string | number | map} $map - The given css value.
+ */
+@function is-map($map) {
   @return type-of($map) == "map";
 }

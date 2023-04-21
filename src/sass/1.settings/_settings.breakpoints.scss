@@ -17,7 +17,7 @@
  * }
  *
  */
-$global-breakpoints: (
+$breakpoints: (
   xsmall    : "screen and (min-width: 23em)",     // 368px
   small     : "screen and (min-width: 36em)",     // 576px
   medium    : "screen and (min-width: 48em)",     // 768px
@@ -25,7 +25,7 @@ $global-breakpoints: (
   xlarge    : "screen and (min-width: 75em)",     // 1200px
   xxlarge   : "screen and (min-width: 90em)",     // 1440px
   xxxlarge  : "screen and (min-width: 112.5em)"   // 1800px
-);
+) !default;
 
 /**
  * Default breakpoint suffix
@@ -36,7 +36,7 @@ $global-breakpoints: (
  *
  * @type String
  */
-$global-breakpoint-separator: \@;
+$breakpoint-separator: \@;
 
 /**
  * Sample for custom breakpoints
@@ -83,4 +83,4 @@ $max-width: (
   xlarge    : "screen and (max-width: 74.94em)",    // 1199px
   xxlarge   : "screen and (max-width: 89.94em)",    // 1439px
   xxxlarge  : "screen and (max-width: 112.44em)"    // 1799px
-);
+) !default;

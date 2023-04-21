@@ -4,15 +4,19 @@
  *
  * Check the given value's type is color or not.
  *
- * Part of Shake.sass, borrowed from Bourbon.
+ * Part of Shake.sass, borrowed from bourbon.
  *
  * @type Function
  *
  * @parameter {string | number | map} $color - The given css value.
  * @return {boolean}
- * @access private
  */
-/* stylelint-disable-next-line scss/at-function-pattern */
-@function _is-color($color) {
+
+/**
+ * Is Color Function
+ *
+ * @parameter {string | number | map} $color - The given css value.
+ */
+@function is-color($color) {
   @return (type-of($color) == color) or ($color == "currentColor");
 }

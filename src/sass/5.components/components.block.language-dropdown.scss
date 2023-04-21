@@ -8,41 +8,44 @@
 /**
   * Imports
  */
-@import "../global.importer";
+@use "../settings";
+@use "../tools";
 
 .c-block-dropdown-language {
   display: flex;
   align-items: center;
-  padding: 0.4rem 0.3rem;
+  padding-block: 0.4rem;
+  padding-inline: 0.3rem;
 
   .language-link {
-    @include font-smooth;
+    @include tools.font-smooth;
 
     display: block;
-    padding: 1rem 1.1rem;
+    padding-block: 1rem;
+    padding-inline: 1.1rem;
     cursor: pointer;
-    color: $color-brand;
+    color: settings.$color-primary;
     font-size: 1.4rem;
   }
 
   .dropdown {
-    @include global-transition;
+    @include tools.global-transition;
 
     position: absolute;
     z-index: 700;
     overflow: hidden;
-    height: auto;
-    max-height: 0;
+    block-size: auto;
+    max-block-size: 0;
     opacity: 0;
-    background: $color-brand;
+    background: settings.$color-primary;
 
     &.is-active {
-      max-height: 10rem;
+      max-block-size: 10rem;
       opacity: 1;
     }
 
     .language-link {
-      color: $color-light;
+      color: settings.$color-light;
     }
   }
 
@@ -52,15 +55,14 @@
     }
 
     &__icon {
-      @include global-transition;
+      @include tools.global-transition;
 
       position: absolute;
-      top: 2.1rem;
-      right: -1rem;
+      inset-block-start: 2.1rem;
+      inset-inline-end: -1rem;
       display: block;
-      margin-top: -0.5rem;
+      margin-block-start: -0.5rem;
       cursor: pointer;
-      fill: $color-brand;
     }
   }
 

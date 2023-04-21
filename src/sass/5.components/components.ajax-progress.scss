@@ -8,13 +8,15 @@
 /**
   * Imports
  */
-@import "../global.importer";
+@use "../settings";
+@use "../tools";
 
 /**
  * Settings
  */
-$ajax-color     : $color-brand;
-$throbber-size  : $gutter;
+$ajax-color     : settings.$color-primary;
+$ajax-border    : 0.1rem solid settings.$color-grey-60;
+$throbber-size  : settings.$gutter;
 
 .ajax-progress {
   display: inline-block;
@@ -40,7 +42,7 @@ $throbber-size  : $gutter;
   position: relative;
   display: inline-flex;
   align-content: center;
-  height: $throbber-size;
+  block-size: $throbber-size;
   margin-block-start: -0.3rem;
   margin-block-end: 0;
   margin-inline: $throbber-size * 0.5;
@@ -49,7 +51,7 @@ $throbber-size  : $gutter;
   line-height: $throbber-size;
 
   .throbber {
-    @include square($throbber-size);
+    @include tools.square($throbber-size);
 
     border-width: 0.2rem;
     border-color: $ajax-color transparent $ajax-color $ajax-color;
@@ -67,17 +69,17 @@ $throbber-size  : $gutter;
  * Full screen throbber.
  */
 .ajax-progress-fullscreen {
-  @include circle(5.6rem);
+  @include tools.circle(5.6rem);
 
   position: fixed;
+  z-index: 1000;
   inset-block-start: 50%;
   inset-inline-start: 50%;
-  z-index: 1000;
   margin-block: -2.8rem;
   margin-inline: -2.8rem;
-  border-block: 0.1rem solid $color-grey-60;
-  border-inline: 0.1rem solid $color-grey-60;
-  background-color: $color-light;
+  border-block: $ajax-border;
+  border-inline: $ajax-border;
+  background-color: settings.$color-light;
   box-shadow: 0 0.4rem 1rem rgba(34, 35, 48, 0.1); /* LTR */
 
   [dir="rtl"] & {
@@ -85,7 +87,7 @@ $throbber-size  : $gutter;
   }
 
   &:before {
-    @include square(2.8rem);
+    @include tools.square(2.8rem);
 
     position: absolute;
     inset-block-start: 50%;
@@ -102,13 +104,13 @@ $throbber-size  : $gutter;
  */
 .ajax-progress-throbber .throbber,
 .ajax-progress-fullscreen::before {
-  @include round(50%);
+  @include tools.round(50%);
 
   animation: ajax-throbber 0.75s linear infinite;
   border-style: solid dotted solid solid;
   border-color: $ajax-color transparent $ajax-color $ajax-color;
 
-  @if $prefers-reduced-motion {
+  @if settings.$prefers-reduced-motion {
     @media screen and (prefers-reduced-motion: reduce) {
       animation: none;
     }

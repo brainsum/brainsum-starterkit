@@ -8,16 +8,17 @@
 /**
   * Imports
  */
-@import "../global.importer";
+@use "../settings";
+@use "../tools";
 
 /**
  * Settings
  */
-$vertical-tabs-menu-width         : 24rem;
-$vertical-tabs-menu-border-width  : 0.1rem;
+$menu-width         : 24rem;
+$menu-border-width  : 0.1rem;
 
 .vertical-tabs {
-  @include breakpoint(large) {
+  @include tools.breakpoint(large) {
     display: flex;
   }
 
@@ -27,41 +28,40 @@ $vertical-tabs-menu-border-width  : 0.1rem;
     margin-block: 0;
     margin-inline: 0;
     list-style: none;
-    border-width: $vertical-tabs-menu-border-width;
+    border-width: $menu-border-width;
     border-style: solid;
-    border-color: $color-grey-20;
+    border-color: settings.$color-grey-20;
 
-    @include breakpoint(large) {
-      width: $vertical-tabs-menu-width;
-      border-width: $vertical-tabs-menu-border-width 0 $vertical-tabs-menu-border-width $vertical-tabs-menu-border-width;
+    @include tools.breakpoint(large) {
+      inline-size: $menu-width;
+      border-width: $menu-border-width 0 $menu-border-width $menu-border-width;
     }
 
     &-item {
       &:nth-child(n+2) {
-        border-block-start: $vertical-tabs-menu-border-width solid $color-grey-20;
+        border-block-start: $menu-border-width solid settings.$color-grey-20;
       }
 
       a {
         display: block;
-        padding-block: $gutter * 0.5;
-        padding-inline-start: $gutter * 0.75;
-        padding-inline-end: $gutter * 0.75;
+        padding-block: settings.$gutter * 0.5;
+        padding-inline: settings.$gutter * 0.75;
         text-decoration: none;
-        background-color: $color-grey-20;
+        background-color: settings.$color-grey-20;
 
         &:focus,
         &:hover,
         &:active {
-          background-color: $color-grey-10;
+          background-color: settings.$color-grey-10;
         }
       }
 
       &.is-selected {
-        background-color: $color-light;
+        background-color: settings.$color-light;
 
-        @include breakpoint(large) {
-          margin-inline-end: calc($vertical-tabs-menu-border-width * -1);
-          padding-inline-end: $vertical-tabs-menu-border-width;
+        @include tools.breakpoint(large) {
+          margin-inline-end: calc($menu-border-width * -1);
+          padding-inline-end: $menu-border-width;
         }
 
         a {
@@ -78,21 +78,21 @@ $vertical-tabs-menu-border-width  : 0.1rem;
   }
 
   &__panes {
-    margin-block-start: calc($vertical-tabs-menu-border-width * -1);
+    margin-block-start: calc($menu-border-width * -1);
 
-    @include breakpoint(large) {
-      width: calc(100% - $vertical-tabs-menu-width);
+    @include tools.breakpoint(large) {
+      inline-size: calc(100% - $menu-width);
       margin-block-start: 0;
     }
   }
 
   &__pane {
-    @include breakpoint(large) {
-      min-height: 100%;
+    @include tools.breakpoint(large) {
+      min-block-size: 100%;
     }
 
     &.c-details {
-      @include round(0);
+      @include tools.round(0);
 
       margin-block: 0;
       margin-inline: 0;

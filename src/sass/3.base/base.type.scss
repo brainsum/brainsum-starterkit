@@ -5,12 +5,12 @@
  * Theming text elements.
  */
 
-@use "sass:color";
-
 /**
   * Imports
  */
-@import "../global.importer";
+@use "sass:color";
+@use "../settings";
+@use "../tools";
 
 /**
  * Settings
@@ -19,39 +19,55 @@
 /**
  * Global selected text
  */
-$base-selected-text             : true;
-$base-selected-text-color       : $color-light;
-$base-selected-text-background  : $color-brand;
+$selected-text                     : true !default;
+$selected-text-color               : settings.$color-light !default;
+$selected-text-background          : settings.$color-primary !default;
 
 /**
  * Paragraph margins
  */
-$base-paragraph-margins         : true;
-$base-paragraph-margin-size     : 1em;
+$paragraph-margins                 : true !default;
+$paragraph-margin-size             : 1em !default;
 
 /**
  * Inline and Code Blocks
  */
-$base-code-tab-size             : 2;
+$code-tab-size                     : 2 !default;
+
+/**
+ * Classless typography settings
+ */
+
+// Responsive font-size
+$classless-headings-fontsize       : true !default;
+
+// Heading font-family
+$classless-headings-fontfamily     : true !default;
+
+// Margins and padding for ordered and ordered lists
+$classless-lists-margins-paddings  : true !default;
+
+// link element (see details below)
+$classless-link-element            : true !default;
 
 /**
  * Global Link Element
  */
 
 // :link, :visited states
-$base-link-color                : $color-brand;
+$link-color                        : settings.$color-primary !default;
 
 // link color type @see link mixin in 2.tools/_link
-$base-link-type                 : light !default;
+$link-type                         : light !default;
 
 // :visited state effect @see link mixin in 2.tools/_link
-$base-link-visited              : visited !default;
+$link-visited                      : visited !default;
 
 // underlined links
-$base-link-text-decoration      : none;
+$link-text-decoration              : none !default;
 
 // outlined links in :focus state
-$base-link-outline              : initial;
+$link-outline                      : none !default;
 
 /**
  * Base typography
@@ -62,9 +78,9 @@ html {
 }
 
 body {
-  @include type($global-font-size);
+  @include tools.type(settings.$default-font-size);
 
-  font-family: $primary-font-family;
+  font-family: settings.$primary-font-family;
   font-weight: 400;
 }
 
@@ -75,19 +91,19 @@ body {
 /**
  * Styling selected text
  */
-@if $base-selected-text == true {
+@if $selected-text {
   ::selection {
-    @include colors($base-selected-text-color, $base-selected-text-background);
+    @include tools.colors($selected-text-color, $selected-text-background);
   }
 }
 
 /**
  * Paragraph Element
  */
-@if $base-paragraph-margins == true {
+@if $paragraph-margins {
   p {
     &:not(:last-child) {
-      margin-block-end: $base-paragraph-margin-size;
+      margin-block-end: $paragraph-margin-size;
     }
   }
 }
@@ -104,63 +120,75 @@ var {
   word-spacing: normal;
   word-wrap: normal;
   word-break: normal;
-  tab-size: $base-code-tab-size;
+  tab-size: $code-tab-size;
   hyphens: none;
 }
 
 /**
  * Global Link Element
  */
-a:not([class]) {
-  @include link(
-    $base-link-color,
-    $base-link-type,
-    $base-link-visited,
-    $base-link-text-decoration,
-    $base-link-outline
-  );
+@if $classless-link-element {
+  a:not([class]) {
+    @include tools.link(
+      $link-color,
+      $link-type,
+      $link-visited,
+      $link-text-decoration,
+      $link-outline
+    );
+  }
 }
 
 /**
  * Default Heading
  */
 
-h1:not([class]),
-h2:not([class]),
-h3:not([class]),
-h4:not([class]),
-h5:not([class]),
-h6:not([class]) {
-  font-family: $heading-font-family;
+@if $classless-headings-fontfamily {
+  h1:not([class]),
+  h2:not([class]),
+  h3:not([class]),
+  h4:not([class]),
+  h5:not([class]),
+  h6:not([class]) {
+    font-family: settings.$heading-font-family;
+  }
 }
 
-h1:not([class]) {
-  @include type($heading1-font-size);
+@if $classless-headings-fontsize {
+  h1:not([class]) {
+    @include tools.type(settings.$heading1-font-size);
+  }
+
+  h2:not([class]) {
+    @include tools.type(settings.$heading2-font-size);
+  }
+
+  h3:not([class]) {
+    @include tools.type(settings.$heading3-font-size);
+  }
+
+  h4:not([class]) {
+    @include tools.type(settings.$heading4-font-size);
+  }
+
+  h5:not([class]) {
+    @include tools.type(settings.$heading5-font-size);
+  }
+
+  h6:not([class]) {
+    @include tools.type(settings.$heading6-font-size);
+  }
 }
 
-h2:not([class]) {
-  @include type($heading2-font-size);
-}
-
-h3:not([class]) {
-  @include type($heading3-font-size);
-}
-
-h4:not([class]) {
-  @include type($heading4-font-size);
-}
-
-h5:not([class]) {
-  @include type($heading5-font-size);
-}
-
-h6:not([class]) {
-  @include type($heading6-font-size);
-}
-
-ul:not([class]),
-ol:not([class]) {
-  margin-block: 1em;
-  margin-inline: 0;
-  padding-inline-start: 1.1em;
+/**
+ * Global List Elements
+ */
+@if $classless-lists-margins-paddings {
+  ul:not([class]),
+  ol:not([class]),
+  menu:not([class]) {
+    margin-block: 1em;
+    margin-inline: 0;
+    padding-inline-start: 1.1em;
+  }
 }

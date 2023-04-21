@@ -6,8 +6,9 @@
 /**
   * Imports
  */
-@import "../global.importer";
+@use "../settings";
+@use "../tools";
 
 .path-frontpage {
-  // here come any homepage-only theming rules
+  // here should go any homepage-only theming rules
 }

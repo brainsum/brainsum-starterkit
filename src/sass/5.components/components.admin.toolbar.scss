@@ -7,25 +7,26 @@
 /**
   * Imports
  */
-@import "../global.importer";
+@use "../settings";
+@use "../tools";
 
 /**
  * Settings
  */
-$toolbar-link-color         : #565656;
-$toolbar-accent-state-color : $color-dark;
+$link-color         : #565656;
+$accent-state-color : settings.$color-dark;
 
 #toolbar-administration {
   font-size: 1.3rem;
 }
 
 .toolbar-tray a {
-  color: $toolbar-link-color;
+  color: $link-color;
 
   &:hover,
   &:active,
   &:focus,
   &.is-active {
-    color: $toolbar-accent-state-color;
+    color: $accent-state-color;
   }
 }
