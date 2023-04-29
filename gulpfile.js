@@ -11,6 +11,7 @@ const eslint = require('gulp-eslint-new');
 const gulp = require('gulp');
 const postcss = require('gulp-postcss');
 const postcssPresetEnv = require('postcss-preset-env');
+const prettier = require('gulp-prettier');
 const sassGlob = require('gulp-sass-glob');
 const sass = require('gulp-sass')(require('sass'));
 const sorting = require('postcss-sorting');
@@ -87,6 +88,7 @@ function sassCompileDev(done) {
     .src(config.paths.styles.src)
     .pipe(sourcemaps.init())
     .pipe(sassGlob())
+    .pipe(prettier())
     .pipe(
       sass.sync({
         outputStyle: 'expanded',
@@ -111,6 +113,7 @@ function sassCompileProd(done) {
     .src(config.paths.styles.src)
     .pipe(sassGlob())
     .pipe(stylelint(config.stylelint))
+    .pipe(prettier())
     .pipe(
       sass.sync({
         outputStyle: 'compressed',
@@ -156,6 +159,7 @@ function scriptsDev(done) {
     .pipe(sourcemaps.init())
     .pipe(eslint({ fix: true }))
     .pipe(eslint.format())
+    .pipe(prettier())
     .pipe(
       babel({
         presets: ['@babel/env'],
@@ -178,6 +182,7 @@ function scriptsProd(done) {
     .src(config.paths.scripts.src)
     .pipe(eslint({ fix: true }))
     .pipe(eslint.format())
+    .pipe(prettier())
     .pipe(
       babel({
         presets: ['@babel/env'],

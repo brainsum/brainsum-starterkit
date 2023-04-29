@@ -14,7 +14,7 @@
    * Initialize the primary tabs.
    *
    * @param { HTMLElement } el
-    * The DOM element containing the primary tabs.
+   * The DOM element containing the primary tabs.
    */
   function init(el) {
     var tabs = el.querySelector('.c-tabs');
@@ -25,7 +25,7 @@
      * Determines if primary tabs are expanded for mobile layouts.
      *
      * @return { boolean }
-      * Whether the tabs trigger element is expanded.
+     * Whether the tabs trigger element is expanded.
      */
     function isTabsMobileLayout() {
       return tabs.querySelector('.c-tabs__trigger').clientHeight > 0;
