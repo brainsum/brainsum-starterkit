@@ -5,7 +5,9 @@
 
 ((Drupal, once) => {
   const init = (el) => {
-    const mainNav = document.querySelector('[data-drupal-selector="menu--main"]');
+    const mainNav = document.querySelector(
+      '[data-drupal-selector="menu--main"]',
+    );
     const parentItem = document.querySelectorAll('.c-menu__item--has-children');
     const activeClass = 'is-active';
 
@@ -54,13 +56,10 @@
         'navigation',
         '[data-drupal-selector="header"]',
         context,
-      )
-        .shift();
+      ).shift();
 
       if (header) {
-        context
-          .querySelectorAll('.c-hamburger')
-          .forEach((el) => init(el));
+        context.querySelectorAll('.c-hamburger').forEach((el) => init(el));
       }
     },
   };

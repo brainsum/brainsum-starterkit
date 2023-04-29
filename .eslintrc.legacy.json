@@ -18,7 +18,7 @@
   "rules": {
     "array-bracket-spacing": ["error", "never"],
     "block-scoped-var": "error",
-    "brace-style": ["error", "stroustrup", {"allowSingleLine": true}],
+    "brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
     "comma-dangle": ["error", "never"],
     "comma-spacing": "error",
     "comma-style": ["error", "last"],
@@ -27,11 +27,14 @@
     "eol-last": "error",
     "eqeqeq": ["error", "smart"],
     "guard-for-in": "error",
-    "indent": ["error", 2, {"SwitchCase": 1}],
-    "key-spacing": ["error", {"beforeColon": false, "afterColon": true}],
-    "keyword-spacing": ["error", {"before": true, "after": true}],
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "key-spacing": ["error", { "beforeColon": false, "afterColon": true }],
+    "keyword-spacing": ["error", { "before": true, "after": true }],
     "linebreak-style": ["error", "unix"],
-    "lines-around-comment": ["error", {"beforeBlockComment": true, "afterBlockComment": false}],
+    "lines-around-comment": [
+      "error",
+      { "beforeBlockComment": true, "afterBlockComment": false }
+    ],
     "new-parens": "error",
     "no-array-constructor": "error",
     "no-caller": "error",
@@ -65,16 +68,19 @@
     "no-undef-init": "error",
     "no-undefined": "error",
     "no-unused-expressions": "error",
-    "no-unused-vars": ["error", {"vars": "all", "args": "none"}],
+    "no-unused-vars": ["error", { "vars": "all", "args": "none" }],
     "no-with": "error",
     "object-curly-spacing": ["error", "never"],
     "one-var": ["error", "never"],
     "quote-props": ["error", "consistent-as-needed"],
     "quotes": ["error", "single", "avoid-escape"],
     "semi": ["error", "always"],
-    "semi-spacing": ["error", {"before": false, "after": true}],
+    "semi-spacing": ["error", { "before": false, "after": true }],
     "space-before-blocks": ["error", "always"],
-    "space-before-function-paren": ["error", {"anonymous": "always", "named": "never"}],
+    "space-before-function-paren": [
+      "error",
+      { "anonymous": "always", "named": "never" }
+    ],
     "space-in-parens": ["error", "never"],
     "space-infix-ops": "error",
     "space-unary-ops": ["error", { "words": true, "nonwords": false }],
@@ -82,12 +88,15 @@
     "strict": ["error", "function"],
     "yoda": ["error", "never"],
     "max-nested-callbacks": ["warn", 3],
-    "valid-jsdoc": ["warn", {
-      "prefer": {
-        "returns": "return",
-        "property": "prop"
-      },
-      "requireReturn": false
-    }]
+    "valid-jsdoc": [
+      "warn",
+      {
+        "prefer": {
+          "returns": "return",
+          "property": "prop"
+        },
+        "requireReturn": false
+      }
+    ]
   }
 }

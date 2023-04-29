@@ -16,48 +16,48 @@
  * Named colors stored as shades. If it's possible choose from these colors
  * only.
  */
-$color-dark             : #000;
-$color-light            : #fff;
+$color-dark: #000;
+$color-light: #fff;
 
 // default grey color
-$color-grey             : #333;
+$color-grey: #333;
 
 /**
  * Different shades of the default grey color
  */
-$color-grey-120         : color.scale($color-grey, $lightness: -20%); // darkest grey
-$color-grey-110         : color.scale($color-grey, $lightness: -10%);
-$color-grey-100         : $color-grey;                                // default grey
-$color-grey-90          : color.scale($color-grey, $lightness: 10%);
-$color-grey-80          : color.scale($color-grey, $lightness: 20%);
-$color-grey-70          : color.scale($color-grey, $lightness: 30%);
-$color-grey-60          : color.scale($color-grey, $lightness: 40%);
-$color-grey-50          : color.scale($color-grey, $lightness: 50%);
-$color-grey-40          : color.scale($color-grey, $lightness: 60%);
-$color-grey-30          : color.scale($color-grey, $lightness: 70%);
-$color-grey-20          : color.scale($color-grey, $lightness: 80%);
-$color-grey-10          : color.scale($color-grey, $lightness: 90%); // lightest grey
+$color-grey-120: color.scale($color-grey, $lightness: -20%); // darkest grey
+$color-grey-110: color.scale($color-grey, $lightness: -10%);
+$color-grey-100: $color-grey; // default grey
+$color-grey-90: color.scale($color-grey, $lightness: 10%);
+$color-grey-80: color.scale($color-grey, $lightness: 20%);
+$color-grey-70: color.scale($color-grey, $lightness: 30%);
+$color-grey-60: color.scale($color-grey, $lightness: 40%);
+$color-grey-50: color.scale($color-grey, $lightness: 50%);
+$color-grey-40: color.scale($color-grey, $lightness: 60%);
+$color-grey-30: color.scale($color-grey, $lightness: 70%);
+$color-grey-20: color.scale($color-grey, $lightness: 80%);
+$color-grey-10: color.scale($color-grey, $lightness: 90%); // lightest grey
 
 /**
  * Design needed global color definitions
  */
-$color-blue             : #0091cc;
-$color-turquoise        : #66d1ca;
-$color-turquoise--dark  : #40c5bb;
-$color-green            : #6ae96a;
-$color-yellow           : #f7ca00;
-$color-orange           : #fda408;
-$color-red              : #fd4f46;
+$color-blue: #0091cc;
+$color-turquoise: #66d1ca;
+$color-turquoise--dark: #40c5bb;
+$color-green: #6ae96a;
+$color-yellow: #f7ca00;
+$color-orange: #fda408;
+$color-red: #fd4f46;
 
 /**
  * Global colors by functions
  */
-$color-brand            : $color-yellow;
-$color-primary          : $color-blue;
-$color-secondary        : $color-turquoise;
-$color-text             : $color-dark;
-$color-background       : $color-light;
-$color-success          : $color-green;
-$color-warning          : $color-orange;
-$color-error            : $color-red;
-$color-note             : $color-secondary;
+$color-brand: $color-yellow;
+$color-primary: $color-blue;
+$color-secondary: $color-turquoise;
+$color-text: $color-dark;
+$color-background: $color-light;
+$color-success: $color-green;
+$color-warning: $color-orange;
+$color-error: $color-red;
+$color-note: $color-secondary;

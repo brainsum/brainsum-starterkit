@@ -18,8 +18,8 @@
  *   @include square(6rem);
  */
 @mixin square($value) {
-  width: $value;
-  height: $value;
+  inline-size: $value;
+  block-size: $value;
 }
 
 /**
@@ -50,8 +50,8 @@
  *   @include circle(6rem);
  */
 @mixin circle($value) {
-  width: $value;
-  height: $value;
+  inline-size: $value;
+  block-size: $value;
   border-start-start-radius: $value * 0.5;
   border-start-end-radius: $value * 0.5;
   border-end-end-radius: $value * 0.5;

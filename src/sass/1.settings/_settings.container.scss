@@ -13,11 +13,12 @@
 /**
  * Default container
  */
+// prettier-ignore
 $container-size-default     : (
-  null        : 90%,
-  small       : 91%,
-  medium      : 93%,
-  large       : 129.6rem
+  null    : 90%,
+  small   : 91%,
+  medium  : 93%,
+  large   : 129.6rem
 ) !default;
 
 /**
@@ -36,7 +37,7 @@ $container-size-default     : (
  *     )
  *   );
  */
-$container-size-extra     : () !default;
+$container-size-extra: () !default;
 
 /**
  * Default container gutters
@@ -63,7 +64,7 @@ $container-size-extra     : () !default;
  *   );
  */
 
-$container-gutter-default  : $gutter-default !default;
+$container-gutter-default: $gutter-default !default;
 
 /**
  * Additional container gutters

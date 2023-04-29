@@ -14,8 +14,8 @@
 /**
  * Settings
  */
-$menu-width         : 24rem;
-$menu-border-width  : 0.1rem;
+$menu-width: 24rem;
+$menu-border-width: 0.1rem;
 
 .vertical-tabs {
   @include tools.breakpoint(large) {
@@ -38,7 +38,7 @@ $menu-border-width  : 0.1rem;
     }
 
     &-item {
-      &:nth-child(n+2) {
+      &:nth-child(n + 2) {
         border-block-start: $menu-border-width solid settings.$color-grey-20;
       }
 

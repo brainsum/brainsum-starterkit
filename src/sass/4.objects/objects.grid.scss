@@ -68,8 +68,8 @@
 /**
  * Namespace settings
  */
-$class          : "o-grid" !default;
-$class-mod      : $class + "--" !default;
+$class: "o-grid" !default;
+$class-mod: $class + "--" !default;
 
 /**
  * Additional grid gutters
@@ -106,7 +106,7 @@ $class-mod      : $class + "--" !default;
  *     </div>
  *   </div>
  */
-$gutter-extra    : settings.$grid-gutter-extra !default;
+$gutter-extra: settings.$grid-gutter-extra !default;
 
 /**
  * Grid Object

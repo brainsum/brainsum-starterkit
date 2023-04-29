@@ -16,58 +16,61 @@
  * Settings
  */
 
+/* prettier-ignore-start */
+
 /**
  * Global selected text
  */
-$selected-text                     : true !default;
-$selected-text-color               : settings.$color-light !default;
-$selected-text-background          : settings.$color-primary !default;
+$selected-text: true !default;
+$selected-text-color: settings.$color-light !default;
+$selected-text-background: settings.$color-primary !default;
 
 /**
  * Paragraph margins
  */
-$paragraph-margins                 : true !default;
-$paragraph-margin-size             : 1em !default;
+$paragraph-margins: true !default;
+$paragraph-margin-size: 1em !default;
 
 /**
  * Inline and Code Blocks
  */
-$code-tab-size                     : 2 !default;
+$code-tab-size: 2 !default;
 
 /**
  * Classless typography settings
  */
 
 // Responsive font-size
-$classless-headings-fontsize       : true !default;
+$classless-headings-fontsize: true !default;
 
 // Heading font-family
-$classless-headings-fontfamily     : true !default;
+$classless-headings-fontfamily: true !default;
 
 // Margins and padding for ordered and ordered lists
-$classless-lists-margins-paddings  : true !default;
+$classless-lists-margins-paddings: true !default;
 
 // link element (see details below)
-$classless-link-element            : true !default;
+$classless-link-element: true !default;
 
 /**
  * Global Link Element
  */
 
 // :link, :visited states
-$link-color                        : settings.$color-primary !default;
+$link-color: settings.$color-primary !default;
 
 // link color type @see link mixin in 2.tools/_link
-$link-type                         : light !default;
+$link-type: light !default;
 
 // :visited state effect @see link mixin in 2.tools/_link
-$link-visited                      : visited !default;
+$link-visited: visited !default;
 
 // underlined links
-$link-text-decoration              : none !default;
+$link-text-decoration: none !default;
 
 // outlined links in :focus state
-$link-outline                      : none !default;
+$link-outline: none !default;
+/* prettier-ignore-end */
 
 /**
  * Base typography
@@ -129,13 +132,7 @@ var {
  */
 @if $classless-link-element {
   a:not([class]) {
-    @include tools.link(
-      $link-color,
-      $link-type,
-      $link-visited,
-      $link-text-decoration,
-      $link-outline
-    );
+    @include tools.link($link-color, $link-type, $link-visited, $link-text-decoration, $link-outline);
   }
 }
 

@@ -16,7 +16,7 @@ For each specific site function, block, region, component or page create a scrip
 ```
 
 However, Drupal will aggregate all JavaScript files, but if you need
-you can merge multiple files into one with the __.babel__ function:
+you can merge multiple files into one with the **.babel** function:
 
 ```js
 .babel(['src/js/function1.js', 'src/js/function2.js'], 'js/merged-funtions.js')

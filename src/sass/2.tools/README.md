@@ -6,8 +6,8 @@ Required Sass functions and mixins for tools and other sass files.
 The must be imported before settings (Sass variables)!
 
 ```scss
-@import "2.tools/tools._helpers";
-@import "2.tools/tools.variable";
+@import '2.tools/tools._helpers';
+@import '2.tools/tools.variable';
 ```
 
 ## Settings
@@ -20,7 +20,7 @@ Local configurations should be contained into the modules (objects,
 components, etc.) that are related to.
 
 ```scss
-@import "1.settings/settings._all";
+@import '1.settings/settings._all';
 ```
 
 **IMPORTANT! These global tools are imported by `_global.importer.scss` Sass

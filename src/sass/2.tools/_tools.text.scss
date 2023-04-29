@@ -42,9 +42,7 @@
     text-align: $align !important; // for Edge
     text-align-last: $last !important;
     hyphens: auto;
-  }
-
-  @else {
+  } @else {
     text-align: $align !important;
   }
 }

@@ -17,20 +17,12 @@
 /**
  * Settings
  */
-$progress-bar-color         : settings.$color-primary;
+$progress-bar-color: settings.$color-primary;
 $progress-track-border-color: settings.$color-grey-30;
-$progress-track-background  : settings.$color-grey-10
-  linear-gradient(
-    #e7e7df,
-    #f0f0f0
-  );
-$progress-bar-border-color  : $progress-bar-color;
-$progress-bar-background    : color.adjust($progress-bar-color, $lightness: 15%)
-  linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0.15)
-  ),
+$progress-track-background: settings.$color-grey-10 linear-gradient(#e7e7df, #f0f0f0);
+$progress-bar-border-color: $progress-bar-color;
+$progress-bar-background: color.adjust($progress-bar-color, $lightness: 15%)
+    linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)),
   linear-gradient(
     to right bottom,
     color.adjust($progress-bar-color, $lightness: 30%) 0%,

@@ -52,9 +52,7 @@
           @include breakpoint($breakpoint-name) {
             #{$property + $suffix}: $size * 0.5;
           }
-        }
-
-        @else {
+        } @else {
           @include breakpoint($breakpoint-name) {
             #{$property + $suffix}: $size;
           }
@@ -65,9 +63,7 @@
     @if validators.map-contains-null($units) {
       @if $half == half {
         #{$property + $suffix}: map.get($units, null) * 0.5;
-      }
-
-      @else {
+      } @else {
         #{$property + $suffix}: map.get($units, null);
       }
     }

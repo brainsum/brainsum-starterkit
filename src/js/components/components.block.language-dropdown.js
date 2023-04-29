@@ -19,7 +19,7 @@
     const dropdownHandling = (e) => {
       const wrapper = e.currentTarget.closest('.c-dropbutton__wrapper');
 
-      if (typeof (wrapper) !== 'undefined' && wrapper !== null) {
+      if (typeof wrapper !== 'undefined' && wrapper !== null) {
         e.preventDefault();
         e.stopPropagation();
 
@@ -61,7 +61,9 @@
 
       if (languageBlock) {
         context
-          .querySelectorAll('.js-block-dropdown-language .c-dropbutton__wrapper')
+          .querySelectorAll(
+            '.js-block-dropdown-language .c-dropbutton__wrapper',
+          )
           .forEach((el) => init(el));
       }
     },

@@ -80,8 +80,8 @@
  * Sass map for that, but if you need, you can create more.
  * @access private
  */
-$grid-gutter-default     : settings.$gutter-default;
-$grid-gutter-extra       : settings.$grid-gutter-extra;
+$grid-gutter-default: settings.$gutter-default;
+$grid-gutter-extra: settings.$grid-gutter-extra;
 
 /**
  * Create Grid
@@ -147,12 +147,7 @@ $grid-gutter-extra       : settings.$grid-gutter-extra;
  *   }
  */
 @mixin make-grid($gutter: $grid-gutter-default) {
-  @include libraries.generate-unit(
-    "margin",
-    "inline",
-    libraries.negative-unit($gutter),
-    half
-  );
+  @include libraries.generate-unit("margin", "inline", libraries.negative-unit($gutter), half);
 
   display: flex;
   flex-wrap: wrap;
@@ -310,9 +305,7 @@ $grid-gutter-extra       : settings.$grid-gutter-extra;
 @mixin column-offset($column, $all-columns, $position: start) {
   @if $position == start {
     margin-inline-start: math.percentage(math.div($column, $all-columns));
-  }
-
-  @else if $position == end {
+  } @else if $position == end {
     margin-inline-end: math.percentage(math.div($column, $all-columns));
   }
 }

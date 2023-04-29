@@ -1,0 +1,8 @@
+.vscode/**/*
+css/**/*
+js/**/*
+node_modules/**/*
+templates/**/*
+**/*.php
+*.theme
+*.yml

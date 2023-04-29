@@ -12,7 +12,7 @@
    * Initialize the primary tabs.
    *
    * @param { HTMLElement } el
-    * The DOM element containing the primary tabs.
+   * The DOM element containing the primary tabs.
    */
   function init(el) {
     const tabs = el.querySelector('.c-tabs');
@@ -23,7 +23,7 @@
      * Determines if primary tabs are expanded for mobile layouts.
      *
      * @return { boolean }
-      * Whether the tabs trigger element is expanded.
+     * Whether the tabs trigger element is expanded.
      */
     function isTabsMobileLayout() {
       return tabs.querySelector('.c-tabs__trigger').clientHeight > 0;
@@ -45,7 +45,10 @@
       }
     }
 
-    if (isTabsMobileLayout() && !activeTab.matches('.c-tabs__tab:first-child')) {
+    if (
+      isTabsMobileLayout() &&
+      !activeTab.matches('.c-tabs__tab:first-child')
+    ) {
       const newActiveTab = activeTab.cloneNode(true);
       const firstTab = tabs.querySelector('.c-tabs__tab:first-child');
       tabs.insertBefore(newActiveTab, firstTab);
@@ -67,10 +70,7 @@
    */
   Drupal.behaviors.brainsumStarterkitTabs = {
     attach(context) {
-      once('tabs', '[data-drupal-nav-primary-tabs]', context)
-        .forEach(
-          init,
-        );
+      once('tabs', '[data-drupal-nav-primary-tabs]', context).forEach(init);
     },
   };
 })(Drupal, once);

@@ -1,8 +1,5 @@
 {
-  "extends": [
-    "./.eslintrc.json",
-    "./.eslintrc.jquery.json"
-  ],
+  "extends": ["./.eslintrc.json", "./.eslintrc.jquery.json"],
   "rules": {
     "no-shadow": "off",
     "no-new": "off",

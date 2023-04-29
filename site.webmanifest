@@ -1,21 +1,21 @@
 {
-    "name": "Brainsum",
-    "short_name": "Brainsum",
-    "icons": [
-        {
-            "src": "/themes/custom/brainsum_starterkit/images/favicon/android-chrome-192x192.png?v=2023",
-            "sizes": "192x192",
-            "type": "image/png",
-            "purpose": "any"
-        },
-        {
-            "src": "/themes/custom/brainsum_starterkit/images/favicon/android-chrome-384x384.png?v=2023",
-            "sizes": "384x384",
-            "type": "image/png",
-            "purpose": "any"
-        }
-    ],
-    "theme_color": "#ffdd0b",
-    "background_color": "#ffdd0b",
-    "display": "standalone"
+  "name": "Brainsum",
+  "short_name": "Brainsum",
+  "icons": [
+    {
+      "src": "/themes/custom/brainsum_starterkit/images/favicon/android-chrome-192x192.png?v=2023",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/themes/custom/brainsum_starterkit/images/favicon/android-chrome-384x384.png?v=2023",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "theme_color": "#ffdd0b",
+  "background_color": "#ffdd0b",
+  "display": "standalone"
 }

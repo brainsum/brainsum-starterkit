@@ -1,16 +1,16 @@
 # BRAINSUM's Drupal 8-9 startertheme
 
-* Created by: [Krisztian Pinter](kpinter@brainsum.com)
-* Created in: 2020.
-* Updated on: 2022.01.21.
+- Created by: [Krisztian Pinter](kpinter@brainsum.com)
+- Created in: 2020.
+- Updated on: 2022.01.21.
 
 ## Table of Contents
 
-* Introduction
-* What will you need to work with this theme?
-* Theme installation
-* Theme overview
-* Working with this theme
+- Introduction
+- What will you need to work with this theme?
+- Theme installation
+- Theme overview
+- Working with this theme
 
 ## Introduction
 
@@ -29,12 +29,12 @@ is also incorporated witch is a ITCSS- and BEMit-based Sass-only framework.
 
 ## What will you need to work with this theme?
 
-* Installed Composer
-* Installed Drush
-* Installed Drupal 8-9 via Composer
-* [Set asset-packagist to composer.json](https://www.drupal.org/docs/develop/using-composer/using-composer-to-install-drupal-and-manage-dependencies#third-party-libraries) of Drupal
-* Installed node.js (min. v14)
-* Installed yarn or npm (Drupal Community recommends Yarn.)
+- Installed Composer
+- Installed Drush
+- Installed Drupal 8-9 via Composer
+- [Set asset-packagist to composer.json](https://www.drupal.org/docs/develop/using-composer/using-composer-to-install-drupal-and-manage-dependencies#third-party-libraries) of Drupal
+- Installed node.js (min. v14)
+- Installed yarn or npm (Drupal Community recommends Yarn.)
 
 ## Theme installation
 
@@ -57,22 +57,22 @@ to try it you can rename it to `starter_theme`. From this when see
 it's `starter_theme`. After you choose your theme name, rename
 `starter_theme` **everywhere** to your chosen machine name, but here is a list:
 
-* directory name,
-* `*.yml` files and `.theme` file names,
-* global library name in `info.yml` file,
-* breakpoint prefix name in `breakpoints.yml` file,
-* all hook prefix in `.theme` file, library name and in the path variable:
+- directory name,
+- `*.yml` files and `.theme` file names,
+- global library name in `info.yml` file,
+- breakpoint prefix name in `breakpoints.yml` file,
+- all hook prefix in `.theme` file, library name and in the path variable:
   `$variables['starter_theme_path'] = drupal_get_path('theme', 'starter_theme');`,
-* `themeRoot` variable in `tools.webfontloading.js`,
-* prefix name of Drupal.behaviors in components JavaScrtipt files,
-* name of main menu block in `components.navigation.js`,
-* usage comment in `base.global.js` file,
-* `theme_root` variable in `font-face*.scss` files
-* library name in library attaches in twigs: `field--text-long`, `form`, `html`,
+- `themeRoot` variable in `tools.webfontloading.js`,
+- prefix name of Drupal.behaviors in components JavaScrtipt files,
+- name of main menu block in `components.navigation.js`,
+- usage comment in `base.global.js` file,
+- `theme_root` variable in `font-face*.scss` files
+- library name in library attaches in twigs: `field--text-long`, `form`, `html`,
   `status-messages`, `menu-local-tasks`,
-* includes in twigs: `html`, `page`, `block--system-menu-block.html.twig`,
-* `starter_theme_path` in `includes/preload` twig,
-* usage comment in `icon` macro twig file
+- includes in twigs: `html`, `page`, `block--system-menu-block.html.twig`,
+- `starter_theme_path` in `includes/preload` twig,
+- usage comment in `icon` macro twig file
 
 You need at least v14. nodejs for this theme. You can use nvm for that:
 
@@ -107,9 +107,9 @@ environment in `webpack.mix.js` file:
 Set code quality tools in your code editor / IDE (all config files are in the
 theme's root):
 
-* ESlint
-* Prettier
-* StyleLint
+- ESlint
+- Prettier
+- StyleLint
 
 Set proper theme development settings: disable caching and aggregation but
 turned on Twig debug. See in [official documentation](https://www.drupal.org/node/2598914).
@@ -122,7 +122,7 @@ To enable auto-fix function on save for Stylelint
 
 Put this to your user/project config file:
 
-``` json
+```json
 "editor.formatOnSave": false,
 "editor.codeActionsOnSave": {
   "source.fixAll.stylelint": true
@@ -140,13 +140,13 @@ Then hit the `+` button and choose the first <custom> one
 
 In the new file watch window fill the fields:
 
-* Name: whatever you want
-* File type: choose SCSS
-* Scope: Project Files
-* Program: path to stylelint execute file in npm_modules directory like: `ProjectFileDir$/web/themes/custom/clinic/node_modules/.bin/stylelint`
-* Arguments: `$FilePath$ --fix`
-* Output paths to refresh: `$ProjectFileDir$`
-* open down Advanced options, then uncheck _Auto-save edited files to trigger the watcher_
+- Name: whatever you want
+- File type: choose SCSS
+- Scope: Project Files
+- Program: path to stylelint execute file in npm_modules directory like: `ProjectFileDir$/web/themes/custom/clinic/node_modules/.bin/stylelint`
+- Arguments: `$FilePath$ --fix`
+- Output paths to refresh: `$ProjectFileDir$`
+- open down Advanced options, then uncheck _Auto-save edited files to trigger the watcher_
 
 ![create new File Watcher window](https://i.imgur.com/DJ0NzYl.png)
 
@@ -158,13 +158,13 @@ To generate CSS files, we use Sass. You can find all source Sass files in the
 `src/sass/` directory. We organize all Sass files according to ITCSS and
 SMACSS, such as:
 
- 1. **settings:** we store all _global_ variables here,
- 1. **tools:** all _global_ functions, mixins,
- 1. **base:** CSS reset and theming HTML elements,
- 1. **objects:** layout and non-content related very generic items,
- 1. **components:** all content-related items,
- 1. **utilities:** class-based _global_ tools,
- 1. **pages:** page specific theming rules, avoid to use them, use components
+1.  **settings:** we store all _global_ variables here,
+1.  **tools:** all _global_ functions, mixins,
+1.  **base:** CSS reset and theming HTML elements,
+1.  **objects:** layout and non-content related very generic items,
+1.  **components:** all content-related items,
+1.  **utilities:** class-based _global_ tools,
+1.  **pages:** page specific theming rules, avoid to use them, use components
     whenever you can
 
 There is a `_global.importer.scss` file in the sass root: we need to import it
@@ -190,11 +190,11 @@ must go to `src/js/` directory. Then we transform them with Babel.js into ES5
 form to the `js/` directory. All JS files are categorized according to
 SMACSS/ITCSS rules:
 
-* **base:** for very generic functions
-* **tools:** functions to solve a specific problem but not related a component/block
-* **objects:** very generic, layout-related functions
-* **components:** components related functions (the most will come here)
-* **theme:** theming related functions
+- **base:** for very generic functions
+- **tools:** functions to solve a specific problem but not related a component/block
+- **objects:** very generic, layout-related functions
+- **components:** components related functions (the most will come here)
+- **theme:** theming related functions
 
 Because we have use Drupal libraries, **we must create JS files for each
 library.**
@@ -257,11 +257,11 @@ We use [Laravel Mix](https://laravel-mix.com/) as frontend automation tool. It
 will generate CSS and compiled JavaScript files for us. You can found all scripts
 in `package.json` file, but here is a recap:
 
-* `dev`: compile all css and js files at once (no watch) in dev version,
-* `watch`: compile and watching for all css and js files,
-* `hot`: hot module replacement, we don't use it for Drupal,
-* `prod`: compile all css and js files at once for production (leave it for Drupal),
-* `start`: same as watch, this is for Brainsum coding standard: start for developing
+- `dev`: compile all css and js files at once (no watch) in dev version,
+- `watch`: compile and watching for all css and js files,
+- `hot`: hot module replacement, we don't use it for Drupal,
+- `prod`: compile all css and js files at once for production (leave it for Drupal),
+- `start`: same as watch, this is for Brainsum coding standard: start for developing
 
 So for local developing just run in theme's root (after `nvm use` if you use nvm):
 

@@ -3,6 +3,8 @@
  * Grid Object Settings
  */
 
+/* prettier-ignore */
+
 /**
  * Gutter
  */
@@ -10,16 +12,16 @@
 /**
  * Define Gutter Sizes
  */
-$gutter         : 1.5rem;      // 15px
-$gutter--2x     : $gutter * 2; // 30px
-$gutter--4x     : $gutter * 4; // 60px
+$gutter: 1.5rem; // 15px
+$gutter--2x: $gutter * 2; // 30px
+$gutter--4x: $gutter * 4; // 60px
 
 /**
  * Responsive Aliases for Gutters
  */
-$gutter--small  : $gutter !default;
-$gutter--medium : $gutter--2x !default;
-$gutter--large  : $gutter--4x !default;
+$gutter--small: $gutter !default;
+$gutter--medium: $gutter--2x !default;
+$gutter--large: $gutter--4x !default;
 
 /**
  * Default gutters
@@ -29,10 +31,11 @@ $gutter--large  : $gutter--4x !default;
  *
  * @type Number | List | Map
  */
+// prettier-ignore
 $gutter-default: (
-  null          : $gutter--small,
-  small         : $gutter--medium,
-  large         : $gutter--large
+  null  : $gutter--small,
+  small : $gutter--medium,
+  large : $gutter--large
 ) !default;
 
 /**

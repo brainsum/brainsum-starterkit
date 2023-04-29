@@ -14,15 +14,18 @@
  * Settings
  */
 
+/* prettier-ignore-start */
+
 /**
  * Body colors
  *
  * Set text- and background-color to body. Turn this off if you need anything
  * else background property than background-color, like background-image.
  */
-$body-colors               : true !default;
-$body-color                 : settings.$color-text !default;
-$body-background-color      : settings.$color-background !default;
+$body-colors: true !default;
+$body-color: settings.$color-text !default;
+$body-background-color: settings.$color-background !default;
+/* prettier-ignore-end */
 
 html {
   overflow-x: hidden;

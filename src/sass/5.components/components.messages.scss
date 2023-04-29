@@ -14,14 +14,14 @@
 /**
  * Settings
  */
-$icon-size         : 3.2rem;
-$close-icon-size   : 2.5rem;
-$color             : settings.$color-light;
-$color--error      : settings.$color-error;
-$color--warning    : settings.$color-warning;
-$color--status     : settings.$color-note;
-$color--info       : settings.$color-note;
-$focus-color       : settings.$color-note;
+$icon-size: 3.2rem;
+$close-icon-size: 2.5rem;
+$color: settings.$color-light;
+$color--error: settings.$color-error;
+$color--warning: settings.$color-warning;
+$color--status: settings.$color-note;
+$color--info: settings.$color-note;
+$focus-color: settings.$color-note;
 
 .c-messages {
   min-block-size: $icon-size + settings.$gutter--2x;

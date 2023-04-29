@@ -2,20 +2,20 @@
  * Import required node modules and other external files
  */
 require('dotenv').config();
-const autoprefixer         = require('autoprefixer');
-const babel               = require('gulp-babel');
-const browserSync         = require('browser-sync').create();
-const cssnano             = require('cssnano');
-const cssnanoLite         = require('cssnano-preset-lite');
-const eslint              = require('gulp-eslint-new');
-const gulp                = require('gulp');
-const postcss             = require('gulp-postcss');
-const postcssPresetEnv    = require('postcss-preset-env');
-const sassGlob            = require('gulp-sass-glob');
-const sass                = require('gulp-sass')(require('sass'));
-const sorting             = require('postcss-sorting');
-const sourcemaps          = require('gulp-sourcemaps');
-const stylelint           = require('@ronilaukkarinen/gulp-stylelint');
+const autoprefixer = require('autoprefixer');
+const babel = require('gulp-babel');
+const browserSync = require('browser-sync').create();
+const cssnano = require('cssnano');
+const cssnanoLite = require('cssnano-preset-lite');
+const eslint = require('gulp-eslint-new');
+const gulp = require('gulp');
+const postcss = require('gulp-postcss');
+const postcssPresetEnv = require('postcss-preset-env');
+const sassGlob = require('gulp-sass-glob');
+const sass = require('gulp-sass')(require('sass'));
+const sorting = require('postcss-sorting');
+const sourcemaps = require('gulp-sourcemaps');
+const stylelint = require('@ronilaukkarinen/gulp-stylelint');
 
 /**
  * Gulp config
@@ -23,11 +23,11 @@ const stylelint           = require('@ronilaukkarinen/gulp-stylelint');
 const config = {
   paths: {
     styles: {
-      src : './src/sass/**/*.scss',
+      src: './src/sass/**/*.scss',
       dest: './css/',
     },
     scripts: {
-      src : './src/js/**/*.js',
+      src: './src/js/**/*.js',
       dest: './js/',
     },
   },
@@ -35,37 +35,35 @@ const config = {
     preset: [
       'lite',
       {
-        discardDuplicates  : true,
-        discardOverridden  : true,
-        mergeRules         : true,
-        normalizeCharset   : true,
-        normalizeString    : true,
+        discardDuplicates: true,
+        discardOverridden: true,
+        mergeRules: true,
+        normalizeCharset: true,
+        normalizeString: true,
         normalizeWhitespace: false,
       },
     ],
   },
   postcssPresetEnv: {
-    stage   : 3,
+    stage: 3,
     preserve: false,
   },
   stylelint: {
     reporters: [
       {
         formatter: 'verbose',
-        console  : true,
+        console: true,
       },
     ],
-    debug         : true,
+    debug: true,
     failAfterError: false,
-    fix           : true,
+    fix: true,
   },
   browserSync: {
-    proxy   : process.env.BROWSERSYC_PROXY,
+    proxy: process.env.BROWSERSYC_PROXY,
     autoOpen: false,
-    notify  : true,
-    browsers: [
-      'Google Chrome',
-    ],
+    notify: true,
+    browsers: ['Google Chrome'],
   },
 };
 
@@ -89,10 +87,12 @@ function sassCompileDev(done) {
     .src(config.paths.styles.src)
     .pipe(sourcemaps.init())
     .pipe(sassGlob())
-    .pipe(sass.sync({
-      outputStyle: 'expanded',
-      precision  : 10,
-    }))
+    .pipe(
+      sass.sync({
+        outputStyle: 'expanded',
+        precision: 10,
+      }),
+    )
     .on('error', sass.logError)
     .pipe(
       postcss([
@@ -111,10 +111,12 @@ function sassCompileProd(done) {
     .src(config.paths.styles.src)
     .pipe(sassGlob())
     .pipe(stylelint(config.stylelint))
-    .pipe(sass.sync({
-      outputStyle: 'compressed',
-      precision  : 10,
-    }))
+    .pipe(
+      sass.sync({
+        outputStyle: 'compressed',
+        precision: 10,
+      }),
+    )
     .on('error', sass.logError)
     .pipe(
       postcss([
@@ -136,8 +138,7 @@ function sassCompileProd(done) {
  * executing that done function tells Gulp "a hint to tell it when the task is done".
  */
 function sassLintTask(done) {
-  gulp.src(config.paths.styles.src)
-    .pipe(stylelint(config.stylelint));
+  gulp.src(config.paths.styles.src).pipe(stylelint(config.stylelint));
   done();
 }
 
@@ -157,9 +158,7 @@ function scriptsDev(done) {
     .pipe(eslint.format())
     .pipe(
       babel({
-        presets: [
-          '@babel/env',
-        ],
+        presets: ['@babel/env'],
       }),
     )
     .pipe(sourcemaps.write('.'))
@@ -181,9 +180,7 @@ function scriptsProd(done) {
     .pipe(eslint.format())
     .pipe(
       babel({
-        presets: [
-          '@babel/env',
-        ],
+        presets: ['@babel/env'],
       }),
     )
     .pipe(gulp.dest(config.paths.scripts.dest));
@@ -199,10 +196,10 @@ function scriptsProd(done) {
  */
 function browserSyncTask(done) {
   browserSync.init({
-    proxy  : config.browserSync.proxy,
-    open   : config.browserSync.autoOpen,
+    proxy: config.browserSync.proxy,
+    open: config.browserSync.autoOpen,
     browser: config.browserSync.browsers,
-    files  : [
+    files: [
       './css/**/*',
       './js/**/*',
       './templates/**/*',
@@ -226,29 +223,18 @@ function browserSyncReloadTask(done) {
 }
 
 // Watching with Sync Task
-const watch = () => gulp.watch(
-  [
-    config.paths.styles.src,
-    config.paths.scripts.src,
-  ],
-  gulp.series(
-    sassCompileDev,
-    scriptsDev,
-    browserSyncReloadTask,
-  ),
-);
+const watch = () =>
+  gulp.watch(
+    [config.paths.styles.src, config.paths.scripts.src],
+    gulp.series(sassCompileDev, scriptsDev, browserSyncReloadTask),
+  );
 
 // Watching without Sync Task
-const watchNoSync = () => gulp.watch(
-  [
-    config.paths.styles.src,
-    config.paths.scripts.src,
-  ],
-  gulp.series(
-    sassCompileDev,
-    scriptsDev,
-  ),
-);
+const watchNoSync = () =>
+  gulp.watch(
+    [config.paths.styles.src, config.paths.scripts.src],
+    gulp.series(sassCompileDev, scriptsDev),
+  );
 
 // Define complex tasks
 compileTask = gulp.parallel(sassCompileDev, scriptsDev);

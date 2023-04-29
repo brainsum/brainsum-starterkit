@@ -14,9 +14,9 @@
 /**
  * Settings
  */
-$ajax-color     : settings.$color-primary;
-$ajax-border    : 0.1rem solid settings.$color-grey-60;
-$throbber-size  : settings.$gutter;
+$ajax-color: settings.$color-primary;
+$ajax-border: 0.1rem solid settings.$color-grey-60;
+$throbber-size: settings.$gutter;
 
 .ajax-progress {
   display: inline-block;

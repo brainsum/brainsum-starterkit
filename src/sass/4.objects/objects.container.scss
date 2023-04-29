@@ -79,8 +79,8 @@
 /**
  * Namespace settings
  */
-$class          : "o-container" !default;
-$class-mod      : $class + "--" !default;
+$class: "o-container" !default;
+$class-mod: $class + "--" !default;
 
 /**
  * Additional container gutters
@@ -107,7 +107,7 @@ $class-mod      : $class + "--" !default;
  *
  *   <div class"o-container--large">...</div>
  */
-$gutter-extra   : settings.$container-gutter-extra !default;
+$gutter-extra: settings.$container-gutter-extra !default;
 
 /**
  * Additional container sizes
@@ -133,7 +133,7 @@ $gutter-extra   : settings.$container-gutter-extra !default;
  *
  *   <div class"o-container--large">...</div>
  */
-$size-extra     : settings.$container-size-extra !default;
+$size-extra: settings.$container-size-extra !default;
 
 // Default Container Object
 .#{$class} {

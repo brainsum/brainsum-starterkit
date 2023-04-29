@@ -146,16 +146,16 @@
  *
  * @type String
  */
-$fixed                : "fixed" !default;
-$fluid                : "fluid" !default;
-$reversed            : "reversed" !default;
-$align-middle        : "middle" !default;
-$align-bottom        : "bottom" !default;
-$responsive          : "responsive" !default;
-$class-media         : "o-media" !default;
-$class-media-mod     : $class-media + "--" !default;
-$class-media-fixed    : $class-media + "__" + $fixed !default;
-$class-media-fluid    : $class-media + "__" + $fluid !default;
+$fixed: "fixed" !default;
+$fluid: "fluid" !default;
+$reversed: "reversed" !default;
+$align-middle: "middle" !default;
+$align-bottom: "bottom" !default;
+$responsive: "responsive" !default;
+$class-media: "o-media" !default;
+$class-media-mod: $class-media + "--" !default;
+$class-media-fixed: $class-media + "__" + $fixed !default;
+$class-media-fluid: $class-media + "__" + $fluid !default;
 
 /**
  * Default gutter size
@@ -164,7 +164,7 @@ $class-media-fluid    : $class-media + "__" + $fluid !default;
  *
  * @type Number | Map
  */
-$gutter-default       : settings.$gutter-default !default;
+$gutter-default: settings.$gutter-default !default;
 
 /**
  * Extra gutters map
@@ -179,7 +179,7 @@ $gutter-default       : settings.$gutter-default !default;
  *
  * @type Map
  */
-$gutter-extra         : () !default;
+$gutter-extra: () !default;
 
 /**
  * Reverse columns order
@@ -190,7 +190,7 @@ $gutter-extra         : () !default;
  *
  * @type Boolean
  */
-$is-reversed          : false !default;
+$is-reversed: false !default;
 
 /**
  * Alignment
@@ -202,7 +202,7 @@ $is-reversed          : false !default;
  *
  * @type Boolean
  */
-$is-aligned           : false !default;
+$is-aligned: false !default;
 
 /**
  * Responsive
@@ -214,7 +214,7 @@ $is-aligned           : false !default;
  *
  * @type Boolean
  */
-$is-responsive        : false !default;
+$is-responsive: false !default;
 
 /**
  * Collapsing
@@ -223,7 +223,7 @@ $is-responsive        : false !default;
  *
  * @type Number
  */
-$collapse-at          : 47.93em !default; // 767px
+$collapse-at: 47.93em !default; // 767px
 
 /**
  * Flex Media Object
@@ -286,9 +286,7 @@ $collapse-at          : 47.93em !default; // 767px
       & > .#{$class-media-fixed} {
         @if $is-reversed == true {
           @include libraries.generate-unit("margin", "block-start", $gutter-default);
-        }
-
-        @else {
+        } @else {
           @include libraries.generate-unit("margin", "block-end", $gutter-default);
         }
       }

@@ -17,6 +17,8 @@
  * }
  *
  */
+
+// prettier-ignore
 $breakpoints: (
   xsmall    : "screen and (min-width: 23em)",     // 368px
   small     : "screen and (min-width: 36em)",     // 576px
@@ -75,6 +77,7 @@ $breakpoint-separator: \@;
 /**
  * max-width
  */
+// prettier-ignore
 $max-width: (
   xsmall    : "screen and (max-width: 22.94em)",    // 367px
   small     : "screen and (max-width: 35.94em)",    // 575px

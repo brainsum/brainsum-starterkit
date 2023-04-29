@@ -67,13 +67,7 @@
  *   default: `none`.*
  * @parameter {string} $outline - Optional outline for `:focus` state; default: `initial`.*
  */
-@mixin link(
-  $color,
-  $type: light,
-  $visited: none,
-  $text-decoration: none,
-  $outline: initial,
-) {
+@mixin link($color, $type: light, $visited: none, $text-decoration: none, $outline: initial) {
   @include transitions.global-transition;
 
   color: $color;
@@ -97,9 +91,7 @@
         color: color.adjust($color, $lightness: 15%);
       }
     }
-  }
-
-  @else {
+  } @else {
     &:visited {
       color: $color;
     }

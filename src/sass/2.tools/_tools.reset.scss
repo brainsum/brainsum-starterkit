@@ -348,9 +348,7 @@ $button-element: false !default;
   small {
     @if $small-size {
       font-size: inherit; // 1
-    }
-
-    @else {
+    } @else {
       font-size: 80%; // 2
     }
   }
@@ -533,7 +531,6 @@ $button-element: false !default;
     [type="submit"]:-moz-focusring {
       outline: 0.1rem dotted ButtonText;
     }
-
 
     /**
      * 1. Change the border, margin, and padding in all browsers (opinionated)..

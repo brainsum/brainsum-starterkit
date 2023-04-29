@@ -26,9 +26,7 @@
   @if length($sizes) == 2 {
     font-size: list.nth($sizes, 1);
     line-height: list.nth($sizes, 2);
-  }
-
-  @else {
+  } @else {
     font-size: $sizes;
   }
 }
