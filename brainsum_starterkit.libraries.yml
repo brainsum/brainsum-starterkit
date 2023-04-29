@@ -19,8 +19,7 @@ global:
       css/6.utilities/utilities.text.css: {}
       css/6.utilities/utilities.video.css: {}
       css/6.utilities/utilities.visibility.css: {}
-  js:
-    js/tools/tools.svgxuse.js: {}
+# js:
 #    js/base/base.global.js: {}
 
 admin.toolbar:
