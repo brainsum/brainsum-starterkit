@@ -51,11 +51,11 @@ $line-height: 1.2 !default;
 $default-font-size: (
   null: (
     1.4rem,
-    1.6,
+    1.6
   ),
   medium: (
-    1.6rem,
-  ),
+    1.6rem
+  )
 ) !default;
 
 /**
@@ -64,51 +64,51 @@ $default-font-size: (
 // H1 Font size
 $heading1-font-size: (
   null: (
-    4rem,
+    4rem
   ),
   medium: (
-    6rem,
-  ),
+    6rem
+  )
 ) !default;
 
 // H2 Font size
 $heading2-font-size: (
   null: (
-    2.7rem,
+    2.7rem
   ),
   medium: (
-    5.4rem,
-  ),
+    5.4rem
+  )
 ) !default;
 
 // H3 Font size
 $heading3-font-size: (
   null: (
-    2.4rem,
+    2.4rem
   ),
   medium: (
-    3.6rem,
-  ),
+    3.6rem
+  )
 ) !default;
 
 // H4 Font size
 $heading4-font-size: (
   null: (
-    2.1rem,
+    2.1rem
   ),
   medium: (
-    2.7rem,
-  ),
+    2.7rem
+  )
 ) !default;
 
 // H5 Font size
 $heading5-font-size: (
   null: (
-    1.8rem,
+    1.8rem
   ),
   medium: (
-    2.4rem,
-  ),
+    2.4rem
+  )
 ) !default;
 
 // H6 Font size
@@ -118,45 +118,45 @@ $heading6-font-size: 1.2rem !default;
 $paragraph-font-size: (
   null: (
     1.4rem,
-    1.71,
+    1.71
   ),
   medium: (
     1.6rem,
-    2.25,
-  ),
+    2.25
+  )
 ) !default;
 
 // Code Font-size
 $code-font-size: (
   null: (
     1.4rem,
-    2,
+    2
   ),
   medium: (
-    1.6rem,
-  ),
+    1.6rem
+  )
 ) !default;
 
 // Form Input Font-size
 $input-font-size: (
   null: (
     1.6rem,
-    1.5,
+    1.5
   ),
   medium: (
     1.6rem,
-    1.2,
-  ),
+    1.2
+  )
 ) !default;
 
 // Form Label Font-size
 $label-font-size: (
   null: (
     1.4rem,
-    1.5,
+    1.5
   ),
   medium: (
     1.4rem,
-    1.2,
-  ),
+    1.2
+  )
 ) !default;
