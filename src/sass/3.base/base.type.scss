@@ -6,7 +6,7 @@
  */
 
 /**
-  * Imports
+ * Imports
  */
 @use "sass:color";
 @use "../settings";
@@ -15,8 +15,6 @@
 /**
  * Settings
  */
-
-/* prettier-ignore-start */
 
 /**
  * Global selected text
@@ -70,7 +68,6 @@ $link-text-decoration: none !default;
 
 // outlined links in :focus state
 $link-outline: none !default;
-/* prettier-ignore-end */
 
 /**
  * Base typography

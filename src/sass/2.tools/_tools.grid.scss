@@ -78,7 +78,6 @@
  * We use the default global gutters for gaps between columns. But you can
  * define additional gutters. There is an empty `$grid-gutter-extra`
  * Sass map for that, but if you need, you can create more.
- * @access private
  */
 $grid-gutter-default: settings.$gutter-default;
 $grid-gutter-extra: settings.$grid-gutter-extra;

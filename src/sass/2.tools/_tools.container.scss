@@ -35,7 +35,6 @@
  * gutter sizes.
  *
  * @type Number | List | Map
- * @access private
  */
 $container-gutter-default: settings.$container-gutter-default;
 
@@ -46,9 +45,7 @@ $container-gutter-default: settings.$container-gutter-default;
  * map in case you would like to specify a responsive size.
  *
  * @type String | Map
- * @access private
  */
-
 $container-size-default: settings.$container-size-default;
 
 /**
@@ -58,7 +55,6 @@ $container-size-default: settings.$container-size-default;
  *
  * @type Mixin
  * @parameter {number | map} $size - Padding values.
- * @access private
  */
 @mixin container-padding($size) {
   @include libraries.generate-unit("padding", "inline", $size);
@@ -71,7 +67,6 @@ $container-size-default: settings.$container-size-default;
  *
  * @type Mixin
  * @parameter {number | map} $size - Max-width values.
- * @access private
  */
 @mixin container-size($size) {
   @include libraries.generate-unit("max", "width", $size);

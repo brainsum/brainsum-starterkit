@@ -15,8 +15,11 @@
  * You must declare the font color, other rules optionally.
  *
  * @example
- *  @include autofill($color-primary) {
- *    background: lighten($color-primary, 30%);
+ *   @use "../settings";
+ *   @use "../tools";
+ *
+ *   @include tools.autofill(settings.$color-primary) {
+ *     background: lighten(settings.$color-primary, 30%);
  *  }
  */
 @mixin autofill($color) {

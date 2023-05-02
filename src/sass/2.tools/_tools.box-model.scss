@@ -15,28 +15,13 @@
  * @parameter {string} $value - Amount of desired width and height in any unit.
  *
  * @example
- *   @include square(6rem);
+ *   @use "../tools";
+ *
+ *   @include tools.square(6rem);
  */
 @mixin square($value) {
   inline-size: $value;
   block-size: $value;
-}
-
-/**
- * Rounding mixin
- *
- * Use it, when you need to achieve the same four rounded corners.
- *
- * @parameter {string} $radius - The radius value for all four corners.
- *
- * @example
- *   @include round(0.4rem);
- */
-@mixin round($radius) {
-  border-start-start-radius: $radius;
-  border-start-end-radius: $radius;
-  border-end-end-radius: $radius;
-  border-end-start-radius: $radius;
 }
 
 /**
@@ -47,13 +32,12 @@
  * @parameter {string} $value - Amount of desired width and height in any unit.
  *
  * @example
+ *   @use "../tools";
+ *
  *   @include circle(6rem);
  */
 @mixin circle($value) {
   inline-size: $value;
   block-size: $value;
-  border-start-start-radius: $value * 0.5;
-  border-start-end-radius: $value * 0.5;
-  border-end-end-radius: $value * 0.5;
-  border-end-start-radius: $value * 0.5;
+  border-radius: $value * 0.5;
 }

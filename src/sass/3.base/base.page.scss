@@ -14,8 +14,6 @@
  * Settings
  */
 
-/* prettier-ignore-start */
-
 /**
  * Body colors
  *
@@ -25,7 +23,6 @@
 $body-colors: true !default;
 $body-color: settings.$color-text !default;
 $body-background-color: settings.$color-background !default;
-/* prettier-ignore-end */
 
 html {
   overflow-x: hidden;

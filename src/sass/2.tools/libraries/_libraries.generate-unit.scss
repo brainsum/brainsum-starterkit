@@ -14,12 +14,6 @@
  * @require {Function} _is-number <2.tools/validators/_is-number.scss>
  * @require {Function} _is-map <2.tools/validators/_is-map.scss>
  * @require {Function} _map-contains-null <2.tools/validators/_map-contains-null.scss>
- *
- * @parameter {string} $property - A css property ex.: padding.
- * @parameter {string} $suffix - Sub-property of $property, ex.: left.
- * @parameter {map | number} $units - Values for combined $property and $suffix.
- * @parameter {string} $half - Should divide values from $unites by 2 or not.
- *   Default is `null` (not), if you need this, just type `half` in the end.
  */
 
 /**

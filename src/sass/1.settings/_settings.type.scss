@@ -27,8 +27,8 @@ $font-family--monospace: "SFMono-Regular", "Menlo", "Monaco", "Segoe UI Mono", "
  * Font-stacks by functions
  */
 $primary-font-family: "Open Sans", $font-family--system !default;
-$code-font-family: $font-family--monospace !default; // required by 3.base/_base.reset
 $heading-font-family: $primary-font-family !default;
+$code-font-family: $font-family--monospace !default; // required by reset
 
 /**
  * Line-height
@@ -45,9 +45,12 @@ $line-height: 1.2 !default;
  * `1.settings/_settings.breakpoints`.
  *
  * 'null' means no breakpoint (default)
-*/
+ */
 
-// Body (global) Font-size
+/** Body (default) Font-size
+ * We use this to set the default font size and line-height
+ * for the `<body>` element in `3.base/_3.base.type`.
+ */
 $default-font-size: (
   null: (
     1.4rem,

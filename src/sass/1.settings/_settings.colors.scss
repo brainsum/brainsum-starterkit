@@ -51,6 +51,9 @@ $color-red: #fd4f46;
 
 /**
  * Global colors by functions
+ *
+ * Here we associate the defined named colors to functions.
+ * If possible use colors by functions only.
  */
 $color-brand: $color-yellow;
 $color-primary: $color-blue;

@@ -23,7 +23,6 @@
 /**
  * Settings
  */
-/* prettier-ignore-start */
 $padding-inline: 0;
 $padding-block: 0;
 $background: none;
@@ -35,7 +34,6 @@ $spinner-spacing: 0.6rem; // vertical distance between horizontal lines
 $spinner-border-radius: $spinner-height * 0.5;
 $spinner-color: settings.$color-primary;
 $spinner-color--active: $spinner-color;
-/* prettier-ignore-end */
 
 .c-hamburger {
   @include tools.round($border-radius);
