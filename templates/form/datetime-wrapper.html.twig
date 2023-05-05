@@ -19,13 +19,11 @@
 {#
   Defining local variables
 #}
-{%
-  set title_classes = [
-    required ? 'js-form--required',
-    required ? 'c-form--required',
-    required ? 'is-required',
-  ]
-%}
+{% set title_classes = [
+  required ? 'js-form--required',
+  required ? 'c-form--required',
+  required ? 'is-required',
+] %}
 
 {# Building the template structure #}
 {% if title %}

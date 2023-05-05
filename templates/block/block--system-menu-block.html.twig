@@ -41,15 +41,13 @@
 {#
   Defining local variables
 #}
-{%
-  set block_classes = [
-    'o-grid__item',
-    'o-grid__item--navigation',
-    'c-block',
-    'c-block-menu',
-    'c-block-menu--' ~ derivative_plugin_id|clean_class,
-  ]
-%}
+{% set block_classes = [
+  'o-grid__item',
+  'o-grid__item--navigation',
+  'c-block',
+  'c-block-menu',
+  'c-block-menu--' ~ derivative_plugin_id|clean_class,
+] %}
 
 {% set heading_id = attributes.id ~ '-menu'|clean_id %}
 
@@ -73,7 +71,9 @@
 
     {{ title_prefix }}
 
-    <{{ title_element }}{{ title_attributes.addClass('c-block__title').setAttribute('id', heading_id) }}>{{ configuration.label }}</{{ title_element }}>
+    <{{ title_element }}{{ title_attributes.addClass('c-block__title').setAttribute('id', heading_id) }}>
+      {{ configuration.label }}
+    </{{ title_element }}>
 
     {{ title_suffix }}
 

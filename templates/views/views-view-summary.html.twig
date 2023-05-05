@@ -26,7 +26,10 @@
   <ul class="c-views-summary">
     {% for row in rows %}
       <li>
-        <a href="{{ row.url }}"{{ row.attributes.addClass(row.active ? 'is-active')|without('href') }}>
+        <a
+          href="{{ row.url }}"
+          {{ row.attributes.addClass(row.active ? 'is-active')|without('href') }}
+        >
           {{ row.link }}
         </a>
         {% if options.count %}

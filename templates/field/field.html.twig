@@ -47,22 +47,18 @@
 {#
   Defining local variables
 #}
-{%
-  set classes = [
-    'c-field',
-    'c-field--name-' ~ field_name|clean_class,
-    'c-field--type-' ~ field_type|clean_class,
-    'c-field--label-' ~ label_display,
-    label_display == 't-inline' ? 'clearfix',
-  ]
-%}
+{% set classes = [
+  'c-field',
+  'c-field--name-' ~ field_name|clean_class,
+  'c-field--type-' ~ field_type|clean_class,
+  'c-field--label-' ~ label_display,
+  label_display == 't-inline' ? 'clearfix',
+] %}
 
-{%
-  set title_classes = [
-    'c-field__label',
-    label_display == 'visually_hidden' ? 'u-visually-hide',
-  ]
-%}
+{% set title_classes = [
+  'c-field__label',
+  label_display == 'visually_hidden' ? 'u-visually-hide',
+] %}
 
 {#
   Building the template structure

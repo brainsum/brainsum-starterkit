@@ -18,14 +18,12 @@
 {#
   Defining local variables
 #}
-{%
-  set classes = [
-    title_display == 'after' ? 'option',
-    title_display == 'invisible' ? 'u-visually-hide',
-    required ? 'js-form-required',
-    required ? 'c-form-required',
-  ]
-%}
+{% set classes = [
+  title_display == 'after' ? 'option',
+  title_display == 'invisible' ? 'u-visually-hide',
+  required ? 'js-form-required',
+  required ? 'c-form-required',
+] %}
 
 {#
   Building the template structure

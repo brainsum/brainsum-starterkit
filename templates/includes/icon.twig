@@ -33,6 +33,7 @@
 #}
 
 {% set default_size = 24 %}
+{% set path = base_path ~ active_theme_path() ~ '/images/icons.svg' %}
 
 <svg
   class="c-icon {{ class_name }}"
@@ -41,5 +42,7 @@
   height="{{ size ? size : default_size }}"
   focusable="false"
 >
-  <use xlink:href="/{{ base_path ~ active_theme_path() ~ '/images/icons.svg?v=' ~ "now"|date("Ymd") ~ '#' ~ icon_id }}"></use>
+  <use
+    xlink:href="/{{ path ~ '?v=' ~ "now"|date("Ymd") ~ '#' ~ icon_id }}">
+  </use>
 </svg>

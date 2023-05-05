@@ -18,14 +18,12 @@
 {#
   Defining local variables
 #}
-{%
-  set classes = [
-    'c-media',
-    'c-media--type-' ~ media.bundle()|clean_class,
-    not media.isPublished() ? 'c-media--unpublished',
-    view_mode ? 'c-media--view-mode-' ~ view_mode|clean_class,
-  ]
-%}
+{% set classes = [
+  'c-media',
+  'c-media--type-' ~ media.bundle()|clean_class,
+  not media.isPublished() ? 'c-media--unpublished',
+  view_mode ? 'c-media--view-mode-' ~ view_mode|clean_class,
+] %}
 
 {#
   Building the template structure

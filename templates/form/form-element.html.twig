@@ -50,37 +50,31 @@
 {#
   Defining local variables
 #}
-{%
-  set classes = [
-    'js-form-item',
-    'c-form-item',
-    'js-form-type-' ~ type|clean_class,
-    'c-form-item-' ~ name|clean_class,
-    'c-form-item--' ~ type|clean_class,
-    'js-form-item-' ~ name|clean_class,
-    title_display not in ['after', 'before'] ? 'form-no-label',
-    disabled == 'disabled' ? 'form-disabled',
-    errors ? 'c-form-item--error',
-  ]
-%}
+{% set classes = [
+  'js-form-item',
+  'c-form-item',
+  'js-form-type-' ~ type|clean_class,
+  'c-form-item-' ~ name|clean_class,
+  'c-form-item--' ~ type|clean_class,
+  'js-form-item-' ~ name|clean_class,
+  title_display not in ['after', 'before'] ? 'form-no-label',
+  disabled == 'disabled' ? 'form-disabled',
+  errors ? 'c-form-item--error',
+] %}
 
-{%
-  set description_classes = [
-    'description',
-    description_display == 'invisible' ? 'u-visually-hide',
-  ]
-%}
+{% set description_classes = [
+  'description',
+  description_display == 'invisible' ? 'u-visually-hide',
+] %}
 
 {# collect all input types where won't need to display label. #}
-{%
-  set no_label_types = [
-    'textfield',
-    'email',
-    'password',
-    'textarea',
-    'select'
-  ]
-%}
+{% set no_label_types = [
+  'textfield',
+  'email',
+  'password',
+  'textarea',
+  'select'
+] %}
 
 {#
   Building the template structure

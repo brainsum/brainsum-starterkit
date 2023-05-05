@@ -28,11 +28,9 @@
 {#
   Defining local variables
 #}
-{%
-  set classes = [
-    'c-search-results',
-    context.plugin ~ '-results',
-  ]
-%}
+{% set classes = [
+  'c-search-results',
+  context.plugin ~ '-results',
+] %}
 
 {% set attributes = attributes.addClass(classes) %}

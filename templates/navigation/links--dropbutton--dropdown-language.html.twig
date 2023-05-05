@@ -36,7 +36,9 @@
 {% if links -%}
   {%- if heading -%}
     {%- if heading.level -%}
-      <{{ heading.level }}{{ heading.attributes }}>{{ heading.text }}</{{ heading.level }}>
+      <{{ heading.level }}{{ heading.attributes }}>
+        {{ heading.text }}
+      </{{ heading.level }}>
     {%- else -%}
       <h2{{ heading.attributes }}>{{ heading.text }}</h2>
     {%- endif -%}

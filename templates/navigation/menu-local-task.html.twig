@@ -23,7 +23,11 @@
   {{ link }}
 
   {% if is_active and level == 'primary' %}
-    <button class="c-tabs__trigger" aria-label="{{ 'Tabs display toggle'|t }}" aria-expanded="false">
+    <button
+      class="c-tabs__trigger"
+      aria-label="{{ 'Tabs display toggle'|t }}"
+      aria-expanded="false"
+    >
       <span class="c-tabs__trigger-icon">
         <span></span>
         <span></span>

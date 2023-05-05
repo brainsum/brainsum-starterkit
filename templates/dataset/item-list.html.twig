@@ -24,7 +24,9 @@
   Building the template structure
 #}
 {% if context.list_style %}
-  {%- set attributes = attributes.addClass('c-item-list__' ~ context.list_style) %}
+  {%- set attributes = attributes.addClass(
+    'c-item-list__' ~ context.list_style
+  ) %}
 {% endif %}
 
 {% if items or empty %}

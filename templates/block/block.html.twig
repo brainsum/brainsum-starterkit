@@ -41,14 +41,12 @@
 {#
   Defining local variables
 #}
-{%
-  set classes = [
-    'c-block',
-    'c-block-' ~ configuration.provider|clean_class,
-    'c-block-' ~ plugin_id|clean_class,
-    layout ? 'o-layout--' ~ layout|clean_class,
-  ]
-%}
+{% set classes = [
+  'c-block',
+  'c-block-' ~ configuration.provider|clean_class,
+  'c-block-' ~ plugin_id|clean_class,
+  layout ? 'o-layout--' ~ layout|clean_class,
+] %}
 
 {#
   Building the template structure

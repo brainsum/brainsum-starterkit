@@ -24,17 +24,27 @@
 #}
 <div class="o-container--large">
   {% if primary %}
-    <span id="primary-tabs-title" class="u-visually-hide u-visually-hide--focusable">
+    <span
+      id="primary-tabs-title"
+      class="u-visually-hide u-visually-hide--focusable"
+    >
     {{ 'Primary tabs'|t }}
     </span>
 
-    <nav class="c-tabs__wrapper" aria-labelledby="primary-tabs-title" data-drupal-nav-primary-tabs>
+    <nav
+      class="c-tabs__wrapper"
+      aria-labelledby="primary-tabs-title"
+      data-drupal-nav-primary-tabs
+    >
       <ul class="c-tabs c-tabs--primary">{{ primary }}</ul>
     </nav>
   {% endif %}
 
   {% if secondary %}
-    <span id="secondary-tabs-title" class="u-visually-hide u-visually-hide--focusable">
+    <span
+      id="secondary-tabs-title"
+      class="u-visually-hide u-visually-hide--focusable"
+    >
       {{ 'Secondary tabs'|t }}
     </span>
 

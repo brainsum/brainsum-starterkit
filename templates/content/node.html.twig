@@ -72,16 +72,14 @@
 #}
 {% set layout = layout ? 'layout--' ~ layout|clean_class %}
 
-{%
-  set classes = [
-    'c-node',
-    'c-node--type-' ~ node.bundle|clean_class,
-    node.isPromoted() ? 'c-node--promoted',
-    node.isSticky() ? 'c-node--sticky',
-    not node.isPublished() ? 'c-node--unpublished',
-    view_mode ? 'c-node--view-mode-' ~ view_mode|clean_class,
-  ]
-%}
+{% set classes = [
+  'c-node',
+  'c-node--type-' ~ node.bundle|clean_class,
+  node.isPromoted() ? 'c-node--promoted',
+  node.isSticky() ? 'c-node--sticky',
+  not node.isPublished() ? 'c-node--unpublished',
+  view_mode ? 'c-node--view-mode-' ~ view_mode|clean_class,
+] %}
 
 {#
   Building the template structure

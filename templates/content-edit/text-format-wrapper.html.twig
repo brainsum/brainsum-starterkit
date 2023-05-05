@@ -17,21 +17,17 @@
 {#
   Defining local variables
 #}
-{%
-  set item_classes = [
-    'js-text-format-wrapper',
-    'c-text-format-wrapper',
-    'js-form-item',
-    'c-form-item',
-  ]
-%}
+{% set item_classes = [
+  'js-text-format-wrapper',
+  'c-text-format-wrapper',
+  'js-form-item',
+  'c-form-item',
+] %}
 
-{%
-  set description_classes = [
-    aria_description ? 'c-form-item__description',
-    disabled ? 'is-disabled',
-  ]
-%}
+{% set description_classes = [
+  aria_description ? 'c-form-item__description',
+  disabled ? 'is-disabled',
+] %}
 
 {#
   Building the template structure

@@ -19,27 +19,21 @@
 {#
   Defining local variables
 #}
-{%
-  set classes = [
-    'c-details',
-  ]
-%}
+{% set classes = [
+  'c-details',
+] %}
 
-{%
-  set content_wrapper_classes = [
-    'c-details__wrapper',
-    'c-details-wrapper',
-  ]
-%}
+{% set content_wrapper_classes = [
+  'c-details__wrapper',
+  'c-details-wrapper',
+] %}
 
-{%
-  set summary_classes = [
-    'c-details__summary',
-    required ? 'js-form--required',
-    required ? 'c-form--required',
-    required ? 'is-required',
-  ]
-%}
+{% set summary_classes = [
+  'c-details__summary',
+  required ? 'js-form--required',
+  required ? 'c-form--required',
+  required ? 'is-required',
+] %}
 
 {#
   Building the template structure

@@ -35,14 +35,12 @@
   {#
     Defining local variables
   #}
-  {%
-    set classes = [
-      'c-field',
-      'c-field--name-' ~ field_name|clean_class,
-      'c-field--type-' ~ field_type|clean_class,
-      'c-field--label-' ~ label_display,
-    ]
-  %}
+  {% set classes = [
+    'c-field',
+    'c-field--name-' ~ field_name|clean_class,
+    'c-field--type-' ~ field_type|clean_class,
+    'c-field--label-' ~ label_display,
+  ] %}
 
   {#
     Building the template structure

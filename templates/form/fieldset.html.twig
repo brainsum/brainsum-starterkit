@@ -10,47 +10,37 @@
 {#
   Defining local variables
 #}
-{%
-  set classes = [
-    'c-fieldset',
-    attributes.hasClass('c-fieldgroup') ? 'c-fieldset--group',
-    'js-form-item',
-    'c-form-item',
-    'js-form-wrapper',
-    'c-form-wrapper',
-  ]
-%}
+{% set classes = [
+  'c-fieldset',
+  attributes.hasClass('c-fieldgroup') ? 'c-fieldset--group',
+  'js-form-item',
+  'c-form-item',
+  'js-form-wrapper',
+  'c-form-wrapper',
+] %}
 
-{%
-  set wrapper_classes = [
-    'c-fieldset__wrapper',
-    attributes.hasClass('c-fieldgroup') ? 'c-fieldset__wrapper--group',
-  ]
-%}
+{% set wrapper_classes = [
+  'c-fieldset__wrapper',
+  attributes.hasClass('c-fieldgroup') ? 'c-fieldset__wrapper--group',
+] %}
 
-{%
-  set legend_span_classes = [
-    'c-fieldset__label',
-    attributes.hasClass('c-fieldgroup') ? 'c-fieldset__label--group',
-    required ? 'js-form-required',
-    required ? 'is-form-required',
-  ]
-%}
+{% set legend_span_classes = [
+  'c-fieldset__label',
+  attributes.hasClass('c-fieldgroup') ? 'c-fieldset__label--group',
+  required ? 'js-form-required',
+  required ? 'is-form-required',
+] %}
 
-{%
-  set legend_classes = [
-    'c-fieldset__legend',
-    attributes.hasClass('fieldgroup') and not attributes.hasClass('form-composite') ? 'c-fieldset__legend--group',
-    attributes.hasClass('form-composite') ? 'c-fieldset__legend--composite',
-    title_display == 'invisible' ? 'c-fieldset__legend--invisible' : 'c-fieldset__legend--visible',
-  ]
-%}
+{% set legend_classes = [
+  'c-fieldset__legend',
+  attributes.hasClass('fieldgroup') and not attributes.hasClass('form-composite') ? 'c-fieldset__legend--group',
+  attributes.hasClass('form-composite') ? 'c-fieldset__legend--composite',
+  title_display == 'invisible' ? 'c-fieldset__legend--invisible' : 'c-fieldset__legend--visible',
+] %}
 
-{%
-  set description_classes = [
-   'c-fieldset__description',
-  ]
-%}
+{% set description_classes = [
+  'c-fieldset__description',
+] %}
 
 {#
   Building the template structure

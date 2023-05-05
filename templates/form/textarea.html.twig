@@ -17,12 +17,10 @@
 {#
   Defining local variables
 #}
-{%
-  set classes = [
-    resizable ? 'resize-' ~ resizable,
-    required ? 'required',
-  ]
-%}
+{% set classes = [
+  resizable ? 'resize-' ~ resizable,
+  required ? 'required',
+] %}
 
 {#
   Building the template structure

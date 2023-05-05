@@ -47,7 +47,9 @@
 {#
   Defining local variables
 #}
-{% set attributes = attributes
-  .addClass('js-block-' ~ configuration.provider|clean_class)
-  .setAttribute('data-drupal-selector', 'block-' ~ configuration.provider|clean_class)
+{% set attributes = attributes.addClass(
+  'js-block-' ~ configuration.provider|clean_class
+).setAttribute(
+  'data-drupal-selector', 'block-' ~ configuration.provider|clean_class
+)
 %}

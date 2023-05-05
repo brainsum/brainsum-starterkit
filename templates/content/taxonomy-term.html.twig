@@ -27,17 +27,17 @@
 {#
   Defining local variables
 #}
-{%
-  set classes = [
-    'c-taxonomy-term',
-    'c-vocabulary-' ~ term.bundle|clean_class,
-  ]
-%}
+{% set classes = [
+  'c-taxonomy-term',
+  'c-vocabulary-' ~ term.bundle|clean_class,
+] %}
 
 {#
   Building the template structure
 #}
-<div{{ attributes.setAttribute('id', 'c-taxonomy-term-' ~ term.id).addClass(classes) }}>
+<div{{ attributes.setAttribute(
+  'id', 'c-taxonomy-term-' ~ term.id
+).addClass(classes) }}>
   {{ title_prefix }}
 
   {% if name and not page %}

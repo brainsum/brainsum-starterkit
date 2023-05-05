@@ -28,34 +28,28 @@
 {#
   Defining local variables
 #}
-{%
-  set classes = [
-    'c-views-view-grid',
-    'views-view-grid',
-    options.alignment,
-    'cols-' ~ options.columns,
-    'clearfix',
-  ]
-%}
+{% set classes = [
+  'c-views-view-grid',
+  'views-view-grid',
+  options.alignment,
+  'cols-' ~ options.columns,
+  'clearfix',
+] %}
 
 {% if options.row_class_default %}
-  {%
-    set row_classes = [
-      'c-views-row',
-      'views-row',
-      options.alignment == 'horizontal' ? 'u-clearfix',
-    ]
-  %}
+  {% set row_classes = [
+    'c-views-row',
+    'views-row',
+    options.alignment == 'horizontal' ? 'u-clearfix',
+  ] %}
 {% endif %}
 
 {% if options.col_class_default %}
-  {%
-    set col_classes = [
-      'c-views-col',
-      'views-col',
-      options.alignment == 'vertical' ? 'u-clearfix',
-    ]
-  %}
+  {% set col_classes = [
+    'c-views-col',
+    'views-col',
+    options.alignment == 'vertical' ? 'u-clearfix',
+  ] %}
 {% endif %}
 
 {#
@@ -68,9 +62,17 @@
 <div{{ attributes.addClass(classes) }}>
   {% if options.alignment == 'horizontal' %}
     {% for row in items %}
-      <div{{ row.attributes.addClass(row_classes, options.row_class_default ? 'row-' ~ loop.index) }}>
+      <div
+        {{ row.attributes.addClass(
+          row_classes, options.row_class_default ? 'row-' ~ loop.index
+        ) }}
+      >
         {% for column in row.content %}
-          <div{{ column.attributes.addClass(col_classes, options.col_class_default ? 'col-' ~ loop.index) }}>
+          <div
+            {{ column.attributes.addClass(
+              col_classes, options.col_class_default ? 'col-' ~ loop.index
+            ) }}
+          >
             {{- column.content -}}
           </div>
         {% endfor %}
@@ -78,9 +80,17 @@
     {% endfor %}
   {% else %}
     {% for column in items %}
-      <div{{ column.attributes.addClass(col_classes, options.col_class_default ? 'col-' ~ loop.index) }}>
+      <div
+        {{ column.attributes.addClass(
+          col_classes, options.col_class_default ? 'col-' ~ loop.index
+        ) }}
+      >
         {% for row in column.content %}
-          <div{{ row.attributes.addClass(row_classes, options.row_class_default ? 'row-' ~ loop.index) }}>
+          <div
+            {{ row.attributes.addClass(
+              row_classes, options.row_class_default ? 'row-' ~ loop.index
+            ) }}
+          >
             {{- row.content -}}
           </div>
         {% endfor %}

@@ -27,10 +27,11 @@
   Building the template structure
 #}
 <div{{ attributes.addClass('toolbar') }}>
-  <nav{{ toolbar_attributes
-    .addClass('toolbar-bar')
-    .setAttribute('aria-labelledby', 'toolbar-bar-name')
-  }}>
+  <nav
+    {{ toolbar_attributes.addClass('toolbar-bar').setAttribute(
+      'aria-labelledby', 'toolbar-bar-name'
+    ) }}
+  >
     <span
       class="u-visually-hide u-visually-hide--focusable"
       id="toolbar-bar-name"

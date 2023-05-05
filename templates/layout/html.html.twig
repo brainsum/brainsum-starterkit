@@ -29,15 +29,13 @@
 {#
   Defining local variables
 #}
-{%
-  set body_classes = [
-    logged_in ? 'user-logged-in',
-    not root_path ? 'path-frontpage' : 'path-subpage path-' ~ root_path|clean_class,
-    node_type ? 'page-node-type-' ~ node_type|clean_class,
-    db_offline ? 'db-offline',
-    path_info.args ? 'path-' ~ path_info.args,
-  ]
-%}
+{% set body_classes = [
+  logged_in ? 'user-logged-in',
+  not root_path ? 'path-frontpage' : 'path-subpage path-' ~ root_path|clean_class,
+  node_type ? 'page-node-type-' ~ node_type|clean_class,
+  db_offline ? 'db-offline',
+  path_info.args ? 'path-' ~ path_info.args,
+] %}
 
 {#
   Attaching Drupal libraries
@@ -54,19 +52,59 @@
 <!DOCTYPE html>
 <html{{ html_attributes }}>
   <head>
-    {% include '@brainsum_starterkit/includes/preload.html.twig' with { current_theme_path: current_theme_path } only %}
+    {% include '@brainsum_starterkit/includes/preload.html.twig' with {
+      current_theme_path: current_theme_path
+    } only %}
+
     <style>{{ source('/' ~ directory ~ '/css/fontface--global.css') }}</style>
-    <link rel="apple-touch-icon" sizes="180x180" href="/{{ directory }}/images/favicon/apple-touch-icon.png?v=2023">
-    <link rel="icon" type="image/png" sizes="32x32" href="/{{ directory }}/images/favicon/favicon-32x32.png?v=2023">
-    <link rel="icon" type="image/png" sizes="16x16" href="/{{ directory }}/images/favicon/favicon-16x16.png?v=2023">
-    <link rel="manifest" href="/{{ directory }}/site.webmanifest?v=2023">
-    <link rel="mask-icon" href="/{{ directory }}/images/favicon/safari-pinned-tab.svg?v=2023" color="#ffdd0b">
-    <link rel="shortcut icon" href="/{{ directory }}/images/favicon/favicon.ico?v=2023">
-    <meta name="msapplication-TileColor" content="#ffdd0b">
-    <meta name="msapplication-config" content="/{{ directory }}/browserconfig.xml?v=2023">
-    <meta name="theme-color" content="#ffdd0b">
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/{{ directory }}/images/favicon/apple-touch-icon.png?v=2023"
+    >
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/{{ directory }}/images/favicon/favicon-32x32.png?v=2023"
+    >
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/{{ directory }}/images/favicon/favicon-16x16.png?v=2023"
+    >
+    <link
+      rel="manifest"
+      href="/{{ directory }}/site.webmanifest?v=2023"
+    >
+    <link
+      rel="mask-icon"
+      href="/{{ directory }}/images/favicon/safari-pinned-tab.svg?v=2023"
+      color="#ffdd0b"
+    >
+    <link
+      rel="shortcut icon"
+      href="/{{ directory }}/images/favicon/favicon.ico?v=2023"
+    >
+    <meta
+      name="msapplication-TileColor"
+      content="#ffdd0b"
+    >
+    <meta
+      name="msapplication-config"
+      content="/{{ directory }}/browserconfig.xml?v=2023"
+    >
+    <meta
+      name="theme-color"
+      content="#ffdd0b"
+    >
+
     <head-placeholder token="{{ placeholder_token }}">
+
     <title>{{ head_title|safe_join(' | ') }}</title>
+
     <css-placeholder token="{{ placeholder_token }}">
     <js-placeholder token="{{ placeholder_token }}">
     {{ noscript_styles }}
@@ -77,7 +115,10 @@
       Keyboard navigation/accessibility link to main content section in
       page.html.twig.
     #}
-    <a href="#main-content" class="u-visually-hide u-visually-hide--focusable skip-link">
+    <a
+      href="#main-content"
+      class="u-visually-hide u-visually-hide--focusable skip-link"
+    >
       {{ 'Skip to main content'|t }}
     </a>
     {{ page_top }}

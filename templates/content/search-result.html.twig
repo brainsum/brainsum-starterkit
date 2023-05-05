@@ -60,17 +60,23 @@
 {{ title_prefix }}
 
 <h3{{ title_attributes.addClass('c-search-result__title') }}>
-  <a href="{{ url }}">{{ title }}</a>
+  <a href="{{ url }}">
+    {{ title }}
+  </a>
 </h3>
 
 {{ title_suffix }}
 
 <div class="c-search-result__snippet-info">
   {% if snippet %}
-    <p{{ content_attributes.addClass('c-search-result__snippet') }}>{{ snippet }}</p>
+    <p{{ content_attributes.addClass('c-search-result__snippet') }}>
+      {{ snippet }}
+    </p>
   {% endif %}
 
   {% if info %}
-    <p class="c-search-result__info">{{ info }}</p>
+    <p class="c-search-result__info">
+      {{ info }}
+    </p>
   {% endif %}
 </div>

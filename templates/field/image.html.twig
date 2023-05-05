@@ -14,11 +14,9 @@
 {#
   Defining local variables
 #}
-{%
-  set classes = [
-    style_name ? 'image-style-' ~ style_name|clean_class,
-  ]
-%}
+{% set classes = [
+  style_name ? 'image-style-' ~ style_name|clean_class,
+] %}
 
 {#
   Building the template structure

@@ -12,14 +12,25 @@
   Building the template structure
 #}
 {% if breadcrumb %}
-  <nav class="c-breadcrumb" role="navigation" aria-labelledby="system-breadcrumb">
-    <span id="system-breadcrumb" class="u-visually-hide u-visually-hide--focusable">{{ 'Breadcrumb'|t }}</span>
+  <nav
+    class="c-breadcrumb"
+    role="navigation"
+    aria-labelledby="system-breadcrumb"
+  >
+    <span
+      id="system-breadcrumb"
+      class="u-visually-hide u-visually-hide--focusable"
+    >
+      {{ 'Breadcrumb'|t }}
+    </span>
     <div class="c-breadcrumb__content">
       <ol class="c-breadcrumb__list">
         {% for item in breadcrumb %}
           <li class="c-breadcrumb__item">
             {% if item.url %}
-              <a href="{{ item.url }}" class="c-breadcrumb__link">{{ item.text }}</a>
+              <a href="{{ item.url }}" class="c-breadcrumb__link">
+                {{ item.text }}
+              </a>
             {% else %}
               {{ item.text }}
             {% endif %}

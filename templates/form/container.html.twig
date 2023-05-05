@@ -25,12 +25,10 @@
 {#
   Defining local variables
 #}
-{%
-  set classes = [
-    has_parent ? 'js-form__wrapper',
-    has_parent ? 'c-form__wrapper',
-  ]
-%}
+{% set classes = [
+  has_parent ? 'js-form__wrapper',
+  has_parent ? 'c-form__wrapper',
+] %}
 
 {#
   Building the template structure
