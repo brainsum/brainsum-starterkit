@@ -44,7 +44,7 @@
 // /* global once, context */
 
 // (($, Drupal, once, context) => {
-//   Drupal.behaviors.astarterthemeThemeFunction = {
+//   Drupal.behaviors.aBrainsumStarterkitFunction = {
 //     attach(context, settings, trigger) {
 //       // your scripts
 //     },
