@@ -1,5 +1,5 @@
 # Theme's name for admin UI, change for your project, like Diginomica Theme
-name: "BRAINSUM's Drupal 10 startertkit"
+name: "BRAINSUM startertkit"
 type: theme
 # Defines the base theme, change it for your needs
 base theme: false
@@ -15,8 +15,6 @@ screenshot: screenshot.png
 package: brainsum
 # Version number
 version: 3.0.0
-# Drupal core version
-core: 8.x
 # Dependency resolving for Composer.
 core_version_requirement: ^10
 # website logo, begin with Drupal 8.6 you can use SVG or PNG format too
