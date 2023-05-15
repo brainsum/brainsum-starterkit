@@ -1,1 +1,1 @@
-.u-stretched-link::after{position:absolute;inset:0;z-index:1;content:"";pointer-events:auto;background-color:rgba(0,0,0,0)}
+.u-stretched-link::after{position:absolute;z-index:1;inset:0;content:"";pointer-events:auto;background-color:rgba(0,0,0,0)}

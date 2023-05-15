@@ -19,13 +19,12 @@ $border-radius: 0.2rem;
 $summary-transition: background-color 0.12s ease-in-out;
 
 .c-details {
-  @include tools.round($border-radius);
-
   display: block;
   margin-block: settings.$gutter;
   color: inherit;
   border-block: $border-width solid settings.$color-grey-20;
   border-inline: $border-width solid settings.$color-grey-20;
+  border-radius: $border-radius;
   box-shadow: 0 0.1rem 0.4rem settings.$color-grey-30;
 
   /* Details summary styles */
@@ -72,13 +71,12 @@ $summary-transition: background-color 0.12s ease-in-out;
 
     // Pseudo-selector to manage focus styles
     &::after {
-      @include tools.round($border-radius);
-
       position: absolute;
       inset: $border-width * -1;
       content: "";
       pointer-events: none;
       opacity: 0;
+      border-radius: $border-radius;
       box-shadow: inset 0 0 0 0.2rem settings.$color-primary;
     }
 

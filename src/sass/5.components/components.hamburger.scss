@@ -36,8 +36,6 @@ $spinner-color: settings.$color-primary;
 $spinner-color--active: $spinner-color;
 
 .c-hamburger {
-  @include tools.round($border-radius);
-
   overflow: visible;
   margin-block-start: 3rem;
   margin-block-end: 3.5rem;
@@ -50,6 +48,7 @@ $spinner-color--active: $spinner-color;
   color: inherit;
   border-block: 0;
   border-inline: 0;
+  border-radius: $border-radius;
   background: $background;
 
   @if settings.$prefers-reduced-motion {
@@ -99,12 +98,11 @@ $spinner-color--active: $spinner-color;
     &,
     &::before,
     &::after {
-      @include tools.round($spinner-border-radius);
-
       position: absolute;
       inline-size: $spinner-width;
       block-size: $spinner-height;
       transition: transform 0.15s ease;
+      border-radius: $spinner-border-radius;
       background: $spinner-color;
 
       @if settings.$prefers-reduced-motion {

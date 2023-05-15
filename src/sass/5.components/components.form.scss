@@ -55,16 +55,15 @@ textarea {
    *   - textarea
    */
   &-element {
-    @include tools.round($border-radius);
-
-    appearance: none;
     inline-size: 100%;
     padding-block: $padding-block;
     padding-inline: $padding-inline;
     color: $text-color;
     border-block: 0.1rem solid $border-color;
     border-inline: 0.1rem solid $border-color;
+    border-radius: $border-radius;
     background: $background-color;
+    appearance: none;
 
     &::placeholder {
       color: $placeholder-color;
@@ -178,13 +177,12 @@ textarea {
   &-type-radio {
     label {
       &::before {
-        @include tools.round(50%);
-
+        border-radius: 50%;
         background: $background-color;
       }
 
       &::after {
-        @include tools.round(50%);
+        border-radius: 50%;
       }
     }
   }
@@ -199,7 +197,7 @@ textarea {
       }
 
       &::after {
-        @include tools.round($checkbox-border-radius);
+        border-radius: $checkbox-border-radius;
       }
     }
   }
