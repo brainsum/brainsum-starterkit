@@ -1,8 +1,8 @@
-# BRAINSUM's Drupal 8-9 startertheme
+# BRAINSUM starterkit
 
 - Created by: [Krisztian Pinter](kpinter@brainsum.com)
 - Created in: 2020.
-- Updated on: 2022.01.21.
+- Updated on: 2023.05.19.
 
 ## Table of Contents
 
@@ -14,33 +14,34 @@
 
 ## Introduction
 
-Drupal 8-9 startertheme is a modern responsive, mobile-first Drupal 8-9 theme.
-It doesn't use any base theme but inspired by [Olivero](https://www.drupal.org/project/olivero), the new core frontend theme.
+BRAINSUM starterkit is a modern, responsive, mobile-first Drupal 10 starterkit.
+It doesn't use any base theme but inspired by
+[Olivero](https://www.drupal.org/project/olivero), the new core frontend theme.
 
 Every part of this theme follows the Drupal standards, so it's fully
 component-based (libraries), and compatible 100% with ES6, SMACSS, ITCSS, and
 BEMit.
 
-For building frontend assets we use Laravel Mix: webpack with simplified configuration.
-You can use many built in tools and almost any other webpack plugins.
+For building frontend assets we still use Gulp.js 🥤.
 
-In this version of startertheme the [Shake.sass](https://keeteean.github.io/shake.sass)
-is also incorporated witch is a ITCSS- and BEMit-based Sass-only framework.
+In this version of the starterkit the [Shake.sass](https://keeteean.github.io/shake.sass)
+was also incorporated witch is a ITCSS- and BEMit-based Sass-only framework.
 
 ## What will you need to work with this theme?
 
 - Installed Composer
 - Installed Drush
-- Installed Drupal 8-9 via Composer
-- [Set asset-packagist to composer.json](https://www.drupal.org/docs/develop/using-composer/using-composer-to-install-drupal-and-manage-dependencies#third-party-libraries) of Drupal
-- Installed node.js (min. v14)
-- Installed yarn or npm (Drupal Community recommends Yarn.)
+- Installed Drupal 10 via Composer
+- [Set asset-packagist to composer.json](https://www.drupal.org/docs/develop/using-composer/using-composer-to-install-drupal-and-manage-dependencies#third-party-libraries)
+  of Drupal
+- Installed node.js (min. v16)
+- Installed Yarn (Drupal Community recommends Yarn. If you really hates Yarn
+  you can still use npm as well, but remove the yarn.lock file.)
 
 ## Theme installation
 
-Before you can use the theme please make sure
-you run composer install (it's required for 3rd party
-frontend npm modules too):
+Before you can use the theme please make sure you run composer install (it's
+required for 3rd party frontend npm modules too):
 
 ```bash
 cd [project-root]
@@ -50,31 +51,43 @@ composer install
 ... and don't forget to import all Drupal configs with
 `drush cim -y`. 😉
 
-Copy this version directory: `advanced-es6-mix-shake` to custom themes
-directory, then rename it according to your project. If you just want
-to try it you can rename it to `starter_theme`. From this when see
-`starter_theme`, it's refer to the machine name of your theme, by default
-it's `starter_theme`. After you choose your theme name, rename
-`starter_theme` **everywhere** to your chosen machine name, but here is a list:
+Set proper theme development settings: disable caching and aggregation but
+turned on Twig debug. See in [official documentation](https://www.drupal.org/node/2598914).
 
-- directory name,
-- `*.yml` files and `.theme` file names,
-- global library name in `info.yml` file,
+### Step 1: generate a new theme
+
+Clone this theme to `/themes/contrib` or `/themes/custom`. CD to the `web`
+directory then run the theme generate command:
+
+```bash
+php core/scripts/drupal generate-theme --starterkit brainsum_starterkit your_theme --path themes/custom
+```
+
+This will generate a new theme named `your_theme` to the `/themes/custom`
+directory.
+
+### Step 2: manual renaming
+
+However, the startkerkit framework renamed files and machine names correctly,
+still remains in many places, where you have to rename the `brainsum_starterkit`
+to `your_theme`, `brainsumStarterkit` to `yourTheme` and `BrainsumStarterkit` to
+`YourTheme` manually:
+
 - breakpoint prefix name in `breakpoints.yml` file,
-- all hook prefix in `.theme` file, library name and in the path variable:
-  `$variables['starter_theme_path'] = drupal_get_path('theme', 'starter_theme');`,
-- `themeRoot` variable in `tools.webfontloading.js`,
+- path variable in `.theme` file,
 - prefix name of Drupal.behaviors in components JavaScrtipt files,
-- name of main menu block in `components.navigation.js`,
 - usage comment in `base.global.js` file,
 - `theme_root` variable in `font-face*.scss` files
-- library name in library attaches in twigs: `field--text-long`, `form`, `html`,
-  `status-messages`, `menu-local-tasks`,
-- includes in twigs: `html`, `page`, `block--system-menu-block.html.twig`,
-- `starter_theme_path` in `includes/preload` twig,
-- usage comment in `icon` macro twig file
+- extends and includes in twigs: `@brainsum_starterkit`,
+- usage comment in `icon` macro twig file: `@brainsum_starterkit`
 
-You need at least v14. nodejs for this theme. You can use nvm for that:
+Change the version number in the `info.yml` file.
+Change the package name, description, version name and description in the
+`package.json` file.
+
+### Step 3: install npm modules
+
+You will need at least v16. nodejs for this theme. You can use nvm for that:
 
 ```bash
 cd web/themes/custom/starter_theme/
@@ -84,104 +97,134 @@ nvm use
 Install all local development-needed npm modules:
 
 ```bash
-cd web/themes/custom/stater_theme/
+cd web/themes/custom/your_theme/
 yarn install
 ```
 
-Modify BrowserSync's settings to your local
-environment in `webpack.mix.js` file:
+### Step 4: set proxy URL
 
-```js
-[...]
-.browserSync({
-  proxy: 'http://projectname.test/',
-  https: false,
-  open: false,
-  browser: [
-    'Google Chrome',
-  ],
-  [...],
-[...]
-```
+Rename the `env.example` file to `.env` and set the proxy URL according to your
+environment.
+
+### Step 5: setup IDE plugins
 
 Set code quality tools in your code editor / IDE (all config files are in the
 theme's root):
 
+- StyleLint
 - ESlint
 - Prettier
-- StyleLint
-
-Set proper theme development settings: disable caching and aggregation but
-turned on Twig debug. See in [official documentation](https://www.drupal.org/node/2598914).
-
-### Stylelint configuration
-
-To enable auto-fix function on save for Stylelint
 
 #### In VS Code
 
-Put this to your user/project config file:
+After installed the corresponding extensions, put these lines to your
+user/workspace config file:
 
 ```json
-"editor.formatOnSave": false,
+"editor.formatOnPaste": true,
 "editor.codeActionsOnSave": {
   "source.fixAll.stylelint": true
 },
-"files.autoSaveDelay": 500,
+"eslint.format.enable": true,
+"eslint.ignoreUntitled": true,
+"eslint.packageManager": "yarn",
+"eslint.validate": [
+  "javascript",
+  "typescript",
+  "json",
+],
+"stylelint.packageManager": "yarn",
+"stylelint.customSyntax": "postcss-scss",
+"stylelint.validate": [
+  "css",
+  "less",
+  "postcss",
+  "scss"
+],
+"stylelint.snippet": [
+  "css",
+  "less",
+  "postcss",
+  "scss"
+],
+"[css]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
+  },
+"[scss]": {
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+},
+"[javascript]": {
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+},
 ```
 
-#### In PHPStorm
+Checkout all extensions can find their config file. Example put
+these lines to the workspace config file:
 
-Create a new file watcher: Configuration >> Tools >> File Watchers
-![PHPStorm File Watchers](https://i.imgur.com/xXIlL9p.png)
-
-Then hit the `+` button and choose the first <custom> one
-![new File Watcher](https://i.imgur.com/Xycaebl.png)
-
-In the new file watch window fill the fields:
-
-- Name: whatever you want
-- File type: choose SCSS
-- Scope: Project Files
-- Program: path to stylelint execute file in npm_modules directory like: `ProjectFileDir$/web/themes/custom/clinic/node_modules/.bin/stylelint`
-- Arguments: `$FilePath$ --fix`
-- Output paths to refresh: `$ProjectFileDir$`
-- open down Advanced options, then uncheck _Auto-save edited files to trigger the watcher_
-
-![create new File Watcher window](https://i.imgur.com/DJ0NzYl.png)
+```json
+"stylelint.configBasedir": "app/web/themes/custom/your_theme",
+"stylelint.configFile": "app/web/themes/custom/your_theme/.stylelintrc.json",
+"prettier.configPath": "app/web/themes/custom/your_theme/.prettierrc.json",
+```
 
 ## Theme overview
 
 ### CSS
 
+#### SASS/CSS architecture
+
 To generate CSS files, we use Sass. You can find all source Sass files in the
 `src/sass/` directory. We organize all Sass files according to ITCSS and
 SMACSS, such as:
 
-1.  **settings:** we store all _global_ variables here,
-1.  **tools:** all _global_ functions, mixins,
-1.  **base:** CSS reset and theming HTML elements,
-1.  **objects:** layout and non-content related very generic items,
-1.  **components:** all content-related items,
-1.  **utilities:** class-based _global_ tools,
-1.  **pages:** page specific theming rules, avoid to use them, use components
+1. **settings:** we store all _global_ variables here,
+2. **tools:** all _global_ functions, mixins,
+3. **base:** CSS reset and theming HTML elements,
+4. **objects:** layout and non-content related very generic items,
+5. **components:** all content-related items,
+6. **utilities:** class-based _global_ tools,
+7. **pages:** page specific theming rules, avoid to use them, use components
     whenever you can
-
-There is a `_global.importer.scss` file in the sass root: we need to import it
-to all Sass files to get access to global tools and variables.
-
-Note: because this theme 100% compatible with Dart Sass 2.0.0, we can't use
-the `/` sign for regular Sass divisions. **We must use the `math.div()` function.** See in the [docs](https://sass-lang.com/documentation/breaking-changes/slash-div#automatic-migration).
-To do this, first place this code to the top of all sass files:
-`@use "sass:math";` Then if you need calculate a division, you must use the
-`math.div()` function. For example:
-`width 100% / 3;` -> `width: math.div(100%, 3);`.
-Sometimes you can use the multiple calculation too instead of division:
-`$hamburger-spinner-height / 2;` -> `$hamburger-spinner-height * 0.5;`.
 
 Because we have use Drupal libraries, we generate CSS files **from the most Sass
 files.** If you create a new Sass file, don't forget to add the generated SMACSS
 categorized CSS to the appropriated library.
+
+#### Modular SASS
+
+Because we use modular SASS, we can't use `@import` to import Sass files. You'll
+need to use `@use` instead. See in the
+[official documentation](https://sass-lang.com/documentation/at-rules/use).
+The main difference between `@import` and `@use` is that you can't access all
+variables, mixins and functions globally. If you want to use one of them, first
+you have to import via `@use` - with an optional namespace - the Sass file where
+it is defined. To make it easier there are two main importer files in the SASS
+root: `_settings.scss` and `_tools.scss`.
+
+You can import all variables via `@use "../settings";`. And you can use all
+global variables from the 1.settings folder with the settings namespace, like:
+`settings.$variable-name`. For example: `settings.$color-primary`.
+Similarly, you can import all mixins and functions via `@use "../tools";` from
+the 2.tools folder with the tools namespace, like: `tools.mixin-name()`.
+For example: `@include tools.breakpoint(medium, settings.$max-width) {}`.
+
+For the 100% compatibility with the Dart SASS 2.0 you have to use the built in
+SASS functions like Math for the division:
+
+```scss
+@use "sass:math";
+
+$width: math.div(100, 2) * 1%; // 50%
+```
+
+#### CSS Logical Properties
+
+For the better exotic language support (RTL and Asian languages) we use and
+required to use logical properties instead of physical properties. For example:
+use `margin-inline-start` instead of `margin-left`.
+There is a Stylelint plugin to warn and correct you if you use physical
+properties (except `float`). If you don't want to use it, you can disable it in
+the `.stylelintrc.json` file: `csstools/use-logical`.
 
 ### JavaScript
 
@@ -253,18 +296,25 @@ lightbox:
 
 ## Working with this theme
 
-We use [Laravel Mix](https://laravel-mix.com/) as frontend automation tool. It
+We use [Gulp.js](https://gulpjs.com) as frontend automation tool. It
 will generate CSS and compiled JavaScript files for us. You can found all scripts
 in `package.json` file, but here is a recap:
 
-- `dev`: compile all css and js files at once (no watch) in dev version,
-- `watch`: compile and watching for all css and js files,
-- `hot`: hot module replacement, we don't use it for Drupal,
-- `prod`: compile all css and js files at once for production (leave it for Drupal),
-- `start`: same as watch, this is for Brainsum coding standard: start for developing
+- `start`: compile and watching for all css and js files then reload the browser,
+- `startNoSync`: same as the start with browser reloading,
+- `build`: compile all css and js files at once for production,
+- `sassDev`: compile all css files for development,
+- `sassProd`: compile all css files for production,
+- `scripts`: compile all js files.
 
 So for local developing just run in theme's root (after `nvm use` if you use nvm):
 
 ```bash
 yarn start
+```
+
+...and before commit anything run:
+
+```bash
+yarn build
 ```
