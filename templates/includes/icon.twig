@@ -7,25 +7,25 @@
  *
  *
  * options:
- * - iconId   : name of icon (begin with `icon-`)
- * - className: additional CSS class
- * - size     : custom width and height of icon
- *              (skip for default width and height defined in the `default_size`
- *              variable below)
+ * - icon : name of icon (begin with `icon-`)
+ * - class: additional CSS class
+ * - size : custom width and height of icon
+ *          (skip for default width and height defined in the `default_size`
+ *          variable below)
  *
  * @code
  * {% include '@brainsum_starterkit/includes/icon.twig' with {
- *   icon_id: 'icon-partner-volunteer',
- *   class_name: 'partner__icon'
+ *   icon: 'icon-partner-volunteer',
+ *   class: 'partner__icon'
  * } %}
  * {% include '@brainsum_starterkit/includes/icon.twig' with {
- *   icon_id: 'icon-download', '
- *   class_name: 'c-button__icon',
+ *   icon: 'icon-download', '
+ *   class: 'c-button__icon',
  *   size: '15'
  * } %}
  * {% include '@brainsum_starterkit/includes/icon.twig' with {
- *   icon_id: 'icon-facebook',
- *   class_name: 'c-social__icon c-social--facebook',
+ *   icon: 'icon-facebook',
+ *   class: 'c-social__icon c-social--facebook',
  *   size: '40'
  *  } %}
  * @endcode
@@ -36,13 +36,13 @@
 {% set path = base_path ~ active_theme_path() ~ '/images/icons.svg' %}
 
 <svg
-  class="c-icon {{ class_name }}"
+  class="c-icon {{ class }}"
   role="img"
   width="{{ size ? size : default_size }}"
   height="{{ size ? size : default_size }}"
   focusable="false"
 >
   <use
-    xlink:href="/{{ path ~ '?v=' ~ "now"|date("Ymd") ~ '#' ~ icon_id }}">
+    xlink:href="/{{ path ~ '?v=' ~ "now"|date("Ymd") ~ '#' ~ icon }}">
   </use>
 </svg>
