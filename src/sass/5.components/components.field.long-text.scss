@@ -37,6 +37,21 @@
     margin-block-start: 0;
   }
 
+  table {
+    margin-block: 1em;
+    border: 0.1rem solid settings.$color-secondary;
+  }
+
+  td {
+    padding: 0.5em;
+    border: 0.1rem solid settings.$color-secondary;
+  }
+
+  th {
+    color: settings.$color-light;
+    background: settings.$color-secondary;
+  }
+
   .align-center {
     display: block;
     margin-inline: auto;
