@@ -22,7 +22,7 @@
 {% endif %}
 {% for row in rows %}
   {% set row_classes = [
-    default_row_class ? 'c-views-row views-row',
+    default_row_class ? 'c-views__row views-row',
   ] %}
   <div{{ row.attributes.addClass(row_classes) }}>
     {{- row.content -}}

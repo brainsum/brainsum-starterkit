@@ -67,8 +67,8 @@
         {% for key, column in header %}
           {% if column.default_classes %}
             {% set column_classes = [
-              'c-views-field',
-              'c-views-field-' ~ fields[key],
+              'c-views__field',
+              'c-views__field-' ~ fields[key],
               'views-field',
               'views-field-' ~ fields[key],
             ] %}
@@ -101,11 +101,11 @@
         {% for column in row.columns %}
           {% if column.default_classes %}
             {% set column_classes = [
-              'c-views-field',
+              'c-views__field',
               'views-field',
             ] %}
             {% for field in column.fields %}
-              {% set column_classes = column_classes|merge(['c-views-field-' ~ field]) %}
+              {% set column_classes = column_classes|merge(['c-views__field-' ~ field]) %}
             {% endfor %}
           {% endif %}
           <td{{ column.attributes.addClass(column_classes) }}>

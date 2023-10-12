@@ -43,17 +43,17 @@
   Defining local variables
 #}
 {% set classes = [
-  'c-view',
-  'view-' ~ id|clean_class,
-  'view-id-' ~ id,
-  'view-display-id-' ~ display_id,
-  dom_id ? 'js-view-dom-id-' ~ dom_id,
+  'c-views',
+  'views-' ~ id|clean_class,
+  'views-id-' ~ id,
+  'views-display-id-' ~ display_id,
+  dom_id ? 'js-views-dom-id-' ~ dom_id,
 ] %}
 
 {#
   Building the template structure
 #}
-<section{{ attributes.addClass(classes) }}>
+<div{{ attributes.addClass(classes) }}>
   {% block view_title %}
     {{ title_prefix }}
     {{ title }}
@@ -62,9 +62,9 @@
 
   {% if header %}
     {% block view_header %}
-      <header class="c-view__header">
+      <div class="c-views__header">
         {{ header }}
-      </header>
+      </div>
     {% endblock %}
   {% endif %}
 
@@ -77,7 +77,7 @@
 
   {% if rows -%}
     {% block view_content %}
-      <div class="c-view__content view-content">
+      <div class="c-views__content view-content">
         {{ rows }}
       </div>
     {% endblock %}
@@ -93,11 +93,11 @@
 
   {% if footer %}
     {% block view_footer %}
-      <footer class="c-view__footer">
+      <div class="c-views__footer">
         {{ footer }}
-      </footer>
+      </div>
     {% endblock %}
   {% endif %}
 
   {{ feed_icons }}
-</section>
+</div>
