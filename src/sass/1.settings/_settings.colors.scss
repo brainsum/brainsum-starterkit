@@ -19,6 +19,11 @@
 $color-dark: #000;
 $color-light: #fff;
 
+/**
+ * Grayscale colors for Drupal components
+ *
+ * You can change but don't remove them.
+ */
 // default grey color
 $color-grey: #333;
 
@@ -58,8 +63,10 @@ $color-red: #fd4f46;
 $color-brand: $color-yellow;
 $color-primary: $color-blue;
 $color-secondary: $color-turquoise;
-$color-text: $color-dark;
-$color-background: $color-light;
+$color-text-primary: $color-dark;
+$color-background-primary: $color-light;
+
+// You can change, but don't remove these
 $color-success: $color-green;
 $color-warning: $color-orange;
 $color-error: $color-red;
