@@ -37,7 +37,7 @@
   Building the template structure
 #}
 {% if items %}
-  <nav class="c-pager" role="navigation" aria-labelledby="{{ heading_id }}">
+  <nav class="c-pager" aria-labelledby="{{ heading_id }}">
     <span
       id="{{ heading_id }}"
       class="u-visually-hide u-visually-hide--focusable"
@@ -79,9 +79,6 @@
                   438.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0z"
                 />
               </svg>
-              <span aria-hidden="true">
-                {{ items.first.text|default('First'|t) }}
-              </span>
             </a>
           </li>
         {% endapply %}
@@ -121,9 +118,6 @@
                   118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
                 />
               </svg>
-              <span aria-hidden="true">
-                {{ items.previous.text|default('Previous'|t) }}
-              </span>
             </a>
           </li>
         {% endapply %}
@@ -194,9 +188,6 @@
               ) }}
             >
               <span class="u-visually-hide">{{ 'Next page'|t }}</span>
-              <span aria-hidden="true">
-                {{ items.next.text|default('Next'|t) }}
-              </span>
               {#
                 angle-right icon from Font Awesome 6 Classic Solid
                 https://fontawesome.com/icons/angle-right?s=solid&f=classic
@@ -232,9 +223,6 @@
               {{ items.last.attributes|without('href', 'title', 'class') }}
             >
               <span class="u-visually-hide">{{ 'Last page'|t }}</span>
-              <span aria-hidden="true">
-                {{ items.last.text|default('Last'|t) }}
-              </span>
               {#
                 angles-right icon from Font Awesome 6 Classic Solid
                 https://fontawesome.com/icons/angles-right?s=solid&f=classic
