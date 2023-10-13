@@ -5,12 +5,21 @@ namespace Drupal\brainsum_starterkit;
 use Drupal\Component\Serialization\Yaml;
 use Drupal\Core\Theme\StarterKitInterface;
 
+/**
+ * Class StarterKit.
+ *
+ * Postprocessing the freshly generated theme.
+ */
 final class StarterKit implements StarterKitInterface {
 
   /**
    * {@inheritdoc}
    */
-  public static function postProcess(string $working_dir, string $machine_name, string $theme_name): void {
+  public static function postProcess(
+    string $working_dir,
+    string $machine_name,
+    string $theme_name
+  ): void {
     $info_file = "$working_dir/$machine_name.info.yml";
     $info = Yaml::decode(file_get_contents($info_file));
     // Unhide hidden themes, and remove the starterkit flag.

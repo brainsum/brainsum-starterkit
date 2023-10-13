@@ -18,7 +18,7 @@
  *   A Sass map that contains all the breakpoints
  *
  * @example
- *   @include breakpoint($breakpoint-size, $breakpoint-sizes);
+ *   @include breakpoint($breakpoint-size, settings.$breakpoint-sizes);
  *
  * Examples
  *

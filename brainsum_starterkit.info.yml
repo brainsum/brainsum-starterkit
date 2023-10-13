@@ -8,7 +8,7 @@ starterkit: true
 # We don't want to display this theme in the Drupal admin.
 hidden: true
 # Short description text for admin UI, change for your project
-description: "Drupal 10 coding standards ready startertheme powered by Laravel Mix (Webpack), bundled with Shake.sass sass framework without any dependency (no base theme too)."
+description: "Drupal 10 coding standards ready startertheme powered by Gulp.js 4, bundled with Shake.sass sass framework without any dependency (no base theme too)."
 # Screenshot cover image for admin UI (588x438): take a screenshot about the home page
 screenshot: screenshot.png
 # Grouping
@@ -33,10 +33,10 @@ regions:
   top: Top
   content: Content
   bottom: Bottom
-  sidebar_first: Sidebar First
-  sidebar_second: Sidebar Second
+  sidebar_first: 'Sidebar First'
+  sidebar_second: 'Sidebar Second'
   footer: Footer
-  admin: Admin Tools
+  admin: 'Admin Tools'
 # Here we turn off or replace many css/js files come from core/contrib modules:
 libraries-override:
   system/base:
@@ -76,6 +76,6 @@ libraries-override:
       component:
         css/user.module.css: css/components/5.components.user.css
   views.module:
-    css:
+    css: null
   core/drupal.message: brainsum_starterkit/message
   core/drupal.collapse: brainsum_starterkit/details

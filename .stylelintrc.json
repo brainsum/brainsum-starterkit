@@ -93,7 +93,7 @@
     "csstools/use-logical": [
       "always",
       {
-        "except": ["float"]
+        "except": ["float", "clear"]
       }
     ],
     "order/order": [

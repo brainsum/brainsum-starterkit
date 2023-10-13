@@ -52,7 +52,8 @@ composer install
 `drush cim -y`. 😉
 
 Set proper theme development settings: disable caching and aggregation but
-turned on Twig debug. See in [official documentation](https://www.drupal.org/node/2598914).
+turned on Twig debug. See in
+[official documentation](https://www.drupal.org/node/2598914).
 
 ### Step 1: generate a new theme
 
@@ -66,13 +67,18 @@ php core/scripts/drupal generate-theme --starterkit brainsum_starterkit your_the
 This will generate a new theme named `your_theme` to the `/themes/custom`
 directory.
 
-### Step 2: manual renaming
+### Step 2: remove the BRAINSUM Starterkit
+
+Remove the BRAINSUM Starterkit theme and the `src/StarterKit.php` file.
+
+### Step 3: manual renaming
 
 However, the startkerkit framework renamed files and machine names correctly,
 still remains in many places, where you have to rename the `brainsum_starterkit`
 to `your_theme`, `brainsumStarterkit` to `yourTheme` and `BrainsumStarterkit` to
 `YourTheme` manually:
 
+- library overrides in `info.yml` file,
 - breakpoint prefix name in `breakpoints.yml` file,
 - path variable in `.theme` file,
 - prefix name of Drupal.behaviors in components JavaScrtipt files,
@@ -80,33 +86,33 @@ to `your_theme`, `brainsumStarterkit` to `yourTheme` and `BrainsumStarterkit` to
 - `theme_root` variable in `font-face*.scss` files
 - extends and includes in twigs: `@brainsum_starterkit`,
 - usage comment in `icon` macro twig file: `@brainsum_starterkit`
+- favicon paths in `browserconfig.xml` and `site.webmanifest` files.
 
 Change the version number in the `info.yml` file.
 Change the package name, description, version name and description in the
 `package.json` file.
 
-### Step 3: install npm modules
+### Step 4: install npm modules
 
 You will need at least v16. nodejs for this theme. You can use nvm for that:
 
 ```bash
-cd web/themes/custom/starter_theme/
+cd web/themes/custom/your_theme/
 nvm use
 ```
 
 Install all local development-needed npm modules:
 
 ```bash
-cd web/themes/custom/your_theme/
 yarn install
 ```
 
-### Step 4: set proxy URL
+### Step 5: set proxy URL
 
 Rename the `env.example` file to `.env` and set the proxy URL according to your
 environment.
 
-### Step 5: setup IDE plugins
+### Step 6: setup IDE plugins
 
 Set code quality tools in your code editor / IDE (all config files are in the
 theme's root):
@@ -162,9 +168,9 @@ Checkout all extensions can find their config file. Example put
 these lines to the workspace config file:
 
 ```json
-"stylelint.configBasedir": "app/web/themes/custom/your_theme",
-"stylelint.configFile": "app/web/themes/custom/your_theme/.stylelintrc.json",
-"prettier.configPath": "app/web/themes/custom/your_theme/.prettierrc.json",
+"stylelint.configBasedir": "web/themes/custom/your_theme",
+"stylelint.configFile": "web/themes/custom/your_theme/.stylelintrc.json",
+"prettier.configPath": "web/themes/custom/your_theme/.prettierrc.json",
 ```
 
 ## Theme overview
@@ -228,13 +234,14 @@ the `.stylelintrc.json` file: `csstools/use-logical`.
 
 ### JavaScript
 
-All JavaScript files should be written in ES6 syntax. All source JavaScript files
-must go to `src/js/` directory. Then we transform them with Babel.js into ES5
-form to the `js/` directory. All JS files are categorized according to
+All JavaScript files should be written in ES6 syntax. All source JavaScript
+files must go to `src/js/` directory. Then we transform them with Babel.js into
+ES5 form to the `js/` directory. All JS files are categorized according to
 SMACSS/ITCSS rules:
 
 - **base:** for very generic functions
-- **tools:** functions to solve a specific problem but not related a component/block
+- **tools:** functions to solve a specific problem but not related a
+  component/block
 - **objects:** very generic, layout-related functions
 - **components:** components related functions (the most will come here)
 - **theme:** theming related functions
@@ -297,17 +304,19 @@ lightbox:
 ## Working with this theme
 
 We use [Gulp.js](https://gulpjs.com) as frontend automation tool. It
-will generate CSS and compiled JavaScript files for us. You can found all scripts
-in `package.json` file, but here is a recap:
+will generate CSS and compiled JavaScript files for us. You can found all
+scripts in `package.json` file, but here is a recap:
 
-- `start`: compile and watching for all css and js files then reload the browser,
+- `start`: compile and watching for all css and js files then reload the
+  browser,
 - `startNoSync`: same as the start with browser reloading,
 - `build`: compile all css and js files at once for production,
 - `sassDev`: compile all css files for development,
 - `sassProd`: compile all css files for production,
 - `scripts`: compile all js files.
 
-So for local developing just run in theme's root (after `nvm use` if you use nvm):
+So for local developing just run in theme's root (after `nvm use` if you use
+nvm):
 
 ```bash
 yarn start

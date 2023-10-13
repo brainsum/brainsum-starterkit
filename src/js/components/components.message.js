@@ -81,6 +81,4 @@
 
     return messageWrapper;
   };
-
-  // Drupal.olivero.closeMessage = closeMessage;
 })(Drupal);

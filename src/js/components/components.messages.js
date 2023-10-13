@@ -54,6 +54,4 @@
       );
     },
   };
-
-  // Drupal.olivero.closeMessage = closeMessage;
 })(Drupal, once);

@@ -5,60 +5,61 @@
  * Functions to support theming in the BRAINSUM's Drupal 10 starterkit.
  */
 
+use Drupal\node\NodeInterface;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Template\Attribute;
-use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Render\Element;
-use Drupal\user\UserInterface;
 
 /**
  * Implements hook_theme_registry_alter().
- * @param array $theme_registry
  *
- * Use our version of toolbar.html.twig template instead of Claro's version.
+ *   Use our version of toolbar.html.twig template instead of Claro's version.
  */
 function brainsum_starterkit_theme_registry_alter(&$theme_registry) {
-  $theme_registry['toolbar']['path'] = \Drupal::request()->getBasePath() . '/' . \Drupal::service('extension.list.theme')->getPath('brainsum_starterkit') . '/templates/navigation';
+  $theme_registry['toolbar']['path'] = \Drupal::request()->getBasePath() . '/' .
+  \Drupal::service('extension.list.theme')->getPath('brainsum_starterkit') .
+  '/templates/navigation';
 }
 
 /**
  * Implements hook_preprocess_HOOK() for HTML document templates.
- * @param array $variables
  *
- * Adds body classes if certain regions have content.
+ *   Adds body classes if certain regions have content.
  */
 function brainsum_starterkit_preprocess_html(&$variables) {
   $path = \Drupal::request()->getPathInfo();
   $path_args = explode('/', $path);
   $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
-  // store theme's path in a variable to access it from any Twig templates.
-  $variables['current_theme_path'] = \Drupal::request()->getBasePath() . '/' . \Drupal::service('extension.list.theme')->getPath('brainsum_starterkit');
+  // Store theme's path in a variable to access it from any Twig templates.
+  $variables['current_theme_path'] = \Drupal::request()->getBasePath() . '/' .
+  \Drupal::service('extension.list.theme')->getPath('brainsum_starterkit');
 
   $variables['path_info']['args'] = FALSE;
 
-  // Generating class name from current path and added to html element
+  // Generating class name from current path and added to html element.
   if (count($path_args) >= 3) {
     $variables['path_info']['args'] = Html::cleanCssIdentifier(ltrim($path, '/'));
   }
 
-  // Added current ID as class to html element
+  // Added current ID as class to html element.
   if ($node = \Drupal::request()->attributes->get('node')) {
     $variables['attributes']['class'][] = 'page-node-' . $node->id();
   }
 
-  // Added a class to html element according to current language
+  // Added a class to html element according to current language.
   $variables['attributes']['class'][] = 'page--language-' . $language;
 }
 
 /**
  * Implements hook_preprocess_HOOK() for page title templates.
  */
-function brainsum_starterkit_preprocess_page_title(&$variables)
-{
+function brainsum_starterkit_preprocess_page_title(&$variables) {
   // Since the title and the shortcut link are both block level elements,
   // positioning them next to each other is much simpler with a wrapper div.
-  if (!empty($variables['title_suffix']['add_or_remove_shortcut']) && $variables['title']) {
+  if (
+    !empty($variables['title_suffix']['add_or_remove_shortcut']) && $variables['title']
+  ) {
     // Add a wrapper div using the title_prefix and title_suffix render
     // elements.
     $variables['title_prefix']['shortcut_wrapper'] = [
@@ -84,8 +85,7 @@ function brainsum_starterkit_preprocess_page_title(&$variables)
 /**
  * Implements hook_preprocess_HOOK() for maintenance-page.html.twig.
  */
-function brainsum_starterkit_preprocess_maintenance_page(&$variables)
-{
+function brainsum_starterkit_preprocess_maintenance_page(&$variables) {
   // By default, site_name is set to Drupal if no db connection is available
   // or during site installation. Setting site_name to an empty string makes
   // the site and update pages look cleaner.
@@ -94,33 +94,35 @@ function brainsum_starterkit_preprocess_maintenance_page(&$variables)
     $variables['site_name'] = '';
   }
 
-  // startertheme has custom styling for the maintenance page.
+  // Startertheme has custom styling for the maintenance page.
   $variables['#attached']['library'][] = 'brainsum_starterkit/page.maintenance';
 }
 
 /**
  * Implements hook_preprocess_HOOK() for node.html.twig.
- * @param array $variables
  */
 function brainsum_starterkit_preprocess_node(&$variables) {
   // Remove the "Add new comment" link on teasers or when the comment form is
   // displayed on the page.
-  if ($variables['teaser'] || !empty($variables['content']['comments']['comment_form'])) {
+  if (
+    $variables['teaser'] || !empty(
+      $variables['content']['comments']['comment_form']
+    )
+  ) {
     unset($variables['content']['links']['comment']['#links']['comment-add']);
   }
 }
 
 /**
  * Implements hook_preprocess_HOOK() for page templates.
- *
- * @param array $suggestions
- * @param array $variables
  */
-function brainsum_starterkit_suggestions_page_alter(array &$suggestions, array $variables)
-{
+function brainsum_starterkit_suggestions_page_alter(
+  array &$suggestions,
+  array $variables
+) {
   $node = \Drupal::routeMatch()->getParameter('node');
 
-  if ($node instanceof \Drupal\node\NodeInterface) {
+  if ($node instanceof NodeInterface) {
     $suggestions[] = 'page__' . $node->bundle();
     $suggestions[] = 'page__node_' . $node->bundle();
   }
@@ -128,7 +130,6 @@ function brainsum_starterkit_suggestions_page_alter(array &$suggestions, array $
 
 /**
  * Implements hook_preprocess_page() for PAGE document templates.
- * @param array $variables
  */
 function brainsum_starterkit_preprocess_page(array &$variables) {
   if ($variables['logged_in'] == TRUE) {
@@ -138,8 +139,6 @@ function brainsum_starterkit_preprocess_page(array &$variables) {
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter() for menu.
- * @param array $suggestions
- * @param array $variables
  */
 function brainsum_starterkit_theme_suggestions_menu_alter(&$suggestions, array $variables) {
   if (isset($variables['attributes']['region'])) {
@@ -149,11 +148,11 @@ function brainsum_starterkit_theme_suggestions_menu_alter(&$suggestions, array $
 
 /**
  * Implements hook_theme_suggestions_taxonomy_term_alter().
- * @param array $suggestions
- * @param array $variables
  */
-function brainsum_starterkit_theme_suggestions_taxonomy_term_alter(array &$suggestions, array $variables)
-{
+function brainsum_starterkit_theme_suggestions_taxonomy_term_alter(
+  array &$suggestions,
+  array $variables
+) {
   /** @var \Drupal\taxonomy\TermInterface $term */
   $term = $variables['elements']['#taxonomy_term'];
   $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
@@ -165,8 +164,6 @@ function brainsum_starterkit_theme_suggestions_taxonomy_term_alter(array &$sugge
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter() for block().
- * @param array $suggestions
- * @param array $variables
  */
 function brainsum_starterkit_theme_suggestions_block_alter(&$suggestions, array $variables) {
   if (!empty($variables['elements']['#id'])) {
@@ -204,33 +201,38 @@ function brainsum_starterkit_preprocess_menu_local_tasks(&$variables) {
  * Implements hook_form_alter() for adding classes and placeholder text to the search forms.
  */
 function brainsum_starterkit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-   if (isset($form['actions']['submit']) && (count($form['actions'])) <= 2) {
+  if (isset($form['actions']['submit']) && (count($form['actions'])) <= 2) {
     $form['actions']['submit']['#attributes']['class'][] = 'c-button--primary';
   }
 
   switch ($form_id) {
     case 'search_block_form':
       // Add placeholder text to keys input.
-      $form['keys']['#attributes']['placeholder'] = t('Search by keyword or phrase.');
+      $form['keys']['#attributes']['placeholder'] = t(
+        'Search by keyword or phrase.'
+      );
 
       // Add classes to the search form submit input.
       $form['actions']['submit']['#attributes']['class'][] = 'c-search-form__submit';
-    break;
+      break;
 
     case 'search_form':
-      $form['basic']['keys']['#attributes']['placeholder'] = t('Search by keyword or phrase.');
+      $form['basic']['keys']['#attributes']['placeholder'] = t(
+        'Search by keyword or phrase.'
+      );
       $form['basic']['submit']['#attributes']['class'][] = 'c-button--primary';
       $form['advanced']['submit']['#attributes']['class'][] = 'c-button--primary';
-    break;
+      break;
   }
 }
 
 /**
  * Implements hook_preprocess_form_element().
- * @param array $variables
  */
 function brainsum_starterkit_preprocess_form_element(&$variables) {
-  if (in_array($variables['element']['#type'] ?? FALSE, ['checkbox', 'radio'], TRUE)) {
+  if (
+    in_array($variables['element']['#type'] ?? FALSE, ['checkbox', 'radio'], TRUE)
+  ) {
     $variables['attributes']['class'][] = 'c-form-type--boolean';
   }
 
@@ -245,7 +247,6 @@ function brainsum_starterkit_preprocess_form_element(&$variables) {
 
 /**
  * Implements hook_preprocess_HOOK().
- * @param array $variables
  */
 function brainsum_starterkit_preprocess_form_element_label(&$variables) {
   $variables['attributes']['class'][] = 'c-form-item__label';
@@ -253,7 +254,6 @@ function brainsum_starterkit_preprocess_form_element_label(&$variables) {
 
 /**
  * Implements hook_preprocess_HOOK().
- * @param array $variables
  */
 function brainsum_starterkit_preprocess_input(&$variables) {
   if (
@@ -285,10 +285,14 @@ function brainsum_starterkit_preprocess_input(&$variables) {
 
   if (in_array($type_html, $text_types_html, TRUE)) {
     $variables['attributes']['class'][] = 'c-form-element';
-    $variables['attributes']['class'][] = Html::getClass('c-form-element--type-' . $type_html);
-    $variables['attributes']['class'][] = Html::getClass('c-form-element--api-' . $type_api);
+    $variables['attributes']['class'][] = Html::getClass(
+      'c-form-element--type-' . $type_html
+    );
+    $variables['attributes']['class'][] = Html::getClass(
+      'c-form-element--api-' . $type_api
+    );
 
-    // add form label value as placeholder attribute
+    // Add form label value as placeholder attribute.
     if (isset($variables['element']['#title'])) {
       $variables['attributes']['placeholder'] = (string) $variables['element']['#title'];
     }
@@ -300,20 +304,21 @@ function brainsum_starterkit_preprocess_input(&$variables) {
 
   if (in_array($type_html, ['checkbox', 'radio'], TRUE)) {
     $variables['attributes']['class'][] = 'c-form-boolean';
-    $variables['attributes']['class'][] = Html::getClass('c-form-boolean--type-' . $type_html);
+    $variables['attributes']['class'][] = Html::getClass(
+      'c-form-boolean--type-' . $type_html
+    );
   }
 }
 
 /**
  * Implements hook_preprocess_HOOK().
- * @param array $variables
  */
 function brainsum_starterkit_preprocess_textarea(&$variables) {
   $variables['attributes']['class'][] = 'c-form-element';
   $variables['attributes']['class'][] = 'c-form-element--type-textarea';
   $variables['attributes']['class'][] = 'c-form-element--api-textarea';
 
-  // add form label value as placeholder attribute
+  // Add form label value as placeholder attribute.
   if (isset($variables['element']['#title'])) {
     $variables['attributes']['placeholder'] = (string) $variables['element']['#title'];
   }
@@ -321,7 +326,6 @@ function brainsum_starterkit_preprocess_textarea(&$variables) {
 
 /**
  * Implements hook_preprocess_HOOK().
- * @param array $variables
  */
 function brainsum_starterkit_preprocess_select(&$variables) {
   $variables['attributes']['class'][] = 'c-form-element';
@@ -332,7 +336,6 @@ function brainsum_starterkit_preprocess_select(&$variables) {
 
 /**
  * Implements hook_preprocess_HOOK().
- * @param array $variables
  */
 function brainsum_starterkit_preprocess_checkboxes(&$variables) {
   $variables['attributes']['class'][] = 'c-form-boolean-group';
@@ -340,7 +343,6 @@ function brainsum_starterkit_preprocess_checkboxes(&$variables) {
 
 /**
  * Implements hook_preprocess_HOOK().
- * @param array $variables
  */
 function brainsum_starterkit_preprocess_radios(&$variables) {
   $variables['attributes']['class'][] = 'c-form-boolean-group';
@@ -348,7 +350,6 @@ function brainsum_starterkit_preprocess_radios(&$variables) {
 
 /**
  * Implements hook_preprocess_HOOK().
- * @param array $variables
  */
 function brainsum_starterkit_preprocess_field(&$variables) {
   $rich_field_types = ['text_with_summary', 'text', 'text_long'];
@@ -360,7 +361,6 @@ function brainsum_starterkit_preprocess_field(&$variables) {
 
 /**
  * Implements hook_preprocess_HOOK().
- * @param array $variables
  */
 function brainsum_starterkit_preprocess_field_multiple_value_form(&$variables) {
   // Make disabled available for the template.
@@ -375,7 +375,12 @@ function brainsum_starterkit_preprocess_field_multiple_value_form(&$variables) {
     // table header cell.
     //
     // @see template_preprocess_field_multiple_value_form().
-    $header_attributes = ['class' => ['c-form-item__label', 'c-form-item__label--multiple-value-form']];
+    $header_attributes = [
+      'class' => [
+        'c-form-item__label',
+        'c-form-item__label--multiple-value-form',
+      ],
+    ];
     if (!empty($variables['element']['#required'])) {
       $header_attributes['class'][] = 'js-form-required';
       $header_attributes['class'][] = 'form-required';
@@ -417,20 +422,25 @@ function brainsum_starterkit_preprocess_field_multiple_value_form(&$variables) {
 
 /**
  * Implements template_preprocess_HOOK() for fieldset.
- * @param array $variables
  */
 function brainsum_starterkit_preprocess_fieldset(&$variables) {
   $element = $variables['element'];
   $composite_types = ['checkboxes', 'radios'];
 
-  if (!empty($element['#type']) && in_array($element['#type'], $composite_types) && !empty($variables['element']['#children_errors'])) {
+  if (
+    !empty($element['#type']) && in_array($element['#type'], $composite_types)
+    && !empty($variables['element']['#children_errors'])
+  ) {
     $variables['legend_span']['attributes']->addClass('has-error');
   }
 
   if (!empty($element['#disabled'])) {
     $variables['legend_span']['attributes']->addClass('is-disabled');
 
-    if (!empty($variables['description']) && !empty($variables['description']['attributes'])) {
+    if (
+      !empty($variables['description']) &&
+      !empty($variables['description']['attributes'])
+    ) {
       $variables['description']['attributes']->addClass('is-disabled');
     }
   }
@@ -440,7 +450,9 @@ function brainsum_starterkit_preprocess_fieldset(&$variables) {
   // @todo remove this after https://www.drupal.org/node/3059593 has been
   //   resolved.
   if (!empty($variables['attributes']['class'])) {
-    $container_inline_key = array_search('container-inline', $variables['attributes']['class']);
+    $container_inline_key = array_search(
+      'container-inline', $variables['attributes']['class']
+    );
 
     if ($container_inline_key !== FALSE) {
       unset($variables['attributes']['class'][$container_inline_key]);
@@ -451,12 +463,12 @@ function brainsum_starterkit_preprocess_fieldset(&$variables) {
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
- * @param array $suggestions
- * @param array $variables
- * @param $hook
  */
-function brainsum_starterkit_theme_suggestions_fieldset_alter(array &$suggestions, array $variables, $hook)
-{
+function partnership_theme_suggestions_fieldset_alter(
+  array &$suggestions,
+  array $variables,
+  $hook
+) {
   if (isset($variables['element']['#id'])) {
     $id = str_replace("-", "_", $variables['element']['#id']);
     $suggestions[] = $hook . '__' . $id;
@@ -465,8 +477,6 @@ function brainsum_starterkit_theme_suggestions_fieldset_alter(array &$suggestion
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
- * @param array $suggestions
- * @param array $variables
  */
 function brainsum_starterkit_theme_suggestions_user_alter(&$suggestions, $variables) {
   $suggestions[] = 'user__' . $variables['elements']['#view_mode'];
@@ -474,7 +484,6 @@ function brainsum_starterkit_theme_suggestions_user_alter(&$suggestions, $variab
 
 /**
  * Implements hook_preprocess_HOOK().
- * @param array $variables
  */
 function brainsum_starterkit_preprocess_field__node__created(&$variables) {
   foreach (Element::children($variables['items']) as $item) {
@@ -484,23 +493,28 @@ function brainsum_starterkit_preprocess_field__node__created(&$variables) {
 
 /**
  * Implements hook_preprocess_HOOK() for setting classes.
- * @param array $variables
  */
 function brainsum_starterkit_preprocess_filter_caption(&$variables) {
-  $variables['classes'] = isset($variables['classes']) && !empty($variables['classes']) ? $variables['classes'] . ' caption' : 'caption';
+  $variables['classes'] = isset($variables['classes']) && !empty(
+    $variables['classes']
+  ) ? $variables['classes'] . ' caption' : 'caption';
 }
 
 /**
  * Implements hook_form_FORM_ID_alter().
  */
-function brainsum_starterkit_form_comment_form_alter(&$form, FormStateInterface $form_state, $form_id)
-{
+function brainsum_starterkit_form_comment_form_alter(
+  &$form,
+  FormStateInterface $form_state,
+  $form_id
+) {
   $comment = $form_state->getFormObject()
     ->getEntity();
-  /* @var \Drupal\comment\Entity\Comment $comment */
+  /** @var \Drupal\comment\Entity\Comment $comment */
   if ($comment->hasParentComment()) {
     $form['actions']['submit']['#value'] = t('Reply to comment');
-  } else {
+  }
+  else {
     $form['actions']['submit']['#value'] = t('Post comment');
   }
 }
@@ -508,7 +522,11 @@ function brainsum_starterkit_form_comment_form_alter(&$form, FormStateInterface 
 /**
  * Implements hook_form_FORM_ID_alter().
  */
-function brainsum_starterkit_form_node_preview_form_select_alter(&$form, FormStateInterface $form_state, $form_id) {
+function brainsum_starterkit_form_node_preview_form_select_alter(
+  &$form,
+  FormStateInterface $form_state,
+  $form_id
+) {
   $form['backlink']['#options']['attributes']['class'][] = 'c-button';
   $form['backlink']['#options']['attributes']['class'][] = 'c-button--small';
   $form['backlink']['#options']['attributes']['class'][] = 'c-button--icon-back';
@@ -518,7 +536,6 @@ function brainsum_starterkit_form_node_preview_form_select_alter(&$form, FormSta
 
 /**
  * Implements template_preprocess_text_format_wrapper().
- * @param array $variables
  *
  * @todo Remove when https://www.drupal.org/node/3016343 is fixed.
  */
@@ -533,7 +550,6 @@ function brainsum_starterkit_preprocess_text_format_wrapper(&$variables) {
 
 /**
  * Implements hook_preprocess_table().
- * @param array $variables
  */
 function brainsum_starterkit_preprocess_table(&$variables) {
   // Mark the whole table and the first cells if rows are draggable.
@@ -554,7 +570,6 @@ function brainsum_starterkit_preprocess_table(&$variables) {
 
 /**
  * Implements hook_form_views_exposed_form_alter().
- * @param array $form
  */
 function brainsum_starterkit_form_views_exposed_form_alter(&$form) {
   $form['#attributes']['class'][] = 'form--inline';
@@ -562,10 +577,9 @@ function brainsum_starterkit_form_views_exposed_form_alter(&$form) {
 
 /**
  * Implements template_preprocess_menu_local_task().
- * @param array $variables
  *
- * Modified visually-hidden class to utility class.
- * Added extra CSS classes.
+ *   Modified visually-hidden class to utility class.
+ *   Added extra CSS classes.
  */
 function brainsum_starterkit_preprocess_menu_local_task(&$variables) {
   $variables['link']['#options']['attributes']['class'][] = 'c-tabs__link';
