@@ -47,6 +47,4 @@
       once('messages', '[data-drupal-selector="messages"]', context).forEach(closeMessage);
     }
   };
-
-  // Drupal.olivero.closeMessage = closeMessage;
 })(Drupal, once);

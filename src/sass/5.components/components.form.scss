@@ -15,7 +15,7 @@
 /**
  * Settings
  */
-$browser-input-icons: false;
+$browser-input-icons: true;
 $gutter-block: settings.$form-gutter;
 $padding-block: settings.$form-padding-block;
 $padding-inline: settings.$form-padding-inline;
@@ -34,6 +34,7 @@ $select-arrow-size: 2.8rem;
 
 textarea {
   resize: vertical;
+  vertical-align: top;
 }
 
 // Reset webkit date and time fields (hide calendar and clock icons)

@@ -59,6 +59,4 @@
     messageWrapper.innerHTML = "\n    <div class=\"c-messages__container\" data-drupal-selector=\"messages-container\">\n      <div class=\"c-messages__header".concat(!svg ? ' no-icon' : '', "\">\n        <h2 class=\"u-visually-hide\">").concat(messagesTypes[type], "</h2>\n        ").concat(svg, "\n      </div>\n      <div class=\"c-messages__content\">\n        ").concat(text, "\n      </div>\n    </div>\n    ");
     return messageWrapper;
   };
-
-  // Drupal.olivero.closeMessage = closeMessage;
 })(Drupal);
