@@ -2,7 +2,7 @@
 
 - Created by: [Krisztian Pinter](kpinter@brainsum.com)
 - Created in: 2020.
-- Updated on: 2023.05.19.
+- Updated on: 2023.10.27.
 
 ## Table of Contents
 

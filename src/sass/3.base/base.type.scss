@@ -180,9 +180,26 @@ var {
 @if $classless-lists-margins-paddings {
   ul:not([class]),
   ol:not([class]),
-  menu:not([class]) {
-    margin-block: 1em;
+  menu:not([class]),
+  pre:not([class]),
+  hr:not([class]) {
+    margin-block: $paragraph-margin-size;
     margin-inline: 0;
+
+    & + p,
+    & + blockquote,
+    hr + & {
+      margin-block-start: 0;
+    }
+  }
+
+  ul:not([class]),
+  ol:not([class]) {
     padding-inline-start: 1.1em;
+
+    ul,
+    ol {
+      margin-block: 0;
+    }
   }
 }
