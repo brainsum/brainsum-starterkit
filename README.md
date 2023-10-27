@@ -232,6 +232,21 @@ There is a Stylelint plugin to warn and correct you if you use physical
 properties (except `float`). If you don't want to use it, you can disable it in
 the `.stylelintrc.json` file: `csstools/use-logical`.
 
+#### Inline SVGs in CSS
+
+You can inling SVG icons into CSS via [postcss-inline-svg](https://github.com/TrySound/postcss-inline-svg)
+plugin. For example place the colorable SVG icon into the images/icons directory, then:
+
+```scss
+.checkmark {
+  background: svg-load("../../../images/icons/checkmark.svg", fill=settings.$color-secondary) no-repeat center
+          center;
+}
+```
+
+_Note: you can use SASS variables, but not CSS variables in the `fill` or
+`stroke` properties._
+
 ### JavaScript
 
 All JavaScript files should be written in ES6 syntax. All source JavaScript
