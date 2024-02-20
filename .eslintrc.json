@@ -19,6 +19,10 @@
     "Modernizr": true,
     "once": true
   },
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "script"
+  },
   "rules": {
     "consistent-return": ["off"],
     "no-underscore-dangle": ["off"],
