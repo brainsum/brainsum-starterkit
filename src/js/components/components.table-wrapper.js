@@ -9,15 +9,15 @@
     wrapper.setAttribute('class', 'c-table__wrapper');
     el.parentNode.insertBefore(wrapper, el);
     wrapper.appendChild(el);
-  }
+  };
 
   Drupal.behaviors.brainsumStarterkitTableWrapper = {
-    attach (context) {
+    attach(context) {
       const content = once('[data-drupal-selector="text-formatted"]', context);
 
       if (content) {
         context.querySelectorAll('table').forEach((el) => init(el));
       }
-      }
     }
+  };
 })(Drupal, once);
