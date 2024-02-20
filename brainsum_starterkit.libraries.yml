@@ -47,6 +47,8 @@ field.long-text:
   css:
     component:
       css/5.components/components.field.long-text.css: { preprocess: false }
+  dependencies:
+    - brainsum_starterkit/table-wrapper
 
 file:
   version: 1.0.0
@@ -120,6 +122,14 @@ progress:
   css:
     component:
       css/5.components/components.progress.css: { preprocess: false }
+
+table-wrapper:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.table-wrapper.css: { preprocess: false }
+  js:
+    js/components/components.table-wrapper.js: { preprocess: false }
 
 tabs:
   version: 1.0.0

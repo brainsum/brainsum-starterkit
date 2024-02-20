@@ -1,0 +1,15 @@
+/**
+ * @file
+ * Table Wrapper Component
+ *
+ * Minimal responsive table with horizontal scrollbar.
+ */
+
+/**
+  * Imports
+ */
+@use "../tools";
+
+.c-table__wrapper {
+  overflow-x: auto;
+}
