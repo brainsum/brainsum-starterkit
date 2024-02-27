@@ -127,7 +127,7 @@
       {% if ellipses.previous %}
         <li
           class="c-pager__item c-pager__item--ellipsis"
-          role="presentation"
+          aria-hidden="true"
         >
         &hellip;
         </li>
@@ -170,7 +170,7 @@
 
       {# Add an ellipsis if there are further next pages. #}
       {% if ellipses.next %}
-        <li class="c-pager__item c-pager__item--ellipsis" role="presentation">
+        <li class="c-pager__item c-pager__item--ellipsis" aria-hidden="true">
           &hellip;
         </li>
       {% endif %}
