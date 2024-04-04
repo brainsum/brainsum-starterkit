@@ -24,7 +24,7 @@ $border-color: #979797;
 $focus-color: settings.$color-primary;
 $text-color: settings.$color-text-primary;
 $background-color: settings.$color-light;
-$placeholder-color: rgba($text-color, 1);
+$placeholder-color: rgba($text-color, 0.66);
 $boolean-border-color: #979797;
 $boolean-checked-color: settings.$color-primary;
 $boolean-size-touch: 3.5rem; // size for mobile devices
