@@ -21,7 +21,7 @@
   },
   "parserOptions": {
     "ecmaVersion": "latest",
-    "sourceType": "script"
+    "sourceType": "module"
   },
   "rules": {
     "consistent-return": ["off"],

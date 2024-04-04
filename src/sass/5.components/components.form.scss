@@ -24,7 +24,7 @@ $border-color: #979797;
 $focus-color: settings.$color-primary;
 $text-color: settings.$color-text-primary;
 $background-color: settings.$color-light;
-$placeholder-color: rgba($text-color, 0.66);
+$placeholder-color: rgba($text-color, 1);
 $boolean-border-color: #979797;
 $boolean-checked-color: settings.$color-primary;
 $boolean-size-touch: 3.5rem; // size for mobile devices
@@ -155,7 +155,11 @@ textarea {
         display: inline-block;
         content: "";
         cursor: pointer;
-        transition: background 0.2s, border 0.2s, box-shadow 0.2s, color 0.2s;
+        transition:
+          background 0.2s,
+          border 0.2s,
+          box-shadow 0.2s,
+          color 0.2s;
         border-block: 0.1rem solid $boolean-border-color;
         border-inline: 0.1rem solid $boolean-border-color;
         background: $background-color;

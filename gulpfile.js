@@ -1,22 +1,26 @@
 /**
  * Import required node modules and other external files
  */
-require('dotenv').config();
-const autoprefixer = require('autoprefixer');
-const babel = require('gulp-babel');
-const browserSync = require('browser-sync').create();
-const cssnano = require('cssnano');
-const cssnanoLite = require('cssnano-preset-lite');
-const eslint = require('gulp-eslint-new');
-const gulp = require('gulp');
-const postcss = require('gulp-postcss');
-const postcssPresetEnv = require('postcss-preset-env');
-const prettier = require('gulp-prettier');
-const sassGlob = require('gulp-sass-glob');
-const sass = require('gulp-sass')(require('sass'));
-const sorting = require('postcss-sorting');
-const sourcemaps = require('gulp-sourcemaps');
-const stylelint = require('@ronilaukkarinen/gulp-stylelint');
+import autoprefixer from 'autoprefixer';
+import babel from 'gulp-babel';
+import browserSync from 'browser-sync';
+import cssnano from 'cssnano';
+import cssnanoLite from 'cssnano-preset-lite';
+import 'dotenv/config';
+import eslint from 'gulp-eslint-new';
+import gulp from 'gulp';
+import postcss from 'gulp-postcss';
+import postcssPresetEnv from 'postcss-preset-env';
+import prettier from 'gulp-prettier';
+import sassGlob from 'gulp-sass-glob';
+import * as dartSass from 'sass';
+import gulpSass from 'gulp-sass';
+import sorting from 'postcss-sorting';
+import sourcemaps from 'gulp-sourcemaps';
+import stylelint from '@ronilaukkarinen/gulp-stylelint';
+
+const server = browserSync.create();
+const sass = gulpSass(dartSass);
 
 /**
  * Gulp config
@@ -25,12 +29,12 @@ const config = {
   paths: {
     styles: {
       src: './src/sass/**/*.scss',
-      dest: './css/',
+      dest: './css/'
     },
     scripts: {
       src: './src/js/**/*.js',
-      dest: './js/',
-    },
+      dest: './js/'
+    }
   },
   cssnano: {
     preset: [
@@ -41,37 +45,32 @@ const config = {
         mergeRules: true,
         normalizeCharset: true,
         normalizeString: true,
-        normalizeWhitespace: false,
-      },
-    ],
+        normalizeWhitespace: false
+      }
+    ]
   },
   postcssPresetEnv: {
     stage: 3,
-    preserve: false,
+    preserve: false
   },
   stylelint: {
     reporters: [
       {
-        formatter: 'verbose',
-        console: true,
-      },
+        formatter: 'string',
+        console: true
+      }
     ],
     debug: true,
     failAfterError: false,
-    fix: true,
+    fix: true
   },
   browserSync: {
     proxy: process.env.BROWSERSYC_PROXY,
     autoOpen: false,
     notify: true,
-    browsers: ['Google Chrome'],
-  },
+    browsers: ['Google Chrome']
+  }
 };
-
-// Predefined complex Gulp tasks
-let compileTask = '';
-let watchTask = '';
-let watchTaskNoSync = '';
 
 /**
  * SASS:Compile Task
@@ -92,16 +91,16 @@ function sassCompileDev(done) {
     .pipe(
       sass.sync({
         outputStyle: 'expanded',
-        precision: 10,
-      }),
+        precision: 10
+      })
     )
     .on('error', sass.logError)
     .pipe(
       postcss([
         autoprefixer,
         postcssPresetEnv(config.postcssPresetEnv),
-        sorting,
-      ]),
+        sorting
+      ])
     )
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(config.paths.styles.dest));
@@ -117,8 +116,8 @@ function sassCompileProd(done) {
     .pipe(
       sass.sync({
         outputStyle: 'compressed',
-        precision: 10,
-      }),
+        precision: 10
+      })
     )
     .on('error', sass.logError)
     .pipe(
@@ -126,8 +125,8 @@ function sassCompileProd(done) {
         autoprefixer,
         postcssPresetEnv(config.postcssPresetEnv),
         sorting,
-        cssnano(config.cssnano),
-      ]),
+        cssnano(config.cssnano)
+      ])
     )
     .pipe(gulp.dest(config.paths.styles.dest));
   done();
@@ -162,8 +161,8 @@ function scriptsDev(done) {
     .pipe(prettier())
     .pipe(
       babel({
-        presets: ['@babel/env'],
-      }),
+        presets: ['@babel/env']
+      })
     )
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(config.paths.scripts.dest));
@@ -185,8 +184,8 @@ function scriptsProd(done) {
     .pipe(prettier())
     .pipe(
       babel({
-        presets: ['@babel/env'],
-      }),
+        presets: ['@babel/env']
+      })
     )
     .pipe(gulp.dest(config.paths.scripts.dest));
   done();
@@ -209,9 +208,9 @@ function browserSyncTask(done) {
       './js/**/*',
       './templates/**/*',
       './*.yml',
-      './*.theme',
+      './*.theme'
     ],
-    watchEvents: ['add', 'change'],
+    watchEvents: ['add', 'change']
   });
   done();
 }
@@ -223,7 +222,7 @@ function browserSyncTask(done) {
  * @param {function} done Reload event.
  */
 function browserSyncReloadTask(done) {
-  browserSync.reload();
+  server.reload();
   done();
 }
 
@@ -231,28 +230,28 @@ function browserSyncReloadTask(done) {
 const watch = () =>
   gulp.watch(
     [config.paths.styles.src, config.paths.scripts.src],
-    gulp.series(sassCompileDev, scriptsDev, browserSyncReloadTask),
+    gulp.series(sassCompileDev, scriptsDev, browserSyncReloadTask)
   );
 
 // Watching without Sync Task
 const watchNoSync = () =>
   gulp.watch(
     [config.paths.styles.src, config.paths.scripts.src],
-    gulp.series(sassCompileDev, scriptsDev),
+    gulp.series(sassCompileDev, scriptsDev)
   );
 
 // Define complex tasks
-compileTask = gulp.parallel(sassCompileDev, scriptsDev);
-watchTask = gulp.series(compileTask, browserSyncTask, watch);
-watchTaskNoSync = gulp.series(compileTask, watchNoSync);
+const compileTask = gulp.parallel(sassCompileDev, scriptsDev);
+const watchTask = gulp.series(compileTask, browserSyncTask, watch);
+const watchTaskNoSync = gulp.series(compileTask, watchNoSync);
 
 /**
  * Export Gulp tasks
  */
-exports.default = watchTask;
-exports.defaultNoSync = watchTaskNoSync;
-exports.prod = gulp.parallel(sassCompileProd, scriptsProd);
-exports.sassDev = sassCompileDev;
-exports.sassProd = sassCompileProd;
-exports.scripts = scriptsProd;
-exports.lint = sassLintTask;
+export default watchTask;
+export const defaultNoSync = watchTaskNoSync;
+export const prod = gulp.parallel(sassCompileProd, scriptsProd);
+export const sassDev = sassCompileDev;
+export const sassProd = sassCompileProd;
+export const scripts = scriptsProd;
+export const lint = sassLintTask;
