@@ -9,6 +9,7 @@ import cssnanoLite from 'cssnano-preset-lite';
 import 'dotenv/config';
 import eslint from 'gulp-eslint-new';
 import gulp from 'gulp';
+import inlineSvg from 'postcss-inline-svg';
 import postcss from 'gulp-postcss';
 import postcssPresetEnv from 'postcss-preset-env';
 import prettier from 'gulp-prettier';
@@ -97,6 +98,7 @@ function sassCompileDev(done) {
     .on('error', sass.logError)
     .pipe(
       postcss([
+        inlineSvg,
         autoprefixer,
         postcssPresetEnv(config.postcssPresetEnv),
         sorting
@@ -122,6 +124,7 @@ function sassCompileProd(done) {
     .on('error', sass.logError)
     .pipe(
       postcss([
+        inlineSvg,
         autoprefixer,
         postcssPresetEnv(config.postcssPresetEnv),
         sorting,
