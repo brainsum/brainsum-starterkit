@@ -2,7 +2,7 @@
 
 - Created by: [Krisztian Pinter](kpinter@brainsum.com)
 - Created in: 2020.
-- Updated on: 2024.02.20.
+- Updated on: 2024.08.21.
 
 ## Table of Contents
 
@@ -170,7 +170,7 @@ these lines to the workspace config file:
 ```json
 "stylelint.configBasedir": "web/themes/custom/your_theme",
 "stylelint.configFile": "web/themes/custom/your_theme/.stylelintrc.json",
-"prettier.configPath": "web/themes/custom/your_theme/.prettierrc.json",
+"prettier.configPath": "web/themes/custom/your_theme/.prettierrc",
 ```
 
 ## Theme overview
