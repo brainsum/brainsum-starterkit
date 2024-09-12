@@ -1,0 +1,7 @@
+ignore:
+  - '/src/StarterKit.php'
+  - '/brainsum_starterkit.starterkit.yml'
+no_edit: []
+no_rename: []
+info:
+  version: 3.5.0

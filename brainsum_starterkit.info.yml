@@ -3,18 +3,14 @@ name: "BRAINSUM startertkit"
 type: theme
 # Defines the base theme, change it for your needs
 base theme: false
-# This is a startkerkit theme.
-starterkit: true
 # We don't want to display this theme in the Drupal admin.
 hidden: true
 # Short description text for admin UI, change for your project
-description: "Drupal 10 coding standards ready startertheme powered by Gulp.js 4, bundled with Shake.sass sass framework without any dependency (no base theme too)."
+description: "Drupal 10 coding standards ready startertheme powered by Gulp.js 5, bundled with Shake.sass sass framework without any dependency (no base theme too)."
 # Screenshot cover image for admin UI (588x438): take a screenshot about the home page
 screenshot: screenshot.png
 # Grouping
 package: brainsum
-# Version number
-version: 3.4.1
 # Dependency resolving for Composer.
 core_version_requirement: ^10
 # website logo, begin with Drupal 8.6 you can use SVG or PNG format too

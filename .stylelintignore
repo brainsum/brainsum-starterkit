@@ -1,3 +1,2 @@
 **/*.css
-node_modules
-src/sass/2.tools/modules/
+node_modules/**/*

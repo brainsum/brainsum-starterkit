@@ -2,7 +2,7 @@
 
 - Created by: [Krisztian Pinter](kpinter@brainsum.com)
 - Created in: 2020.
-- Updated on: 2024.08.21.
+- Updated on: 2024.09.12.
 
 ## Table of Contents
 
@@ -94,7 +94,7 @@ Change the package name, description, version name and description in the
 
 ### Step 4: install npm modules
 
-You will need at least v16. nodejs for this theme. You can use nvm for that:
+You will need at least v20. nodejs for this theme. You can use nvm for that:
 
 ```bash
 cd web/themes/custom/your_theme/
