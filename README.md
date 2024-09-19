@@ -34,7 +34,7 @@ was also incorporated witch is a ITCSS- and BEMit-based Sass-only framework.
 - Installed Drupal 10 via Composer
 - [Set asset-packagist to composer.json](https://www.drupal.org/docs/develop/using-composer/using-composer-to-install-drupal-and-manage-dependencies#third-party-libraries)
   of Drupal
-- Installed node.js (min. v16)
+- Installed node.js (min. v20)
 - Installed Yarn (Drupal Community recommends Yarn. If you really hates Yarn
   you can still use npm as well, but remove the yarn.lock file.)
 
@@ -57,7 +57,7 @@ turned on Twig debug. See in
 
 ### Step 1: generate a new theme
 
-Clone this theme to `/themes/contrib` or `/themes/custom`. CD to the `web`
+Clone this theme to `/themes/contrib`. CD to the `web`
 directory then run the theme generate command:
 
 ```bash
@@ -67,30 +67,18 @@ php core/scripts/drupal generate-theme --starterkit brainsum_starterkit your_the
 This will generate a new theme named `your_theme` to the `/themes/custom`
 directory.
 
-### Step 2: remove the BRAINSUM Starterkit
+### Step 2: copy all hidden configuration files
 
-Remove the BRAINSUM Starterkit theme and the `src/StarterKit.php` file.
+Copy manually all hidden configuration files (stated with a dot) from the BRAINSUM
+Starterkit to the new theme directory.
 
-### Step 3: manual renaming
+```bash
+cp web/themes/contrib/brainsum_starterkit/.* web/themes/custom/your_theme/
+```
 
-However, the startkerkit framework renamed files and machine names correctly,
-still remains in many places, where you have to rename the `brainsum_starterkit`
-to `your_theme`, `brainsumStarterkit` to `yourTheme` and `BrainsumStarterkit` to
-`YourTheme` manually:
+### Step 3: remove the BRAINSUM Starterkit
 
-- library overrides in `info.yml` file,
-- breakpoint prefix name in `breakpoints.yml` file,
-- path variable in `.theme` file,
-- prefix name of Drupal.behaviors in components JavaScrtipt files,
-- usage comment in `base.global.js` file,
-- `theme_root` variable in `font-face*.scss` files
-- extends and includes in twigs: `@brainsum_starterkit`,
-- usage comment in `icon` macro twig file: `@brainsum_starterkit`
-- favicon paths in `browserconfig.xml` and `site.webmanifest` files.
-
-Change the version number in the `info.yml` file.
-Change the package name, description, version name and description in the
-`package.json` file.
+Remove the BRAINSUM Starterkit theme.
 
 ### Step 4: install npm modules
 
@@ -287,8 +275,12 @@ directory. **Before place any image file here, please optimize that!**
 ### Third party assets
 
 If you need to install any third party library please install that via composer
-and attach as a library. For example, if you want to install
-[Lity](https://sorgalla.com/lity/) as lightbox:
+and attach as a library.
+
+If not setup in your project, you can follow this guide:
+[How to manage front-end JavaScript libraries with composer in Drupal](https://harivenu.com/article/how-manage-front-end-javascript-libraries-composer-drupal)
+
+For example, if you want to install [Lity](https://sorgalla.com/lity/) as lightbox:
 
 Search for in [Asset Packagist](https://asset-packagist.org/) repository. If you
 find that, you will see it's an npm or a bower package, then install them via
