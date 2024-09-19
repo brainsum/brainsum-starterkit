@@ -49,6 +49,13 @@ $color-grey-10: color.scale($color-grey, $lightness: 90%); // lightest grey
 $color-blue: #0091cc;
 $color-turquoise: #66d1ca;
 $color-turquoise--dark: #40c5bb;
+
+/**
+ * System colors
+ *
+ * These colors are used for system messages, alerts, and other system
+ * components.
+ */
 $color-green: #6ae96a;
 $color-yellow: #f7ca00;
 $color-orange: #fda408;
@@ -70,4 +77,4 @@ $color-background-primary: $color-light;
 $color-success: $color-green;
 $color-warning: $color-orange;
 $color-error: $color-red;
-$color-note: $color-secondary;
+$color-note: $color-light;
