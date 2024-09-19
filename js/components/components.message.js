@@ -8,7 +8,7 @@
  * Borrowed from Olivero Theme.
  */
 
-(function (Drupal) {
+(Drupal => {
   /**
    * Overrides message theme function.
    *
@@ -26,19 +26,23 @@
    * @return {HTMLElement}
    *   A DOM Node.
    */
-  Drupal.theme.message = function (_ref, _ref2) {
-    var text = _ref.text;
-    var type = _ref2.type,
-      id = _ref2.id;
-    var messagesTypes = Drupal.Message.getMessageTypeLabels();
-    var messageWrapper = document.createElement('div');
-    messageWrapper.setAttribute('class', "c-messages-list__item c-messages c-messages--".concat(type));
+  Drupal.theme.message = (_ref, _ref2) => {
+    let {
+      text
+    } = _ref;
+    let {
+      type,
+      id
+    } = _ref2;
+    const messagesTypes = Drupal.Message.getMessageTypeLabels();
+    const messageWrapper = document.createElement('div');
+    messageWrapper.setAttribute('class', `c-messages-list__item c-messages c-messages--${type}`);
     messageWrapper.setAttribute('data-drupal-selector', 'messages');
     messageWrapper.setAttribute('role', type === 'error' || type === 'warning' ? 'alert' : 'status');
-    messageWrapper.setAttribute('aria-labelledby', "".concat(id, "-title"));
+    messageWrapper.setAttribute('aria-labelledby', `${id}-title`);
     messageWrapper.setAttribute('data-drupal-message-id', id);
     messageWrapper.setAttribute('data-drupal-message-type', type);
-    var svg = '';
+    let svg = '';
     if (['error', 'warning', 'status', 'info'].indexOf(type) > -1) {
       svg = '<div class="c-messages__icon"><svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">';
     }
@@ -54,7 +58,18 @@
     if (['error', 'warning', 'status', 'info'].indexOf(type) > -1) {
       svg += '</svg></div>';
     }
-    messageWrapper.innerHTML = "\n    <div class=\"c-messages__container\" data-drupal-selector=\"messages-container\">\n      <div class=\"c-messages__header".concat(!svg ? ' no-icon' : '', "\">\n        <h2 class=\"u-visually-hide\">").concat(messagesTypes[type], "</h2>\n        ").concat(svg, "\n      </div>\n      <div class=\"c-messages__content\">\n        ").concat(text, "\n      </div>\n    </div>\n    ");
+    messageWrapper.innerHTML = `
+    <div class="c-messages__container" data-drupal-selector="messages-container">
+      <div class="c-messages__header${!svg ? ' no-icon' : ''}">
+        <h2 class="u-visually-hide">${messagesTypes[type]}</h2>
+        ${svg}
+      </div>
+      <div class="c-messages__content">
+        ${text}
+      </div>
+    </div>
+    `;
+    Drupal.brainsumStarterkit.closeMessage(messageWrapper);
     return messageWrapper;
   };
 })(Drupal);

@@ -32,7 +32,7 @@
 
     messageWrapper.setAttribute(
       'class',
-      `c-messages-list__item c-messages c-messages--${type}`,
+      `c-messages-list__item c-messages c-messages--${type}`
     );
     messageWrapper.setAttribute('data-drupal-selector', 'messages');
     messageWrapper.setAttribute(
@@ -78,6 +78,8 @@
       </div>
     </div>
     `;
+
+    Drupal.brainsumStarterkit.closeMessage(messageWrapper);
 
     return messageWrapper;
   };

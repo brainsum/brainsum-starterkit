@@ -3,17 +3,17 @@
  * Navigation Component.
  */
 
-(function (Drupal, once) {
-  var init = function init(el) {
-    var mainNav = document.querySelector('[data-drupal-selector="menu--main"]');
-    var parentItem = document.querySelectorAll('.c-menu__item--has-children');
-    var activeClass = 'is-active';
+((Drupal, once) => {
+  const init = el => {
+    const mainNav = document.querySelector('[data-drupal-selector="menu--main"]');
+    const parentItem = document.querySelectorAll('.c-menu__item--has-children');
+    const activeClass = 'is-active';
 
     /**
      * Toggling mobile menu with hamburger icon
      * @param {object} e The Event object.
      */
-    var mobileMenu = function mobileMenu(e) {
+    const mobileMenu = e => {
       if (!e.currentTarget.classList.contains(activeClass)) {
         e.currentTarget.classList.add(activeClass);
         e.currentTarget.setAttribute('aria-expanded', 'true');
@@ -31,7 +31,7 @@
      * Open/close submenus
      * @param {object} e The Event object.
      */
-    var dropdown = function dropdown(e) {
+    const dropdown = e => {
       if (!e.currentTarget.classList.contains(activeClass)) {
         e.currentTarget.classList.add(activeClass);
         e.currentTarget.querySelector('ul').classList.add(activeClass);
@@ -45,17 +45,13 @@
     el.addEventListener('click', mobileMenu);
 
     // activate submenus on mobile
-    parentItem.forEach(function (link) {
-      return link.addEventListener('click', dropdown);
-    });
+    parentItem.forEach(link => link.addEventListener('click', dropdown));
   };
   Drupal.behaviors.brainsumStarterkitNavigation = {
-    attach: function attach(context) {
-      var header = once('navigation', '[data-drupal-selector="header"]', context).shift();
+    attach(context) {
+      const header = once('navigation', '[data-drupal-selector="header"]', context).shift();
       if (header) {
-        context.querySelectorAll('.c-hamburger').forEach(function (el) {
-          return init(el);
-        });
+        context.querySelectorAll('.c-hamburger').forEach(el => init(el));
       }
     }
   };

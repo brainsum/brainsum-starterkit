@@ -7,7 +7,7 @@
  * Borrowed from Olivero Theme.
  */
 
-(function (Drupal, once) {
+((Drupal, once) => {
   /**
    * Initialize the primary tabs.
    *
@@ -15,9 +15,9 @@
    * The DOM element containing the primary tabs.
    */
   function init(el) {
-    var tabs = el.querySelector('.c-tabs');
-    var expandedClass = 'is-expanded';
-    var activeTab = tabs.querySelector('.is-active');
+    const tabs = el.querySelector('.c-tabs');
+    const expandedClass = 'is-expanded';
+    const activeTab = tabs.querySelector('.is-active');
 
     /**
      * Determines if primary tabs are expanded for mobile layouts.
@@ -45,8 +45,8 @@
       }
     }
     if (isTabsMobileLayout() && !activeTab.matches('.c-tabs__tab:first-child')) {
-      var newActiveTab = activeTab.cloneNode(true);
-      var firstTab = tabs.querySelector('.c-tabs__tab:first-child');
+      const newActiveTab = activeTab.cloneNode(true);
+      const firstTab = tabs.querySelector('.c-tabs__tab:first-child');
       tabs.insertBefore(newActiveTab, firstTab);
       tabs.removeChild(activeTab);
     }
@@ -62,7 +62,7 @@
    *   Display primary tabs according to the screen width.
    */
   Drupal.behaviors.brainsumStarterkitTabs = {
-    attach: function attach(context) {
+    attach(context) {
       once('tabs', '[data-drupal-nav-primary-tabs]', context).forEach(init);
     }
   };

@@ -7,29 +7,36 @@
  * Borrowed from Olivero Theme.
  */
 
-(function (Drupal, once) {
+((Drupal, once) => {
+  /**
+   * brainsumStarterkit helper functions.
+   * @namespace
+   */
+  Drupal.brainsumStarterkit = {};
   /**
    * Adds a close button to the message.
    *
    * @param {object} message
    *   The message object.
    */
-  var closeMessage = function closeMessage(message) {
-    var messageContainer = message.querySelector('[data-drupal-selector="messages-container"]');
-    var closeBtnWrapper = document.createElement('div');
-    closeBtnWrapper.setAttribute('class', 'c-messages__button');
-    var closeBtn = document.createElement('button');
-    closeBtn.setAttribute('type', 'button');
-    closeBtn.setAttribute('class', 'c-messages__close');
-    var closeBtnText = document.createElement('span');
-    closeBtnText.setAttribute('class', 'u-visually-hide');
-    closeBtnText.innerText = Drupal.t('Close message');
-    messageContainer.appendChild(closeBtnWrapper);
-    closeBtnWrapper.appendChild(closeBtn);
-    closeBtn.appendChild(closeBtnText);
-    closeBtn.addEventListener('click', function () {
-      message.classList.add('is-hidden');
-    });
+  const closeMessage = message => {
+    const messageContainer = message.querySelector('[data-drupal-selector="messages-container"]');
+    if (!messageContainer.querySelector('.c-messages__button')) {
+      const closeBtnWrapper = document.createElement('div');
+      closeBtnWrapper.setAttribute('class', 'c-messages__button');
+      const closeBtn = document.createElement('button');
+      closeBtn.setAttribute('type', 'button');
+      closeBtn.setAttribute('class', 'c-messages__close');
+      const closeBtnText = document.createElement('span');
+      closeBtnText.setAttribute('class', 'u-visually-hide');
+      closeBtnText.innerText = Drupal.t('Close message');
+      messageContainer.appendChild(closeBtnWrapper);
+      closeBtnWrapper.appendChild(closeBtn);
+      closeBtn.appendChild(closeBtnText);
+      closeBtn.addEventListener('click', () => {
+        message.classList.add('is-hidden');
+      });
+    }
   };
 
   /**
@@ -41,8 +48,9 @@
    *   Attaches the close button behavior for messages.
    */
   Drupal.behaviors.brainsumStarterkitMessages = {
-    attach: function attach(context) {
+    attach(context) {
       once('messages', '[data-drupal-selector="messages"]', context).forEach(closeMessage);
     }
   };
+  Drupal.brainsumStarterkit.closeMessage = closeMessage;
 })(Drupal, once);

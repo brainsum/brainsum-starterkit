@@ -13,11 +13,16 @@
 
   Drupal.behaviors.brainsumStarterkitTableWrapper = {
     attach(context) {
-      const content = once('[data-drupal-selector="text-formatted"]', context);
-
-      if (content) {
-        context.querySelectorAll('table').forEach((el) => init(el));
-      }
+      once(
+        'formattedText',
+        '[data-drupal-selector="text-formatted"]',
+        context
+      ).forEach((field) => {
+        const tables = field.querySelectorAll('table');
+        if (tables.length) {
+          tables.forEach((el) => init(el));
+        }
+      });
     }
   };
 })(Drupal, once);
