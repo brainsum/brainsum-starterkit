@@ -30,6 +30,14 @@ admin.toolbar:
     theme:
       css/5.components/components.admin.toolbar.css: { preprocess: false }
 
+block.language-dropdown:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.block.language-dropdown.css: { preprocess: false }
+  js:
+    js/components/components.block.language-dropdown.js: { preprocess: false }
+
 button:
   version: 1.0.0
   css:
@@ -130,6 +138,9 @@ table-wrapper:
       css/5.components/components.table-wrapper.css: { preprocess: false }
   js:
     js/components/components.table-wrapper.js: { preprocess: false }
+  dependencies:
+    - core/drupal
+    - core/once
 
 tabs:
   version: 1.0.0
