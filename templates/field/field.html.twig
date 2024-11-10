@@ -52,7 +52,8 @@
   'c-field--name-' ~ field_name|clean_class,
   'c-field--type-' ~ field_type|clean_class,
   'c-field--label-' ~ label_display,
-  label_display == 't-inline' ? 'clearfix',
+  label_display == 'inline' ? 'clearfix',
+  label_display == 'inline' ? 't-label-inline',
 ] %}
 
 {% set title_classes = [
@@ -67,24 +68,32 @@
   {% if multiple %}
     <div{{ attributes.addClass(classes, 'c-field__items') }}>
       {% for item in items %}
-        <div{{ item.attributes.addClass('c-field__item') }}>{{ item.content }}</div>
+        <div{{ item.attributes.addClass('c-field__item') }}>
+          {{ item.content }}
+        </div>
       {% endfor %}
     </div>
   {% else %}
     {% for item in items %}
-      <div{{ attributes.addClass(classes, 'c-field__item') }}>{{ item.content }}</div>
+      <div{{ attributes.addClass(classes, 'c-field__item') }}>
+        {{ item.content }}
+      </div>
     {% endfor %}
   {% endif %}
 {% else %}
   <div{{ attributes.addClass(classes) }}>
-    <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+    <div{{ title_attributes.addClass(title_classes) }}>
+      {{ label }}{{ label_display == 'inline' ? ':' }}
+    </div>
 
     {% if multiple %}
       <div class="c-field__items">
     {% endif %}
 
     {% for item in items %}
-      <div{{ item.attributes.addClass('c-field__item') }}>{{ item.content }}</div>
+      <div{{ item.attributes.addClass('c-field__item') }}>
+        {{ item.content }}
+      </div>
     {% endfor %}
 
     {% if multiple %}
