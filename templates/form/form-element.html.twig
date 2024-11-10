@@ -67,23 +67,12 @@
   description_display == 'invisible' ? 'u-visually-hide',
 ] %}
 
-{# collect all input types where won't need to display label. #}
-{% set no_label_types = [
-  'textfield',
-  'email',
-  'password',
-  'textarea',
-  'select'
-] %}
-
 {#
   Building the template structure
 #}
 <div{{ attributes.addClass(classes) }}>
-  {% if type not in no_label_types %}
-    {% if label_display in ['before', 'invisible'] %}
-      {{ label }}
-    {% endif %}
+  {% if label_display in ['before', 'invisible'] %}
+    {{ label }}
   {% endif %}
 
   {% if prefix is not empty %}
@@ -102,10 +91,8 @@
     <span class="field-suffix">{{ suffix }}</span>
   {% endif %}
 
-  {% if type not in no_label_types %}
-    {% if label_display == 'after' %}
-      {{ label }}
-    {% endif %}
+  {% if label_display == 'after' %}
+    {{ label }}
   {% endif %}
 
   {% if errors %}

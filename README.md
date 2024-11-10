@@ -61,7 +61,13 @@ Clone this theme to `/themes/contrib`. CD to the `web`
 directory then run the theme generate command:
 
 ```bash
-php core/scripts/drupal generate-theme --starterkit brainsum_starterkit your_theme --path themes/custom
+php core/scripts/drupal generate-theme --starterkit brainsum_starterkit [your_theme] --path themes/custom
+```
+
+or in case you use DDEV:
+
+```bash
+ddev php ./web/core/scripts/drupal generate-theme --starterkit brainsum_starterkit [your_theme] --path themes/custom
 ```
 
 This will generate a new theme named `your_theme` to the `/themes/custom`
@@ -73,21 +79,23 @@ Copy manually all hidden configuration files (stated with a dot) from the BRAINS
 Starterkit to the new theme directory.
 
 ```bash
-cp web/themes/contrib/brainsum_starterkit/.* web/themes/custom/your_theme/
+cp -r themes/contrib/brainsum_starterkit/.* themes/custom/[your_theme]/
 ```
 
 ### Step 3: remove the BRAINSUM Starterkit
 
-Remove the BRAINSUM Starterkit theme.
+You can remove the BRAINSUM Starterkit theme now.
 
 ### Step 4: install npm modules
 
 You will need at least v20. nodejs for this theme. You can use nvm for that:
 
 ```bash
-cd web/themes/custom/your_theme/
+cd themes/custom/[your_theme]/
 nvm use
 ```
+
+__Note: in case you use DDEV, the correct node version is already set.__
 
 Install all local development-needed npm modules:
 
