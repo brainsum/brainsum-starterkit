@@ -76,5 +76,6 @@
     "stylelint-scss": "5.3.2",
     "stylelint-use-logical": "^2.1.2",
     "yarn": "^1.22.22"
-  }
+  },
+  "dependencies": {}
 }
