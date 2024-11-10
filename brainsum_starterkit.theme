@@ -464,7 +464,7 @@ function brainsum_starterkit_preprocess_fieldset(&$variables) {
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
-function partnership_theme_suggestions_fieldset_alter(
+function brainsum_starterkit_theme_suggestions_fieldset_alter(
   array &$suggestions,
   array $variables,
   $hook

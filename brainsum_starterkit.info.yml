@@ -12,7 +12,7 @@ screenshot: screenshot.png
 # Grouping
 package: brainsum
 # Version number
-version: 3.5.5
+version: 3.5.11
 # Dependency resolving for Composer.
 core_version_requirement: ^10
 # website logo, begin with Drupal 8.6 you can use SVG or PNG format too
