@@ -28,33 +28,33 @@ admin.toolbar:
   version: 1.0.0
   css:
     theme:
-      css/5.components/components.admin.toolbar.css: { preprocess: false }
+      css/5.components/components.admin.toolbar.css: {}
 
 block.language-dropdown:
   version: 1.0.0
   css:
     component:
-      css/5.components/components.block.language-dropdown.css: { preprocess: false }
+      css/5.components/components.block.language-dropdown.css: {}
   js:
-    js/components/components.block.language-dropdown.js: { preprocess: false }
+    js/components/components.block.language-dropdown.js: {}
 
 button:
   version: 1.0.0
   css:
     component:
-      css/5.components/components.button.css: { preprocess: false }
+      css/5.components/components.button.css: {}
 
 details:
   version: 1.0.0
   css:
     theme:
-      css/5.components/components.details.css: { preprocess: false }
+      css/5.components/components.details.css: {}
 
 field.long-text:
   version: 1.0.0
   css:
     component:
-      css/5.components/components.field.long-text.css: { preprocess: false }
+      css/5.components/components.field.long-text.css: {}
   dependencies:
     - brainsum_starterkit/table-wrapper
 
@@ -62,13 +62,13 @@ file:
   version: 1.0.0
   css:
     component:
-      css/5.components/components.file.css: { preprocess: false }
+      css/5.components/components.file.css: {}
 
 form:
   version: 1.0.0
   css:
     component:
-      css/5.components/components.form.css: { preprocess: false }
+      css/5.components/components.form.css: {}
   dependencies:
     - brainsum_starterkit/button
 
@@ -76,15 +76,15 @@ local-actions:
   version: 1.0.0
   css:
     component:
-      css/5.components/components.action-links.css: { preprocess: false }
+      css/5.components/components.action-links.css: {}
 
 navigation:
   version: 1.0.0
   css:
     component:
-      css/5.components/components.hamburger.css: { preprocess: false }
+      css/5.components/components.hamburger.css: {}
   js:
-    js/components/components.navigation.js: { preprocess: false }
+    js/components/components.navigation.js: {}
   dependencies:
     - core/drupal
     - core/once
@@ -92,7 +92,7 @@ navigation:
 message:
   version: 1.0.0
   js:
-    js/components/components.message.js: { preprocess: false }
+    js/components/components.message.js: {}
   dependencies:
     - brainsum_starterkit/messages
 
@@ -100,9 +100,9 @@ messages:
   version: 1.0.0
   css:
     component:
-      css/5.components/components.messages.css: { preprocess: false }
+      css/5.components/components.messages.css: {}
   js:
-    js/components/components.messages.js: { preprocess: false }
+    js/components/components.messages.js: {}
   dependencies:
     - core/drupal
     - core/once
@@ -111,33 +111,33 @@ page.home:
   version: 1.0.0
   css:
     theme:
-      css/7.pages/pages.home.css: { preprocess: false }
+      css/7.pages/pages.home.css: {}
 
 page.maintenance:
   version: 1.0.0
   css:
     theme:
-      css/7.pages/pages.maintenance.css: { preprocess: false }
+      css/7.pages/pages.maintenance.css: {}
 
 page.subpage:
   version: 1.0.0
   css:
     theme:
-      css/7.pages/pages.subpage.css: { preprocess: false }
+      css/7.pages/pages.subpage.css: {}
 
 progress:
   version: 1.0.0
   css:
     component:
-      css/5.components/components.progress.css: { preprocess: false }
+      css/5.components/components.progress.css: {}
 
 table-wrapper:
   version: 1.0.0
   css:
     component:
-      css/5.components/components.table-wrapper.css: { preprocess: false }
+      css/5.components/components.table-wrapper.css: {}
   js:
-    js/components/components.table-wrapper.js: { preprocess: false }
+    js/components/components.table-wrapper.js: {}
   dependencies:
     - core/drupal
     - core/once
@@ -146,9 +146,9 @@ tabs:
   version: 1.0.0
   css:
     theme:
-      css/5.components/components.tabs.css: { preprocess: false }
+      css/5.components/components.tabs.css: {}
   js:
-    js/components/components.tabs.js: { preprocess: false }
+    js/components/components.tabs.js: {}
   dependencies:
     - core/drupal
     - core/once
