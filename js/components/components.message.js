@@ -26,14 +26,12 @@
    * @return {HTMLElement}
    *   A DOM Node.
    */
-  Drupal.theme.message = (_ref, _ref2) => {
-    let {
-      text
-    } = _ref;
-    let {
-      type,
-      id
-    } = _ref2;
+  Drupal.theme.message = ({
+    text
+  }, {
+    type,
+    id
+  }) => {
     const messagesTypes = Drupal.Message.getMessageTypeLabels();
     const messageWrapper = document.createElement('div');
     messageWrapper.setAttribute('class', `c-messages-list__item c-messages c-messages--${type}`);

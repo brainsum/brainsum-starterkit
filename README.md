@@ -2,7 +2,7 @@
 
 - Created by: [Krisztian Pinter](kpinter@brainsum.com)
 - Created in: 2020.
-- Updated on: 2024.11.10.
+- Updated on: 2025.01.24.
 
 ## Table of Contents
 
@@ -61,13 +61,15 @@ Clone this theme to `/themes/contrib`. CD to the `web`
 directory then run the theme generate command:
 
 ```bash
-php core/scripts/drupal generate-theme --starterkit brainsum_starterkit [your_theme] --path themes/custom
+php core/scripts/drupal generate-theme --starterkit brainsum_starterkit
+[your_theme] --path themes/custom
 ```
 
 or in case you use DDEV:
 
 ```bash
-ddev php ./web/core/scripts/drupal generate-theme --starterkit brainsum_starterkit [your_theme] --path themes/custom
+ddev php ./web/core/scripts/drupal generate-theme --starterkit
+brainsum_starterkit [your_theme] --path themes/custom
 ```
 
 This will generate a new theme named `your_theme` to the `/themes/custom`
@@ -75,8 +77,8 @@ directory.
 
 ### Step 2: copy all hidden configuration files
 
-Copy manually all hidden configuration files (stated with a dot) from the BRAINSUM
-Starterkit to the new theme directory.
+Copy manually all hidden configuration files (stated with a dot) from the
+BRAINSUM Starterkit to the new theme directory.
 
 ```bash
 cp -r themes/contrib/brainsum_starterkit/.* themes/custom/[your_theme]/
@@ -231,12 +233,13 @@ the `.stylelintrc.json` file: `csstools/use-logical`.
 #### Inline SVGs in CSS
 
 You can inling SVG icons into CSS via [postcss-inline-svg](https://github.com/TrySound/postcss-inline-svg)
-plugin. For example place the colorable SVG icon into the images/icons directory, then:
+plugin. For example place the colorable SVG icon into the images/icons
+directory, then:
 
 ```scss
 .checkmark {
-  background: svg-load("../../../images/icons/checkmark.svg", fill=settings.$color-secondary) no-repeat center
-          center;
+  background: svg-load("../../../images/icons/checkmark.svg",
+  fill=settings.$color-secondary) no-repeat center center;
 }
 ```
 
@@ -288,7 +291,7 @@ and attach as a library.
 If not setup in your project, you can follow this guide:
 [How to manage front-end JavaScript libraries with composer in Drupal](https://harivenu.com/article/how-manage-front-end-javascript-libraries-composer-drupal)
 
-For example, if you want to install [Lity](https://sorgalla.com/lity/) as lightbox:
+For example, if you want to install [Lity](https://sorgalla.com/lity/) as
 
 Search for in [Asset Packagist](https://asset-packagist.org/) repository. If you
 find that, you will see it's an npm or a bower package, then install them via

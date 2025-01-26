@@ -49,16 +49,16 @@
   'c-paragraph',
   'c-paragraph--type--' ~ paragraph.bundle|clean_class,
   view_mode ? 'c-paragraph--view-mode--' ~ view_mode|clean_class,
-  not paragraph.isPublished() ? 'c-paragraph--unpublished'
+  not paragraph.isPublished() ? 'c-paragraph--unpublished',
 ] %}
 
 {#
   Building the template structure
 #}
 {% block paragraph %}
-  <section{{ attributes.addClass(classes) }}>
+  <div{{ attributes.addClass(classes) }}>
     {% block content %}
       {{ content }}
     {% endblock %}
-  </section>
+  </div>
 {% endblock paragraph %}

@@ -307,14 +307,12 @@ function brainsum_starterkit_preprocess_input(&$variables) {
       'c-form-element--api-' . $type_api
     );
 
-    /*
-     * Add form label value as placeholder attribute.
-     * Uncomment this if you want to add the label as a placeholder.
-     * if (isset($variables['element']['#title'])) {
-     *   $variables['attributes']['placeholder'] = (string) $variables['element']['#title'];
-     * }
-     */
-
+    // Add form label value as placeholder attribute.
+    /* Uncomment this if you want to add the label as a placeholder.
+    if (isset($variables['element']['#title'])) {
+    $variables['attributes']['placeholder'] =
+    (string) $variables['element']['#title'];
+    }. */
     if (!empty($variables['element']['#autocomplete_route_name'])) {
       $variables['autocomplete_message'] = t('Loading…');
     }
@@ -336,13 +334,12 @@ function brainsum_starterkit_preprocess_textarea(&$variables) {
   $variables['attributes']['class'][] = 'c-form-element--type-textarea';
   $variables['attributes']['class'][] = 'c-form-element--api-textarea';
 
-  /*
-   * Add form label value as placeholder attribute.
-   * Uncomment this if you want to add the label as a placeholder.
-   * if (isset($variables['element']['#title'])) {
-   *   $variables['attributes']['placeholder'] = (string) $variables['element']['#title'];
-   * }
-   */
+  // Add form label value as placeholder attribute.
+  /* Uncomment this if you want to add the label as a placeholder.
+  if (isset($variables['element']['#title'])) {
+  $variables['attributes']['placeholder'] =
+  (string) $variables['element']['#title'];
+  }. */
 }
 
 /**
@@ -525,6 +522,24 @@ function brainsum_starterkit_preprocess_filter_caption(&$variables) {
  * Implements hook_form_FORM_ID_alter().
  */
 function brainsum_starterkit_form_comment_form_alter(
+  &$form,
+  FormStateInterface $form_state,
+  $form_id,
+) {
+  $comment = $form_state->getFormObject()->getEntity();
+  /** @var \Drupal\comment\Entity\Comment $comment */
+  if ($comment->hasParentComment()) {
+    $form['actions']['submit']['#value'] = t('Reply to comment');
+  }
+  else {
+    $form['actions']['submit']['#value'] = t('Post comment');
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function brainsum_starterkit_form_node_preview_form_select_alter(
   &$form,
   FormStateInterface $form_state,
   $form_id,
