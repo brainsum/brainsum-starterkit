@@ -5,7 +5,7 @@ namespace Drupal\brainsum_starterkit;
 use Drupal\Core\Theme\StarterKitInterface;
 
 /**
- *
+ * Starterkit Class.
  */
 final class StarterKit implements StarterKitInterface {
 

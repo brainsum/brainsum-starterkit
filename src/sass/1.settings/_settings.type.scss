@@ -26,9 +26,9 @@ $font-family--monospace: "SFMono-Regular", "Menlo", "Monaco", "Segoe UI Mono", "
 /**
  * Font-stacks by functions
  */
-$primary-font-family: "Open Sans", $font-family--system !default;
-$heading-font-family: $primary-font-family !default;
-$code-font-family: $font-family--monospace !default; // required by reset
+$font-family--primary: "Open Sans", $font-family--system !default;
+$font-family--secondary: $font-family--primary !default;
+$font-family--code: $font-family--monospace !default; // required by reset
 
 /**
  * Line-height

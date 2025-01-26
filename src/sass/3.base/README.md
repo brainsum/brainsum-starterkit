@@ -8,5 +8,5 @@ selector, or a child selector, along with any pseudo-classes. It doesn't
 include any class or ID selectors. Base styles are related to the basic
 styles of an application, like Typography, Reset and styling of global elements.
 
-This is the first layer which generates actual CSS, so begins with this directory
-to down all Sass files will begin without an underscore.
+This is the first layer which generates actual CSS, so begins with this
+directory to down all Sass files will begin without an underscore.

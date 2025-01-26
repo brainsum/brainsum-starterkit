@@ -62,7 +62,7 @@ $small-size: true !default;
  *
  * @type String
  */
-$code-font-family: settings.$code-font-family !default;
+$font-family--code: settings.$font-family--code !default;
 
 /**
  * Font Antialiasing
@@ -319,7 +319,7 @@ $button-element: false !default;
  * 3. Removed italic style from <var>.
  */
 
-@mixin code($font-family: $code-font-family) {
+@mixin code($font-family: $font-family--code) {
   code,
   kbd,
   pre,

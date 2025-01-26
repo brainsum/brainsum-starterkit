@@ -63,7 +63,7 @@ $small-size: true !default;
  *
  * @type String
  */
-$code-font-family: settings.$code-font-family !default;
+$font-family--code: settings.$font-family--code !default;
 
 /**
  * Font Antialiasing
@@ -217,7 +217,7 @@ $button-element: false !default;
  * 2. Correct the odd `em` font sizing in all browsers.
  * 3. Removed italic style from <var>.
  */
-@include reset.code($code-font-family);
+@include reset.code($font-family--code);
 
 /**
  * 1. Sets small tag's font-size to be equal to the content font-size for

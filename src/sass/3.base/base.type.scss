@@ -80,7 +80,7 @@ html {
 body {
   @include tools.type(settings.$default-font-size);
 
-  font-family: settings.$primary-font-family;
+  font-family: settings.$font-family--primary;
   font-weight: 400;
 }
 
@@ -144,7 +144,7 @@ var {
   h4:not([class]),
   h5:not([class]),
   h6:not([class]) {
-    font-family: settings.$heading-font-family;
+    font-family: settings.$font-family--secondary;
   }
 }
 
