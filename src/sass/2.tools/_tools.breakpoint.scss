@@ -112,14 +112,18 @@
     @media #{$breakpoint} {
       @content;
     }
-  } @else {
+  }
+
+  @else {
     @if map.has-key($size, null) {
       $breakpoint: map.get($size, null);
 
       @media #{$breakpoint} {
         @content;
       }
-    } @else {
+    }
+
+    @else {
       @warn "Breakpoint size " + #{$size} + " doesn't exist.";
     }
   }

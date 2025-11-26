@@ -80,10 +80,10 @@ $throbber-size: settings.$gutter;
   border-block: $ajax-border;
   border-inline: $ajax-border;
   background-color: settings.$color-light;
-  box-shadow: 0 0.4rem 1rem rgba(34, 35, 48, 0.1); /* LTR */
+  box-shadow: 0 0.4rem 1rem rgb(34, 35, 48, 0.1); /* LTR */
 
   [dir="rtl"] & {
-    box-shadow: 0 -0.4rem 1rem rgba(34, 35, 48, 0.1);
+    box-shadow: 0 -0.4rem 1rem rgb(34, 35, 48, 0.1);
   }
 
   &:before {

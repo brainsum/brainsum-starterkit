@@ -5,7 +5,6 @@ import autoprefixer from 'autoprefixer';
 import babel from 'gulp-babel';
 import browserSync from 'browser-sync';
 import cssnano from 'cssnano';
-import cssnanoLite from 'cssnano-preset-lite';
 import 'dotenv/config';
 import eslint from 'gulp-eslint-new';
 import gulp from 'gulp';
@@ -18,7 +17,7 @@ import * as dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 import sorting from 'postcss-sorting';
 import sourcemaps from 'gulp-sourcemaps';
-import stylelint from '@ronilaukkarinen/gulp-stylelint';
+import stylelint from 'gulp-stylelint-esm';
 
 const server = browserSync.create();
 const sass = gulpSass(dartSass);
@@ -37,16 +36,60 @@ const config = {
       dest: './js/'
     }
   },
-  cssnano: {
+  cssnanoDev: {
     preset: [
-      'lite',
+      'default',
       {
+        // Only remove comments, disable all other optimizations
+        discardComments: { removeAll: true },
+        normalizeWhitespace: false,
+        colormin: false,
+        convertValues: false,
+        discardDuplicates: false,
+        discardOverridden: false,
+        mergeRules: false,
+        minifyFontValues: false,
+        minifyGradients: false,
+        minifyParams: false,
+        minifySelectors: false,
+        normalizeCharset: false,
+        normalizeDisplayValues: false,
+        normalizePositions: false,
+        normalizeRepeatStyle: false,
+        normalizeString: false,
+        normalizeTimingFunctions: false,
+        normalizeUnicode: false,
+        normalizeUrl: false,
+        reduceInitial: false,
+        reduceTransforms: false,
+        svgo: false,
+        uniqueSelectors: false,
+        cssDeclarationSorter: false
+      }
+    ]
+  },
+  cssnanoProd: {
+    preset: [
+      'default',
+      {
+        discardComments: {
+          removeAll: true
+        },
         discardDuplicates: true,
         discardOverridden: true,
         mergeRules: true,
         normalizeCharset: true,
         normalizeString: true,
-        normalizeWhitespace: false
+        normalizeWhitespace: true,
+        // Disable some aggressive optimizations for "lite" behavior
+        calc: false,
+        colormin: false,
+        convertValues: false,
+        discardUnused: false,
+        mergeIdents: false,
+        reduceIdents: false,
+        zindex: false,
+        cssDeclarationSorter: false
       }
     ]
   },
@@ -55,15 +98,8 @@ const config = {
     preserve: false
   },
   stylelint: {
-    reporters: [
-      {
-        formatter: 'string',
-        console: true
-      }
-    ],
-    debug: true,
-    failAfterError: false,
-    fix: true
+    fix: true,
+    failAfterError: false
   },
   browserSync: {
     proxy: process.env.BROWSERSYC_PROXY,
@@ -101,7 +137,8 @@ function sassCompileDev(done) {
         inlineSvg,
         autoprefixer,
         postcssPresetEnv(config.postcssPresetEnv),
-        sorting
+        sorting,
+        cssnano(config.cssnanoDev)
       ])
     )
     .pipe(sourcemaps.write('.'))
@@ -128,7 +165,7 @@ function sassCompileProd(done) {
         autoprefixer,
         postcssPresetEnv(config.postcssPresetEnv),
         sorting,
-        cssnano(config.cssnano)
+        cssnano(config.cssnanoProd)
       ])
     )
     .pipe(gulp.dest(config.paths.styles.dest));
@@ -222,7 +259,7 @@ function browserSyncTask(done) {
  * BrowserSync Reload Task
  *
  * BrowserSync will reload all synced browsers.
- * @param {function} done Reload event.
+ * @param {Function} done Reload event.
  */
 function browserSyncReloadTask(done) {
   server.reload();

@@ -1,0 +1,10 @@
+{
+  "stylelint.packageManager": "yarn",
+  "stylelint.configBasedir": ".",
+  "stylelint.configFile": ".stylelintrc.json",
+  "prettier.configPath": ".prettierrc",
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1",
+    "CW_NEW_SESSION": "1"
+  }
+}

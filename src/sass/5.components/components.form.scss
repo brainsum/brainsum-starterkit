@@ -78,7 +78,7 @@ textarea {
     &.form-textarea {
       min-block-size: $padding-block * 2 + 9 * settings.$line-height * 1.8rem;
 
-      @include tools.breakpoint(medium) {
+      @include tools.breakpoint(tablet-s) {
         min-block-size: $padding-block * 2 + 11 * settings.$line-height * 1.8rem;
       }
     }
@@ -100,7 +100,7 @@ textarea {
     cursor: pointer;
     line-height: $boolean-size-touch;
 
-    @include tools.breakpoint(medium) {
+    @include tools.breakpoint(tablet-s) {
       min-block-size: $boolean-size-mouse;
       margin-block: 1.5rem;
       line-height: $boolean-size-mouse;
@@ -125,7 +125,7 @@ textarea {
       padding-inline-start: $boolean-size-touch + 2rem;
       cursor: pointer;
 
-      @include tools.breakpoint(medium) {
+      @include tools.breakpoint(tablet-s) {
         padding-inline-start: $boolean-size-mouse + 1.5rem;
       }
 
@@ -138,7 +138,7 @@ textarea {
         inset-inline-start: $boolean-size-touch * 0.2;
         content: "";
 
-        @include tools.breakpoint(medium) {
+        @include tools.breakpoint(tablet-s) {
           @include tools.square($boolean-size-mouse * 0.6);
 
           inset-block-start: $boolean-size-mouse * 0.2;
@@ -170,7 +170,7 @@ textarea {
           }
         }
 
-        @include tools.breakpoint(medium) {
+        @include tools.breakpoint(tablet-s) {
           @include tools.square($boolean-size-mouse);
         }
       }

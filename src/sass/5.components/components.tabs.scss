@@ -34,7 +34,7 @@ $tab-font-size: 1.4rem;
   padding-inline: 0;
   list-style: none;
 
-  @include tools.breakpoint(medium) {
+  @include tools.breakpoint(tablet-s) {
     flex-direction: row;
     flex-wrap: wrap;
   }
@@ -48,7 +48,7 @@ $tab-font-size: 1.4rem;
     margin-block-end: -0.1rem;
     margin-inline: 0;
 
-    @include tools.breakpoint(medium) {
+    @include tools.breakpoint(tablet-s) {
       display: flex;
     }
 
@@ -61,7 +61,7 @@ $tab-font-size: 1.4rem;
     .c-tabs--secondary & {
       display: block;
 
-      @include tools.breakpoint(medium) {
+      @include tools.breakpoint(tablet-s) {
         display: flex;
       }
     }
@@ -95,7 +95,7 @@ $tab-font-size: 1.4rem;
     .c-tabs--secondary & {
       text-transform: none;
 
-      @include tools.breakpoint(medium) {
+      @include tools.breakpoint(tablet-s) {
         border-block-start-color: transparent;
         border-inline-color: transparent;
         background-color: transparent;
@@ -129,7 +129,7 @@ $tab-font-size: 1.4rem;
         content: "";
         border-inline-start: $active-border-size solid $tab-border-color;
 
-        @include tools.breakpoint(medium) {
+        @include tools.breakpoint(tablet-s) {
           inset-inline-start: 0;
           inline-size: 100%;
           block-size: auto;
@@ -156,7 +156,7 @@ $tab-font-size: 1.4rem;
     border-inline: solid 0.1rem $tab-background;
     background-color: $tab-background;
 
-    @include tools.breakpoint(medium) {
+    @include tools.breakpoint(tablet-s) {
       display: none;
     }
 

@@ -36,7 +36,7 @@ $summary-transition: background-color 0.12s ease-in-out;
     list-style: none;
     cursor: pointer;
     transition: $summary-transition;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
     hyphens: auto;
     color: inherit;
     background-color: settings.$color-grey-10;
@@ -118,7 +118,7 @@ $summary-transition: background-color 0.12s ease-in-out;
     margin-block: settings.$gutter;
     margin-inline: settings.$gutter;
 
-    @include tools.breakpoint(large) {
+    @include tools.breakpoint(tablet-l) {
       margin-block: settings.$gutter * 1.5;
       margin-inline: settings.$gutter * 2;
     }

@@ -42,7 +42,9 @@
     text-align: $align !important; // for Edge
     text-align-last: $last !important;
     hyphens: auto;
-  } @else {
+  }
+
+  @else {
     text-align: $align !important;
   }
 }
@@ -114,7 +116,6 @@
  *   }
  */
 @mixin text-break {
-  word-wrap: break-word;
-  word-break: break-word;
+  overflow-wrap: break-word;
   hyphens: auto;
 }

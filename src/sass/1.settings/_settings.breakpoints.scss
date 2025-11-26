@@ -20,13 +20,9 @@
 
 // prettier-ignore
 $breakpoints: (
-  xsmall    : "screen and (min-width: 23em)",     // 368px
-  small     : "screen and (min-width: 36em)",     // 576px
-  medium    : "screen and (min-width: 48em)",     // 768px
-  large     : "screen and (min-width: 62em)",     // 992px
-  xlarge    : "screen and (min-width: 75em)",     // 1200px
-  xxlarge   : "screen and (min-width: 90em)",     // 1440px
-  xxxlarge  : "screen and (min-width: 112.5em)"   // 1800px
+  tablet-s : "screen and (min-width: 48em)", // 768px
+  tablet-l : "screen and (min-width: 64em)", // 1024px
+  desktop  : "screen and (min-width: 75em)", // 1200px
 ) !default;
 
 /**
@@ -79,11 +75,8 @@ $breakpoint-separator: \@;
  */
 // prettier-ignore
 $max-width: (
-  xsmall    : "screen and (max-width: 22.94em)",    // 367px
-  small     : "screen and (max-width: 35.94em)",    // 575px
-  medium    : "screen and (max-width: 47.94em)",    // 767px
-  large     : "screen and (max-width: 61.94em)",    // 991px
-  xlarge    : "screen and (max-width: 74.94em)",    // 1199px
-  xxlarge   : "screen and (max-width: 89.94em)",    // 1439px
-  xxxlarge  : "screen and (max-width: 112.44em)"    // 1799px
+  mobile   : "screen and (max-width: 47.94em)",     // 767px
+  tablet-s : "screen and (max-width: 63.94em)",     // 1023px
+  tablet-l : "screen and (max-width: 74.94em)",     // 1199px
+  desktop  : "screen and (max-width: 119.9375em)",  // 1919px
 ) !default;

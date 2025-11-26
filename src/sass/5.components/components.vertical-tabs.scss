@@ -18,7 +18,7 @@ $menu-width: 24rem;
 $menu-border-width: 0.1rem;
 
 .vertical-tabs {
-  @include tools.breakpoint(large) {
+  @include tools.breakpoint(tablet-l) {
     display: flex;
   }
 
@@ -32,7 +32,7 @@ $menu-border-width: 0.1rem;
     border-style: solid;
     border-color: settings.$color-grey-20;
 
-    @include tools.breakpoint(large) {
+    @include tools.breakpoint(tablet-l) {
       inline-size: $menu-width;
       border-width: $menu-border-width 0 $menu-border-width $menu-border-width;
     }
@@ -59,7 +59,7 @@ $menu-border-width: 0.1rem;
       &.is-selected {
         background-color: settings.$color-light;
 
-        @include tools.breakpoint(large) {
+        @include tools.breakpoint(tablet-l) {
           margin-inline-end: calc($menu-border-width * -1);
           padding-inline-end: $menu-border-width;
         }
@@ -80,14 +80,14 @@ $menu-border-width: 0.1rem;
   &__panes {
     margin-block-start: calc($menu-border-width * -1);
 
-    @include tools.breakpoint(large) {
+    @include tools.breakpoint(tablet-l) {
       inline-size: calc(100% - $menu-width);
       margin-block-start: 0;
     }
   }
 
   &__pane {
-    @include tools.breakpoint(large) {
+    @include tools.breakpoint(tablet-l) {
       min-block-size: 100%;
     }
 

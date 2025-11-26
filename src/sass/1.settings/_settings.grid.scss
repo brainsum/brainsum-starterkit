@@ -1,6 +1,8 @@
 /**
  * @file
- * Grid Object Settings
+ * CSS Grid Settings
+ *
+ * You can use them to create your own CSS Grid layout.
  */
 
 /**
@@ -32,8 +34,8 @@ $gutter--large: $gutter--4x !default;
 // prettier-ignore
 $gutter-default: (
   null  : $gutter--small,
-  small : $gutter--medium,
-  large : $gutter--large
+  tablet-s : $gutter--medium,
+  desktop : $gutter--large
 ) !default;
 
 /**
@@ -49,9 +51,9 @@ $gutter-default: (
  *
  * @example
  *   $grid-gutter-extra: (
- *     large: (
+ *     wide: (
  *       null : 2rem,
- *       small: 4rem
+ *       tablet-s: 4rem
  *     )
  *   );
  */

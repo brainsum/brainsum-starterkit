@@ -1,6 +1,9 @@
 /**
  * @file
  * Table Wrapper Component.
+ *
+ * @param {object} Drupal Drupal object
+ * @param {object} once Once object
  */
 
 ((Drupal, once) => {

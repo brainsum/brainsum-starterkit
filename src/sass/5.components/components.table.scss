@@ -83,7 +83,7 @@ $responsive-table-content-width: 67% !default;
 
     // Theming table rows.
     tr {
-      @include tools.breakpoint(medium) {
+      @include tools.breakpoint(tablet-s) {
         display: table-row;
       }
     }
@@ -94,7 +94,7 @@ $responsive-table-content-width: 67% !default;
       display: block; // 1.
       text-align: start;
 
-      @include tools.breakpoint(medium) {
+      @include tools.breakpoint(tablet-s) {
         display: table-cell; // 5.
       }
 
@@ -105,7 +105,7 @@ $responsive-table-content-width: 67% !default;
         padding-inline: $responsive-table-label-padding;
         vertical-align: top;
 
-        @include tools.breakpoint(medium) {
+        @include tools.breakpoint(tablet-s) {
           display: none !important; // 6.
         }
       }
@@ -122,7 +122,7 @@ $responsive-table-content-width: 67% !default;
         display: inline-block;
         max-inline-size: $responsive-table-content-width;
 
-        @include tools.breakpoint(medium) {
+        @include tools.breakpoint(tablet-s) {
           display: block;
           max-inline-size: none;
         }
@@ -134,7 +134,7 @@ $responsive-table-content-width: 67% !default;
       td {
         display: none;
 
-        @include tools.breakpoint(medium) {
+        @include tools.breakpoint(tablet-s) {
           display: table-cell; // 5.
         }
       }
@@ -145,7 +145,7 @@ $responsive-table-content-width: 67% !default;
         display: block;
         inline-size: 100%;
 
-        @include tools.breakpoint(medium) {
+        @include tools.breakpoint(tablet-s) {
           display: table-row;
         }
       }
@@ -154,7 +154,7 @@ $responsive-table-content-width: 67% !default;
       td {
         inline-size: 100%;
 
-        @include tools.breakpoint(medium) {
+        @include tools.breakpoint(tablet-s) {
           inline-size: auto;
         }
       }
@@ -164,7 +164,7 @@ $responsive-table-content-width: 67% !default;
     th:empty {
       display: none;
 
-      @include tools.breakpoint(medium) {
+      @include tools.breakpoint(tablet-s) {
         display: table-cell;
       }
     }

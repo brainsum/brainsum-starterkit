@@ -1,14 +1,14 @@
 # Settings
 
 Setting files contain **global** configurations that are shared by more than
-one modules.
+one module.
 
-Settings that are connected to one and only module are a part of the module
-itself.
+Those settings that are connected to only a specific module they are must
+be a part of that module itself.
 
-Local configurations should be contained into the modules (objects,
-components, etc.) that are related to.
+Local configurations should be contained by the related modules (objects,
+components, etc.) where they are related to.
 
-**IMPORTANT! These global settings are imported by `_global.importer.scss` Sass
-file. All Sass file begin with 3.base level have to import this importer file
+**IMPORTANT! These global settings are imported by `_settings.scss` Sass
+file. All Sass file from 3.base level you have to import this importer file
 first of all!**

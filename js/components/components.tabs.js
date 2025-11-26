@@ -5,13 +5,16 @@
  * Better responsive Drupal's administration tab bar.
  *
  * Borrowed from Olivero Theme.
+ *
+ * @param {object} Drupal Drupal object
+ * @param {object} once Once object
  */
 
 ((Drupal, once) => {
   /**
    * Initialize the primary tabs.
    *
-   * @param { HTMLElement } el
+   * @param {HTMLElement} el
    * The DOM element containing the primary tabs.
    */
   function init(el) {
@@ -56,9 +59,7 @@
   /**
    * Initialize the primary tabs.
    *
-   * @type {Drupal~behavior}
-   *
-   * @prop {Drupal~behaviorAttach} attach
+   * @prop {object} attach
    *   Display primary tabs according to the screen width.
    */
   Drupal.behaviors.brainsumStarterkitTabs = {

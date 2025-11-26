@@ -57,7 +57,7 @@ $spinner-color--active: $spinner-color;
     }
   }
 
-  @include tools.breakpoint(small) {
+  @include tools.breakpoint(tablet-s) {
     display: none;
   }
 

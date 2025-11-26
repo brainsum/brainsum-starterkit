@@ -6,6 +6,9 @@
  * - no jQuery dependency
  * - active class change
  * - added aria-extended attribute
+ *
+ * @param {object} Drupal Drupal object
+ * @param {object} once Once object
  */
 
 ((Drupal, once) => {

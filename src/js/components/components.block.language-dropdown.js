@@ -6,6 +6,9 @@
  * - no jQuery dependency
  * - active class change
  * - added aria-extended attribute
+ *
+ * @param {object} Drupal Drupal object
+ * @param {object} once Once object
  */
 
 ((Drupal, once) => {
@@ -56,16 +59,16 @@
       const languageBlock = once(
         'languageDropdown',
         '[data-drupal-selector="block-dropdown-language"]',
-        context,
+        context
       );
 
       if (languageBlock) {
         context
           .querySelectorAll(
-            '.js-block-dropdown-language .c-dropbutton__wrapper',
+            '.js-block-dropdown-language .c-dropbutton__wrapper'
           )
           .forEach((el) => init(el));
       }
-    },
+    }
   };
 })(Drupal, once);

@@ -6,6 +6,8 @@
  * each message.
  *
  * Borrowed from Olivero Theme.
+ *
+ * @param {object} Drupal Drupal object
  */
 
 (Drupal => {

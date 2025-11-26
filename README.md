@@ -2,7 +2,7 @@
 
 - Created by: [Krisztian Pinter](kpinter@brainsum.com)
 - Created in: 2020.
-- Updated on: 2025.01.26.
+- Updated on: 2025.11.26.
 
 ## Table of Contents
 
@@ -31,10 +31,10 @@ was also incorporated witch is a ITCSS- and BEMit-based Sass-only framework.
 
 - Installed Composer
 - Installed Drush
-- Installed Drupal 10 via Composer
+- Installed Drupal 10/11 via Composer
 - [Set asset-packagist to composer.json](https://www.drupal.org/docs/develop/using-composer/using-composer-to-install-drupal-and-manage-dependencies#third-party-libraries)
   of Drupal
-- Installed node.js (min. v20)
+- Installed node.js (min. v22)
 - Installed Yarn (Drupal Community recommends Yarn. If you really hates Yarn
   you can still use npm as well, but remove the yarn.lock file.)
 
@@ -181,17 +181,17 @@ To generate CSS files, we use Sass. You can find all source Sass files in the
 `src/sass/` directory. We organize all Sass files according to ITCSS and
 SMACSS, such as:
 
-1. **settings:** we store all _global_ variables here,
-2. **tools:** all _global_ functions, mixins,
-3. **base:** CSS reset and theming HTML elements,
-4. **objects:** layout and non-content related very generic items,
-5. **components:** all content-related items,
-6. **utilities:** class-based _global_ tools,
-7. **pages:** page specific theming rules, avoid to use them, use components
+1. __settings:__ we store all _global_ variables here,
+2. __tools:__ all _global_ functions, mixins,
+3. __base:__ CSS reset and theming HTML elements,
+4. __objects:__ layout and non-content related very generic items,
+5. __components:__ all content-related items,
+6. __utilities:__ class-based _global_ tools,
+7. __pages:__ page specific theming rules, avoid to use them, use components
     whenever you can
 
-Because we have use Drupal libraries, we generate CSS files **from the most Sass
-files.** If you create a new Sass file, don't forget to add the generated SMACSS
+Because we have use Drupal libraries, we generate CSS files __from the most Sass
+files.__ If you create a new Sass file, don't forget to add the generated SMACSS
 categorized CSS to the appropriated library.
 
 #### Modular SASS
@@ -243,8 +243,8 @@ directory, then:
 }
 ```
 
-_Note: you can use SASS variables, but not CSS variables in the `fill` or
-`stroke` properties._
+_Note: you can use SASS variables, but not CSS variables in the `fill`
+properties. (the inline svg from CSS not supports CSS variables)_
 
 ### JavaScript
 
@@ -253,15 +253,15 @@ files must go to `src/js/` directory. Then we transform them with Babel.js into
 ES5 form to the `js/` directory. All JS files are categorized according to
 SMACSS/ITCSS rules:
 
-- **base:** for very generic functions
-- **tools:** functions to solve a specific problem but not related a
+- __base:__ for very generic functions
+- __tools:__ functions to solve a specific problem but not related a
   component/block
-- **objects:** very generic, layout-related functions
-- **components:** components related functions (the most will come here)
-- **theme:** theming related functions
+- __objects:__ very generic, layout-related functions
+- __components:__ components related functions (the most will come here)
+- __theme:__ theming related functions
 
-Because we have use Drupal libraries, **we must create JS files for each
-library.**
+Because we have use Drupal libraries, __we must create JS files for each
+library.__
 
 ### Template files
 
@@ -281,7 +281,7 @@ By default as sample some Open Sans font files has been generated here.
 ### Images
 
 All theme related images should be stored and organized in the `images/`
-directory. **Before place any image file here, please optimize that!**
+directory. __Before place any image file here, please optimize that!__
 
 ### Third party assets
 

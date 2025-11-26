@@ -6,6 +6,8 @@
  * each message.
  *
  * Borrowed from Olivero Theme.
+ *
+ * @param {object} Drupal Drupal object
  */
 
 ((Drupal) => {
@@ -37,7 +39,7 @@
     messageWrapper.setAttribute('data-drupal-selector', 'messages');
     messageWrapper.setAttribute(
       'role',
-      type === 'error' || type === 'warning' ? 'alert' : 'status',
+      type === 'error' || type === 'warning' ? 'alert' : 'status'
     );
     messageWrapper.setAttribute('aria-labelledby', `${id}-title`);
     messageWrapper.setAttribute('data-drupal-message-id', id);

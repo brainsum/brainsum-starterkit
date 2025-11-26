@@ -35,30 +35,45 @@
 @mixin generate-unit($property, $suffix, $units, $half: null) {
   $suffix: if($suffix, #{"-" + $suffix}, "");
 
+  // Handle simple number case first
   @if validators.is-number($units) {
-    #{$property + $suffix}: $units;
-  }
-
-  @if validators.is-map($units) {
-    @each $breakpoint-name, $size in $units {
-      @if $breakpoint-name {
-        @if $half == half {
-          @include breakpoint($breakpoint-name) {
-            #{$property + $suffix}: $size * 0.5;
-          }
-        } @else {
-          @include breakpoint($breakpoint-name) {
-            #{$property + $suffix}: $size;
-          }
-        }
-      }
+    @if $half == half {
+      #{$property + $suffix}: $units * 0.5;
     }
 
+    @else {
+      #{$property + $suffix}: $units;
+    }
+  }
+
+  // Handle map case
+  @else if validators.is-map($units) {
+    // First handle the null/default value (non-responsive)
+    // Mobile-first: base styles must come before responsive overrides
     @if validators.map-contains-null($units) {
       @if $half == half {
         #{$property + $suffix}: map.get($units, null) * 0.5;
-      } @else {
+      }
+
+      @else {
         #{$property + $suffix}: map.get($units, null);
+      }
+    }
+
+    // Then handle all responsive properties in separate blocks
+    // This ensures declarations are properly grouped before nested rules
+    // stylelint-disable-next-line order/order -- @if must come before @each for mobile-first CSS output
+    @each $breakpoint-name, $size in $units {
+      @if $breakpoint-name {
+        @include breakpoint($breakpoint-name) {
+          @if $half == half {
+            #{$property + $suffix}: $size * 0.5;
+          }
+
+          @else {
+            #{$property + $suffix}: $size;
+          }
+        }
       }
     }
   }

@@ -5,6 +5,9 @@
  * Add some interactions to Drupal's system messages.
  *
  * Borrowed from Olivero Theme.
+ *
+ * @param {Drupal} Drupal Drupal object
+ * @param {once} once Once object
  */
 
 ((Drupal, once) => {
@@ -48,9 +51,7 @@
   /**
    * Get messages from context.
    *
-   * @type {Drupal~behavior}
-   *
-   * @prop {Drupal~behaviorAttach} attach
+   * @prop {object} attach
    *   Attaches the close button behavior for messages.
    */
   Drupal.behaviors.brainsumStarterkitMessages = {

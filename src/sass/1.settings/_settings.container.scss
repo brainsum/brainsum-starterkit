@@ -12,17 +12,11 @@
 
 /**
  * Default container
- *
  * IMPORTANT! If you don't need map (multiple values for container size), use a
- * single value, not use a map with only null key!
+ * single value,
+ not use a map with only the `null` key !
  */
-// prettier-ignore
-$container-size-default: (
-  null    : 90%,
-  small   : 91%,
-  medium  : 93%,
-  large   : 129.6rem
-) !default;
+$container-size-default: 129.6rem !default;
 
 /**
  * Additional container sizes
@@ -34,9 +28,9 @@ $container-size-default: (
  *
  * @example
  *   $container-size-extra: (
- *     large: (
+ *     wide: (
  *       null : 30rem,
- *       small: 120rem
+ *       tablet-s: 120rem
  *     )
  *   );
  */
@@ -51,7 +45,7 @@ $container-size-extra: () !default;
  * @example
  *   $objects-container-gutter-default: (
  *     null : 1rem,
- *     small: 2rem
+ *     tablet-s: 2rem
  *   );
  *
  * Container with extra responsive gutter size
@@ -62,7 +56,7 @@ $container-size-extra: () !default;
  *   $objects-container-gutter-default: (
  *     large: (
  *       null : 2rem,
- *       small: 4rem
+ *       tablet-s: 4rem
  *     )
  *   );
  */
@@ -82,7 +76,7 @@ $container-gutter-default: $gutter-default !default;
  *   $container-gutter-extra: (
  *     large: (
  *       null : 2rem,
- *       small: 4rem
+ *       tablet-s: 4rem
  *     )
  *   );
  */
