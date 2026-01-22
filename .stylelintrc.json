@@ -78,6 +78,12 @@
     "shorthand-property-no-redundant-values": null,
     "unit-allowed-list": [
       "ch",
+      "cqb",
+      "cqh",
+      "cqi",
+      "cqmax",
+      "cqmin",
+      "cqw",
       "deg",
       "dpi",
       "em",
