@@ -36,4 +36,11 @@ body {
     color: $body-color;
     background-color: $body-background-color;
   }
+
+  // Prevent scrolling when mobile menu is open
+  &.has-mobile-menu-open {
+    position: fixed;
+    inset-inline: 0;
+    overflow: hidden;
+  }
 }
