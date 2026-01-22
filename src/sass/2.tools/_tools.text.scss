@@ -119,3 +119,22 @@
   overflow-wrap: break-word;
   hyphens: auto;
 }
+
+/**
+ * Text Trim
+ *
+ * Trim vertical "paddings" from texts.
+ *
+ * WARNING: currently not supported in Firefox!
+ *
+ * @example
+ *   @use "../tools";
+ *
+ *   h1 {
+ *     @include tools.text-trim;
+ *   }
+ */
+@mixin text-trim {
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+}
