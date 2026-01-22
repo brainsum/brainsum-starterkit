@@ -1,21 +1,21 @@
 {
-  "background_color" : "#ffffff",
-  "display" : "standalone",
-  "icons" : [
+  "name": "BRAINSUM starterkit",
+  "short_name": "starterkit",
+  "icons": [
     {
-      "purpose" : "maskable",
-      "sizes" : "192x192",
-      "src" : "/themes/custom/brainsum_starterkit/images/favicon/web-app-manifest-192x192?v=2025",
-      "type" : "image/png"
+      "src": "/themes/custom/brainsum_starterkit/images/favicon/web-app-manifest-192x192?v=2026",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
-      "purpose" : "maskable",
-      "sizes" : "512x512",
-      "src" : "/themes/custom/brainsum_starterkit/images/favicon/web-app-manifest-512x512.png?v=2025",
-      "type" : "image/png"
+      "src": "/themes/custom/brainsum_starterkit/images/favicon/web-app-manifest-512x512.png?v=2026",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
-  "name" : "BRAINSUM starterkit",
-  "short_name" : "starterkit",
-  "theme_color" : "#ffffff"
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone"
 }

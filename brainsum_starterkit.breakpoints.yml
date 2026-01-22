@@ -4,45 +4,21 @@ brainsum_starterkit.zero:
   weight: 0
   multipliers:
     - 1x
-brainsum_starterkit.xsmall:
-  label: XSmall (368px)
-  mediaQuery: 'screen and (min-width: 23em)'
+brainsum_starterkit.tablet-s:
+  label: Tablet S (768px)
+  mediaQuery: 'screen and (min-width: 48em)'
   weight: 1
   multipliers:
     - 1x
-brainsum_starterkit.small:
-  label: Small (576px)
-  mediaQuery: 'screen and (min-width: 36em)'
+brainsum_starterkit.tablet-l:
+  label: Tablet L (1024px)
+  mediaQuery: 'screen and (min-width: 64em)'
   weight: 2
   multipliers:
     - 1x
-brainsum_starterkit.medium:
-  label: Medium (768px)
-  mediaQuery: 'screen and (min-width: 48em)'
-  weight: 3
-  multipliers:
-    - 1x
-brainsum_starterkit.large:
-  label: Large (992px)
-  mediaQuery: 'screen and (min-width: 62em)'
-  weight: 4
-  multipliers:
-    - 1x
-brainsum_starterkit.xlarge:
-  label: XLarge (1200px)
+brainsum_starterkit.desktop:
+  label: Desktop (1200px)
   mediaQuery: 'screen and (min-width: 75em)'
-  weight: 5
-  multipliers:
-    - 1x
-brainsum_starterkit.xxlarge:
-  label: XXLarge (1440px)
-  mediaQuery: 'screen and (min-width: 90em)'
-  weight: 6
-  multipliers:
-    - 1x
-brainsum_starterkit.xxxlarge:
-  label: XXXLarge (1800px)
-  mediaQuery: 'screen and (min-width: 112.5em)'
-  weight: 7
+  weight: 3
   multipliers:
     - 1x

@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme override for all naviagtion menu.
+ * Theme override for all navigation menu.
  *
  * Custom CSS classes and attributes.
  *
@@ -42,9 +42,9 @@
   {% if items %}
     <ul
       {{ attributes.addClass(
-        'c-menu', 'c-menu--' ~ menu_name, nav_level
+        'c-menu', 'c-menu--' ~ menu_name, nav_level,
       ).setAttribute(
-        'data-drupal-selector', drupal_selector_nav_level
+        'data-drupal-selector', drupal_selector_nav_level,
       ).setAttribute('id', aria_id) }}
     >
       {% set attributes = attributes.removeClass(nav_level) %}
@@ -79,7 +79,7 @@
         <li
           {{ item.attributes.addClass(item_classes).setAttribute(
             'data-drupal-selector',
-            is_top_level_menu and item.below ? 'menu-item-has-children' : false
+            is_top_level_menu and item.below ? 'menu-item-has-children' : false,
           ) }}
         >
           {#
@@ -91,8 +91,8 @@
 
           {% if menu_item_type == 'link' or menu_item_type == 'nolink' %}
             {{ link(item.title, item.url, {
-              'class': link_classes,
-              'data-drupal-selector': is_top_level_menu ? 'menu-link-has-children' : false
+              class: link_classes,
+              'data-drupal-selector': is_top_level_menu ? 'menu-link-has-children' : false,
             }) }}
 
             {% if item.below %}
@@ -103,12 +103,12 @@
               #}
               {% if is_top_level_menu %}
               {% set toggle_button_attributes = create_attribute({
-                'class': 'c-menu__button-toggle',
+                class: 'c-menu__button-toggle',
                 'data-drupal-selector': 'menu__submenu-toggle-button',
                 'aria-controls': aria_id,
                 'aria-expanded': 'false',
                 'aria-hidden': 'true',
-                'tabindex': '-1',
+                tabindex: '-1',
               }) %}
 
             <button{{ toggle_button_attributes }}>
@@ -143,11 +143,11 @@
 
           {% elseif menu_item_type == 'button' %}
             {{ link(link_title, item.url, {
-              'class': link_classes,
+              class: link_classes,
               'aria-controls': is_top_level_menu and item.below ? aria_id : false,
               'aria-expanded': is_top_level_menu and item.below ? 'false' : false,
               'data-drupal-selector': is_top_level_menu and item.below ? 'submenu-toggle-button' : false,
-              }) }}
+            }) }}
 
             {% set attributes = attributes.setAttribute('id', aria_id) %}
             {{ menus.menu_links(item.below, attributes, menu_level + 1, aria_id) }}

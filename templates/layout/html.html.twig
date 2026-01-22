@@ -52,35 +52,35 @@
 <!DOCTYPE html>
 <html{{ html_attributes }}>
   <head>
-    {% include '@brainsum_starterkit/includes/preload.html.twig' with {
-      current_theme_path: current_theme_path
-    } only %}
+    {{ include('@brainsum_starterkit/includes/preload.html.twig', {
+      current_theme_path: current_theme_path,
+    }) }}
 
     <style>{{ source('/' ~ directory ~ '/css/fontface--global.css') }}</style>
 
     <link
       rel="icon"
       type="image/png"
-      href="/{{ directory }}/images/favicon/favicon-96x96?v=2025.png"
+      href="/{{ directory }}/images/favicon/favicon-96x96?v=2026.png"
       sizes="96x96"
     />
     <link
       rel="icon"
       type="image/svg+xml"
-      href="/{{ directory }}/images/favicon/favicon.svg?v=2025"
+      href="/{{ directory }}/images/favicon/favicon.svg?v=2026"
     />
     <link
       rel="shortcut icon"
-      href="/{{ directory }}/favicon.ico?v=2025"
+      href="/{{ directory }}/favicon.ico?v=2026"
     />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="/{{ directory }}/images/favicon/apple-touch-icon.png?v=2025"
+      href="/{{ directory }}/images/favicon/apple-touch-icon.png?v=2026"
     />
     <meta
       name="apple-mobile-web-app-title"
-      content="BRAINSUM starterkit"
+      content="{{ head_title.name }}"
     />
     <link
       rel="manifest"
