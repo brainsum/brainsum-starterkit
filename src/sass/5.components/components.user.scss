@@ -10,7 +10,7 @@
 @use "../tools";
 
 .password-strength {
-  margin-block: settings.$gutter;
+  margin-block: var(--gutter--1x);
   margin-inline: 2.4rem;
 
   &__title,
@@ -21,13 +21,13 @@
 
   &__meter {
     block-size: 1rem;
-    background-color: settings.$color-grey-60;
+    background-color: var(--color-grey-60);
   }
 
   &__indicator {
     inline-size: 0;
     block-size: 100%;
-    background-color: settings.$color-primary;
+    background-color: var(--color-primary);
   }
 }
 

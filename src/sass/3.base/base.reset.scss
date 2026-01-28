@@ -2,30 +2,16 @@
  * @file
  * Base Reset
  *
- * Improved Normalize.css with some goodness:
- *   - Sass variables,
- *   - switchable components:
- *       - heading font-size reset,
- *       - small font-size reset,
- *       - list bullets remover,
- *       - table element,
- *       - form elements,
- *       - button element,
- *       - font antialiasing
- *   - best practices
- *   - no static values
- *   - compatible with Stylelint rules.
+ * Modern CSS reset based on modern-normalize v3.0.1
+ * with toggleable features via Sass variables.
  *
- * Compatible with IE10+.
- *
- * Part of Shake.sass, based on normalize.css.
- * @author Nicolas Gallagher
+ * @author Sindre Sorhus (modern-normalize)
  * @author Krisztian Pinter <krisz@keeteean.com>
- * @see normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css
+ * @see https://github.com/sindresorhus/modern-normalize
  */
 
 /**
-  * Imports
+ * Imports
  */
 @use "../settings";
 @use "../2.tools/tools.reset" as reset;
@@ -34,212 +20,52 @@
  * Settings
  */
 
-/**
- * Heading font size
- *
- * Makes all heading tags ( h1 - h6 ) to be equal to your body size. It forces
- * you to use heading tags with focus on your semantics and not on the way they
- * look.
- *
- * @type Boolean
- */
+// Reset heading font-size and font-weight
 $heading-size: true !default;
 
-/**
- * Small element font size
- *
- * Makes small tag to be equal to your body size.
- * It forces you to use heading tags with focus on your semantics and not on
- * the way they look.
- *
- * @type Boolean
- */
+// Reset small element font-size
 $small-size: true !default;
 
-/**
- * Code font family
- *
- * Use font-family setting for all code HTML tags.
- *
- * @type String
- */
-$font-family--code: settings.$font-family--code !default;
-
-/**
- * Font Antialiasing
- *
- * Makes font thickness to look the same in Firefox and Webkit.
- * You can set it individually too with `font-smooth` mixin.
- *
- * @type Boolean
- */
+// Enable font antialiasing
 $font-antialiasing: false !default;
 
-/**
- * Remove bullets from HTML unformatted (`ul`), ordered (`ol`) lists and menu
- * element with CSS classes. Encourages the use of `ul`, `ol` and `menu` for
- * any listed elements in any styles, like a navigation menu and not only for
- * bullet lists.
- *
- * Opinionated and disabled by default.
- */
+// Remove list bullets (for lists with classes)
 $list-bullets: false !default;
 
-/**
- * Table normalizer
- *
- * @type Boolean
- */
+// Enable table normalizer
 $table-normalize: true !default;
 
-/**
- * Full width images
- *
- * Optionally make all images full width to fill the parent container.
- *
- * @type Boolean
- */
+// Make images full width
 $full-width-images: false !default;
 
-/**
- * HTML4 Form Elements
- *
- * Enables normalize and resets for the HTML4 form elements.
- *
- * @type Boolean
- */
+// Enable form elements normalizer
 $form-elements: true !default;
 
-/**
- * HTML5 Form Elements
- *
- * Enables normalize and resets for the HTML5 form elements.
- *
- * @type Boolean
- */
-$html5-form-elements: true !default;
-
-/**
- * Button element reset
- *
- * Reset the appearance of the button element:
- *   - Remove the border, padding, appearance and background,
- *  - Set the the color to currentColor,
- *  - Set cursor to pointer.
- *
- * @type Boolean
- */
+// Enable button element reset
 $button-element: false !default;
 
 /**
  *** Document ***
  */
-
-/**
- * 1. Sets box-sizing to border-box by default.
- * 2. The browser emphasizes legibility over rendering speed and geometric
- *    precision. This enables kerning and optional ligatures in Gecko and
- *    Webkit.
- * 3. Prevent adjustments of font size after orientation changes in iOS.
- * 4. Force scrollbars to always be visible to prevent awkward ‘jumps’ when
- *    navigating between pages that do/do not have enough content to produce
- *    scrollbars naturally.
- *    Ensure the page always fills at least the entire height of the viewport.
- * 5. Makes font thickness to look the same in Firefox and Webkit.
- */
 @include reset.document($font-antialiasing);
-
-/**
- * Sets box-sizing to all elements and before and after
- */
 @include reset.box-sizing;
 
 /**
  *** Sections ***
  */
-
-// Simple reset of element margin and padding
 @include reset.sections;
-
-/**
- *** Grouping content ***
- */
-
-/**
- * Fixes the issues of main HTML5 tag with even earlier versions of IE.
- * For IE9-, please use HTML5Shiv https://github.com/aFarkas/html5shiv.
- */
-@include reset.main;
-
-/**
- * 1. Add the correct box sizing in Firefox.
- * 2. Show the overflow in Edge and IE.
- */
-@include reset.hr;
-
-/**
- * 1. Sets heading font-size to be equal to the content font-size. Encourages
- *    the use of different heading elements to define the position of the
- *    heading in the document and not the heading look.
- *    Opinionated and disabled by default.
- * 2. Reset font-weight of all heading elements.
- */
 @include reset.heading-fontsize($heading-size);
 
 /**
  *** Text-level semantics ***
  */
-
-/**
- * 1. Removes default grey background in IE10.
- * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
- */
-@include reset.anchor;
-
-/**
- * 1. Remove the bottom border in Chrome 57-
- * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
- */
-@include reset.abbr;
-
-/**
- * Modify default styling of address.
- */
+@include reset.bold;
+@include reset.code;
+@include reset.small($small-size);
+@include reset.sub-sup;
 @include reset.address;
 
-/**
- * Add the correct font weight in Chrome, Edge, and Safari.
- */
-@include reset.bold;
-
-/**
- * 1. Correct the inheritance and scaling of font size in all browsers.
- * 2. Correct the odd `em` font sizing in all browsers.
- * 3. Removed italic style from <var>.
- */
-@include reset.code($font-family--code);
-
-/**
- * 1. Sets small tag's font-size to be equal to the content font-size for
- *    semantic reasons.
- * 2. Add the correct font size in all browsers.
- */
-@include reset.small($small-size);
-
-/**
- * Prevent `sub` and `sup` elements from affecting the line height in all
- * browsers.
- */
-@include reset.index-elements;
-
-/**
- * Remove bullets from HTML unformatted (`ul`) and ordered (`ol`) lists width
- * CSS classes. Encourages the use of `ul` or `ol` for any listed elements in
- * any styles, like a navigation menu and not only for bullet lists.
- *
- * Opinionated and disabled by default.
- */
-
+// Remove bullets from lists with classes
 ul[class],
 ol[class],
 menu[class] {
@@ -247,67 +73,22 @@ menu[class] {
 }
 
 /**
- * 1. Removes default border spacing and collapse.
- * 2. Ensure tables fill up as much space as possible.
+ *** Tabular data ***
  */
 @include reset.table($table-normalize);
 
 /**
  *** Embedded content ***
  */
-
-/**
- * 1. Removes border from images inside links
- * 2. Helps images to properly behave in responsive layouts
- */
 @include reset.images($full-width-images);
 
 /**
- * Add the correct display in iOS 4-7.
- */
-@include reset.audio;
-
-/**
- * Hide the overflow in IE.
- */
-@include reset.svg;
-
-/**
- * Normalizing html4 form elements
+ *** Forms ***
  */
 @include reset.form-elements($form-elements);
 
 /**
- *** Normalizing of html5 form elements ***
- */
-@include reset.html5-form-elements($html5-form-elements);
-
-/**
  *** Interactive ***
  */
-
-/**
- * Add the correct display in IE 9-.
- *
- * 1. Add the correct display in Edge, IE, and Firefox.
- */
-@include reset.details-menu;
-
-/**
- * Add the correct display in all browsers.
- */
 @include reset.summary;
-
-/**
- * Reset default appearance of the button element
- */
 @include reset.button-element($button-element);
-
-/**
- *** Scripting ***
- */
-
-/**
- * Add the correct display in IE.
- */
-@include reset.template;

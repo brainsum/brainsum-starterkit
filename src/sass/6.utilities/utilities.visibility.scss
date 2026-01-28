@@ -46,13 +46,6 @@
 @use "../2.tools/tools.visibility" as *;
 
 /**
- * Settings
- */
-$responsive: false !default;
-$breakpoints: settings.$breakpoints !default;
-$breakpoint-separator: settings.$breakpoint-separator !default;
-
-/**
  * Visibility Utilities
  */
 
@@ -103,37 +96,4 @@ $breakpoint-separator: settings.$breakpoint-separator !default;
  */
 .u-visually-hide--focusable {
   @include visually-hidden--focusable;
-}
-
-/**
- * Visibility Responsive Utilities
- */
-@if $responsive == true {
-  @each $breakpoint-name, $breakpoint-size in $breakpoints {
-    @media #{$breakpoint-size} {
-      .#{"u-show" + $breakpoint-separator + $breakpoint-name} {
-        display: block !important;
-      }
-
-      .#{"u-visible" + $breakpoint-separator + $breakpoint-name} {
-        visibility: visible !important;
-      }
-
-      .#{"u-hide" + $breakpoint-separator + $breakpoint-name} {
-        display: none !important;
-      }
-
-      .#{"u-invisible" + $breakpoint-separator + $breakpoint-name} {
-        visibility: hidden !important;
-      }
-
-      .#{"u-visually-hide" + $breakpoint-separator + $breakpoint-name} {
-        @include visually-hidden;
-      }
-
-      .#{"u-visually-hide--focusable" + $breakpoint-separator + $breakpoint-name} {
-        @include visually-hidden--focusable;
-      }
-    }
-  }
 }

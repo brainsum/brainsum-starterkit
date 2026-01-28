@@ -15,12 +15,11 @@
  * You must declare the font color, other rules optionally.
  *
  * @example
- *   @use "../settings";
  *   @use "../tools";
  *
- *   @include tools.autofill(settings.$color-primary) {
- *     background: lighten(settings.$color-primary, 30%);
- *  }
+ *   @include tools.autofill(var(--color-primary)) {
+ *     background: lighten(var(--color-primary), 30%);
+ *   }
  */
 @mixin autofill($color) {
   &:-webkit-autofill {

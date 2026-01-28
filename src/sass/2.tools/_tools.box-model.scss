@@ -39,5 +39,5 @@
 @mixin circle($value) {
   inline-size: $value;
   block-size: $value;
-  border-radius: $value * 0.5;
+  border-radius: calc($value / 2);
 }

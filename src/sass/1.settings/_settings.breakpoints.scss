@@ -6,77 +6,46 @@
 /**
  * Default breakpoints
  *
- * Default global breakpoints map. These are the default breakpoints map that
- * will be shared across all shake modules. You can change it also locally to
- * each module. Don't forget you have to use only pixels or ems here!
+ * Processed by PostCSS with postcss-custom-media plugin. Don't forget you
+ * have to use only pixels or ems here!
  *
- * @type Map
- *
- * @example
- *   @include breakpoint(medium) {
- * }
- *
- */
-
-// prettier-ignore
-$breakpoints: (
-  tablet-s : "screen and (min-width: 48em)", // 768px
-  tablet-l : "screen and (min-width: 64em)", // 1024px
-  desktop  : "screen and (min-width: 75em)", // 1200px
-) !default;
-
-/**
- * Default breakpoint suffix
- *
- * Global breakpoint suffix naming setting.
- * All breakpoint specific styles have a `@breakpoint-name` suffix by default.
- * The `\` character is used to escape the `@` character.
- *
- * @type String
- */
-$breakpoint-separator: \@;
-
-/**
- * Sample for custom breakpoints
- *
- * @type Map
- *
- * @example
- *   .c-header {
- *     margin-right: 3rem;
- *
- *     @include breakpoint(large, $my-breakpoints) {
- *       margin-right: 0;
- *     }
- *   }
- *
- * Using a custom breakpoints map without size
- * You can use `null` value for breakpoint without size like orientation only.
- *
- * @example
- *   $portrait: (
- *     null   : screen and (orientation: portrait),
- *     small  : screen and (orientation: portrait) and (min-width: 20em), // 320px
- *     xlarge : screen and (orientation: portrait) and (min-width: 80em) // 1280px
- *   );
- *
- * @example
- *   .c-header {
- *     margin-right: 3rem;
- *
- *     @include breakpoint($portrait) {
- *       margin-right: 0;
- *     }
- *   }
+ * Naming convention:
+ *   --{size}       → min-width (mobile-first, default)
+ *   --{size}-down  → max-width (target smaller screens)
  */
 
 /**
- * max-width
+ * Min-width Breakpoints (Mobile First)
+ *
+ * @example
+ *   @media (--tablet-l) { }
  */
-// prettier-ignore
-$max-width: (
-  mobile   : "screen and (max-width: 47.94em)",     // 767px
-  tablet-s : "screen and (max-width: 63.94em)",     // 1023px
-  tablet-l : "screen and (max-width: 74.94em)",     // 1199px
-  desktop  : "screen and (max-width: 119.9375em)",  // 1919px
-) !default;
+@custom-media --tablet-s (min-width: 48em); // 768px
+@custom-media --tablet-l (min-width: 64em); // 1024px
+@custom-media --desktop (min-width: 75em); // 1200px
+@custom-media --wide (min-width: 120em); // 1920px
+
+/**
+ * Max-width Breakpoints (Desktop First / Mobile Only)
+ *
+ * @example
+ *   @media (--tablet-l-down) { }
+ */
+@custom-media --tablet-s-down (max-width: 47.94em); // 767px
+@custom-media --tablet-l-down (max-width: 63.94em); // 1023px
+@custom-media --desktop-down (max-width: 74.94em); // 1199px
+@custom-media --wide-down (max-width: 119.94em); // 1919px
+
+/**
+ * Special / Utility Media Queries
+ *
+ * @example
+ *   @media (--touch) { }
+ */
+@custom-media --touch (hover: none) and (pointer: coarse);
+@custom-media --mouse (hover: hover) and (pointer: fine);
+@custom-media --reduced-motion (prefers-reduced-motion: reduce);
+@custom-media --dark-mode (prefers-color-scheme: dark);
+@custom-media --light-mode (prefers-color-scheme: light);
+@custom-media --high-contrast (prefers-contrast: more);
+@custom-media --print print;

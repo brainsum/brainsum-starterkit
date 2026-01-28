@@ -5,76 +5,77 @@
  * - Only global color variables. Local color variables you can find in module
  *   files in `3.base` or `5.components` directories.
  * - Only assigned colors. You can't use any color tools here.
- * - Here are only color variables and maps, no any assigned color variables.
- */
-
-@use "sass:color";
-
-/**
- * Color definitions
  *
- * Named colors stored as shades. If it's possible choose from these colors
- * only.
+ * @example
+ *   color: var(--color-primary);
  */
-$color-dark: #000;
-$color-light: #fff;
 
-/**
- * Grayscale colors for Drupal components
- *
- * You can change but don't remove them.
- */
-// default grey color
-$color-grey: #333;
+:root {
+  /**
+   * Color definitions
+   *
+   * Named colors stored as shades. If it's possible choose from these colors
+   * only.
+   */
+  --color-dark: #000;
+  --color-light: #fff;
 
-/**
- * Different shades of the default grey color
- */
-$color-grey-120: color.scale($color-grey, $lightness: -20%); // darkest grey
-$color-grey-110: color.scale($color-grey, $lightness: -10%);
-$color-grey-100: $color-grey; // default grey
-$color-grey-90: color.scale($color-grey, $lightness: 10%);
-$color-grey-80: color.scale($color-grey, $lightness: 20%);
-$color-grey-70: color.scale($color-grey, $lightness: 30%);
-$color-grey-60: color.scale($color-grey, $lightness: 40%);
-$color-grey-50: color.scale($color-grey, $lightness: 50%);
-$color-grey-40: color.scale($color-grey, $lightness: 60%);
-$color-grey-30: color.scale($color-grey, $lightness: 70%);
-$color-grey-20: color.scale($color-grey, $lightness: 80%);
-$color-grey-10: color.scale($color-grey, $lightness: 90%); // lightest grey
+  /**
+   * Grayscale colors for Drupal components
+   *
+   * You can change but don't remove them.
+   */
+  --color-grey: #333; // default grey color
 
-/**
- * Design needed global color definitions
- */
-$color-blue: #0091cc;
-$color-turquoise: #66d1ca;
-$color-turquoise--dark: #40c5bb;
+  /**
+   * Different shades of the default grey color
+   */
+  --color-grey-120: color-mix(in oklch, var(--color-grey, var(--color-dark) 20%)); // darkest grey
+  --color-grey-110: color-mix(in oklch, var(--color-grey, var(--color-dark) 10%));
+  --color-grey-100: var(--color-grey); // default grey
+  --color-grey-90: color-mix(in oklch, var(--color-grey, var(--color-light) 10%));
+  --color-grey-80: color-mix(in oklch, var(--color-grey, var(--color-light) 20%));
+  --color-grey-70: color-mix(in oklch, var(--color-grey, var(--color-light) 30%));
+  --color-grey-60: color-mix(in oklch, var(--color-grey, var(--color-light) 40%));
+  --color-grey-50: color-mix(in oklch, var(--color-grey, var(--color-light) 50%));
+  --color-grey-40: color-mix(in oklch, var(--color-grey, var(--color-light) 60%));
+  --color-grey-30: color-mix(in oklch, var(--color-grey, var(--color-light) 70%));
+  --color-grey-20: color-mix(in oklch, var(--color-grey, var(--color-light) 80%));
+  --color-grey-10: color-mix(in oklch, var(--color-grey, var(--color-light) 90%)); // lightest grey
 
-/**
- * System colors
- *
- * These colors are used for system messages, alerts, and other system
- * components.
- */
-$color-green: #6ae96a;
-$color-yellow: #f7ca00;
-$color-orange: #fda408;
-$color-red: #fd4f46;
+  /**
+   * Design needed global color definitions
+   */
+  --color-blue: #0091cc;
+  --color-turquoise: #66d1ca;
+  --color-turquoise--dark: #40c5bb;
 
-/**
- * Global colors by functions
- *
- * Here we associate the defined named colors to functions.
- * If possible use colors by functions only.
- */
-$color-brand: $color-yellow;
-$color-primary: $color-blue;
-$color-secondary: $color-turquoise;
-$color-text-primary: $color-dark;
-$color-background-primary: $color-light;
+  /**
+   * System colors
+   *
+   * These colors are used for system messages, alerts, and other system
+   * components.
+   */
+  --color-green: #6ae96a;
+  --color-yellow: #f7ca00;
+  --color-orange: #fda408;
+  --color-red: #fd4f46;
 
-// You can change, but don't remove these
-$color-success: $color-green;
-$color-warning: $color-orange;
-$color-error: $color-red;
-$color-note: $color-light;
+  /**
+   * Global colors by functions
+   *
+   * Here we associate the defined named colors to functions.
+   * If possible use colors by functions only.
+   */
+  --color-brand: var(--color-yellow);
+  --color-primary: var(--color-blue);
+  --color-secondary: var(--color-turquoise);
+  --color-text-primary: var(--color-dark);
+  --color-background-primary: var(--color-light);
+
+  // You can change them, but don't remove these
+  --color-success: var(--color-green);
+  --color-warning: var(--color-orange);
+  --color-error: var(--color-red);
+  --color-note: var(--color-light);
+}

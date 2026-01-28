@@ -21,8 +21,11 @@
  * else background property than background-color, like background-image.
  */
 $body-colors: true !default;
-$body-color: settings.$color-text-primary !default;
-$body-background-color: settings.$color-background-primary !default;
+
+:root {
+  --body-color: var(--color-text-primary);
+  --body-background-color: var(--color-background-primary);
+}
 
 html {
   overflow-x: hidden;
@@ -33,8 +36,9 @@ body {
   min-block-size: 100vh;
 
   @if $body-colors == true {
-    color: $body-color;
-    background-color: $body-background-color;
+    color: var(--body-color);
+    background-color: var(--body-background-color);
+    font-family: var(--code);
   }
 
   // Prevent scrolling when mobile menu is open

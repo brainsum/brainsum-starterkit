@@ -16,21 +16,24 @@
  * Settings
  */
 $browser-input-icons: true;
-$gutter-block: settings.$form-gutter;
-$padding-block: settings.$form-padding-block;
-$padding-inline: settings.$form-padding-inline;
-$border-radius: ($padding-block * 2 + settings.$line-height * 1.8rem) * 0.5;
-$border-color: #979797;
-$focus-color: settings.$color-primary;
-$text-color: settings.$color-text-primary;
-$background-color: settings.$color-light;
-$placeholder-color: rgba($text-color, 0.66);
-$boolean-border-color: #979797;
-$boolean-checked-color: settings.$color-primary;
-$boolean-size-touch: 3.5rem; // size for mobile devices
-$boolean-size-mouse: 2.6rem; // size for desktop
-$checkbox-border-radius: 0.2rem;
-$select-arrow-size: 2.8rem;
+
+form {
+  --gutter-block: var(--form-gutter);
+  --padding-block: var(--form-padding-block);
+  --padding-inline: var(--form-padding-inline);
+  --border-radius: calc((var(--padding-block) * 2 + var(--line-height-base) * 1.8rem) / 2);
+  --border-color: #979797;
+  --focus-color: var(--color-primary);
+  --text-color: var(--color-text-primary);
+  --background-color: var(--color-light);
+  --placeholder-color: rgb(from var(--text-color) r g b / 0.66);
+  --boolean-border-color: #979797;
+  --boolean-checked-color: var(--color-primary);
+  --boolean-size-touch: 3.5rem; // size for mobile devices
+  --boolean-size-mouse: 2.6rem; // size for desktop
+  --checkbox-border-radius: 0.2rem;
+  --select-arrow-size: 2.8rem;
+}
 
 textarea {
   resize: vertical;
@@ -47,7 +50,7 @@ textarea {
 
 .c-form {
   &-item:not(:first-child) {
-    margin-block-start: $gutter-block;
+    margin-block-start: var(--gutter-block);
   }
 
   /**
@@ -57,29 +60,29 @@ textarea {
    */
   &-element {
     inline-size: 100%;
-    padding-block: $padding-block;
-    padding-inline: $padding-inline;
-    color: $text-color;
-    border-block: 0.1rem solid $border-color;
-    border-inline: 0.1rem solid $border-color;
-    border-radius: $border-radius;
-    background: $background-color;
+    padding-block: var(--padding-block);
+    padding-inline: var(--padding-inline);
+    color: var(--text-color);
+    border-block: 0.1rem solid var(--border-color);
+    border-inline: 0.1rem solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: var(--background-color);
     appearance: none;
 
     &::placeholder {
-      color: $placeholder-color;
+      color: var(--placeholder-color);
     }
 
     &:focus-visible {
       outline: 0;
-      box-shadow: 0 0 1rem rgba($focus-color, 0.5);
+      box-shadow: 0 0 1rem rgb(from var(--focus-color) r g b / 0.5);
     }
 
     &.form-textarea {
-      min-block-size: $padding-block * 2 + 9 * settings.$line-height * 1.8rem;
+      min-block-size: calc(var(--padding-block) * 2 + 9 * var(--line-height) * 1.8rem);
 
-      @include tools.breakpoint(tablet-s) {
-        min-block-size: $padding-block * 2 + 11 * settings.$line-height * 1.8rem;
+      @media (--tablet-s) {
+        min-block-size: calc(var(--padding-block) * 2 + 11 * var(--line-height) * 1.8rem);
       }
     }
   }
@@ -94,24 +97,24 @@ textarea {
     display: flex;
     flex-direction: row;
     align-items: center;
-    min-block-size: $boolean-size-touch;
+    min-block-size: var(--boolean-size-touch);
     margin-block: 2rem;
     margin-inline: 0;
     cursor: pointer;
-    line-height: $boolean-size-touch;
+    line-height: var(--boolean-size-touch);
 
-    @include tools.breakpoint(tablet-s) {
-      min-block-size: $boolean-size-mouse;
+    @media (--tablet-s) {
+      min-block-size: var(--boolean-size-mouse);
       margin-block: 1.5rem;
-      line-height: $boolean-size-mouse;
+      line-height: var(--boolean-size-mouse);
     }
 
     input {
       @include tools.visually-hidden;
 
       &:checked + label::after {
-        border-color: $boolean-checked-color;
-        background: $boolean-checked-color;
+        border-color: var(--boolean-checked-color);
+        background: var(--boolean-checked-color);
       }
 
       &:disabled,
@@ -122,32 +125,32 @@ textarea {
 
     label {
       position: relative;
-      padding-inline-start: $boolean-size-touch + 2rem;
+      padding-inline-start: calc(var(--boolean-size-touch) + 2rem);
       cursor: pointer;
 
-      @include tools.breakpoint(tablet-s) {
-        padding-inline-start: $boolean-size-mouse + 1.5rem;
+      @media (--tablet-s) {
+        padding-inline-start: calc(var(--boolean-size-mouse) + 1.5rem);
       }
 
       &::before {
-        @include tools.square($boolean-size-touch * 0.6);
+        @include tools.square(calc(var(--boolean-size-touch) * 0.6));
 
         position: absolute;
         z-index: 9;
-        inset-block-start: $boolean-size-touch * 0.2;
-        inset-inline-start: $boolean-size-touch * 0.2;
+        inset-block-start: calc(var(--boolean-size-touch) * 0.2);
+        inset-inline-start: calc(var(--boolean-size-touch) * 0.2);
         content: "";
 
-        @include tools.breakpoint(tablet-s) {
-          @include tools.square($boolean-size-mouse * 0.6);
+        @media (--tablet-s) {
+          @include tools.square(calc(var(--boolean-size-mouse) * 0.6));
 
-          inset-block-start: $boolean-size-mouse * 0.2;
-          inset-inline-start: $boolean-size-mouse * 0.2;
+          inset-block-start: calc(var(--boolean-size-mouse) * 0.2);
+          inset-inline-start: calc(var(--boolean-size-mouse) * 0.2);
         }
       }
 
       &::after {
-        @include tools.square($boolean-size-touch);
+        @include tools.square(var(--boolean-size-touch));
 
         position: absolute;
         inset-block-start: 0;
@@ -160,18 +163,18 @@ textarea {
           border 0.2s,
           box-shadow 0.2s,
           color 0.2s;
-        border-block: 0.1rem solid $boolean-border-color;
-        border-inline: 0.1rem solid $boolean-border-color;
-        background: $background-color;
+        border-block: 0.1rem solid var(--boolean-border-color);
+        border-inline: 0.1rem solid var(--boolean-border-color);
+        background: var(--background-color);
 
         @if settings.$prefers-reduced-motion {
-          @media screen and (prefers-reduced-motion: reduce) {
+          @media (--reduced-motion) {
             transition: none;
           }
         }
 
-        @include tools.breakpoint(tablet-s) {
-          @include tools.square($boolean-size-mouse);
+        @media (--tablet-s) {
+          @include tools.square(var(--boolean-size-mouse));
         }
       }
     }
@@ -183,7 +186,7 @@ textarea {
     label {
       &::before {
         border-radius: 50%;
-        background: $background-color;
+        background: var(--background-color);
       }
 
       &::after {
@@ -195,13 +198,14 @@ textarea {
   &-type-checkbox {
     label {
       &::before {
-        background: svg-load("../../../images/icons/check-solid.svg", fill=settings.$color-secondary) no-repeat center
+        // secondary color
+        background: svg-load("../../../images/icons/check-solid.svg", fill=#66d1ca) no-repeat center
           center;
         background-size: contain;
       }
 
       &::after {
-        border-radius: $checkbox-border-radius;
+        border-radius: var(--checkbox-border-radius);
       }
     }
   }
@@ -213,22 +217,24 @@ textarea {
   position: relative;
 
   &::after {
-    @include tools.square($select-arrow-size);
+    @include tools.square(var(--select-arrow-size));
 
     position: absolute;
     inset-block-start: 50%;
-    inset-inline-end: $padding-inline;
+    inset-inline-end: var(--padding-inline);
     display: block;
     content: "";
     transform: translateY(-50%);
     pointer-events: none;
-    background: svg-load("../../../images/icons/angle-down-solid.svg", fill=settings.$color-brand) no-repeat center
+
+    // brand color
+    background: svg-load("../../../images/icons/angle-down-solid.svg", fill=#f7ca00) no-repeat center
       center;
     background-size: contain;
   }
 
   select {
-    padding-inline-end: $padding-inline * 2;
+    padding-inline-end: calc(var(--padding-inline) * 2);
     cursor: pointer;
   }
 }

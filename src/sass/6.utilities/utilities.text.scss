@@ -49,16 +49,8 @@
 @use "../2.tools/tools.text" as *;
 
 /**
- * Settings
- */
-$responsive: false !default;
-$breakpoints: settings.$breakpoints !default;
-$breakpoint-separator: settings.$breakpoint-separator !default;
-
-/**
  * Text Utilities
  */
-
 .u-text--left {
   @include text-align(start);
 }
@@ -85,41 +77,4 @@ $breakpoint-separator: settings.$breakpoint-separator !default;
 
 .u-text--justify-center {
   @include text-align(justify, center);
-}
-
-/**
- * Text Responsive Utilities
- */
-@if $responsive == true {
-  @each $breakpoint-name, $breakpoint-size in $breakpoints {
-    @media #{$breakpoint-size} {
-      .#{"u-text--left" + $breakpoint-separator + $breakpoint-name} {
-        @include text-align(start);
-      }
-
-      .#{"u-text--right" + $breakpoint-separator + $breakpoint-name} {
-        @include text-align(end);
-      }
-
-      .#{"u-text--center" + $breakpoint-separator + $breakpoint-name} {
-        @include text-align(center);
-      }
-
-      .#{"u-text--justify" + $breakpoint-separator + $breakpoint-name} {
-        @include text-align(justify);
-      }
-
-      .#{"u-text--justify-left" + $breakpoint-separator + $breakpoint-name} {
-        @include text-align(justify, start);
-      }
-
-      .#{"u-text--justify-right" + $breakpoint-separator + $breakpoint-name} {
-        @include text-align(justify, end);
-      }
-
-      .#{"u-text--justify-center" + $breakpoint-separator + $breakpoint-name} {
-        @include text-align(justify, center);
-      }
-    }
-  }
 }

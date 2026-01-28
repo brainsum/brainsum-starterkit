@@ -1,1 +1,1 @@
-.o-container{padding-inline:1.5rem}@media screen and (min-width:48em){.o-container{padding-inline:3rem}}@media screen and (min-width:75em){.o-container{padding-inline:6rem}}.o-container{max-inline-size:129.6rem;inline-size:100%;margin-inline:auto}
+.o-container{inline-size:100%;max-inline-size:var(--container-size-default);margin-inline:auto;padding-inline:var(--container-gutter-default)}

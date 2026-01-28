@@ -16,48 +16,46 @@
 /**
   * Imports
  */
-@use "sass:math";
 @use "../settings";
 @use "../tools";
 
-/**
- * Settings
- */
-$padding-inline: 0;
-$padding-block: 0;
-$background: none;
-$border-radius: 0;
-$spinner-width: 3.1rem;
-$spinner-width--middle: $spinner-width;
-$spinner-height: 0.5rem;
-$spinner-spacing: 0.6rem; // vertical distance between horizontal lines
-$spinner-border-radius: $spinner-height * 0.5;
-$spinner-color: settings.$color-primary;
-$spinner-color--active: $spinner-color;
-
 .c-hamburger {
+  // settings
+  --padding-inline: 0;
+  --padding-block: 0;
+  --background: none;
+  --border-radius: 0;
+  --spinner-width: 3.1rem;
+  --spinner-width--middle: var(--spinner-width);
+  --spinner-height: 0.5rem;
+  --spinner-spacing: 0.6rem; // vertical distance between horizontal lines
+  --spinner-border-radius: calc(var(--spinner-height) / 2);
+  --spinner-color: var(--color-primary);
+  --spinner-color--active: var(--spinner-color);
+
+  // Theming
   overflow: visible;
   margin-block-start: 3rem;
   margin-block-end: 3.5rem;
   margin-inline-start: 4rem;
   margin-inline-end: 0;
-  padding-block: $padding-block;
-  padding-inline: $padding-inline;
+  padding-block: var(--padding-block);
+  padding-inline: var(--padding-inline);
   cursor: pointer;
   transition: opacity 0.5s ease;
   color: inherit;
   border-block: 0;
   border-inline: 0;
-  border-radius: $border-radius;
-  background: $background;
+  border-radius: var(--border-radius);
+  background: var(--background);
 
   @if settings.$prefers-reduced-motion {
-    @media screen and (prefers-reduced-motion: reduce) {
+    @media (--reduced-motion) {
       transition: none;
     }
   }
 
-  @include tools.breakpoint(tablet-s) {
+  @media (--tablet-s) {
     display: none;
   }
 
@@ -73,18 +71,18 @@ $spinner-color--active: $spinner-color;
   &__box {
     position: relative;
     display: block;
-    inline-size: $spinner-width;
-    block-size: $spinner-height * 3 + $spinner-spacing * 2;
+    inline-size: var(--spinner-width);
+    block-size: calc(var(--spinner-height) * 3 + var(--spinner-spacing) * 2);
   }
 
   &__spinner {
-    inset-block-start: $spinner-height * 0.5;
+    inset-block-start: calc(var(--spinner-height) / 2);
     display: block;
-    margin-block-start: math.div($spinner-height, -2);
+    margin-block-start: calc(var(--spinner-height) / -2);
     transition: background 0s 0.13s linear;
 
     @if settings.$prefers-reduced-motion {
-      @media screen and (prefers-reduced-motion: reduce) {
+      @media (--reduced-motion) {
         transition: none;
       }
     }
@@ -99,28 +97,28 @@ $spinner-color--active: $spinner-color;
     &::before,
     &::after {
       position: absolute;
-      inline-size: $spinner-width;
-      block-size: $spinner-height;
+      inline-size: var(--spinner-width);
+      block-size: var(--spinner-height);
       transition: transform 0.15s ease;
-      border-radius: $spinner-border-radius;
-      background: $spinner-color;
+      border-radius: var(--spinner-border-radius);
+      background: var(--spinner-color);
 
       @if settings.$prefers-reduced-motion {
-        @media screen and (prefers-reduced-motion: reduce) {
+        @media (--reduced-motion) {
           transition: none;
         }
       }
     }
 
     &::before {
-      inset-block-start: $spinner-height + $spinner-spacing;
+      inset-block-start: calc(var(--spinner-height) + var(--spinner-spacing));
       inset-inline-end: 0;
-      inline-size: $spinner-width--middle;
+      inline-size: var(--spinner-width--middle);
       transition: top 0.1s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1),
         transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 
       @if settings.$prefers-reduced-motion {
-        @media screen and (prefers-reduced-motion: reduce) {
+        @media (--reduced-motion) {
           transition: none;
         }
       }
@@ -128,14 +126,14 @@ $spinner-color--active: $spinner-color;
       .c-hamburger.is-active & {
         inset-block-start: 0;
         inset-inline-end: auto;
-        inline-size: $spinner-width;
+        inline-size: var(--spinner-width);
         transition: top 0.1s 0.15s cubic-bezier(0.33333, 0, 0.66667, 0.33333),
           transform 0.13s 0.22s cubic-bezier(0.215, 0.61, 0.355, 1);
-        transform: translate3d(0, $spinner-spacing + $spinner-height, 0) rotate(45deg);
-        background: $spinner-color--active;
+        transform: translate3d(0, calc(var(--spinner-spacing) + var(--spinner-height)), 0) rotate(45deg);
+        background: var(--spinner-color--active);
 
         @if settings.$prefers-reduced-motion {
-          @media screen and (prefers-reduced-motion: reduce) {
+          @media (--reduced-motion) {
             transition: none;
           }
         }
@@ -143,13 +141,13 @@ $spinner-color--active: $spinner-color;
     }
 
     &::after {
-      inset-block-start: ($spinner-height * 2) + ($spinner-spacing * 2);
-      inset-block-end: ($spinner-spacing + $spinner-height) * -1;
+      inset-block-start: calc((var(--spinner-height) * 2) + (var(--spinner-spacing) * 2));
+      inset-block-end: calc((var(--spinner-spacing) + var(--spinner-height)) * -1);
       transition: top 0.2s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1),
         transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 
       @if settings.$prefers-reduced-motion {
-        @media screen and (prefers-reduced-motion: reduce) {
+        @media (--reduced-motion) {
           transition: none;
         }
       }
@@ -158,11 +156,11 @@ $spinner-color--active: $spinner-color;
         inset-block-start: 0;
         transition: top 0.2s cubic-bezier(0.33333, 0, 0.66667, 0.33333),
           transform 0.13s 0.22s cubic-bezier(0.215, 0.61, 0.355, 1);
-        transform: translate3d(0, $spinner-spacing + $spinner-height, 0) rotate(-45deg);
-        background: $spinner-color--active;
+        transform: translate3d(0, calc(var(--spinner-spacing) + var(--spinner-height)), 0) rotate(-45deg);
+        background: var(--spinner-color--active);
 
         @if settings.$prefers-reduced-motion {
-          @media screen and (prefers-reduced-motion: reduce) {
+          @media (--reduced-motion) {
             transition: none;
           }
         }

@@ -10,23 +10,22 @@
 @use "../settings";
 @use "../tools";
 
-/**
- * Settings
- */
-$link-color: #565656;
-$accent-state-color: settings.$color-dark;
-
 #toolbar-administration {
   font-size: 1.3rem;
 }
 
 .toolbar-tray a {
-  color: $link-color;
+  // Settings
+  --link-color: #565656;
+  --accent-state-color: var(--color-dark);
+
+  // Theming
+  color: var(--link-color);
 
   &:hover,
   &:active,
   &:focus,
   &.is-active {
-    color: $accent-state-color;
+    color: var(--accent-state-color);
   }
 }

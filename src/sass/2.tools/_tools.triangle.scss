@@ -2,7 +2,7 @@
  * @file
  * CSS Triangle Tool
  *
- * Generates a triangle pointing in a specified direction.
+ * Generates a triangle using clip-path.
  *
  * Part of Shake.sass, borrowed from Bourbon.
  * @link https://www.bourbon.io/docs/latest#triangle
@@ -11,83 +11,62 @@
  *   @use "../tools";
  *
  *   .button__arrow {
- *     @include tools.make-triangle(right, 10.5rem, 1rem, settings.$color-secondary);
+ *     @include tools.triangle(right, 1.5rem, 1rem, var(--color-primary));
+ *   }
+ *
+ *   // As pseudo-element
+ *   .dropdown::after {
+ *     content: "";
+ *     @include tools.triangle(down, 0.8rem, 0.5rem, currentcolor);
  *   }
  */
 
 /**
- * Imports
- */
-@use "sass:list";
-@use "validators";
-
-/**
- * Make Triangle mixin
+ * Triangle Mixin
  *
  * @parameter {string} $direction
- *   The direction the triangle should point. Accepts `up`, `up-right`,
- *   `right`, `down-right`, `down`, `down-left`, `left` or `up-left`.
+ *   The direction the triangle points: up, down, left, right,
+ *   up-left, up-right, down-left, down-right
  *
- * @parameter {number (with unit)} $width
- *   Width of the triangle.
- *
- * @parameter {number (with unit)} $height
- *   Height of the triangle.
- *
- * @parameter {color} $color
- *   Color of the triangle.
+ * @parameter {length} $width - Width of the triangle
+ * @parameter {length} $height - Height of the triangle
+ * @parameter {color} $color - Color (supports CSS variables)
  */
-@mixin make-triangle($direction, $width, $height, $color) {
-  @if not list.index("up" "up-right" "right" "down-right" "down" "down-left" "left" "up-left", $direction) {
-    @error "Direction must be `up`, `up-right`, `right`, `down-right`, `down`, `down-left`, `left` or `up-left`.";
+@mixin triangle($direction, $width, $height, $color) {
+  display: inline-block;
+  inline-size: $width;
+  block-size: $height;
+  background-color: $color;
+
+  @if $direction == "up" {
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   }
 
-  @else if not validators.is-color($color) {
-    @error "`#{$color}` is not a valid color for the `$color` argument in the `triangle` mixin.";
+  @else if $direction == "down" {
+    clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
   }
 
-  @else {
-    inline-size: 0;
-    block-size: 0;
-    border-style: solid;
+  @else if $direction == "left" {
+    clip-path: polygon(100% 0%, 100% 100%, 0% 50%);
+  }
 
-    @if $direction == "up" {
-      border-width: 0 ($width * 0.5) $height;
-      border-color: transparent transparent $color;
-    }
+  @else if $direction == "right" {
+    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+  }
 
-    @else if $direction == "up-right" {
-      border-width: 0 $width $width 0;
-      border-color: transparent $color transparent transparent;
-    }
+  @else if $direction == "up-left" {
+    clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+  }
 
-    @else if $direction == "right" {
-      border-width: ($height * 0.5) 0 ($height * 0.5) $width;
-      border-color: transparent transparent transparent $color;
-    }
+  @else if $direction == "up-right" {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
+  }
 
-    @else if $direction == "down-right" {
-      border-width: 0 0 $width $width;
-      border-color: transparent transparent $color;
-    }
+  @else if $direction == "down-left" {
+    clip-path: polygon(0% 0%, 0% 100%, 100% 100%);
+  }
 
-    @else if $direction == "down" {
-      border-width: $height ($width * 0.5) 0;
-      border-color: $color transparent transparent;
-    }
-
-    @else if $direction == "down-left" {
-      border-width: $width 0 0 $width;
-      border-color: transparent transparent transparent $color;
-    }
-
-    @else if $direction == "left" {
-      border-color: transparent $color transparent transparent;
-    }
-
-    @else if $direction == "up-left" {
-      border-width: $width $width 0 0;
-      border-color: $color transparent transparent;
-    }
+  @else if $direction == "down-right" {
+    clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
   }
 }

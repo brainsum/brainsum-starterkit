@@ -10,29 +10,8 @@
 /**
   * Imports
  */
-@use "sass:color";
 @use "../settings";
 @use "../tools";
-
-/**
- * Settings
- */
-$progress-bar-color: settings.$color-primary;
-$progress-track-border-color: settings.$color-grey-30;
-$progress-track-background: settings.$color-grey-10 linear-gradient(#e7e7df, #f0f0f0);
-$progress-bar-border-color: $progress-bar-color;
-$progress-bar-background: color.adjust($progress-bar-color, $lightness: 15%)
-    linear-gradient(to bottom, rgb(0, 0, 0, 0), rgb(0, 0, 0, 0.15)),
-  linear-gradient(
-    to right bottom,
-    color.adjust($progress-bar-color, $lightness: 30%) 0%,
-    color.adjust($progress-bar-color, $lightness: 30%) 25%,
-    color.adjust($progress-bar-color, $lightness: 20%) 25%,
-    color.adjust($progress-bar-color, $lightness: 20%) 50%,
-    color.adjust($progress-bar-color, $lightness: 30%) 50%,
-    color.adjust($progress-bar-color, $lightness: 30%) 75%,
-    color.adjust($progress-bar-color, $lightness: 30%) 100%
-  );
 
 /**
  * Progress bar animations.
@@ -48,10 +27,26 @@ $progress-bar-background: color.adjust($progress-bar-color, $lightness: 15%)
 }
 
 .progress {
+  // Settings
+  --progress-bar-color: var(--color-primary);
+  --progress-track-border-color: var(--color-grey-30);
+  --progress-track-background: var(--color-grey-10) linear-gradient(#e7e7df, #f0f0f0);
+  --progress-bar-border-color: var(--progress-bar-color);
+  --progress-bar-background: color-mix(in oklch, var(--progress-bar-color), var(--color-light) 15%) linear-gradient(to bottom, rgb(0, 0, 0, 0), rgb(0, 0, 0, 0.15)),
+    linear-gradient(to right bottom,
+      color-mix(in oklch, var(--progress-bar-color), var(--color-light) 30%) 0%,
+      color-mix(in oklch, var(--progress-bar-color), var(--color-light) 30%) 25%,
+      color-mix(in oklch, var(--progress-bar-color), var(--color-light) 20%) 25%,
+      color-mix(in oklch, var(--progress-bar-color), var(--color-light) 20%) 50%,
+      color-mix(in oklch, var(--progress-bar-color), var(--color-light) 30%) 50%,
+      color-mix(in oklch, var(--progress-bar-color), var(--color-light) 30%) 75%,
+      color-mix(in oklch, var(--progress-bar-color), var(--color-light) 30%) 100%);
+
+  // Theming
   &__track {
-    border-color: $progress-track-border-color;
+    border-color: var(--progress-track-border-color);
     border-radius: 10em;
-    background: $progress-track-background;
+    background: var(--progress-track-background);
     box-shadow: inset 0 0.1rem 0.3rem hsl(0, 0%, 0%, 0.16);
   }
 
@@ -63,14 +58,14 @@ $progress-bar-background: color.adjust($progress-bar-color, $lightness: 15%)
     padding-inline: 0.1rem;
     transition: width 0.5s ease-out;
     animation: animate-stripes 3s linear infinite;
-    border-block: 0.1rem $progress-bar-border-color solid;
-    border-inline: 0.1rem $progress-bar-border-color solid;
+    border-block: 0.1rem var(--progress-bar-border-color) solid;
+    border-inline: 0.1rem var(--progress-bar-border-color) solid;
     border-radius: 10em;
-    background: $progress-bar-background;
+    background: var(--progress-bar-background);
     background-size: 4rem 4rem;
 
     @if settings.$prefers-reduced-motion {
-      @media screen and (prefers-reduced-motion: reduce) {
+      @media (--reduced-motion) {
         transition: none;
         animation: none;
       }

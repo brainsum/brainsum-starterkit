@@ -6,160 +6,129 @@
  * - Font-family declarations
  * - Font-size declarations
  * - Text color declarations
- */
-
-/**
- * Font family settings
- *
- * Recommended to use only system fonts. If you need to use custom webfont you
- * can use as fallback font-stack.
- */
-
-// System (sans-serif) font-stack
-$font-family--system: -apple-system, system-ui, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial",
-  sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
-
-// Monospace font-stack
-$font-family--monospace: "SFMono-Regular", "Menlo", "Monaco", "Segoe UI Mono", "Consolas", "Liberation Mono",
-  "Courier New", monospace !default;
-
-/**
- * Font-stacks by functions
- */
-$font-family--primary: "Open Sans", $font-family--system !default;
-$font-family--secondary: $font-family--primary !default;
-$font-family--code: $font-family--monospace !default; // required by reset
-
-/**
- * Line-height
- */
-$line-height: 1.2 !default;
-
-/**
- * Responsive font sizes
  *
  * @example
- *   breakpoint-name: ( font-size, optional-line-height )
+ *   font-family: var(--font-family-primary);
+ *   font-size: var(--font-size-body);
+ *   line-height: var(--line-height-body);
  *
- * Breakpoint names come from $breakpoints declared in
- * `1.settings/_settings.breakpoints`.
- *
- * 'null' means no breakpoint (default)
+ * Or with the type mixin:
+ *   @include tools.type(body);
  */
 
-/** Body (default) Font-size
- * We use this to set the default font size and line-height
- * for the `<body>` element in `3.base/_3.base.type`.
- */
-$default-font-size: (
-  null: (
-    1.4rem,
-    1.6
-  ),
-  tablet-l: (
-    1.6rem
-  )
-) !default;
+ :root {
+  /**
+   * Font family settings
+   *
+   * System font stacks for optimal performance.
+   * Override with custom webfonts in your project settings.
+   */
+
+  // System (sans-serif) font-stack
+  --font-family-system: -apple-system, system-ui, "BlinkMacSystemFont",
+    "Segoe UI", "Roboto", "Helvetica Neue", "Arial", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  // Monospace font-stack
+  --font-family-monospace: "SFMono-Regular", "Menlo", "Monaco", "Segoe UI Mono",
+    "Consolas", "Liberation Mono", "Courier New", monospace;
+
+  /**
+   * Font-stacks by functions
+   */
+  --font-family-primary: "Open Sans", var(--font-family-system);
+  --font-family-secondary: var(--font-family-primary);
+  --font-family-code: var(--font-family-monospace); // required by reset
+
+  /**
+   * Base Typography
+   * Default line-height used as fallback
+   */
+  --line-height-base: 1.2;
+
+  /**
+   * Body Typography
+   * Used for <body> element in 3.base/_base.type
+   */
+  --font-size-body: 1.4rem;
+  --line-height-body: 1.6;
+
+  /**
+   * Heading Typography
+   */
+  // H1 Font size
+  --font-size-h1: 4rem;
+  --line-height-h1: var(--line-height-base);
+
+  // H2 Font size
+  --font-size-h2: 2.7rem;
+  --line-height-h2: var(--line-height-base);
+
+  // H3 Font size
+  --font-size-h3: 2.4rem;
+  --line-height-h3: var(--line-height-base);
+
+  // H4 Font size
+  --font-size-h4: 2.1rem;
+  --line-height-h4: var(--line-height-base);
+
+  // H5 Font size
+  --font-size-h5: 1.8rem;
+  --line-height-h5: var(--line-height-base);
+
+  // H6 Font size
+  --font-size-h6: 1.2rem;
+  --line-height-h6: var(--line-height-base);
+
+  /**
+   * Code Typography
+   */
+  --font-size-code: 1.4rem;
+  --line-height-code: 2;
+
+  /**
+   * Form Typography
+   */
+  // Input font size
+  --font-size-input: 1.6rem;
+  --line-height-input: 1.5;
+
+  // Label font size
+  --font-size-label: 1.4rem;
+  --line-height-label: 1.5;
+}
 
 /**
- * Heading Font Sizes
+ * Responsive Typography
+ * Override custom properties at breakpoints
  */
-// H1 Font size
-$heading1-font-size: (
-  null: (
-    4rem
-  ),
-  tablet-l: (
-    6rem
-  )
-) !default;
+@media (--tablet-l) {
+  :root {
+    // Body
+    --font-size-body: 1.6rem;
 
-// H2 Font size
-$heading2-font-size: (
-  null: (
-    2.7rem
-  ),
-  tablet-l: (
-    5.4rem
-  )
-) !default;
+    // H1 Font size
+    --font-size-h1: 6rem;
 
-// H3 Font size
-$heading3-font-size: (
-  null: (
-    2.4rem
-  ),
-  tablet-l: (
-    3.6rem
-  )
-) !default;
+    // H2 Font size
+    --font-size-h2: 5.4rem;
 
-// H4 Font size
-$heading4-font-size: (
-  null: (
-    2.1rem
-  ),
-  tablet-l: (
-    2.7rem
-  )
-) !default;
+    // H3 Font size
+    --font-size-h3: 3.6rem;
 
-// H5 Font size
-$heading5-font-size: (
-  null: (
-    1.8rem
-  ),
-  tablet-l: (
-    2.4rem
-  )
-) !default;
+    // H4 Font size
+    --font-size-h4: 2.7rem;
 
-// H6 Font size
-$heading6-font-size: 1.2rem !default;
+    // H5 Font size
+    --font-size-h5: 2.4rem;
 
-// Paragraph Font Size
-$paragraph-font-size: (
-  null: (
-    1.4rem,
-    1.71
-  ),
-  tablet-l: (
-    1.6rem,
-    2.25
-  )
-) !default;
+    // Code
+    --font-size-code: 1.6rem;
 
-// Code Font-size
-$code-font-size: (
-  null: (
-    1.4rem,
-    2
-  ),
-  tablet-l: (
-    1.6rem
-  )
-) !default;
+    // Input font size
+    --line-height-input: 1.2;
 
-// Form Input Font-size
-$input-font-size: (
-  null: (
-    1.6rem,
-    1.5
-  ),
-  tablet-l: (
-    1.6rem,
-    1.2
-  )
-) !default;
-
-// Form Label Font-size
-$label-font-size: (
-  null: (
-    1.4rem,
-    1.5
-  ),
-  tablet-l: (
-    1.4rem,
-    1.2
-  )
-) !default;
+    // Label font size
+    --line-height-label: 1.2;
+  }
+}

@@ -3,14 +3,16 @@
  * Theming Settings
  */
 
-/**
- * Global Border Radius
- */
-$border-radius: 0.8rem !default;
+:root {
+  /**
+   * Global Border Radius
+   */
+  --border-radius: 0.8rem;
 
-/**
- * Transitions
- */
-$transition-property: all !default;
-$transition-timing: 0.2s !default;
-$transition-easing: ease !default;
+  /**
+   * Transitions
+   */
+  --transition-property: all;
+  --transition-timing: 0.2s;
+  --transition-easing: ease;
+}

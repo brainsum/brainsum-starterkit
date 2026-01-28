@@ -5,101 +5,71 @@
  * Part of Shake.sass.
  * @author Krisztian Pinter <krisz@keeteean.com>
  *
- * Robust theming anchor elements.
+ * Simple link theming using native CSS color-mix().
  *
  * @example
- * Given a color, use darken effect, use the same `:visited` color as `:link`, use different color
- * for other states, no `text-decoration`, no `:focus` style:
- *
- * a {
  *   @use "../tools";
  *
- *    @include tools.link($color-link);
- * }
+ *   // Default: dark link that darkens on hover
+ *   a {
+ *     @include tools.link(var(--color-primary));
+ *   }
  *
+ *   // Light link on dark background - lightens on hover
+ *   .dark-section a {
+ *     @include tools.link(var(--color-light), $mode: light);
+ *   }
  *
- * Given a color, use lighten effect, use the same `:visited` color as for other states, use
- * `text-decoration: underlined`, no `:focus` style:
- *
- * a {
- *   @include tools.link($color-link, dark, visited, underlined);
- * }
- *
- *
- * Given a color, use darken effect, use the same `:visited` color as for other states, no
- * `text-decoration`, given a `:focus` style:
- *
- * a {
- *   @include tools.link($color-link, light, none, none, .8rem solid $color-outline);
- * }
+ *   // With underline
+ *   a {
+ *     @include tools.link(var(--color-primary), $decoration: underline);
+ *   }
  */
 
 /**
  * Imports
  */
-@use "sass:color";
 @use "tools.transitions" as transitions;
 
 /**
- * Link mixin
+ * Link Mixin
  *
- * @parameter {string} $color - Text color of the link.
- * @parameter {string} $type - The type of the color.
- *   - Choose `light` if the `$color` is light, and you want it become darker on `:hover`/`:active` state.
- *   - Choose `dark` if the `$color` is dark, and you want it become lighter on `:hover`/`:active` state.
- * @parameter {string} $visited - Optionally you can use the same effect for `:visited` state as `:hover`,
- *   `:focus` and `:active` if you use here the `visited` string; default: `none`.
- * @parameter {string} $text-decoration - Optional text-decoration for `:link` and `:visited` states;
- *   default: `none`.*
- * @parameter {string} $outline - Optional outline for `:focus` state; default: `initial`.*
+ * Uses native CSS color-mix() for hover state color variation.
  *
- * * If you want to change the default value for these optional parameters, you need to explicit write
- * the default value for the previous optional parameters too.
+ * @parameter {color} $color - Link color (CSS variable or color value)
+ * @parameter {string} $mode - Color mode:
+ *   - `dark` (default): link is dark colored, darkens on hover (mixes with black)
+ *   - `light`: link is light colored, lightens on hover (mixes with white)
+ * @parameter {string} $decoration - text-decoration for :link/:visited (default: none)
+ * @parameter {string} $decoration-hover - text-decoration for :hover/:active (default: none)
  */
-@mixin link($color, $type: light, $visited: none, $text-decoration: none, $outline: initial) {
+@mixin link($color, $mode: dark, $decoration: none, $decoration-hover: none) {
   @include transitions.global-transition;
 
+  text-decoration: $decoration;
   color: $color;
 
-  @if $outline != initial {
-    &:focus {
-      outline: $outline;
-    }
-  }
-
-  @if $visited == visited {
-    &:focus,
-    &:hover,
-    &:visited,
-    &:active {
-      @if $type == light {
-        color: color.adjust($color, $lightness: -15%);
-      }
-
-      @if $type == dark {
-        color: color.adjust($color, $lightness: 15%);
-      }
-    }
-  } @else {
-    &:visited {
-      color: $color;
-    }
-
-    &:focus,
-    &:hover,
-    &:active {
-      @if $type == light {
-        color: color.adjust($color, $lightness: -15%);
-      }
-
-      @if $type == dark {
-        color: color.adjust($color, $lightness: 15%);
-      }
-    }
-  }
-
-  &:link,
   &:visited {
-    text-decoration: $text-decoration;
+    color: $color;
+  }
+
+  &:hover,
+  &:active {
+    text-decoration: $decoration-hover;
+
+    @if $mode == dark {
+      // Dark link → darken on hover
+      color: color-mix(in oklch, $color, black 20%);
+    }
+
+    @else {
+      // Light link → lighten on hover
+      color: color-mix(in oklch, $color, white 30%);
+    }
+  }
+
+  &:focus-visible {
+    outline: 0.2rem solid currentColor;
+    outline-offset: 0.2rem;
   }
 }

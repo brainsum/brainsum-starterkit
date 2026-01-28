@@ -10,21 +10,19 @@
 @use "../tools";
 
 /**
- * Settings
- */
-$tab-background: settings.$color-grey;
-$tab-hover-background: settings.$color-grey-80;
-$tab-color: settings.$color-light;
-$tab-hover-color: settings.$color-light;
-$tab-border-color: settings.$color-primary;
-$active-color: settings.$color-light;
-$active-border-size: 0.6rem;
-$tab-font-size: 1.4rem;
-
-/**
- * Tab List
  */
 .c-tabs {
+  // Settings
+  --tab-background: var(--color-grey);
+  --tab-hover-background: var(--color-grey-80);
+  --tab-color: var(--color-light);
+  --tab-hover-color: var(--color-light);
+  --tab-border-color: var(--color-primary);
+  --active-color: var(--color-light);
+  --active-border-size: 0.6rem;
+  --tab-font-size: 1.4rem;
+
+  // Theme
   display: flex;
   flex-direction: column;
   inline-size: 100%;
@@ -34,7 +32,7 @@ $tab-font-size: 1.4rem;
   padding-inline: 0;
   list-style: none;
 
-  @include tools.breakpoint(tablet-s) {
+  @media(--tablet-s) {
     flex-direction: row;
     flex-wrap: wrap;
   }
@@ -48,7 +46,7 @@ $tab-font-size: 1.4rem;
     margin-block-end: -0.1rem;
     margin-inline: 0;
 
-    @include tools.breakpoint(tablet-s) {
+    @media(--tablet-s) {
       display: flex;
     }
 
@@ -61,7 +59,7 @@ $tab-font-size: 1.4rem;
     .c-tabs--secondary & {
       display: block;
 
-      @include tools.breakpoint(tablet-s) {
+      @media(--tablet-s) {
         display: flex;
       }
     }
@@ -74,20 +72,20 @@ $tab-font-size: 1.4rem;
     display: flex;
     flex-grow: 1;
     align-items: center;
-    block-size: settings.$gutter * 3;
+    block-size: calc(var(--gutter--1x) * 3);
     padding-block: 0;
     padding-inline: 2.5rem;
     transition: background-color 0.2s;
     text-decoration: none;
     letter-spacing: 0.1rem;
-    color: $tab-color;
-    border-block: 0.1rem solid $tab-background;
-    border-inline: 0.1rem solid $tab-background;
-    background: $tab-background;
-    font-size: $tab-font-size;
+    color: var(--tab-color);
+    border-block: 0.1rem solid var(--tab-background);
+    border-inline: 0.1rem solid var(--tab-background);
+    background: var(--tab-background);
+    font-size: var(--tab-font-size);
 
     @if settings.$prefers-reduced-motion {
-      @media screen and (prefers-reduced-motion: reduce) {
+      @media (--reduced-motion) {
         transition: none;
       }
     }
@@ -95,7 +93,7 @@ $tab-font-size: 1.4rem;
     .c-tabs--secondary & {
       text-transform: none;
 
-      @include tools.breakpoint(tablet-s) {
+      @media(--tablet-s) {
         border-block-start-color: transparent;
         border-inline-color: transparent;
         background-color: transparent;
@@ -105,20 +103,20 @@ $tab-font-size: 1.4rem;
     &:focus {
       position: relative;
       z-index: 1;
-      outline: solid 0.3rem settings.$color-primary;
+      outline: solid 0.3rem var(--color-primary);
       outline-offset: -0.3rem;
     }
 
     &:hover {
-      color: $tab-hover-color;
-      background: $tab-hover-background;
+      color: var(--tab-hover-color);
+      background: var(--tab-hover-background);
     }
 
     &.is-active {
       @include tools.font-smooth;
 
       position: relative;
-      color: $active-color;
+      color: var(--active-color);
       font-weight: 700;
 
       &:after {
@@ -127,13 +125,13 @@ $tab-font-size: 1.4rem;
         inset-inline-start: -0.1rem;
         block-size: calc(100% + 0.2rem);
         content: "";
-        border-inline-start: $active-border-size solid $tab-border-color;
+        border-inline-start: var(--active-border-size) solid var(--tab-border-color);
 
-        @include tools.breakpoint(tablet-s) {
+        @media (--tablet-s) {
           inset-inline-start: 0;
           inline-size: 100%;
           block-size: auto;
-          border-block-start: $active-border-size solid $tab-border-color;
+          border-block-start: var(--active-border-size) solid var(--tab-border-color);
           border-inline-start: 0;
         }
       }
@@ -147,26 +145,26 @@ $tab-font-size: 1.4rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    inline-size: settings.$gutter * 3;
+    inline-size: calc(var(--gutter--1x) * 3);
     margin-block: 0;
     margin-inline-start: -0.1rem;
     margin-inline-end: 0;
     cursor: pointer;
-    border-block: solid 0.1rem $tab-background;
-    border-inline: solid 0.1rem $tab-background;
-    background-color: $tab-background;
+    border-block: solid 0.1rem var(--tab-background);
+    border-inline: solid 0.1rem var(--tab-background);
+    background-color: var(--tab-background);
 
-    @include tools.breakpoint(tablet-s) {
+    @media (--tablet-s) {
       display: none;
     }
 
     &:hover {
-      background-color: $tab-hover-background;
+      background-color: var(--tab-hover-background);
     }
 
     &:focus {
       position: relative;
-      border-color: $tab-border-color;
+      border-color: var(--tab-border-color);
       outline: none;
     }
 
@@ -180,7 +178,7 @@ $tab-font-size: 1.4rem;
     &-icon {
       position: relative;
       display: block;
-      inline-size: settings.$gutter;
+      inline-size: var(--gutter--1x);
       block-size: 1rem;
       margin-block-start: -0.2rem;
 
@@ -189,10 +187,10 @@ $tab-font-size: 1.4rem;
         inset-inline-start: 0;
         inline-size: 100%;
         transition: transform 0.2s, opacity 0.2s, top 0.2s;
-        border-block-start: solid 0.2rem $tab-color;
+        border-block-start: solid 0.2rem var(--tab-color);
 
         @if settings.$prefers-reduced-motion {
-          @media screen and (prefers-reduced-motion: reduce) {
+          @media (--reduced-motion) {
             transition: none;
           }
         }

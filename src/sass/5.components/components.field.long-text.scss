@@ -12,18 +12,17 @@
 @use "../tools";
 
 /**
- * Settings
- */
-$vertical-space--1x: 0.5em;
-$vertical-space--2x: 1em;
-$vertical-space--3x: 1.5em;
-
-/**
  * WYSIWYG fields
  */
 .c-field--type-text-long,
 .c-field--type-text-with-summary {
-  @include tools.type(settings.$default-font-size);
+  // Settings
+  --vertical-space--1x: 0.5em;
+  --vertical-space--2x: 1em;
+  --vertical-space--3x: 1.5em;
+
+  // Theming
+  @include tools.type(body);
 
   @for $i from 2 through 6 {
     figure + h#{$i} {
@@ -33,7 +32,7 @@ $vertical-space--3x: 1.5em;
     ul + h#{$i},
     ol + h#{$i},
     table + h#{$i} {
-      margin-block-start: $vertical-space--1x;
+      margin-block-start: var(--vertical-space--1x);
     }
   }
 
@@ -79,49 +78,49 @@ $vertical-space--3x: 1.5em;
   h4,
   h5,
   h6 {
-    margin-block-start: $vertical-space--3x;
-    margin-block-end: $vertical-space--2x;
+    margin-block-start: var(--vertical-space--3x);
+    margin-block-end: var(--vertical-space--2x);
     margin-inline: 0;
   }
 
   h2 {
-    @include tools.type(settings.$heading2-font-size);
+    @include tools.type(h2);
   }
 
   h3 {
-    @include tools.type(settings.$heading3-font-size);
+    @include tools.type(h3);
   }
 
   h2 + h3 {
-    margin-block-start: $vertical-space--1x;
+    margin-block-start: var(--vertical-space--1x);
   }
 
   h4 {
-    @include tools.type(settings.$heading4-font-size);
+    @include tools.type(h4);
   }
 
   h3 + h4 {
-    margin-block-start: $vertical-space--1x;
+    margin-block-start: var(--vertical-space--1x);
   }
 
   h5 {
-    @include tools.type(settings.$heading5-font-size);
+    @include tools.type(h5);
   }
 
   h4 + h5 {
-    margin-block-start: $vertical-space--1x;
+    margin-block-start: var(--vertical-space--1x);
   }
 
   h6 {
-    @include tools.type(settings.$heading6-font-size);
+    @include tools.type(h6);
   }
 
   h5 + h6 {
-    margin-block-start: $vertical-space--1x;
+    margin-block-start: var(--vertical-space--1x);
   }
 
   img {
-    margin-block: $vertical-space--2x;
+    margin-block: var(--vertical-space--2x);
   }
 
   p + img,
@@ -130,18 +129,18 @@ $vertical-space--3x: 1.5em;
   }
 
   table {
-    margin-block: 1em;
-    border: 0.1rem solid settings.$color-secondary;
+    margin-block: var(--vertical-space--2x);
+    border: 0.1rem solid var(--color-secondary);
   }
 
   td {
     padding: 0.5em;
-    border: 0.1rem solid settings.$color-secondary;
+    border: 0.1rem solid var(--color-secondary);
   }
 
   th {
-    color: settings.$color-light;
-    background: settings.$color-secondary;
+    color: var(--color-light);
+    background: var(--color-secondary);
   }
 
   .align-center {

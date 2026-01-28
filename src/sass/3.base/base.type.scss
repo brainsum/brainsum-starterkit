@@ -8,7 +8,6 @@
 /**
  * Imports
  */
-@use "sass:color";
 @use "../settings";
 @use "../tools";
 
@@ -20,8 +19,13 @@
  * Global selected text
  */
 $selected-text: true !default;
-$selected-text-color: settings.$color-light !default;
-$selected-text-background: settings.$color-primary !default;
+
+// Selected text colors: see below at the CSS Custom Properties section.
+
+/**
+ * Focus color
+ */
+// See below at the CSS Custom Properties section
 
 /**
  * Paragraph margins
@@ -55,19 +59,32 @@ $classless-link-element: true !default;
  */
 
 // :link, :visited states
-$link-color: settings.$color-primary !default;
+// See below at the CSS Custom Properties section
 
 // link color type @see link mixin in 2.tools/_link
-$link-type: light !default;
-
-// :visited state effect @see link mixin in 2.tools/_link
-$link-visited: visited !default;
+$link-type: dark !default;
 
 // underlined links
 $link-text-decoration: none !default;
 
-// outlined links in :focus state
-$link-outline: none !default;
+:root {
+  /**
+   * Global selected text
+   */
+  --selected-text-color: var(--color-light);
+  --selected-text-background: var(--color-primary);
+
+  /**
+   * Focus color
+   */
+  --focus-color: var(--color-primary);
+
+  /**
+   * Global Link Element
+   */
+  // :link, :visited states
+  --link-color: var(--color-primary);
+}
 
 /**
  * Base typography
@@ -78,9 +95,9 @@ html {
 }
 
 body {
-  @include tools.type(settings.$default-font-size);
+  @include tools.type(body);
 
-  font-family: settings.$font-family--primary;
+  font-family: var(--font-family-primary);
   font-weight: 400;
 }
 
@@ -93,9 +110,17 @@ body {
  */
 @if $selected-text {
   ::selection {
-    color: $selected-text-color;
-    background-color: $selected-text-background;
+    color: var(--selected-text-color);
+    background-color: var(--selected-text-background);
   }
+}
+
+/**
+ * Styling the default focus state
+ */
+:focus-visible {
+  outline: 0.2rem solid var(--focus-color);
+  outline-offset: 0.5rem;
 }
 
 /**
@@ -130,7 +155,7 @@ var {
  */
 @if $classless-link-element {
   a:not([class]) {
-    @include tools.link($link-color, $link-type, $link-visited, $link-text-decoration, $link-outline);
+    @include tools.link(var(--link-color), $mode: $link-type, $decoration: $link-text-decoration);
   }
 }
 
@@ -145,33 +170,33 @@ var {
   h4:not([class]),
   h5:not([class]),
   h6:not([class]) {
-    font-family: settings.$font-family--secondary;
+    font-family: var(--font-family-secondary);
   }
 }
 
 @if $classless-headings-fontsize {
   h1:not([class]) {
-    @include tools.type(settings.$heading1-font-size);
+    @include tools.type(h1);
   }
 
   h2:not([class]) {
-    @include tools.type(settings.$heading2-font-size);
+    @include tools.type(h2);
   }
 
   h3:not([class]) {
-    @include tools.type(settings.$heading3-font-size);
+    @include tools.type(h3);
   }
 
   h4:not([class]) {
-    @include tools.type(settings.$heading4-font-size);
+    @include tools.type(h4);
   }
 
   h5:not([class]) {
-    @include tools.type(settings.$heading5-font-size);
+    @include tools.type(h5);
   }
 
   h6:not([class]) {
-    @include tools.type(settings.$heading6-font-size);
+    @include tools.type(h6);
   }
 }
 

@@ -11,14 +11,13 @@
 @use "../settings";
 @use "../tools";
 
-/**
- * Settings
- */
-$menu-width: 24rem;
-$menu-border-width: 0.1rem;
-
 .vertical-tabs {
-  @include tools.breakpoint(tablet-l) {
+  // Settings
+  --menu-width: 24rem;
+  --menu-border-width: 0.1rem;
+  --gutter: var(--gutter--1x);
+
+  @media (--tablet-l) {
     display: flex;
   }
 
@@ -28,40 +27,40 @@ $menu-border-width: 0.1rem;
     margin-block: 0;
     margin-inline: 0;
     list-style: none;
-    border-width: $menu-border-width;
+    border-width: var(--menu-border-width);
     border-style: solid;
-    border-color: settings.$color-grey-20;
+    border-color: var(--color-grey-20);
 
-    @include tools.breakpoint(tablet-l) {
-      inline-size: $menu-width;
-      border-width: $menu-border-width 0 $menu-border-width $menu-border-width;
+    @media (--tablet-l) {
+      inline-size: var(--menu-width);
+      border-width: var(--menu-border-width) 0 var(--menu-border-width) var(--menu-border-width);
     }
 
     &-item {
       &:nth-child(n + 2) {
-        border-block-start: $menu-border-width solid settings.$color-grey-20;
+        border-block-start: var(--menu-border-width) solid var(--color-grey-20);
       }
 
       a {
         display: block;
-        padding-block: settings.$gutter * 0.5;
-        padding-inline: settings.$gutter * 0.75;
+        padding-block: calc(var(--gutter) * 0.5);
+        padding-inline: calc(var(--gutter) * 0.75);
         text-decoration: none;
-        background-color: settings.$color-grey-20;
+        background-color: var(--color-grey-20);
 
         &:focus,
         &:hover,
         &:active {
-          background-color: settings.$color-grey-10;
+          background-color: var(--color-grey-10);
         }
       }
 
       &.is-selected {
-        background-color: settings.$color-light;
+        background-color: var(--color-light);
 
-        @include tools.breakpoint(tablet-l) {
-          margin-inline-end: calc($menu-border-width * -1);
-          padding-inline-end: $menu-border-width;
+        @media (--tablet-l) {
+          margin-inline-end: calc(var(--menu-border-width) * -1);
+          padding-inline-end: var(--menu-border-width);
         }
 
         a {
@@ -78,16 +77,16 @@ $menu-border-width: 0.1rem;
   }
 
   &__panes {
-    margin-block-start: calc($menu-border-width * -1);
+    margin-block-start: calc(var(--menu-border-width) * -1);
 
-    @include tools.breakpoint(tablet-l) {
-      inline-size: calc(100% - $menu-width);
+    @media (--tablet-l) {
+      inline-size: calc(100% - var(--menu-width));
       margin-block-start: 0;
     }
   }
 
   &__pane {
-    @include tools.breakpoint(tablet-l) {
+    @media (--tablet-l) {
       min-block-size: 100%;
     }
 

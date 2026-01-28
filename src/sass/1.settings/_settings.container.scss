@@ -2,82 +2,59 @@
  * @file
  * Container Object Settings
  *
- * See details in 4.objects/_objects.container.scss.
- */
-
-/**
- * Imports
- */
-@use "settings.grid" as *;
-
-/**
- * Default container
- * IMPORTANT! If you don't need map (multiple values for container size), use a
- * single value,
- not use a map with only the `null` key !
- */
-$container-size-default: 129.6rem !default;
-
-/**
- * Additional container sizes
- *
- * Allows you to specify more sets of max-width for your container. You can use
- * a nested map in case you would like to specify a responsive size.
- *
- * @type Map
+ * Container custom properties for size (max-width) and gutter (padding).
+ * Each container variant has its own size and gutter properties.
  *
  * @example
- *   $container-size-extra: (
- *     wide: (
- *       null : 30rem,
- *       tablet-s: 120rem
- *     )
- *   );
- */
-$container-size-extra: () !default;
-
-/**
- * Default container gutters
+ *   @include container;          // uses default
+ *   @include container(narrow);  // uses narrow variant
  *
- * It will create a default container with 10px padding in mobile and 20px in
- * tablets and up.
- *
- * @example
- *   $objects-container-gutter-default: (
- *     null : 1rem,
- *     tablet-s: 2rem
- *   );
- *
- * Container with extra responsive gutter size
- * It will create one extra container named 'large' that will have 20px padding
- * in mobile and 40px padding in tablets and up.
- *
- * @example
- *   $objects-container-gutter-default: (
- *     large: (
- *       null : 2rem,
- *       tablet-s: 4rem
- *     )
- *   );
+ * @see 2.tools/_tools.container.scss for mixin
+ * @see 4.objects/_objects.container.scss for object classes
  */
 
-$container-gutter-default: $gutter-default !default;
+:root {
+  /**
+   * Default container
+   */
+  --container-size-default: 129.6rem;
+  --container-gutter-default: var(--gutter);
 
-/**
- * Additional container gutters
- *
- * Allows you to specify more sets of padding left and right of your container.
- * You can use a nested map in case you would like to specify responsive gutter
- * sizes.
- *
- * @type Map
- *
- * @example
- *   $container-gutter-extra: (
- *     large: (
- *       null : 2rem,
- *       tablet-s: 4rem
- *     )
- *   );
- */
-$container-gutter-extra: () !default;
+  /**
+   * Example for responsive container
+   *
+   * --container-size-narrow: 129.6rem;
+   * --container-gutter-narrow: var(--gutter);
+   *
+   * @media (--tablet-s) {
+   *   --container-size-default: 91%;
+   * }
+   *
+   * @media (--tablet-l) {
+   *   --container-size-default: 93%;
+   * }
+   *
+   * @media (--desktop) {
+   *   --container-size-default: 129.6rem;
+   * }
+   */
+
+  /**
+   * Additional containers
+   */
+
+   /**
+   * Example: Narrow Container
+   *
+   * A narrower container for text-heavy content.
+   * Define your own sizes per breakpoint.
+   *
+   * @example
+   *   --container-size-narrow: 100%;
+   *   --container-gutter-narrow: var(--gutter);
+   *
+   *   @media (--tablet-s) {
+   *     --container-size-narrow: 80rem;
+   *   }
+   */
+}

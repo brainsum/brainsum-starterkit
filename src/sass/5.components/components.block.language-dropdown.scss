@@ -24,7 +24,7 @@
     padding-block: 1rem;
     padding-inline: 1.1rem;
     cursor: pointer;
-    color: settings.$color-primary;
+    color: var(--color-primary);
     font-size: 1.4rem;
   }
 
@@ -37,7 +37,7 @@
     block-size: auto;
     max-block-size: 0;
     opacity: 0;
-    background: settings.$color-primary;
+    background: var(--color-primary);
 
     &.is-active {
       max-block-size: 10rem;
@@ -45,7 +45,7 @@
     }
 
     .language-link {
-      color: settings.$color-light;
+      color: var(--color-light);
     }
   }
 

@@ -9,6 +9,9 @@ be a part of that module itself.
 Local configurations should be contained by the related modules (objects,
 components, etc.) where they are related to.
 
-**IMPORTANT! These global settings are imported by `_settings.scss` Sass
-file. All Sass file from 3.base level you have to import this importer file
-first of all!**
+It’s important not to output any CSS in the first 2 layers.*
+
+***NOTE:** Because we mostly use CSS custom properties, what should be outputted
+to a CSS file to make available for all other SASS/CSS files, we only define
+them here, then create a CSS file in the base layer:
+`3.base/_base.settings.scss`.

@@ -15,10 +15,12 @@
 /**
  * Settings
  */
-$search-input-color: #3b3b3b;
-$search-input-autocomplete-color: rgba(settings.$color-dark, 0.5);
-$search-input-border: 0.1rem solid #ccc;
-$search-input-background: #fcfcfa;
+:root {
+  --search-input-color: #3b3b3b;
+  --search-input-autocomplete-color: rgb(from var(--color-dark) r g b / 0.5);
+  --search-input-border: 0.1rem solid #ccc;
+  --search-input-background: #fcfcfa;
+}
 
 #admin-toolbar-search-tab .js-form-item.c-form-item {
   margin-block-start: 0.48rem;
@@ -31,17 +33,17 @@ $search-input-background: #fcfcfa;
   margin-inline: 0;
   padding-block: 0;
   padding-inline: 0.64rem;
-  color: $search-input-color;
-  border-block: $search-input-border;
-  border-inline: $search-input-border;
+  color: var(--search-input-color);
+  border-block: var(--search-input-border);
+  border-inline: var(--search-input-border);
   border-radius: unset;
-  background: $search-input-background;
+  background: var(--search-input-background);
   font-size: 1em;
   line-height: 2.8rem;
 }
 
 .ui-autocomplete .ui-menu-item span.admin-toolbar-search-url {
-  color: $search-input-autocomplete-color;
+  color: var(--search-input-autocomplete-color);
 }
 
 .admin-toolbar-search-autocomplete-list {

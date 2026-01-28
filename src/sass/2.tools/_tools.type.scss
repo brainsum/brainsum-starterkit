@@ -6,107 +6,34 @@
  */
 
 /**
- * Imports
- */
-@use "libraries";
-@use "../settings";
-
-/**
- * Responsive Type Tool
+ * Type Mixin
  *
- * Type tool contains a mixin that helps you create smart, flexible and
- * responsive typography.
+ * Applies font-size and line-height from CSS custom properties.
+ * Responsive behavior is handled in `1.settings/_settings.type.scss`
+ * via `@media (--medium)` overrides on `:root`.
  *
- * Part of Shake.sass, some parts borrowed from iota.css.
- * @author Dimitris Psaropoulos <info@harby.me>
- * @author Krisztian Pinter <krisz@keeteean.com>
- * @link https://www.iotacss.com/docs/tools/type
- *
- * @require {Mixin} generate-type-sizes <2.tools/libraries/_generate-type-sizes.scss>
- * @require {Mixin} extract-type-sizes <2.tools/libraries/_extract-type-sizes.scss>
- *
- *
- * Use it wherever you need it.
- *
- * @example
- *   @use "../settings";
- *   @use "../tools";
- *
- *   @include tools.type($sizes, $breakpoints: settings.$breakpoints);
- *
- *
- * Type mixin accepts two parameters:
- *
- * @parameter {number | list | map} $sizes
- *   A Sass map that contains font sizes and line heights for breakpoints.
- *
- * @parameter {map} $breakpoints
- *   A Sass map that contains all the breakpoints.
- *   Default value is settings.$breakpoints.
- *
- *
- * Examples
- *
- * Font size typography
- *
- * It will create a font size on `<h1>` tag that will have 16px font-size.
+ * @parameter {string} $name - The type name (body, h1, h2, h3, h4, h5, h6,
+ * code, input, label)
  *
  * @example
  *   @use "../tools";
  *
- *   h1 {
- *     @include tools.type(1.6rem);
+ *   body {
+ *     @include tools.type(body);
  *   }
  *
- * Font size and line height typography
- *
- * It will create a font size on `<h1>` tag that will have 16px font-size and
- * 20px line-height.
- *
- * @example
- *   @use "../tools";
- *
  *   h1 {
- *     @include tools.type(1.6rem 2rem);
+ *     @include tools.type(h1);
  *   }
  *
- * Responsive font size typography
- *
- * It will create a font size on `<h1>` tag that will have 12px font-size on
- * mobiles and 16px on tablets and up.
- *
- * @example
- *   @use "../tools";
- *
- *   h1 {
- *     @include tools.type(
- *       (
- *         null : 1.2rem,
- *         small: 1.6rem
- *        )
- *     );
- *   }
- *
- * Responsive font size typography with line height
- *
- * It will create a font size on `<h1>` tag that will have 12px font-size and
- * 16px line-height on mobiles and 16px font-size and 20px line-height on
- * tablets and up.
- *
- * @example
- *   @use "../tools";
- *
- *   h1 {
- *     @include tools.type(
- *       (
- *         null : (1.2rem, 1.6rem),
- *         small: (1.6rem, 2rem)
- *        )
- *     );
+ *   .custom-heading {
+ *     @include tools.type(h2);
+ *     font-family: var(--font-family-secondary);
  *   }
  */
-@mixin type($value, $breakpoints: settings.$breakpoints) {
-  @include libraries.generate-type-sizes($value, $breakpoints);
+@mixin type($name) {
+  font-size: var(--font-size-#{$name});
+  line-height: var(--line-height-#{$name});
 }
 
 /**
@@ -126,3 +53,4 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+

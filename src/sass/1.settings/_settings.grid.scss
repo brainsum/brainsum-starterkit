@@ -2,59 +2,42 @@
  * @file
  * CSS Grid Settings
  *
- * You can use them to create your own CSS Grid layout.
+ * Global gutter/spacing custom properties.
+ * Used by the Container mixin and object. You can use them to create your own
+ * CSS Grid layout as well.
+ *
+ * @example
+ *   gap: var(--gutter);
  */
+
 
 /**
  * Gutter
  */
 
-/**
- * Define Gutter Sizes
- */
-$gutter: 1.5rem; // 15px
-$gutter--2x: $gutter * 2; // 30px
-$gutter--4x: $gutter * 4; // 60px
+:root {
+  /**
+   * Gutter Sizes
+   *
+   * Base gutter values used across the framework.
+   */
+  --gutter--1x: 1.5rem; // 15px
+  --gutter--2x: calc(var(--gutter--1x) * 2); // 30px
+  --gutter--4x: calc(var(--gutter--1x) * 4); // 60px
 
-/**
- * Responsive Aliases for Gutters
- */
-$gutter--small: $gutter !default;
-$gutter--medium: $gutter--2x !default;
-$gutter--large: $gutter--4x !default;
+  /**
+   * Default Gutter
+   *
+   * Responsive gutter used as default spacing.
+   * Shared between Container, Grid, and other objects.
+   */
+  --gutter: var(--gutter--1x);
 
-/**
- * Default gutters
- *
- * This setting is shared between multiple objects and utilities as the default
- * value for gutters. You can change it also locally to each module.
- *
- * @type Number | List | Map
- */
-// prettier-ignore
-$gutter-default: (
-  null  : $gutter--small,
-  tablet-s : $gutter--medium,
-  desktop : $gutter--large
-) !default;
+  @media (--tablet-s) {
+    --gutter: var(--gutter--2x);
+  }
 
-/**
- * Additional grid gutters
- *
- * If you use additionally Container object with custom gutters
- * you have to set custom those custom gutters for Grid object too!
- *
- * You can use a nested map in case you would like to specify responsive gutter
- * sizes.
- *
- * @type Map
- *
- * @example
- *   $grid-gutter-extra: (
- *     wide: (
- *       null : 2rem,
- *       tablet-s: 4rem
- *     )
- *   );
- */
-$grid-gutter-extra: () !default;
+  @media (--desktop) {
+    --gutter: var(--gutter--4x);
+  }
+}

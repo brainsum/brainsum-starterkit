@@ -26,9 +26,9 @@
   padding-block: 0.5rem;
   padding-inline: 2rem;
   cursor: pointer;
-  color: settings.$color-light;
+  color: var(--color-light);
   border-block: 0;
   border-inline: 0;
-  background: settings.$color-primary;
+  background: var(--color-primary);
   font-weight: 700;
 }

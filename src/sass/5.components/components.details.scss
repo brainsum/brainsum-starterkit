@@ -11,52 +11,53 @@
 @use "../settings";
 @use "../tools";
 
-/**
- * Settings
- */
-$border-width: 0.1rem;
-$border-radius: 0.2rem;
-$summary-transition: background-color 0.12s ease-in-out;
-
 .c-details {
-  display: block;
-  margin-block: settings.$gutter;
-  color: inherit;
-  border-block: $border-width solid settings.$color-grey-20;
-  border-inline: $border-width solid settings.$color-grey-20;
-  border-radius: $border-radius;
-  box-shadow: 0 0.1rem 0.4rem settings.$color-grey-30;
+  // Settings
+  --border-width: 0.1rem;
+  --border-radius: 0.2rem;
+  --summary-transition: background-color 0.12s ease-in-out;
+  --gutter: var(--gutter--1x);
 
-  /* Details summary styles */
+
+  // Theming
+  display: block;
+  margin-block: var(--gutter);
+  color: inherit;
+  border-block: var(--border-width) solid var(--color-grey-20);
+  border-inline: var(--border-width) solid var(--color-grey-20);
+  border-radius: var(--border-radius);
+  box-shadow: 0 0.1rem 0.4rem var(--color-grey-30);
+
+  // Details summary styles
   &__summary {
     position: relative;
-    padding-block: settings.$gutter;
-    padding-inline-start: settings.$gutter * 2;
-    padding-inline-end: settings.$gutter;
+    padding-block: var(--gutter);
+    padding-inline-start: calc(var(--gutter) * 2);
+    padding-inline-end: var(--gutter);
     list-style: none;
     cursor: pointer;
-    transition: $summary-transition;
+    transition: var(--summary-transition);
     overflow-wrap: break-word;
     hyphens: auto;
     color: inherit;
-    background-color: settings.$color-grey-10;
+    background-color: var(--color-grey-10);
     font-size: 1.4rem;
     font-weight: 700;
     line-height: 1.28;
 
     @if settings.$prefers-reduced-motion {
-      @media screen and (prefers-reduced-motion: reduce) {
+      @media (--reduced-motion) {
         transition: none;
       }
     }
 
-    /* Arrow icon */
+    // Arrow icon
     &::before {
       @include tools.square(1rem);
 
       position: absolute;
       inset-block-start: 50%;
-      inset-inline-start: settings.$gutter * 0.75;
+      inset-inline-start: calc(var(--gutter) * 0.75);
       display: block;
       content: "";
       transform: translateY(-50%) rotate(45deg); // LTR
@@ -72,31 +73,31 @@ $summary-transition: background-color 0.12s ease-in-out;
     // Pseudo-selector to manage focus styles
     &::after {
       position: absolute;
-      inset: $border-width * -1;
+      inset: calc(var(--border-width) * -1);
       content: "";
       pointer-events: none;
       opacity: 0;
-      border-radius: $border-radius;
-      box-shadow: inset 0 0 0 0.2rem settings.$color-primary;
+      border-radius: var(--border-radius);
+      box-shadow: inset 0 0 0 0.2rem var(--color-primary);
     }
 
-    /* Hide the marker */
+    // Hide the marker
     &::-webkit-details-marker {
       display: none;
     }
 
-    /* Disable default outline for summary, since we have own implementation */
+    // Disable default outline for summary, since we have own implementation
     &:focus {
       outline: solid 0.2rem transparent;
       outline-offset: -0.4rem;
     }
 
-    /* Details summary, hover state */
+    // Details summary, hover state
     &:hover {
-      background-color: settings.$color-grey-20;
+      background-color: var(--color-grey-20);
     }
 
-    /* Details summary, focus and active states */
+    // Details summary, focus and active states
     &:focus,
     &:active {
       &::after {
@@ -104,7 +105,7 @@ $summary-transition: background-color 0.12s ease-in-out;
       }
     }
 
-    /* Rotate arrow icon of the details summary, when details expanded */
+    // Rotate arrow icon of the details summary, when details expanded
     .c-details[open] > & {
       &::before {
         margin-block-start: -0.2rem;
@@ -113,21 +114,21 @@ $summary-transition: background-color 0.12s ease-in-out;
     }
   }
 
-  /* Details content wrapper */
+  // Details content wrapper
   &__wrapper {
-    margin-block: settings.$gutter;
-    margin-inline: settings.$gutter;
+    margin-block: var(--gutter);
+    margin-inline: var(--gutter);
 
-    @include tools.breakpoint(tablet-l) {
-      margin-block: settings.$gutter * 1.5;
-      margin-inline: settings.$gutter * 2;
+    @media (--tablet-l) {
+      margin-block: calc(var(--gutter) * 1.5);
+      margin-inline: calc(var(--gutter) * 2);
     }
   }
 
-  /* Description */
+  // Description
   &__description {
-    margin-block-end: settings.$gutter;
-    color: settings.$color-grey-90;
+    margin-block-end: var(--gutter);
+    color: var(--color-grey-90);
     font-size: 1.3rem;
     line-height: 1.38;
   }

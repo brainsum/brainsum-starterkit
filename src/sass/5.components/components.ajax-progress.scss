@@ -14,9 +14,11 @@
 /**
  * Settings
  */
-$ajax-color: settings.$color-primary;
-$ajax-border: 0.1rem solid settings.$color-grey-60;
-$throbber-size: settings.$gutter;
+:root {
+  --ajax-color: var(--color-primary);
+  --ajax-border: 0.1rem solid var(--color-grey-60);
+  --throbber-size: var(--gutter--1x);
+}
 
 .ajax-progress {
   display: inline-block;
@@ -42,24 +44,24 @@ $throbber-size: settings.$gutter;
   position: relative;
   display: inline-flex;
   align-content: center;
-  block-size: $throbber-size;
+  block-size: var(--throbber-size);
   margin-block-start: -0.3rem;
   margin-block-end: 0;
-  margin-inline: $throbber-size * 0.5;
+  margin-inline: calc(var(--throbber-size) / 2);
   vertical-align: middle;
   white-space: nowrap;
-  line-height: $throbber-size;
+  line-height: var(--throbber-size);
 
   .throbber {
-    @include tools.square($throbber-size);
+    @include tools.square(var(--throbber-size));
 
     border-width: 0.2rem;
-    border-color: $ajax-color transparent $ajax-color $ajax-color;
+    border-color: var(--ajax-color) transparent var(--ajax-color) var(--ajax-color);
   }
 
   .message {
     display: inline-block;
-    padding-inline-start: $throbber-size * 0.5;
+    padding-inline-start: calc(var(--throbber-size) / 2);
     font-size: 1.4rem;
     font-weight: 400;
   }
@@ -77,9 +79,9 @@ $throbber-size: settings.$gutter;
   inset-inline-start: 50%;
   margin-block: -2.8rem;
   margin-inline: -2.8rem;
-  border-block: $ajax-border;
-  border-inline: $ajax-border;
-  background-color: settings.$color-light;
+  border-block: var(--ajax-border);
+  border-inline: var(--ajax-border);
+  background-color: var(--color-light);
   box-shadow: 0 0.4rem 1rem rgb(34, 35, 48, 0.1); /* LTR */
 
   [dir="rtl"] & {
@@ -106,11 +108,11 @@ $throbber-size: settings.$gutter;
 .ajax-progress-fullscreen::before {
   animation: ajax-throbber 0.75s linear infinite;
   border-style: solid dotted solid solid;
-  border-color: $ajax-color transparent $ajax-color $ajax-color;
+  border-color: var(--ajax-color) transparent var(--ajax-color) var(--ajax-color);
   border-radius: 50%;
 
   @if settings.$prefers-reduced-motion {
-    @media screen and (prefers-reduced-motion: reduce) {
+    @media (--reduced-motion) {
       animation: none;
     }
   }

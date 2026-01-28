@@ -2,43 +2,23 @@
  * @file
  * Reset Tools
  *
- * Improved Normalize.css with some goodness:
- *   - Sass variables,
- *   - switchable components:
- *       - heading font-size reset,
- *       - small font-size reset,
- *       - list bullets remover,
- *       - table element,
- *       - form elements,
- *       - button element,
- *       - font antialiasing
- *   - best practices
- *   - no static values
- *   - compatible with Stylelint rules.
+ * Modern CSS reset based on modern-normalize v3.0.1
+ * with Sass variables for toggleable features.
  *
- * Compatible with IE10+.
- *
- * Based on normalize.css
- * @author Nicolas Gallagher
+ * @author Sindre Sorhus (modern-normalize)
  * @author Krisztian Pinter <krisz@keeteean.com>
- * @see normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css
+ * @see https://github.com/sindresorhus/modern-normalize
  */
-
-/**
- * Imports
- */
-@use "../1.settings/settings.type" as settings;
 
 /**
  *** Settings ***
  */
 
 /**
- * Heading font size
+ * Heading font size reset
  *
- * Makes all heading tags ( h1 - h6 ) to be equal to your body size. It forces
- * you to use heading tags with focus on your semantics and not on the way they
- * look.
+ * Makes all heading tags (h1-h6) inherit font-size and font-weight.
+ * Forces semantic heading usage.
  *
  * @type Boolean
  */
@@ -47,40 +27,27 @@ $heading-size: true !default;
 /**
  * Small element font size
  *
- * Makes small tag to be equal to your body size.
- * It forces you to use heading tags with focus on your semantics and not on
- * the way they look.
+ * If true: inherits font-size (semantic usage)
+ * If false: uses 80% (browser default)
  *
  * @type Boolean
  */
 $small-size: true !default;
 
 /**
- * Code font family
- *
- * Use font-family setting for all code HTML tags.
- *
- * @type String
- */
-$font-family--code: settings.$font-family--code !default;
-
-/**
  * Font Antialiasing
  *
- * Makes font thickness to look the same in Firefox and Webkit.
- * You can set it individually too with `font-smooth` mixin.
+ * Makes font thickness consistent across Firefox and Webkit.
  *
  * @type Boolean
  */
 $font-antialiasing: false !default;
 
 /**
- * Remove bullets from HTML unformatted (`ul`), ordered (`ol`) lists and menu
- * element with CSS classes. Encourages the use of `ul`, `ol` and `menu` for
- * any listed elements in any styles, like a navigation menu and not only for
- * bullet lists.
+ * List bullets removal
  *
- * Opinionated and disabled by default.
+ * Removes bullets from ul, ol, menu with CSS classes.
+ * Encourages semantic list usage for navigation etc.
  *
  * @type Boolean
  */
@@ -96,37 +63,23 @@ $table-normalize: true !default;
 /**
  * Full width images
  *
- * Optionally make all images full width to fill the parent container.
+ * Makes all images 100% width of parent container.
  *
  * @type Boolean
  */
 $full-width-images: false !default;
 
 /**
- * HTML4 Form Elements
- *
- * Enables normalize and resets for the HTML4 form elements.
+ * Form elements normalizer
  *
  * @type Boolean
  */
 $form-elements: true !default;
 
 /**
- * HTML5 Form Elements
- *
- * Enables normalize and resets for the HTML5 form elements.
- *
- * @type Boolean
- */
-$html5-form-elements: true !default;
-
-/**
  * Button element reset
  *
- * Reset the appearance of the button element:
- *   - Remove the border, padding, appearance and background,
- *  - Set the the color to currentColor,
- *  - Set cursor to pointer.
+ * Fully resets button appearance for custom styling.
  *
  * @type Boolean
  */
@@ -137,43 +90,39 @@ $button-element: false !default;
  */
 
 /**
- * 1. Sets box-sizing to border-box by default.
- * 2. The browser emphasizes legibility over rendering speed and geometric
- *    precision. This enables kerning and optional ligatures in Gecko and
- *    Webkit.
- * 3. Prevent adjustments of font size after orientation changes in iOS.
- * 4. Force scrollbars to always be visible to prevent awkward ‘jumps’ when
- *    navigating between pages that do/do not have enough content to produce
- *    scrollbars naturally.
- *    Ensure the page always fills at least the entire height of the viewport.
- * 5. Makes font thickness to look the same in Firefox and Webkit.
+ * Document defaults
+ *
+ * 1. Use border-box by default
+ * 2. Prevent font-size adjustments after orientation changes in iOS
+ * 3. Use readable tab size
+ * 4. Force scrollbars to prevent layout jumps
+ * 5. Ensure page fills viewport height
+ * 6. Optional font antialiasing
  */
 @mixin document($font-antialiasing: $font-antialiasing) {
   html {
     overflow-y: scroll; // 4
     box-sizing: border-box; // 1
-    text-rendering: optimizeLegibility; // 2
+    min-block-size: 100%; // 5
+    tab-size: 4; // 3
     /* stylelint-disable-next-line property-no-vendor-prefix */
-    -webkit-text-size-adjust: 100%; // 3
-    min-block-size: 100%; // 4
+    -webkit-text-size-adjust: 100%; // 2
 
     @if $font-antialiasing {
-      -webkit-font-smoothing: antialiased; // 5
-      -moz-osx-font-smoothing: grayscale; // 5
+      -webkit-font-smoothing: antialiased; // 6
+      -moz-osx-font-smoothing: grayscale; // 6
     }
   }
 }
 
 /**
- * Sets box-sizing to all elements and before and after
+ * Box-sizing inheritance
  */
 @mixin box-sizing {
-  * {
-    &,
-    &::before,
-    &::after {
-      box-sizing: inherit;
-    }
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
   }
 }
 
@@ -181,7 +130,9 @@ $button-element: false !default;
  *** Sections ***
  */
 
-// Simple reset of element margin and padding
+/**
+ * Reset margin and padding on common elements
+ */
 @mixin sections {
   body,
   h1,
@@ -193,7 +144,6 @@ $button-element: false !default;
   blockquote,
   p,
   pre,
-  code,
   dl,
   dd,
   ol,
@@ -203,45 +153,15 @@ $button-element: false !default;
   fieldset,
   legend,
   menu {
-    margin-block: 0;
-    margin-inline: 0;
-    padding-block: 0;
-    padding-inline: 0;
+    margin: 0;
+    padding: 0;
   }
 }
 
 /**
- *** Grouping content ***
- */
-
-/**
- * Fixes the issues of main HTML5 tag with even earlier versions of IE.
- * For IE9-, please use HTML5Shiv https://github.com/aFarkas/html5shiv.
- */
-@mixin main {
-  main {
-    display: block;
-  }
-}
-
-/**
- * 1. Add the correct box sizing in Firefox.
- * 2. Show the overflow in Edge and IE.
- */
-@mixin hr {
-  hr {
-    overflow: visible; // 2
-    box-sizing: content-box; // 1
-    block-size: 0; // 1
-  }
-}
-
-/**
- * 1. Sets heading font-size to be equal to the content font-size. Encourages
- *    the use of different heading elements to define the position of the
- *    heading in the document and not the heading look.
- *    Opinionated and disabled by default.
- * 2. Reset font-weight of all heading elements.
+ * Heading font-size reset
+ *
+ * Encourages semantic heading usage.
  */
 @mixin heading-fontsize($heading-size: $heading-size) {
   @if $heading-size {
@@ -251,8 +171,8 @@ $button-element: false !default;
     h4,
     h5,
     h6 {
-      font-size: inherit; // 1
-      font-weight: inherit; // 2
+      font-size: inherit;
+      font-weight: inherit;
     }
   }
 }
@@ -262,49 +182,7 @@ $button-element: false !default;
  */
 
 /**
- * 1. Removes default grey background in IE10.
- * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
- */
-@mixin anchor {
-  a {
-    background-color: transparent; // 1
-    /* stylelint-disable-next-line property-no-vendor-prefix */
-    -webkit-text-decoration-skip: objects; // 2
-
-    /**
-     * Remove the outline on focused links when they are also active or hovered
-     * in all browsers (opinionated).
-     */
-    &:active,
-    &:hover {
-      outline-width: 0;
-    }
-  }
-}
-
-/**
- * 1. Remove the bottom border in Chrome 57-
- * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
- */
-@mixin abbr {
-  abbr[title] {
-    text-decoration: underline; // 2
-    text-decoration: underline dotted; // 2
-    border-block-end: 0; // 1
-  }
-}
-
-/**
- * Modify default styling of address.
- */
-@mixin address {
-  address {
-    font-style: normal;
-  }
-}
-
-/**
- * Add the correct font weight in Chrome, Edge, and Safari.
+ * Bold elements
  */
 @mixin bold {
   b,
@@ -314,46 +192,37 @@ $button-element: false !default;
 }
 
 /**
- * 1. Correct the inheritance and scaling of font size in all browsers.
- * 2. Correct the odd `em` font sizing in all browsers.
- * 3. Removed italic style from <var>.
+ * Code elements
+ *
+ * Uses --font-family-code from settings.type
  */
-
-@mixin code($font-family: $font-family--code) {
+@mixin code {
   code,
   kbd,
-  pre,
   samp,
-  var {
-    font-family: $font-family; // 1
-    font-size: 1em; // 2
-  }
-
-  var {
-    font-style: normal; // 3
+  pre {
+    font-family: var(--font-family-code);
+    font-size: 1em;
   }
 }
 
 /**
- * 1. Sets small tag's font-size to be equal to the content font-size for
- *    semantic reasons.
- * 2. Add the correct font size in all browsers.
+ * Small element
  */
 @mixin small($small-size: $small-size) {
   small {
     @if $small-size {
-      font-size: inherit; // 1
+      font-size: inherit;
     } @else {
-      font-size: 80%; // 2
+      font-size: 80%;
     }
   }
 }
 
 /**
- * Prevent `sub` and `sup` elements from affecting the line height in all
- * browsers.
+ * Subscript and superscript
  */
-@mixin index-elements {
+@mixin sub-sup {
   sub,
   sup {
     position: relative;
@@ -372,12 +241,16 @@ $button-element: false !default;
 }
 
 /**
- * Remove bullets from HTML unformatted (`ul`), ordered (`ol`) lists and menu
- * element with CSS classes. Encourages the use of `ul`, `ol` and `menu` for
- * any listed elements in any styles, like a navigation menu and not only for
- * bullet lists.
- *
- * Opinionated and disabled by default.
+ * Address styling
+ */
+@mixin address {
+  address {
+    font-style: normal;
+  }
+}
+
+/**
+ * List bullets removal for lists with classes
  */
 @mixin list-bullets($list-bullets: $list-bullets) {
   @if $list-bullets == false {
@@ -386,15 +259,19 @@ $button-element: false !default;
 }
 
 /**
- * 1. Removes default border spacing and collapse.
- * 2. Ensure tables fill up as much space as possible.
+ *** Tabular data ***
+ */
+
+/**
+ * Table normalizer
  */
 @mixin table($table-normalize: $table-normalize) {
   @if $table-normalize {
     table {
-      inline-size: 100%; // 2
-      border-spacing: 0; // 1
-      border-collapse: collapse; // 1
+      inline-size: 100%;
+      border-spacing: 0;
+      border-collapse: collapse;
+      border-color: currentColor;
     }
   }
 }
@@ -404,208 +281,88 @@ $button-element: false !default;
  */
 
 /**
- * 1. Removes border from images inside links
- * 2. Helps images to properly behave in responsive layouts
- * 3. Optionally make all images full width to fill the parent container
+ * Images and media
  */
 @mixin images($full-width: $full-width-images) {
   img,
-  object,
+  picture,
+  video,
+  canvas,
   svg {
-    max-inline-size: 100%; // 2
-    block-size: auto; // 2
-    vertical-align: middle; // 2
-    border-style: none; // stylelint-disable-line
+    display: block;
+    max-inline-size: 100%;
+    block-size: auto;
 
     @if $full-width {
-      inline-size: 100%; // 3
+      inline-size: 100%;
     }
   }
 }
 
 /**
- * Add the correct display in iOS 4-7.
+ *** Forms ***
  */
-@mixin audio {
-  audio:not([controls]) {
-    display: none;
-    block-size: 0;
-  }
-}
 
 /**
- * Hide the overflow in IE.
- */
-@mixin svg {
-  svg:not(:root) {
-    overflow: hidden;
-  }
-}
-
-/**
- * Normalizing html4 form elements
+ * Form elements normalizer
  */
 @mixin form-elements($form-elements: $form-elements) {
   @if $form-elements {
-    /**
-     * 1. Change the font styles in all browsers (opinionated).
-     * 2. Remove the margin in Firefox and Safari.
-     */
+    // Inherit font styles and remove margin
     button,
     input,
     optgroup,
     select,
     textarea {
-      margin-block: 0; // 2
-      margin-inline: 0; // 2
-      font-family: inherit; // 1
-      font-size: inherit; // 1
-      line-height: inherit; // 1
+      margin: 0;
+      font-family: inherit;
+      font-size: 100%;
+      line-height: 1.15;
     }
 
-    /**
-     * Show the overflow in IE.
-     *
-     * 1. Show the overflow in Edge.
-     */
+    // Clickable types in iOS and Safari
     button,
-    input {
-      overflow: visible; // 1
-    }
-
-    /**
-     * Remove the inheritance of text transform in Edge, Firefox, and IE.
-     *
-     * 1. Remove the inheritance of text transform in Firefox.
-     */
-    button,
-    select {
-      text-transform: none; // 1
-    }
-
-    /**
-     * 1. Remove the padding in IE 10.
-     */
-    [type="checkbox"],
-    [type="radio"] {
-      padding-block: 0; // 1
-      padding-inline: 0; // 1
-    }
-
-    /**
-     * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`
-     *    controls in Android 4.
-     * 2. Correct the inability to style clickable types in iOS and Safari.
-     */
-    button,
-    html [type="button"], // 1
+    [type="button"],
     [type="reset"],
     [type="submit"] {
       /* stylelint-disable-next-line property-no-vendor-prefix */
-      -webkit-appearance: button; // 2
+      -webkit-appearance: button;
     }
 
-    /**
-     * Remove the inner border and padding in Firefox.
-     */
-    button::-moz-focus-inner,
-    [type="button"]::-moz-focus-inner,
-    [type="reset"]::-moz-focus-inner,
-    [type="submit"]::-moz-focus-inner {
-      padding-block: 0;
-      padding-inline: 0;
-      border-style: none; // stylelint-disable-line
-    }
-
-    /**
-     * Restore the focus styles unset by the previous rule.
-     */
-    button:-moz-focusring,
-    [type="button"]:-moz-focusring,
-    [type="reset"]:-moz-focusring,
-    [type="submit"]:-moz-focusring {
-      outline: 0.1rem dotted ButtonText;
-    }
-
-    /**
-     * 1. Change the border, margin, and padding in all browsers (opinionated)..
-     */
-
-    fieldset {
-      border-block: 0; // 1
-      border-inline: 0; // 1
-    }
-
-    /**
-     * 1. Correct the text wrapping in Edge and IE.
-     * 2. Correct the color inheritance from `fieldset` elements in IE.
-     * 3. Remove the padding so developers are not caught out when they zero out
-     *    `fieldset` elements in all browsers.
-     */
+    // Legend padding
     legend {
-      display: table; // 1
-      box-sizing: border-box; // 1
-      max-inline-size: 100%; // 1
-      padding-block: 0; // 3
-      padding-inline: 0; // 3
-      white-space: normal; // 1
-      color: inherit; // 2
+      padding: 0;
     }
 
-    /**
-     * Remove the default vertical scrollbar in IE 10+.
-     */
-    textarea {
-      overflow: auto;
+    // Progress vertical alignment
+    progress {
+      vertical-align: baseline;
     }
-  }
-}
 
-/**
- *** Normalizing of html5 form elements ***
- */
-@mixin html5-form-elements($html5-form-elements: $html5-form-elements) {
-  @if $html5-form-elements {
-    // Correct the cursor style of increment and decrement buttons in Chrome.
-    [type="number"]::-webkit-inner-spin-button,
-    [type="number"]::-webkit-outer-spin-button {
+    // Spin buttons in Safari
+    ::-webkit-inner-spin-button,
+    ::-webkit-outer-spin-button {
       block-size: auto;
     }
 
-    /**
-     * 1. Correct the odd appearance in Chrome and Safari.
-     * 2. Correct the outline style in Safari.
-     */
+    // Search input in Chrome and Safari
     [type="search"] {
       /* stylelint-disable-next-line property-no-vendor-prefix */
-      -webkit-appearance: textfield; // 1
-      outline-offset: -0.2rem; // 2
+      -webkit-appearance: textfield;
+      outline-offset: -0.2rem;
     }
 
-    /**
-     * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.
-     */
-    [type="search"]::-webkit-search-cancel-button,
-    [type="search"]::-webkit-search-decoration {
+    // Search decoration in macOS
+    ::-webkit-search-decoration {
       /* stylelint-disable-next-line property-no-vendor-prefix */
       -webkit-appearance: none;
     }
 
-    /**
-     * 1. Correct the inability to style clickable types in iOS and Safari.
-     * 2. Change font properties to `inherit` in Safari.
-     */
+    // File upload button
     ::-webkit-file-upload-button {
       /* stylelint-disable-next-line property-no-vendor-prefix */
-      -webkit-appearance: button; // 1
-      font: inherit; // 2
-    }
-
-    /**
-     * Add the correct vertical alignment in Chrome, Firefox, and Opera.
-     */
-    progress {
-      vertical-align: baseline; // 1
+      -webkit-appearance: button;
+      font: inherit;
     }
   }
 }
@@ -615,29 +372,16 @@ $button-element: false !default;
  */
 
 /**
- * Add the correct display in IE 9-.
- *
- * 1. Add the correct display in Edge, IE, and Firefox.
- */
-@mixin details-menu {
-  details, // 1
-  menu {
-    display: block;
-  }
-}
-
-/**
- * Add the correct display in all browsers.
+ * Summary element
  */
 @mixin summary {
   summary {
     display: list-item;
-    outline: none;
   }
 }
 
 /**
- * Reset default appearance of the button element
+ * Button element reset
  */
 @mixin button-element($button-element: $button-element) {
   @if $button-element {
@@ -649,18 +393,5 @@ $button-element: false !default;
       background: none;
       appearance: none;
     }
-  }
-}
-
-/**
- *** Scripting ***
- */
-
-/**
- * Add the correct display in IE.
- */
-@mixin template {
-  template {
-    display: none;
   }
 }

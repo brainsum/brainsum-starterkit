@@ -8,176 +8,177 @@
 /**
   * Imports
  */
+@use "../settings";
 @use "../tools";
-
-/**
- * Settings
- */
-
-/**
- * Responsive Table
- */
-$responsive-table: true !default;
-$responsive-table-label-padding: 0 0.6em 0 0 !default;
-$responsive-table-label-width: 30% !default;
-$responsive-table-content-width: 67% !default;
 
 /**
  * Responsive Table Component
  *
- * Responsive CSS only table component based on Filament Group's Tablesaw.
- * There is no any styling only layout needed properties.
- * @see `3.base/_base.table.scss` for base theming `<table>` element.
- * @link https://github.com/filamentgroup/tablesaw
- *
- * @require {boolean} $base-table-normalize Should be true!
- * <3.base/_base.reset.scss>
+* Responsive table component that stacks on mobile.
+ * Uses CSS custom properties for easy theming.
  *
  * @example
  *   <table class="c-table">
  *     <thead>
  *       <tr>
- *         <th>name</th>
- *         <th>genre</th>
- *         <th>release date</th>
+ *         <th>Name</th>
+ *         <th>Genre</th>
+ *         <th>Release Date</th>
  *       </tr>
  *     </thead>
  *     <tbody>
  *       <tr>
  *         <td>
- *           <b class="c-table__cell-label">name</b>
+ *           <b class="c-table__cell-label">Name</b>
  *           <span class="c-table__cell-content">The Shawshank Redemption</span>
  *         </td>
  *         <td>
- *           <b class="c-table__cell-label">genre</b>
+ *           <b class="c-table__cell-label">Genre</b>
  *           <span class="c-table__cell-content">Crime, Drama</span>
  *         </td>
  *         <td>
- *           <b class="c-table__cell-label">release date</b>
+ *           <b class="c-table__cell-label">Release Date</b>
  *           <span class="c-table__cell-content">14 October 1994</span>
  *         </td>
  *       </tr>
  *     </tbody>
  *   </table>
- *
- * 1. Show the table cells as a block level element.
- * 2. Make the label elements a percentage width.
- * 3. For grouped headers, have a different style to visually separate the
- *    levels by classing the first label in each col group.
- * 4. Avoid double strokes when stacked.
- * 5. Show the table header rows.
- * 6. Hide the labels in each cell.
  */
-@if $responsive-table == true {
+
+/**
+ * Settings
+ */
+
+// Enable/disable responsive table component
+$responsive-table: true !default;
+
+// Breakpoint at which table switches from stacked to normal
+$table-breakpoint: medium !default;
+
+/**
+ * CSS Custom Properties
+ */
+.c-table {
+  // Settings
+  --table-label-width: 30%;
+  --table-label-padding: 0 0.6em 0 0;
+  --table-content-width: 67%;
+  --table-cell-padding: 0.75em;
+  --table-border-color: currentColor;
+  --table-stripe-bg: rgb(0 0 0 / 0.03);
+}
+
+@if $responsive-table {
   .c-table {
     max-inline-size: 100%;
-    padding-block: 0;
-    padding-inline: 0;
     empty-cells: show;
-    border-block: 0;
-    border-inline: 0;
 
-    * {
-      box-sizing: border-box;
-    }
-
-    // Theming table rows.
-    tr {
-      @include tools.breakpoint(tablet-s) {
-        display: table-row;
-      }
-    }
-
-    // Theming table cells.
     td,
     th {
-      display: block; // 1.
+      display: block;
+      inline-size: 100%;
       text-align: start;
 
-      @include tools.breakpoint(tablet-s) {
-        display: table-cell; // 5.
-      }
-
-      .c-table__cell-label {
-        display: inline-block;
-        inline-size: $responsive-table-label-width; // 2.
-        padding-block: $responsive-table-label-padding;
-        padding-inline: $responsive-table-label-padding;
-        vertical-align: top;
-
-        @include tools.breakpoint(tablet-s) {
-          display: none !important; // 6.
-        }
-      }
-
-      .c-table__cell-label--top {
-        display: block; // 3.
-        margin-block: 0.4em; // 3.
-        margin-inline: 0; // 3.
-        padding-block: 0.4em; // 3.
-        padding-inline: 0; // 3.
-      }
-
-      .c-table__cell-content {
-        display: inline-block;
-        max-inline-size: $responsive-table-content-width;
-
-        @include tools.breakpoint(tablet-s) {
-          display: block;
-          max-inline-size: none;
-        }
+      @media (--#{$table-breakpoint}) {
+        display: table-cell;
+        inline-size: auto;
       }
     }
 
+    // Stacked mobile view
     thead {
+      // Hide header on mobile
       th,
       td {
         display: none;
 
-        @include tools.breakpoint(tablet-s) {
-          display: table-cell; // 5.
+        @media (--#{$table-breakpoint}) {
+          display: table-cell;
         }
       }
     }
 
-    tbody {
-      tr {
+    tbody tr {
+      display: block;
+
+      @media (--#{$table-breakpoint}) {
+        display: table-row;
+      }
+    }
+
+    // Mobile label (hidden on desktop)
+    .c-table__cell-label {
+      display: inline-block;
+      inline-size: var(--table-label-width);
+      padding: var(--table-label-padding);
+      vertical-align: top;
+
+      @media (--#{$table-breakpoint}) {
+        display: none !important;
+      }
+    }
+
+    // Grouped header label variant
+    .c-table__cell-label--top {
+      display: block;
+      margin-block: 0.4em;
+      padding-block: 0.4em;
+    }
+
+    // Cell content wrapper
+    .c-table__cell-content {
+      display: inline-block;
+      max-inline-size: var(--table-content-width);
+
+      @media (--#{$table-breakpoint}) {
         display: block;
-        inline-size: 100%;
-
-        @include tools.breakpoint(tablet-s) {
-          display: table-row;
-        }
-      }
-
-      th,
-      td {
-        inline-size: 100%;
-
-        @include tools.breakpoint(tablet-s) {
-          inline-size: auto;
-        }
+        max-inline-size: none;
       }
     }
 
+    // Empty cells
     td:empty,
     th:empty {
       display: none;
 
-      @include tools.breakpoint(tablet-s) {
+      @media (--#{$table-breakpoint}) {
         display: table-cell;
       }
     }
   }
 
-  // Theming table head
+  // Grouped header styling
   th.c-table__group {
     tbody & {
-      margin-block-start: -0.1rem; // 4.
+      margin-block-start: -0.1rem;
     }
 
     .c-table__cell-label {
-      display: none !important; // 4.
+      display: none !important;
     }
+  }
+
+  /**
+   * Table Modifiers
+   */
+
+  // Striped rows
+  .c-table--striped {
+    tbody tr:nth-child(even) {
+      background-color: var(--table-stripe-bg);
+    }
+  }
+
+  // Bordered table
+  .c-table--bordered {
+    td,
+    th {
+      border: 0.1rem solid var(--table-border-color);
+    }
+  }
+
+  // Compact table
+  .c-table--compact {
+    --table-cell-padding: 0.4em;
   }
 }

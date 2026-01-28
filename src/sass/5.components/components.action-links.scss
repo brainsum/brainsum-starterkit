@@ -22,7 +22,7 @@
     display: inline-block;
 
     a {
-      color: settings.$color-text-primary;
+      color: var(--color-text-primary);
     }
   }
 }

@@ -2,129 +2,41 @@
  * @file
  * Container Tool
  *
- * The container tool is responsible for creating smart, flexible and
- * responsive containers.
+ * Container mixin using CSS custom properties.
+ * Responsive behavior is handled in `1.settings/_settings.container.scss`
+ * via `@media (--breakpoint)` overrides on `:root`.
  *
- * Here you can setup the default and custom containers with size (`max-with`)
- * and paddings. Then use it as mixin.
- *
- * Part of Shake.sass, based on iota.css
- * @author Dimitris Psaropoulos <info@harby.me>
- * @author Krisztian Pinter <krisz@keeteean.com>
- *
- * @require {mixin} _generate-unit <2.tools/libraries/_generate-unit.scss>
- * @see 4.objects/_objects.container.scss for BEM class based default and custom
- * containers
+ * @see 1.settings/_settings.container.scss for container definitions
+ * @see 4.objects/_objects.container.scss for object classes
  */
 
 /**
- * Imports
- */
-@use "libraries";
-@use "../1.settings/settings.container" as settings;
-
-/**
- * Settings
- */
-
-/**
- * Default container gutter
+ * Container Tool
  *
- * Allows you to specify the default set of padding left and right of your
- * container. You can use a map in case you would like to specify responsive
- * gutter sizes.
+ * Creates a centered container with max-width (max-inline-size) and inline
+ * padding.
+ * Uses CSS custom properties for responsive values.
  *
- * @type Number | List | Map
- */
-$container-gutter-default: settings.$container-gutter-default;
-
-/**
- * Default container size
- *
- * Allows you to specify the default max-width of your container. You can use a
- * map in case you would like to specify a responsive size.
- *
- * @type String | Map
- */
-$container-size-default: settings.$container-size-default;
-
-/**
- * Container padding
- *
- * It's calculate the required responsive padding.
- *
- * @type Mixin
- * @parameter {number | map} $size - Padding values.
- */
-@mixin container-padding($size) {
-  @include libraries.generate-unit("padding", "inline", $size);
-}
-
-/**
- * Container size
- *
- * It's calculate the required responsive container size (max-width).
- *
- * @type Mixin
- * @parameter {number | map} $size - Max-width values.
- */
-@mixin container-size($size) {
-  @include libraries.generate-unit("max", "inline-size", $size);
-}
-
-/**
- * Container mixin
- *
- * With container mixin you can generate the default and custom sized
- * containers.
- *
- * @type Mixin
- * @parameter {number | map} $padding - Padding values.
- * @parameter {number | map} $size - Container size (max-width) values.
- * @require {mixin} _container-padding
- * @require {mixin} _container-size
- *
- *
- * Examples
- *
- * Default container
+ * @parameter {string} $name - Container variant (default, narrow, wide, etc.)
  *
  * @example
  *   @use "../tools";
+ *
+ *   Default container
  *
  *   .section__container {
- *      @include tools.make-container;
+ *     @include tools.container;
  *   }
  *
- * Custom container
+ *   Named container variant
  *
- * You can define custom padding and sizes (widths) but you can use the
- * default `$container-gutter-default` and
- * `$container-size-default` ones too.
- *
- * @example
- *   @use "../tools";
- *
- *   $container-gutter-gallery : (
- *     null     : 1.2rem,
- *     tablet-l : 2.4rem
- *   );
- *   $container-size-gallery : (
- *     null     : 100%,
- *     tablet-l : 102.4rem
- *   );
- *
- *   .gallery__container {
- *     @include tools.make-container(
- *       $padding: $container-gutter-gallery,
- *       $size: $container-size-gallery
- *     )
+ *   .article__container {
+ *     @include tools.container(narrow);
  *   }
  */
-@mixin make-container($padding: $container-gutter-default, $size: $container-size-default) {
-  @include container-padding($padding);
-  @include container-size($size);
-
+@mixin container($name: default) {
   inline-size: 100%;
+  max-inline-size: var(--container-size-#{$name});
   margin-inline: auto;
+  padding-inline: var(--container-gutter-#{$name});
 }

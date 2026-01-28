@@ -2,157 +2,50 @@
  * @file
  * Container Object
  *
- * The container object is responsible for creating smart, flexible and
- * responsive containers.
+ * Container object classes using CSS custom properties.
  *
- * For default container you can use the `make-container` mixin from
- * `2.tools/_tools.container.scss`. Here we add a css class for that.
- * You can setup here for additional container sizes and paddings.
+ * The container creates a centered box with max-width and inline padding.
+ * Responsive values are defined in `1.settings/_settings.container.scss`.
  *
- * Part of Shake.sass, based on iota.css.
- * @author Dimitris Psaropoulos <info@harby.me>
- * @author Krisztian Pinter <krisz@keeteean.com>
- * @link https://www.iotacss.com/docs/objects/container
- *
- * @require {mixin} make-container <2.tools/_tools.container.scss> - default
- * container
- * @require {mixin} container-padding <2.tools/_tools.container.scss> -
- * container with custom padding
- * @require {mixin} container-size <2.tools/_tools.container.scss> - container
- * with custom size (max-width)
- *
- * Examples
- *
- * Container with extra gutter sizes
- * It will create one container named 'small' with 10px padding and one
- * container named 'large' with 40px padding.
+ * @require {mixin} container <2.tools/_tools.container.scss>
  *
  * @example
- *   $gutter-extra: (
- *     small: 1rem,
- *     large: 4rem
- *   );
+ *   <div class="o-container">
+ *     <!-- content -->
+ *   </div>
  *
- * Container with default responsive gutter
- * It will create a default container with 10px padding in mobile and 20px in
- * tablets and up.
- *
- * @example
- *   $gutter-default: (
- *     null : 1rem,
- *     small: 2rem
- *   );
- *
- * Container with extra responsive gutter size
- * It will create one extra container named 'large' that will have 20px padding
- * in mobile and 40px padding in tablets and up.
- *
- * @example
- *   $gutter-default: (
- *     large: (
- *       null : 2rem,
- *       small: 4rem
- *     )
- *   );
- *
- * Container with responsive size
- * It will create a container that will have max-width of 320px in mobile and
- * max-width of 1024px in tablets and up.
- *
- * @example
- *   $size-default: (
- *     null : 32rem,
- *     small: 102.4rem
- *   );
+ *   <div class="o-container--narrow">
+ *     <!-- narrower content -->
+ *   </div>
  */
 
 /**
  * Imports
  */
-@use "sass:string";
-@use "../1.settings/settings.container" as settings;
-@use "../2.tools/_tools.container" as container;
+@use "../2.tools/tools.container" as *;
 
 /**
- * Settings
+ * Default Container
+ *
+ * Uses --container-size-default and --container-gutter-default
+ * from 1.settings/_settings.container.scss
  */
-
-/**
- * Namespace settings
- */
-$class: "o-container" !default;
-$class-mod: $class + "--" !default;
-
-/**
- * Additional container gutters
- *
- * Allows you to specify more sets of padding left and right of your container.
- * You can use a nested map in case you would like to specify responsive gutter
- * sizes.
- *
- * Each gutter size will be available as a BEM modifier that will be named
- * according to the gutter name.
- *
- * Example if `$gutter-extra: (large: 30px);`
- * then `.o-container--large` will be available for use.
- *
- * @type Map
- *
- * @example
- *   $gutter-extra: (
- *     large: (
- *       null : 2rem,
- *       small: 4rem
- *     )
- *   );
- *
- *   <div class"o-container--large">...</div>
- */
-$gutter-extra: settings.$container-gutter-extra !default;
-
-/**
- * Additional container sizes
- *
- * Allows you to specify more sets of max-width for your container. You can use
- * a nested map in case you would like to specify a responsive size.
- *
- * Each gutter size will be available as a BEM modifier that will be named
- * according to the container size name.
- *
- * Example if `$size-extra: (large: 1600px);`
- * then `.o-container--large` will be available for use.
- *
- * @type Map
- *
- * @example
- *   $size-extra: (
- *     large: (
- *       null : 30rem,
- *       small: 120rem
- *     )
- *   );
- *
- *   <div class"o-container--large">...</div>
- */
-$size-extra: settings.$container-size-extra !default;
-
-// Default Container Object
-.#{$class} {
-  @include container.make-container;
+.o-container {
+  @include container;
 }
 
-// Container Object Extra Gutters
-@each $gutter-name, $gutter-size in $gutter-extra {
-  .#{$class-mod + string.quote($gutter-name)} {
-    @include container.container-padding($gutter-size);
-  }
-}
-
-// Container Object Extra Sizes
-@each $size-name, $size-value in $size-extra {
-  .#{$class-mod + string.quote($size-name)} {
-    @include container.container-size($size-value);
-
-    margin-inline: auto;
-  }
-}
+/**
+ * Container Variants
+ *
+ * Add more container variants as needed.
+ * First define the CSS custom properties in 1.settings/_settings.container.scss:
+ *
+ *   --container-size-narrow: 80rem;
+ *   --container-gutter-narrow: var(--gutter);
+ *
+ * Then create the class here:
+ *
+ *   .o-container--narrow {
+ *     @include container(narrow);
+ *   }
+ */
