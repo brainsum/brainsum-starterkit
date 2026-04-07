@@ -1,0 +1,28 @@
+#!/bin/bash
+
+## Description: Start theme development (watch + compile + BrowserSync)
+## Usage: dev
+## Example: "ddev dev"
+
+THEME_DIR=/var/www/html/web/themes/custom/brainsum_starterkit
+
+# Start the watcher (sass + postcss + js) in the background
+ddev exec -d "$THEME_DIR" yarn start &
+WATCH_PID=$!
+
+# Give watchers a moment to initialize before BrowserSync
+sleep 2
+
+# Start BrowserSync in the background
+ddev browsersync &
+SYNC_PID=$!
+
+# Clean up both processes on Ctrl+C or exit
+cleanup() {
+  kill $WATCH_PID $SYNC_PID 2>/dev/null
+  wait $WATCH_PID $SYNC_PID 2>/dev/null
+}
+trap cleanup EXIT INT TERM
+
+# Wait for either to finish (or Ctrl+C)
+wait

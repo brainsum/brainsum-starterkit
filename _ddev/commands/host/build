@@ -1,0 +1,14 @@
+#!/bin/bash
+
+## Description: Install dependencies and build the theme for production
+## Usage: build
+## Example: "ddev build"
+
+THEME_DIR=/var/www/html/web/themes/custom/brainsum_starterkit
+
+echo "Installing dependencies..."
+ddev exec -d "$THEME_DIR" yarn install || exit 1
+
+echo ""
+echo "Building theme for production..."
+ddev exec -d "$THEME_DIR" yarn build
