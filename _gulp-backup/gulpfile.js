@@ -10,6 +10,7 @@ import eslint from 'gulp-eslint-new';
 import gulp from 'gulp';
 import inlineSvg from 'postcss-inline-svg';
 import postcss from 'gulp-postcss';
+import postcssCustomMedia from 'postcss-custom-media';
 import postcssPresetEnv from 'postcss-preset-env';
 import prettier from 'gulp-prettier';
 import sassGlob from 'gulp-sass-glob';
@@ -135,6 +136,7 @@ function sassCompileDev(done) {
     .pipe(
       postcss([
         inlineSvg,
+        postcssCustomMedia,
         autoprefixer,
         postcssPresetEnv(config.postcssPresetEnv),
         sorting,
@@ -162,6 +164,7 @@ function sassCompileProd(done) {
     .pipe(
       postcss([
         inlineSvg,
+        postcssCustomMedia,
         autoprefixer,
         postcssPresetEnv(config.postcssPresetEnv),
         sorting,
