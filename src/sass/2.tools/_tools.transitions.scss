@@ -6,7 +6,6 @@
 /**
  * Imports
  */
-@use "../settings";
 @use "../1.settings/settings.functions" as functions;
 
 /**
@@ -19,9 +18,11 @@
  *     @include tools.global-transition;
  *   }
  */
-@mixin global-transition($property: var(--transition-property),
+@mixin global-transition(
+  $property: var(--transition-property),
   $timing: var(--transition-timing),
-  $easing: var(--transition-easing)) {
+  $easing: var(--transition-easing)
+) {
   transition: $property $timing $easing;
 
   @if functions.$prefers-reduced-motion {

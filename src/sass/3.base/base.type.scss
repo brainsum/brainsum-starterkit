@@ -42,11 +42,14 @@ $code-tab-size: 2 !default;
  * Classless typography settings
  */
 
+// Heading font-family
+$classless-headings-fontfamily: true !default;
+
 // Responsive font-size
 $classless-headings-fontsize: true !default;
 
-// Heading font-family
-$classless-headings-fontfamily: true !default;
+// Headings margins
+$classless-headings-margins: true !default;
 
 // Margins and padding for ordered and ordered lists
 $classless-lists-margins-paddings: true !default;
@@ -68,6 +71,12 @@ $link-type: dark !default;
 $link-text-decoration: none !default;
 
 :root {
+  /**
+   * Vertical Spacing
+   */
+  --vertical-space-1x: 0.5em;
+  --vertical-space-2x: 1em;
+
   /**
    * Global selected text
    */
@@ -114,8 +123,8 @@ body {
     background-color: var(--selected-text-background);
   }
 }
-
 /**
+
  * Styling the default focus state
  */
 :focus-visible {
@@ -148,6 +157,114 @@ var {
   word-break: normal;
   tab-size: $code-tab-size;
   hyphens: none;
+}
+
+/**
+ * Inline Code
+ */
+code {
+  padding: 0.1em 0.4em;
+  color: var(--color-code);
+  border-radius: 0.2rem;
+  background: hsl(from var(--color-code) h s calc(l + 42.5));
+  font-size: 85%;
+  line-height: 1;
+}
+
+/**
+ * Code Block
+ *
+ * Rounded code container.
+ */
+pre,
+.c-code {
+  color: var(--color-black);
+  border-radius: 0.2rem;
+
+  code {
+    display: block;
+    overflow-x: auto;
+    box-sizing: border-box;
+    inline-size: 100%;
+    padding: var(--unit-4x);
+    color: inherit;
+    border-radius: inherit;
+    background: var(--color-background-light);
+    line-height: 1.5;
+  }
+}
+
+/**
+ * Optional language label via `data-lang` attribute for the c-code block.
+ */
+.c-code {
+  position: relative;
+
+  &::before {
+    @include tools.type(label);
+
+    position: absolute;
+    inset-block-start: var(--unit-2x);
+    inset-inline-end: var(--unit-3x);
+    content: attr(data-lang);
+    color: var(--color-grey-80);
+  }
+}
+
+/**
+ * Semantic Text Elements
+ *
+ * Spectre-inspired styling for abbreviations, keyboard input, marks,
+ * blockquotes, and definition lists.
+ */
+abbr[title] {
+  cursor: help;
+  text-decoration: none;
+  border-block-end: 0.1rem dotted;
+}
+
+kbd {
+  display: inline-block;
+  padding: var(--unit-1x) var(--unit-2x);
+  color: var(--color-light);
+  border-radius: 0.2rem;
+  background: var(--color-black);
+  font-size: var(--font-size-label);
+  line-height: 1.2;
+}
+
+mark {
+  --color-highlight: #ffe9b3;
+
+  padding-block: var(--unit-1x) 0;
+  padding-inline: var(--unit-05x);
+  color: var(--color-text-primary);
+  border-block-end: 0.2rem solid hsl(from var(--color-highlight) h s calc(l - 15));
+  border-radius: 0.2rem;
+  background: var(--color-highlight);
+}
+
+blockquote {
+  margin-block: 1em;
+  margin-inline-start: 0;
+  padding-block: var(--unit-2x);
+  padding-inline: var(--unit-4x);
+  border-inline-start: 0.2rem solid var(--color-border);
+
+  p:last-child {
+    margin-block-end: 0;
+  }
+}
+
+dl {
+  dt {
+    font-weight: 700;
+  }
+
+  dd {
+    margin-block: var(--unit-2x) var(--unit-3x);
+    margin-inline: 0;
+  }
 }
 
 /**
@@ -197,6 +314,48 @@ var {
 
   h6:not([class]) {
     @include tools.type(h6);
+  }
+}
+
+@if $classless-headings-margins {
+  h1:not([class]),
+  h2:not([class]),
+  h3:not([class]),
+  h4:not([class]),
+  h5:not([class]),
+  h6:not([class]) {
+    margin-block-end: var(--vertical-space-1x);
+    margin-inline: 0;
+  }
+
+  h2:not([class]) {
+    &:not(:first-child) {
+      margin-block-start: 1.428em;
+    }
+  }
+
+  h3:not([class]) {
+    &:not(:first-child) {
+      margin-block-start: 1.333em;
+    }
+  }
+
+  h4:not([class]) {
+    &:not(:first-child) {
+      margin-block-start: 1.25em;
+    }
+  }
+
+  h5:not([class]) {
+    &:not(:first-child) {
+      margin-block-start: 1.125em;
+    }
+  }
+
+  h6:not([class]) {
+    &:not(:first-child) {
+      margin-block-start: 1em;
+    }
   }
 }
 

@@ -49,17 +49,68 @@
 
 {#
   Defining local variables
+
+  forms_config: Configuration from config/forms.config.yml (passed via preprocess).
+  use_floating_labels: Passed from form via preprocess based on forms_config.
 #}
+{% set actual_type = input_type is defined ? input_type : type %}
+
+{# Read configuration from forms_config (set in preprocess from YAML file) #}
+{% set icon_end_types = forms_config.icons.end.types|default(['select']) %}
+{% set icon_end_names = forms_config.icons.end.names|default([]) %}
+{% set icon_start_types = forms_config.icons.start.types|default(['search']) %}
+{% set icon_start_names = forms_config.icons.start.names|default([]) %}
+{% set switch_names = forms_config.switch.names|default([]) %}
+
+{% set floating_label_types = ['text', 'email', 'password', 'number', 'date', 'time', 'datetime-local', 'month', 'week', 'url', 'tel', 'search', 'color', 'textarea', 'select'] %}
+{% set use_floating = use_floating_labels is defined and use_floating_labels and actual_type in floating_label_types and type not in ['checkbox', 'radio'] %}
+
+{# Check if name starts with any of the configured field names #}
+{% set has_icon_end_name = false %}
+{% for field_name in icon_end_names %}
+  {% if name starts with field_name %}
+    {% set has_icon_end_name = true %}
+  {% endif %}
+{% endfor %}
+{% set has_icon_start_name = false %}
+{% for field_name in icon_start_names %}
+  {% if name starts with field_name %}
+    {% set has_icon_start_name = true %}
+  {% endif %}
+{% endfor %}
+{% set is_switch_name = false %}
+{% for field_name in switch_names %}
+  {% if name starts with field_name %}
+    {% set is_switch_name = true %}
+  {% endif %}
+{% endfor %}
+
+{% set has_icon_end = actual_type in icon_end_types or has_icon_end_name %}
+{% set has_icon_start = actual_type in icon_start_types or has_icon_start_name %}
+{% set is_form_switch = (is_form_switch is defined and is_form_switch) or (type == 'checkbox' and is_switch_name) %}
+
 {% set classes = [
   'js-form-item',
   'c-form-item',
   'js-form-type-' ~ type|clean_class,
   'c-form-item-' ~ name|clean_class,
-  'c-form-item--' ~ type|clean_class,
+  'c-form-item--' ~ actual_type|clean_class,
+  'c-form-type--' ~ type|clean_class,
   'js-form-item-' ~ name|clean_class,
-  title_display not in ['after', 'before'] ? 'form-no-label',
-  disabled == 'disabled' ? 'form-disabled',
+  type in ['checkbox', 'radio'] ? 'c-form-type--boolean',
+  is_form_switch is defined and is_form_switch ? 'c-form-switch',
+  title_display ? 'c-form-item--label-' ~ title_display|clean_class,
+  title_display in ['after', 'before'] ? 'has-label',
+  title_display not in ['after', 'before'] ? 'no-label',
+  disabled == 'disabled' ? 'disabled',
   errors ? 'c-form-item--error',
+] %}
+
+{% set container_classes = [
+  'c-form-element__container',
+  use_floating ? 'c-form-floating',
+  has_icon_end ? 'has-icon has-icon--end',
+  has_icon_start ? 'has-icon has-icon--start',
 ] %}
 
 {% set description_classes = [
@@ -68,31 +119,78 @@
 ] %}
 
 {#
+  Attaching modular form libraries
+#}
+{% if type in ['checkbox', 'radio'] %}
+  {{ attach_library('brainsum_starterkit/forms.boolean') }}
+{% endif %}
+{% if is_form_switch is defined and is_form_switch %}
+  {{ attach_library('brainsum_starterkit/forms.switch') }}
+{% endif %}
+{% if actual_type == 'range' %}
+  {{ attach_library('brainsum_starterkit/forms.range') }}
+{% endif %}
+{% if actual_type in icon_end_types or actual_type in icon_start_types %}
+  {{ attach_library('brainsum_starterkit/forms.icons') }}
+{% endif %}
+{% if use_floating %}
+  {{ attach_library('brainsum_starterkit/forms.floating-labels') }}
+{% endif %}
+
+{#
   Building the template structure
 #}
 <div{{ attributes.addClass(classes) }}>
-  {% if label_display in ['before', 'invisible'] %}
-    {{ label }}
-  {% endif %}
+  {# Floating labels: input must come BEFORE label (both inside container) #}
+  {% if use_floating %}
+    {% if prefix is not empty %}
+      <span class="field-prefix">{{ prefix }}</span>
+    {% endif %}
 
-  {% if prefix is not empty %}
-    <span class="field-prefix">{{ prefix }}</span>
-  {% endif %}
+    {% if description_display == 'before' and description.content %}
+      <div{{ description.attributes }}>
+        {{ description.content }}
+      </div>
+    {% endif %}
 
-  {% if description_display == 'before' and description.content %}
-    <div{{ description.attributes }}>
-      {{ description.content }}
+    {# All inputs in container for consistent structure #}
+    <div{{ container_attributes.addClass(container_classes) }}>
+      {{ children }}
+      {{ label }}
     </div>
-  {% endif %}
 
-  {{ children }}
+    {% if suffix is not empty %}
+      <span class="field-suffix">{{ suffix }}</span>
+    {% endif %}
 
-  {% if suffix is not empty %}
-    <span class="field-suffix">{{ suffix }}</span>
-  {% endif %}
+  {% else %}
+    {# Standard layout: label before or after based on label_display #}
+    {% if label_display in ['before', 'invisible'] %}
+      {{ label }}
+    {% endif %}
 
-  {% if label_display == 'after' %}
-    {{ label }}
+    {% if prefix is not empty %}
+      <span class="field-prefix">{{ prefix }}</span>
+    {% endif %}
+
+    {% if description_display == 'before' and description.content %}
+      <div{{ description.attributes }}>
+        {{ description.content }}
+      </div>
+    {% endif %}
+
+    {# All inputs in container for consistent structure #}
+    <div{{ container_attributes.addClass(container_classes) }}>
+      {{ children }}
+    </div>
+
+    {% if suffix is not empty %}
+      <span class="field-suffix">{{ suffix }}</span>
+    {% endif %}
+
+    {% if label_display == 'after' %}
+      {{ label }}
+    {% endif %}
   {% endif %}
 
   {% if errors %}

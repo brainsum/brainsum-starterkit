@@ -15,7 +15,7 @@
   // Settings
   --menu-width: 24rem;
   --menu-border-width: 0.1rem;
-  --gutter: var(--gutter--1x);
+  --gutter: var(--gutter-1x);
 
   @media (--tablet-l) {
     display: flex;
@@ -29,7 +29,7 @@
     list-style: none;
     border-width: var(--menu-border-width);
     border-style: solid;
-    border-color: var(--color-grey-20);
+    border-color: var(--color-grey-40);
 
     @media (--tablet-l) {
       inline-size: var(--menu-width);
@@ -38,7 +38,7 @@
 
     &-item {
       &:nth-child(n + 2) {
-        border-block-start: var(--menu-border-width) solid var(--color-grey-20);
+        border-block-start: var(--menu-border-width) solid var(--color-grey-40);
       }
 
       a {
@@ -46,12 +46,12 @@
         padding-block: calc(var(--gutter) * 0.5);
         padding-inline: calc(var(--gutter) * 0.75);
         text-decoration: none;
-        background-color: var(--color-grey-20);
+        background-color: var(--color-grey-40);
 
         &:focus,
         &:hover,
         &:active {
-          background-color: var(--color-grey-10);
+          background-color: var(--color-grey-30);
         }
       }
 

@@ -23,8 +23,8 @@
   /**
    * Example for responsive container
    *
-   * --container-size-narrow: 129.6rem;
-   * --container-gutter-narrow: var(--gutter);
+   * --container-size-default: 129.6rem;
+   * --container-gutter-default: var(--gutter);
    *
    * @media (--tablet-s) {
    *   --container-size-default: 91%;
@@ -43,7 +43,7 @@
    * Additional containers
    */
 
-   /**
+  /**
    * Example: Narrow Container
    *
    * A narrower container for text-heavy content.

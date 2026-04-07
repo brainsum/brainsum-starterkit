@@ -1,0 +1,82 @@
+/**
+ * @file
+ * Number Input Controls
+ *
+ * Custom +/- buttons for number input fields, positioned like right-side
+ * icon fields (see forms.icons.scss). Hides native browser spinners.
+ *
+ * Attached conditionally by input--number.html.twig when
+ * number_controls: true in settings/settings.forms.yml.
+ *
+ * @see forms.icons.scss
+ * @see settings/settings.forms.yml
+ */
+
+.c-number-input {
+  --button-size: 1.4rem;
+  --button-gap: var(--unit-05x);
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  inline-size: 100%;
+
+  // Apply hover effect to input when hovering anywhere on wrapper
+  &:hover &__field:not(:disabled) {
+    border-color: var(--color-primary);
+  }
+
+  &__field {
+    appearance: textfield;
+    padding-inline-end: calc(var(--button-size) + 2 * var(--padding-inline));
+
+    // Hide native spinners
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  &__controls {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-end: var(--padding-inline);
+    display: flex;
+    flex-direction: column;
+    gap: var(--button-gap);
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: content-box;
+    inline-size: var(--button-size);
+    block-size: calc(var(--button-size) / 2);
+    padding: 0;
+    cursor: pointer;
+    pointer-events: auto;
+    border: 0;
+    background: transparent;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.3;
+    }
+
+    &:hover,
+    &:active {
+      color: var(--color-primary);
+    }
+  }
+
+  &__icon {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    fill: currentColor;
+  }
+}

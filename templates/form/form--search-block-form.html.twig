@@ -1,0 +1,46 @@
+{#
+/**
+ * @file
+ * Theme overwrite for a 'form' element for Search forms.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ * - use_floating_labels: Whether to use floating labels (set via preprocess).
+ *
+ * @see template_preprocess_form()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{#
+  Attaching Drupal libraries
+#}
+{% block includes %}
+  {{ attach_library('brainsum_starterkit/forms.search') }}
+  {% if is_horizontal %}
+    {{ attach_library('brainsum_starterkit/forms.layouts') }}
+  {% endif %}
+{% endblock %}
+
+{#
+  Defining local variables
+
+  is_horizontal: Set via settings/settings.forms.yml horizontal_layout.forms.
+  use_floating_labels: Set via settings/settings.forms.yml floating_labels.forms.
+#}
+{% set classes = [
+  'c-form',
+  is_horizontal ? 'c-form--horizontal',
+  use_floating_labels ? 'c-form--floating-labels',
+] %}
+
+{#
+  Building the template structure
+#}
+<form{{ attributes.addClass(classes) }}>
+  <div class="c-form__wrapper">
+    {{ children }}
+  </div>
+</form>

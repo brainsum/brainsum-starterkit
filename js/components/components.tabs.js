@@ -47,13 +47,20 @@
         tabs.classList.remove(expandedClass);
       }
     }
-    if (isTabsMobileLayout() && !activeTab.matches('.c-tabs__tab:first-child')) {
+
+    if (
+      isTabsMobileLayout() &&
+      !activeTab.matches('.c-tabs__tab:first-child')
+    ) {
       const newActiveTab = activeTab.cloneNode(true);
       const firstTab = tabs.querySelector('.c-tabs__tab:first-child');
       tabs.insertBefore(newActiveTab, firstTab);
       tabs.removeChild(activeTab);
     }
-    tabs.querySelector('.c-tabs__trigger').addEventListener('click', handleTriggerClick);
+
+    tabs
+      .querySelector('.c-tabs__trigger')
+      .addEventListener('click', handleTriggerClick);
   }
 
   /**

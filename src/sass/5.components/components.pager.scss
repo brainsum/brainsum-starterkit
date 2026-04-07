@@ -1,0 +1,169 @@
+/**
+ * @file
+ * Pager Component
+ *
+ * Pager component for all listers with pagers.
+ * It handles the full and view's mini pagers as well.
+ */
+
+/**
+ * Imports
+ */
+@use "../settings";
+@use "../tools";
+
+.c-pager {
+  /**
+   * Settings
+   */
+  --pager-margin: var(--unit-2x);
+  --pager-align: center; // horizontal alignment
+  --item-gap-block: var(--unit-2x);
+  --item-gap-inline: var(--unit-05x);
+  --item-padding-block: var(--unit-1x);
+  --item-padding-inline: var(--unit-2x);
+  --border-radius: 0.2rem;
+  --color: var(--color-primary);
+  --color-active: var(--color-light);
+
+  margin-block: var(--pager-margin);
+  color: var(--color);
+
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: var(--pager-align);
+    gap: var(--item-gap-block) var(--item-gap-inline);
+  }
+
+  &__text {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-inline-size: var(--size-touch-target);
+    block-size: var(--size-touch-target);
+    padding-block: var(--item-padding-block);
+    padding-inline: var(--item-padding-inline);
+    border-radius: var(--border-radius);
+  }
+
+  // Links inside items
+  &__link {
+    display: block;
+    text-decoration: none;
+    color: currentColor;
+
+    &:hover {
+      .c-pager__text {
+        background: rgb(from var(--color) r g b / 0.1);
+      }
+    }
+  }
+
+  // Item variations
+  &__item {
+    // Active state - no link, just the number displayed
+    &--active {
+      color: var(--color-active);
+      background: var(--color);
+    }
+
+    &--current {
+      display: flex;
+      align-items: center;
+      justify-content: var(--pager-align);
+    }
+  }
+
+  &__numbers {
+    @media (--tablet-s-down) {
+      inline-size: 100%;
+    }
+  }
+
+  &--labels {
+    .c-pager__item--first {
+      @media (--tablet-s-down) {
+        order: 1;
+      }
+    }
+
+    .c-pager__item--last {
+      @media (--tablet-s-down) {
+        order: 2;
+      }
+    }
+
+    .c-pager__item--previous {
+      @media (--tablet-s-down) {
+        order: 4;
+      }
+    }
+
+    .c-pager__item--next {
+      @media (--tablet-s-down) {
+        order: 5;
+      }
+    }
+
+    .c-pager__numbers {
+      @media (--tablet-s-down) {
+        order: 3;
+      }
+    }
+
+    &.c-pager--mini {
+      .c-pager__item--previous {
+        @media (--tablet-s-down) {
+          order: 1;
+        }
+      }
+
+      .c-pager__item--next {
+        @media (--tablet-s-down) {
+          order: 2;
+        }
+      }
+
+      .c-pager__item--current {
+        @media (--tablet-s-down) {
+          order: 3;
+          inline-size: 100%;
+        }
+      }
+    }
+  }
+
+  &--icons:not(.c-pager--mini) {
+    .c-pager__item--first {
+      @media (--tablet-s-down) {
+        order: 1;
+      }
+    }
+
+    .c-pager__item--last {
+      @media (--tablet-s-down) {
+        order: 4;
+      }
+    }
+
+    .c-pager__item--previous {
+      @media (--tablet-s-down) {
+        order: 2;
+      }
+    }
+
+    .c-pager__item--next {
+      @media (--tablet-s-down) {
+        order: 3;
+      }
+    }
+
+    .c-pager__numbers {
+      @media (--tablet-s-down) {
+        order: 5;
+      }
+    }
+  }
+}

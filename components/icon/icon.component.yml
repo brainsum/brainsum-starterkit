@@ -1,0 +1,33 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Icon
+description: 'Inline SVG icon component. Loads individual SVG files from the theme images/icons directory for full CSS colorable via currentColor.'
+status: stable
+props:
+  type: object
+  required:
+    - icon
+  properties:
+    icon:
+      type: string
+      title: Icon name
+      description: 'Name of the icon file without the .svg extension (e.g., "close", "star").'
+      examples:
+        - check-solid
+        - angle-down-solid
+    class:
+      type: string
+      title: CSS class
+      description: 'Additional CSS class(es) to add to the SVG element.'
+    size:
+      type: ['integer', 'string']
+      title: Size
+      description: 'Custom width and height of the icon in pixels. Defaults to 24.'
+      default: 24
+    alt:
+      type: string
+      title: Alt text
+      description: 'Accessible title text. If provided, the SVG gets role="img" and a <title> element. If omitted, the icon is treated as decorative with aria-hidden="true".'
+    directory:
+      type: string
+      title: Theme directory
+      description: 'Theme directory path used to locate SVG files. Only needed when including the component from inside a Twig macro, where template variables like `directory` are not in scope. Pass the theme directory through the macro arguments.'

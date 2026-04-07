@@ -2,11 +2,12 @@
  * @file
  * Language Dropdown Component
  *
- * Theming Language Dropdown block.
+ * Structural styles only.
+ * Theming (colors, fonts, spacing, shadows, etc.) belongs in the theme layer.
  */
 
 /**
-  * Imports
+ * Imports
  */
 @use "../settings";
 @use "../tools";
@@ -14,59 +15,116 @@
 .c-block-dropdown-language {
   display: flex;
   align-items: center;
-  padding-block: 0.4rem;
-  padding-inline: 0.3rem;
 
-  .language-link {
-    @include tools.font-smooth;
+  .c-form-wrapper {
+    margin: 0;
+    border: 0;
+  }
+}
 
-    display: block;
-    padding-block: 1rem;
-    padding-inline: 1.1rem;
+.c-language-dropdown {
+  --item-padding-inline: var(--unit-4x);
+  --item-padding-block: var(--unit-2x);
+  --toggle-gap: var(--unit-2x);
+
+  // Colors
+  --language-background: var(--color-background-primary);
+  --language-color: var(--color-text-primary);
+  --language-hover-color: var(--color-primary);
+  --toggle-icon-color: currentColor;
+
+  // Animation
+  --transition-easing: ease-out;
+  --transition-timing: 0.25s;
+  --dropdown-offset: 0;
+
+  position: relative;
+
+  // Toggle button
+  &__toggle {
+    display: flex;
+    align-items: center;
+    padding-block: var(--item-padding-block);
+    padding-inline: var(--item-padding-inline);
     cursor: pointer;
-    color: var(--color-primary);
-    font-size: 1.4rem;
+    color: var(--language-color);
+    border: 0;
+    background: none;
+    font: inherit;
+    gap: var(--toggle-gap);
+
+    &:hover {
+      --language-color: var(--language-hover-color);
+    }
   }
 
-  .dropdown {
-    @include tools.global-transition;
+  &__toggle-icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    color: var(--toggle-icon-color);
 
+    svg {
+      transition: transform var(--transition-timing) var(--transition-easing);
+    }
+
+    // Rotate icon when open
+    .is-open & svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  // Dropdown panel
+  &__panel {
     position: absolute;
-    z-index: 700;
+    z-index: 10;
+    inset-block-start: 100%;
+    inset-inline-end: 0;
+    display: flex;
+    visibility: hidden;
     overflow: hidden;
-    block-size: auto;
+    flex-direction: column;
     max-block-size: 0;
+    margin: 0;
+    margin-block-start: var(--dropdown-offset);
+    padding: 0;
+    list-style: none;
+    transition:
+      visibility var(--transition-timing) var(--transition-easing),
+      max-block-size var(--transition-timing) var(--transition-easing),
+      transform var(--transition-timing) var(--transition-easing),
+      opacity var(--transition-timing) var(--transition-easing);
+    transform: translateY(calc(-1 * var(--dropdown-offset)));
     opacity: 0;
-    background: var(--color-primary);
+    background: var(--language-background);
 
-    &.is-active {
-      max-block-size: 10rem;
+    // Open state
+    &.is-open {
+      visibility: visible;
+      overflow: visible;
+      max-block-size: none;
+      transform: translateY(0);
       opacity: 1;
     }
-
-    .language-link {
-      color: var(--color-light);
-    }
   }
 
-  .c-dropbutton {
-    &__wrapper {
-      position: relative;
-    }
-
-    &__icon {
-      @include tools.global-transition;
-
-      position: absolute;
-      inset-block-start: 2.1rem;
-      inset-inline-end: -1rem;
-      display: block;
-      margin-block-start: -0.5rem;
-      cursor: pointer;
-    }
+  &__item {
+    margin: 0;
   }
 
-  .is-active .c-dropbutton__icon {
-    transform: rotate(-180deg);
+  // Language links in dropdown
+  .language-link {
+    @include tools.global-transition;
+
+    display: block;
+    padding-block: var(--item-padding-block);
+    padding-inline: var(--item-padding-inline);
+    text-decoration: none;
+    color: var(--language-color);
+
+    &:hover {
+      --language-color: var(--language-hover-color);
+    }
   }
 }

@@ -27,7 +27,7 @@ $heading-size: true !default;
 /**
  * Small element font size
  *
- * If true: inherits font-size (semantic usage)
+ * If true: inherits font-size (semantic usage and not theming)
  * If false: uses 80% (browser default)
  *
  * @type Boolean
@@ -48,6 +48,9 @@ $font-antialiasing: false !default;
  *
  * Removes bullets from ul, ol, menu with CSS classes.
  * Encourages semantic list usage for navigation etc.
+ *
+ * If true: removes bullets (semantic usage and not theming)
+ * If false: uses browser default
  *
  * @type Boolean
  */
@@ -253,7 +256,7 @@ $button-element: false !default;
  * List bullets removal for lists with classes
  */
 @mixin list-bullets($list-bullets: $list-bullets) {
-  @if $list-bullets == false {
+  @if $list-bullets == true {
     list-style: none;
   }
 }

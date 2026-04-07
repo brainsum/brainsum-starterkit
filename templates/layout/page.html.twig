@@ -16,6 +16,8 @@
  * - logged_in: A flag indicating if the user is registered and signed in.
  * - is_admin: A flag indicating if the user has permission to access
  *   administration pages.
+ * - component_containers: Boolean indicating whether to use component-based
+ *   containers (TRUE) or a single page-level container (FALSE).
  *
  * Site identity:
  * - front_page: The URL of the front page. Use this instead of base_path when
@@ -41,6 +43,10 @@
  * - page.sidebar_second: Items for the second sidebar.
  * - page.footer: Items for the footer region.
  * - page.admin: Items for the admin tools region
+ * - component_containers: Boolean indicating whether to use component-based
+ *   containers (TRUE) or a single page-level container (FALSE).
+ * - sticky_header: Header sticky behavior. Options: FALSE (normal),
+ *   'sticky' (always visible), 'auto-hide' (hides on scroll down, shows on scroll up).
  *
  * @see template_preprocess_page()
  * @see html.html.twig
@@ -65,7 +71,9 @@
 #}
 <div{{ attributes.addClass(page_classes) }} id="c-page">
   {% if page.top_bar or page.header or page.navigation %}
-    <header id="c-header" class="c-header" data-drupal-selector="header">
+    {{ attach_library('brainsum_starterkit/header') }}
+
+    <header id="c-header" class="c-header{{ sticky_header ? ' is-sticky is-sticky--' ~ sticky_header }}" data-drupal-selector="header">
       {% if page.top_bar %}
         <div class="c-top-bar" data-drupal-selector="top-bar">
           <div class="o-container">
@@ -82,67 +90,103 @@
 
       {% if page.navigation %}
         <div class="o-container">
-          <div class="c-header__navigation" data-drupal-selector="header__navigation">
-            {{ page.navigation }}
+          <div class="c-navigation__grid">
+            <div class="c-header__navigation" id="c-header__navigation" data-drupal-selector="header__navigation">
+              {{ page.navigation }}
+            </div>
+
+            <button
+              class="c-header__hamburger c-hamburger"
+              data-drupal-selector="hamburger"
+              aria-controls="c-header__navigation"
+              aria-expanded="false"
+            >
+              <span class="c-hamburger__box">
+                <span class="c-hamburger__spinner"></span>
+              </span>
+
+              <span class="c-hamburger__label u-visually-hide">{{ 'Toggle Main Menu'|t }}</span>
+            </button>
           </div>
-
-          <button
-            class="c-header__hamburger c-hamburger"
-            data-drupal-selector="hamburger"
-            aria-controls="c-navigation"
-            aria-expanded="false"
-          >
-            <span class="c-hamburger__box">
-              <span class="c-hamburger__spinner"></span>
-            </span>
-
-            <span class="c-hamburger__label u-visually-hide">{{ 'Toggle Main Menu'|t }}</span>
-          </button>
         </div>
       {% endif %}
     </header>
   {% endif %}
 
   <main id="main">
-    <span id="main-content" tabindex="-1"></span>
+    {% if not component_containers %}
+      <div class="o-container">
+    {% endif %}
+
+    {# Skip link for keyboard users #}
+    <div class="c-skip-link__target">
+      {% if component_containers %}
+        <div class="o-container">
+      {% endif %}
+        {# you can find the link in html.html.twig #}
+        <span id="main-content" tabindex="-1" class="u-visually-hide u-visually-hide--focusable">
+          {{ 'Main content'|t }}
+        </span>
+      {% if component_containers %}
+        </div>
+      {% endif %}
+    </div>
 
     {% if page.breadcrumb %}
-      <section class="c-breadcrumb__section">
-        <div class="o-container">
+      <div class="c-breadcrumb__section">
+        {% if component_containers %}
+          <div class="o-container">
+        {% endif %}
           {{ page.breadcrumb }}
-        </div>
-      </section>
+        {% if component_containers %}
+          </div>
+        {% endif %}
+      </div>
     {% endif %}
 
     {% if page.hero %}
-      <section class="c-hero">
-        <div class="o-container">
+      <div class="c-hero">
+        {% if component_containers %}
+          <div class="o-container">
+        {% endif %}
           {% block hero_region %}
             {{ page.hero }}
           {% endblock %}
-        </div>
-      </section>
+        {% if component_containers %}
+          </div>
+        {% endif %}
+      </div>
     {% endif %}
 
     {% if page.system %}
-      <section class="c-system">
-        <div class="o-container">
+      <div class="c-system">
+        {% if component_containers %}
+          <div class="o-container">
+        {% endif %}
           {{ page.system }}
-        </div>
-      </section>
+        {% if component_containers %}
+          </div>
+        {% endif %}
+      </div>
     {% endif %}
 
     {% if page.top %}
-      <section class="c-top">
-        <div class="o-container">
+      <div class="c-top">
+        {% if component_containers %}
+          <div class="o-container">
+        {% endif %}
           {{ page.top }}
-        </div>
-      </section>
+        {% if component_containers %}
+          </div>
+        {% endif %}
+      </div>
     {% endif %}
 
-    <section class="c-content">
-      {{ page.content }}
-    </section>
+    <div class="c-content">
+      {% block content_region %}
+        {{ page.content }}
+      {% endblock %}
+    </div>
 
     {% if page.sidebar %}
       <div class="c-sidebar c-sidebar--first">
@@ -157,11 +201,19 @@
     {% endif %}
 
     {% if page.bottom %}
-      <section class="c-bottom">
-        <div class="o-container">
+      <div class="c-bottom">
+        {% if component_containers %}
+          <div class="o-container">
+        {% endif %}
           {{ page.bottom }}
-        </div>
-      </section>
+        {% if component_containers %}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if not component_containers %}
+      </div>
     {% endif %}
   </main>
 

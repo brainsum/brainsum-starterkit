@@ -1,0 +1,105 @@
+/**
+ * @file
+ * Form Range Input (Slider)
+ *
+ * Spectre-inspired range input styling with custom thumb and track,
+ * logical properties, :focus-visible outline, and disabled state.
+ *
+ * Auto-attached by form-element.html.twig when range input is used.
+ */
+
+@use "../../settings";
+@use "../../tools";
+
+.c-form {
+  &-item--range {
+    --slider-thumb-size: 1.2rem;
+    --slider-track-height: 0.2rem;
+    --slider-thumb-color: var(--color-primary);
+    --slider-track-color: var(--color-border);
+    --slider-fill-color: var(--color-primary);
+
+    input[type="range"] {
+      inline-size: 100%;
+      block-size: var(--slider-thumb-size);
+      margin: 0;
+      padding: 0;
+      cursor: pointer;
+      appearance: none;
+      background: transparent;
+
+      @if settings.$prefers-reduced-motion {
+        @media (--reduced-motion) {
+          &::-webkit-slider-thumb,
+          &::-moz-range-thumb {
+            transition: none;
+          }
+        }
+      }
+
+      &:focus-visible {
+        outline: 0.1rem solid var(--slider-thumb-color);
+        outline-offset: 0.2rem;
+      }
+
+      // WebKit track
+      &::-webkit-slider-runnable-track {
+        inline-size: 100%;
+        block-size: var(--slider-track-height);
+        border-radius: var(--border-radius);
+        background: var(--slider-track-color);
+      }
+
+      // Firefox track
+      &::-moz-range-track {
+        inline-size: 100%;
+        block-size: var(--slider-track-height);
+        border-radius: var(--border-radius);
+        background: var(--slider-track-color);
+      }
+
+      // WebKit thumb
+      &::-webkit-slider-thumb {
+        @include tools.square(var(--slider-thumb-size));
+
+        margin-block-start: calc((var(--slider-track-height) - var(--slider-thumb-size)) / 2);
+        transition: transform 0.15s ease;
+        border: 0;
+        border-radius: 50%;
+        background: var(--slider-thumb-color);
+        appearance: none;
+
+        &:active {
+          transform: scale(1.15);
+        }
+      }
+
+      // Firefox thumb
+      &::-moz-range-thumb {
+        @include tools.square(var(--slider-thumb-size));
+
+        transition: transform 0.15s ease;
+        border: 0;
+        border-radius: 50%;
+        background: var(--slider-thumb-color);
+
+        &:active {
+          transform: scale(1.15);
+        }
+      }
+
+      // Firefox fill
+      &::-moz-range-progress {
+        block-size: var(--slider-track-height);
+        border-radius: var(--border-radius);
+        background: var(--slider-fill-color);
+      }
+
+      // Disabled
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+    }
+  }
+}

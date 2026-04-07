@@ -1,0 +1,227 @@
+/**
+ * @file
+ * Form Boolean Elements
+ *
+ * Checkboxes, radios, inline boolean layout, and boolean validation states.
+ * Uses appearance: none on native inputs — the input itself becomes the visible
+ * box; input::before draws the indicator (check mark or radio dot).
+ *
+ * Also includes standalone boolean alignment for horizontal form layouts,
+ * so no separate forms.layouts library is needed just for boolean fields.
+ *
+ * To display checkboxes/radios inline (horizontal row), edit settings/settings.forms.yml:
+ *   inline_booleans:
+ *     names:
+ *       - field_categories
+ *
+ * Auto-attached by form-element.html.twig when checkbox/radio elements are used.
+ */
+
+@use "../../settings";
+@use "../../tools";
+
+.c-form {
+  /**
+   * Boolean type form elements
+   *   - radio
+   *   - checkbox
+   *
+   * Modern boolean styling using appearance: none on the native input.
+   * The input itself becomes the visible box; input::before draws the
+   * indicator (check mark or radio dot).
+   */
+
+  // Gaps
+  --boolean-gap: var(--unit-2x); // gap between multiple boolean options
+  --boolean-label-gap: var(--unit-3x); // gap between boolean input and label
+
+  // Sizes
+  --boolean-item-size: 2.2rem; // size of the boolean field item
+  --boolean-size: var(--icon-size); // size of the boolean input
+
+  // Colors
+  --boolean-color: var(--color-primary);
+  --boolean-background: var(--color-light);
+  --boolean-border-color: var(--color-border-dark);
+  --boolean-disabled-background: var(--color-background-dark);
+
+  &-boolean-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--boolean-gap);
+  }
+
+  &-type--boolean {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--boolean-label-gap);
+    min-block-size: var(--boolean-item-size);
+    margin-inline: 0;
+    cursor: pointer;
+    line-height: var(--boolean-item-size);
+
+    // Error messages and descriptions must wrap below the input + label row.
+    .c-form-item__error-message,
+    .c-form-item--error-message,
+    .description {
+      flex-basis: 100%;
+    }
+
+    input {
+      @include tools.square(var(--boolean-size));
+      @include tools.global-transition;
+
+      display: grid;
+      flex-shrink: 0;
+      place-content: center;
+      margin: 0;
+      cursor: pointer;
+      border: 0.1rem solid var(--boolean-border-color);
+      border-radius: var(--border-radius);
+      background: var(--boolean-background);
+      appearance: none;
+
+      &::before {
+        content: "";
+        transition: transform 0.1s ease-in-out;
+        transform: scale(0);
+      }
+
+      &:checked {
+        border-color: var(--boolean-color);
+        background: var(--boolean-color);
+      }
+
+      &:checked::before {
+        transform: scale(1);
+      }
+
+      &:focus-visible {
+        outline: 0.1rem solid var(--boolean-color);
+        outline-offset: 0.1rem;
+      }
+
+      &:active {
+        background: var(--color-background-dark);
+      }
+
+      &:disabled,
+      &.is-disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+        background: var(--boolean-disabled-background);
+
+        & + label {
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
+      }
+    }
+
+    label {
+      margin-block-end: 0;
+      cursor: pointer;
+      line-height: var(--boolean-item-size);
+    }
+
+    &:not(:has(input:disabled, input.is-disabled)):hover input {
+      border-color: var(--boolean-color);
+    }
+  }
+
+  /**
+   * Checkbox-specific styles
+   *
+   * CSS-only check mark using rotated borders (Spectre technique).
+   * Physical border properties ensure the check symbol doesn't mirror in RTL.
+   */
+  &-type--checkbox {
+    input {
+      border-radius: var(--border-radius);
+
+      &:checked::before {
+        inline-size: 0.6rem;
+        block-size: 0.9rem;
+        margin-block-start: -0.1rem;
+        transform: rotate(45deg);
+
+        // Physical borders: check mark symbol must not mirror in RTL
+        border: 0.2rem solid var(--color-light);
+        border-block-start-width: 0;
+        border-inline-start-width: 0;
+        background: transparent;
+      }
+
+      // Indeterminate state
+      &:indeterminate {
+        border-color: var(--boolean-color);
+        background: var(--boolean-color);
+      }
+
+      &:indeterminate::before {
+        inline-size: 1rem;
+        block-size: 0.2rem;
+        transform: scale(1);
+        border: 0;
+        background: var(--boolean-background);
+      }
+    }
+  }
+
+  /**
+   * Radio-specific styles
+   *
+   * White dot centered inside a circular box, only visible on :checked.
+   */
+  &-type--radio {
+    input {
+      border-radius: 50%;
+
+      &:checked::before {
+        inline-size: 0.6rem;
+        block-size: 0.6rem;
+        border-radius: 50%;
+        background: var(--boolean-background);
+      }
+    }
+  }
+
+  /**
+   * Inline Forms
+   *
+   * Makes boolean items (checkboxes, radios) display in a row.
+   * Apply `.c-form-inline` to the wrapper element.
+   */
+  &-inline {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+
+    .c-form-type--boolean {
+      display: inline-flex;
+      margin-inline-end: var(--inline-gap);
+    }
+  }
+
+  /**
+   * Standalone boolean fields in horizontal layout (single checkbox, switch)
+   *
+   * Have no separate label column — push them to align with column 2 content.
+   * Reset inside composites where the grid already handles alignment.
+   */
+  &--horizontal {
+    .c-form-type--boolean {
+      @media (--tablet-s) {
+        margin-inline-start: calc(var(--horizontal-label-width) + var(--label-gap));
+      }
+    }
+
+    .c-fieldset--composite .c-form-type--boolean {
+      @media (--tablet-s) {
+        margin-inline-start: 0;
+      }
+    }
+  }
+}

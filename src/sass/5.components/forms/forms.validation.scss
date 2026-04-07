@@ -1,0 +1,142 @@
+/**
+ * @file
+ * Form Validation States
+ *
+ * Error and success states for all form element types: text inputs, select,
+ * checkboxes, radios, switches, and validation messages.
+ *
+ * Supports both server-side (.has-error, .has-success) and client-side
+ * (.just-validate-error-field, .is-success) validation classes.
+ *
+ * CONFIGURATION (settings/settings.forms.yml):
+ *   validation:
+ *     enabled: false        # Global toggle (true = ON, forms = exclusions)
+ *     forms:
+ *       - my_form_id        # Include these when enabled: false
+ *
+ * Auto-attached when enabled for the form.
+ */
+
+@use "../../tools";
+
+.c-form {
+  /**
+   * Text Inputs and Select Validation
+   */
+  &-element,
+  &-element--type-select select {
+    .has-success &,
+    &.is-success {
+      border-color: var(--color-success);
+
+      &:focus-visible {
+        outline-color: var(--color-success);
+      }
+    }
+
+    .has-error &,
+    &.just-validate-error-field {
+      border-color: var(--color-error);
+
+      &:focus-visible {
+        outline-color: var(--color-error);
+      }
+    }
+  }
+
+  /**
+   * Description Color Changes
+   */
+  &-item__description {
+    .has-success & {
+      color: var(--color-success);
+    }
+
+    .has-error & {
+      color: var(--color-error);
+    }
+  }
+
+  /**
+   * Validation Messages
+   */
+  &-item__error-message {
+    @include tools.type(description);
+
+    margin-block: var(--description-gap) calc(var(--description-gap) * 6);
+    color: var(--color-error);
+  }
+
+  &-item__success-message {
+    @include tools.type(description);
+
+    margin-block: var(--description-gap) calc(var(--description-gap) * 6);
+    color: var(--color-success);
+  }
+
+  /**
+   * Boolean Validation States (Checkboxes, Radios)
+   */
+  &-type--boolean {
+    // Server-side: Drupal adds .has-error to a parent wrapper.
+    // Client-side: JustValidate adds .just-validate-error-field to the input.
+    .has-error & input,
+    input.just-validate-error-field {
+      border-color: var(--color-error);
+    }
+
+    .has-error & input:checked,
+    input.just-validate-error-field:checked {
+      border-color: var(--color-error);
+      background: var(--color-error);
+    }
+
+    .has-error & input:indeterminate,
+    input.just-validate-error-field:indeterminate {
+      border-color: var(--color-error);
+      background: var(--color-error);
+    }
+
+    .has-error & input:focus-visible,
+    input.just-validate-error-field:focus-visible {
+      outline-color: var(--color-error);
+    }
+  }
+
+  /**
+   * Radio Error Override
+   *
+   * Unchecked radios must stay empty (border only, no fill).
+   * The generic boolean rule above sets background on :checked which
+   * would fill the entire circle. Override to keep the same pattern as
+   * checkboxes: error color replaces the primary color.
+   */
+  &-type--radio {
+    .has-error & input:not(:checked),
+    input.just-validate-error-field:not(:checked) {
+      background: var(--color-light);
+    }
+  }
+
+  /**
+   * Switch Validation States
+   */
+  &-switch {
+    input {
+      // Error: unchecked — orange border, grey track
+      .has-error &:not(:checked),
+      &.just-validate-error-field:not(:checked) {
+        border-color: var(--color-error);
+        background: var(--color-grey-40);
+      }
+
+      // Error: checked — solid orange track
+      .has-error &:checked,
+      &.just-validate-error-field:checked {
+        border-color: var(--color-error);
+        background: var(--color-error);
+        background-clip: border-box;
+      }
+    }
+  }
+}

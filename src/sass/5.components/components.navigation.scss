@@ -1,0 +1,216 @@
+/**
+ * @file
+ * Navigation Component
+ *
+ * Main navigation menu.
+ */
+
+/**
+ * Imports
+ */
+@use "../settings";
+@use "../tools";
+
+/**
+ * Navigation grid
+ */
+.c-navigation__grid {
+  display: flex;
+  align-items: center;
+}
+
+/**
+ * Navigation wrapper
+ */
+.c-header__navigation {
+  --navigation-breakpoint: 64em; // it's used in js, where we can't use @custom-media.
+  --item-padding-inline: var(--unit-4x);
+  --item-padding-block: var(--unit-2x);
+  --toggle-gap: var(--unit-2x);
+
+  // Colors
+  --navigation-background: var(--color-background-primary);
+  --navigation-color: var(--color-text-primary);
+  --navigation-hover-color: var(--color-primary);
+  --toggle-icon-color: currentColor;
+
+  // Animation
+  --transition-easing: ease-out;
+  --transition-timing: 0.25s;
+  --dropdown-offset: 0;
+
+  // Mobile: hidden by default, shown when active
+  @media (--navigation-down) {
+    --item-padding-block: var(--unit-3x); // Make the items at least 44px height.
+
+    display: none;
+
+    &.is-active {
+      position: fixed;
+      z-index: 1000;
+      inset: 0;
+      display: block;
+      overflow-y: auto;
+      padding-block-start: var(--size-touch-target);
+      padding-inline: var(--container-gutter-default);
+      background: var(--navigation-background);
+    }
+  }
+}
+
+/**
+ * Main menu
+ */
+.c-menu--main {
+  display: flex;
+  flex-direction: column;
+
+  @media (--navigation) {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &.c-menu--level-1 {
+    @media (--navigation) {
+      margin-inline: calc(-1 * var(--item-padding-inline));
+    }
+  }
+
+  /**
+   * Menu items
+   */
+  .c-menu__item {
+    position: relative;
+  }
+
+  /**
+   * Menu links (all levels)
+   */
+  .c-menu__link {
+    @include tools.global-transition;
+
+    display: flex;
+    align-items: center;
+    padding-block: var(--item-padding-block);
+    padding-inline: var(--item-padding-inline);
+    text-decoration: none;
+    color: var(--navigation-color);
+    gap: var(--toggle-gap);
+
+    &:hover {
+      --navigation-color: var(--navigation-hover-color);
+    }
+
+    &.is-active {
+      color: var(--navigation-hover-color);
+      font-weight: 700;
+    }
+  }
+
+  /**
+   * Toggle button (top-level items with children)
+   */
+  .c-menu__button-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    inline-size: 100%;
+    cursor: pointer;
+    border: 0;
+    background: none;
+
+    // Rotate caret icon when open
+    &.is-open .c-menu__link-icon svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  /**
+   * Caret icon container
+   */
+  .c-menu__link-icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    color: var(--toggle-icon-color);
+
+    svg {
+      transition: transform var(--transition-timing) var(--transition-easing);
+    }
+  }
+}
+
+/**
+ * Submenu (level 2) — smooth dropdown
+ */
+.c-menu--main .c-menu--level-2 {
+  background: var(--navigation-background);
+
+  // Mobile: JS-driven height animation
+  @media (--navigation-down) {
+    overflow: hidden;
+    block-size: 0;
+  }
+
+  // Desktop: absolutely positioned dropdown (hidden by default, no transition)
+  @media (--navigation) {
+    position: absolute;
+    z-index: 30;
+    inset-block-start: 100%;
+    inset-inline-start: 0;
+    display: flex;
+    visibility: hidden;
+    flex-direction: column;
+    min-inline-size: 100%;
+    margin-block-start: var(--dropdown-offset);
+    transform: translateY(calc(-1 * var(--dropdown-offset)));
+    opacity: 0;
+  }
+
+  // Open state
+  &.is-open {
+    @media (--navigation) {
+      visibility: visible;
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
+// Enable transitions only after JS initializes (prevents FOUC)
+.c-header__navigation.js-ready {
+  .c-menu--level-2 {
+    @media (--navigation-down) {
+      transition: height var(--transition-timing) var(--transition-easing);
+    }
+
+    @media (--navigation) {
+      transition:
+        visibility var(--transition-timing) var(--transition-easing),
+        transform var(--transition-timing) var(--transition-easing),
+        opacity var(--transition-timing) var(--transition-easing);
+    }
+  }
+}
+
+/**
+ * Submenu items
+ */
+.c-menu--main .c-menu__item--level-2 {
+  inline-size: 100%;
+}
+
+/**
+ * Submenu links
+ */
+.c-menu--main .c-menu__link--level-2 {
+  white-space: nowrap;
+}
+
+/**
+ * Mobile menu open — body state
+ */
+body.has-mobile-menu-open {
+  overflow: hidden;
+}

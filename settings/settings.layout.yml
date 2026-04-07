@@ -1,0 +1,23 @@
+# Layout Component Configuration
+#
+# Centralized settings for layout and container behavior.
+#
+# @see src/includes/html.inc
+# @see src/includes/page.inc
+# @see templates/layout/html.html.twig
+# @see templates/layout/page.html.twig
+
+# Component Containers
+# Determines the container strategy for the page layout.
+#
+# Default: true (recommended)
+# - true: Each section/component has its own container wrapper.
+#   This provides maximum flexibility for component-based layouts where
+#   different sections may need different container widths or no container at all.
+#   Example: Header has container, hero is full-width, content has container.
+#
+# - false: Single container wrapper for the entire page content.
+#   All page content is wrapped in one container element at the page level.
+#   Individual sections/components do not add their own containers.
+#   Use this for simpler layouts where all content shares the same max-width.
+component_containers: true

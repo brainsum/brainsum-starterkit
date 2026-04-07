@@ -1,0 +1,18 @@
+# Tabledrag Component Configuration
+#
+# Settings for draggable table behavior and accessibility features.
+#
+# @see src/includes/table.inc
+# @see src/js/components/components.tabledrag.js
+# @see src/sass/5.components/components.tabledrag.scss
+
+# Screen Reader Support
+# Enable accessible actions menu for screen reader users.
+# When enabled, adds a menu button with Move Up/Down/Top/Bottom options
+# that dynamically updates based on row position.
+#
+# Options:
+#   true  - Enable actions menu for screen reader accessibility
+#   false - Disable actions menu (keyboard drag-and-drop only)
+#
+screen_reader_support: true

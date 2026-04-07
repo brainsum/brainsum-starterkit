@@ -36,16 +36,43 @@
  * - no_striping: A boolean indicating that the row should receive no striping.
  * - header_columns: The number of columns in the header.
  *
+ * Theme-specific variables (added by brainsum_starterkit_preprocess_table):
+ * - table_responsive: Boolean indicating if responsive feature is enabled globally.
+ * - table_modifiers: Array of modifier classes from global settings (e.g., 'c-table--striped').
+ *
  * @see template_preprocess_table()
+ * @see brainsum_starterkit_preprocess_table()
+ * @see settings/settings.tables.yml
  */
 #}
+
+{# Don't add c-table classes to draggable tables - they have their own tabledrag styling #}
+{% if attributes.hasClass('draggable-table') %}
+  {% set classes = [] %}
+{% else %}
+  {% set classes = ['c-table'] %}
+
+  {# Add responsive class based on type #}
+  {% if table_responsive_type == 'stack' %}
+    {% set classes = classes|merge(['is-responsive']) %}
+  {% endif %}
+
+  {# Add modifier classes from settings #}
+  {% if table_modifiers %}
+    {% set classes = classes|merge(table_modifiers) %}
+  {% endif %}
+{% endif %}
 
 {#
   Building the template structure
 #}
-<table{{ attributes }}>
+{# Don't wrap draggable tables #}
+{% if table_needs_wrapper and not attributes.hasClass('draggable-table') %}
+<div class="c-table__wrapper">
+{% endif %}
+<table{{ attributes.addClass(classes) }}>
   {% if caption %}
-    <caption>{{ caption }}</caption>
+    <caption class="c-table__caption">{{ caption }}</caption>
   {% endif %}
 
   {% for colgroup in colgroups %}
@@ -84,7 +111,13 @@
         <tr{{ row.attributes.addClass(row_classes) }}>
           {% for cell in row.cells %}
             <{{ cell.tag }}{{ cell.attributes }}>
-              {{- cell.content -}}
+              {% if table_responsive and header %}
+                {# Add responsive markup: label from header + content wrapper #}
+                <b class="c-table__cell-label">{{ header[loop.index0].content }}</b>
+                <span class="c-table__cell-content">{{- cell.content -}}</span>
+              {% else %}
+                {{- cell.content -}}
+              {% endif %}
             </{{ cell.tag }}>
           {% endfor %}
         </tr>
@@ -111,3 +144,6 @@
     </tfoot>
   {% endif %}
 </table>
+{% if table_needs_wrapper and not attributes.hasClass('draggable-table') %}
+</div>
+{% endif %}

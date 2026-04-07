@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Theme override for the dropdown_language fieldset.
+ *
+ * Includes the base fieldset template with title_display set to 'invisible'
+ * so the legend is visually hidden but remains accessible to screen readers.
+ *
+ * @see template_preprocess_fieldset()
+ */
+#}
+
+{{ include('@brainsum_starterkit/form/fieldset.html.twig', {
+  title_display: 'invisible',
+}) }}

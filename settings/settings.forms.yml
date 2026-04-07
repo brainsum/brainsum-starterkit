@@ -1,0 +1,109 @@
+# Form Component Configuration
+#
+# Centralized settings for form styling features.
+# All field names use prefix matching (e.g., 'field_phone' matches 'field_phone[0][value]').
+#
+# Features with `enabled` + `forms` follow a unified toggle pattern:
+#   enabled: true  → feature is ON globally; listed forms are EXCLUDED (opt-out)
+#   enabled: false → feature is OFF globally; listed forms are INCLUDED (opt-in)
+#
+# For enhanced_select and number_controls the library is only attached when
+# the form actually contains the relevant input type (select / number),
+# even if the feature is enabled for that form.
+#
+# @see src/includes/form.inc
+# @see templates/form/form.html.twig
+# @see templates/form/form-element.html.twig
+
+# Horizontal/Inline Form Layout
+# Two-column layout with labels on the left and inputs on the right.
+# Can also be applied to individual containers inside a form by adding
+# the .c-form--horizontal class in the render array or template.
+# @see templates/form/form-element.html.twig
+# Note: Floating labels are automatically disabled for these forms.
+horizontal_layout:
+  enabled: false
+  forms:
+    # - my_settings_form
+    - search_block_form
+
+# Floating Labels
+# Bootstrap-inspired labels that animate above the input on focus.
+# Note: Automatically disabled for horizontal/inline form layouts.
+floating_labels:
+  enabled: false
+  forms:
+    - theme_demo_form
+    # - user_login_form
+    # - user_register_form
+    # - contact_message_feedback_form
+
+# Form Icons
+# Add icons to form fields (start = left, end = right).
+icons:
+  # Icon on the right side (e.g., select dropdown arrow)
+  end:
+    types:
+      - select
+    names:
+      # - field_website
+
+  # Icon on the left side (e.g., search magnifier)
+  start:
+    types:
+      - search
+    names:
+      # - field_phone
+
+# Toggle Switch
+# Render checkboxes as iOS-style toggle switches.
+# Only applies to checkbox fields.
+switch:
+  names:
+    # - field_newsletter
+    # - field_notifications
+    - switch_on
+    - switch_off
+
+# Inline Booleans
+# Display checkboxes/radios in a horizontal row instead of stacked.
+# Use field names (prefix matching).
+inline_booleans:
+  names:
+    # - field_categories
+    # - field_tags
+    - inline_checkboxes
+    - inline_radios
+
+# Enhanced Selects (Choices.js)
+# Searchable, styleable select fields with improved UX.
+# Library is only attached when the form contains <select> elements.
+# Requires: composer require npm-asset/choices.js
+enhanced_select:
+  enabled: false
+  forms:
+    # - contact_message_feedback_form
+    # - user_register_form
+    - theme_demo_form
+
+# Number Input Controls
+# Replace native browser spinners with custom +/- buttons.
+# Library is only attached when the form contains <input type="number">.
+# disable_at_limits: Disable individual +/- buttons at min/max boundaries.
+#   false (default) = browser-like behavior, whole field disabled or not.
+#   true = buttons disabled individually when value reaches min/max.
+number_controls:
+  enabled: true
+  disable_at_limits: false
+  forms:
+    # - theme_demo_form
+
+# Client-Side Validation (JustValidate)
+# Modern client-side validation with smooth error animations.
+# Requires: composer require npm-asset/just-validate
+validation:
+  enabled: false
+  forms:
+    # - contact_message_feedback_form
+    # - user_login_form
+    - theme_demo_form

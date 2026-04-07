@@ -2,7 +2,19 @@
  * @file
  * Button Tool
  *
- * Button mixins for different DOMs.
+ * Button mixins inspired by Spectre CSS, modernized with CSS custom properties,
+ * color-mix(), :focus-visible outline, and logical properties.
+ *
+ * @example
+ *   @use "../tools";
+ *
+ *   .c-button {
+ *     @include tools.button-base;
+ *   }
+ *
+ *   .c-button--primary {
+ *     @include tools.button-variant(var(--color-primary));
+ *   }
  */
 
 /**
@@ -13,22 +25,63 @@
 @use "./tools.type" as type;
 
 /**
- * Button mixin
+ * Button
  */
 @mixin button {
-  @include type.font-smooth;
+  --border-radius: 0.2rem;
+
+  // Spacing
+  --button-padding-block: var(--unit-2x);
+  --button-padding-inline: var(--unit-2x);
+
+  // Colors
+  --button-color: var(--color-light);
+  --button-background: var(--color-primary);
+  --button-background-hover: hsl(from var(--button-background) h s calc(l - 3));
+
+  // Border
+  --button-border-width: 0.2rem;
+  --button-border-color: var(--button-background);
+  --button-border-color-hover: var(--button-background-hover);
+
+  // Typography
+  --button-font-size: var(--font-size-body);
+  --button-font-weight: 700;
+
+  @include type.font-smooth; // remove this if the font weight is not bold
   @include transitions.global-transition;
 
   display: inline-flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  padding-block: 0.5rem;
-  padding-inline: 2rem;
+  justify-content: center;
+  padding-block: var(--button-padding-block);
+  padding-inline: var(--button-padding-inline);
   cursor: pointer;
-  color: var(--color-light);
-  border-block: 0;
-  border-inline: 0;
-  background: var(--color-primary);
-  font-weight: 700;
+  user-select: none;
+  text-align: center;
+  text-decoration: none;
+  color: var(--button-color);
+  border: var(--button-border-width) solid var(--button-border-color);
+  border-radius: var(--border-radius);
+  background: var(--button-background);
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  line-height: 1;
+  appearance: none;
+  gap: var(--unit-2x);
+
+  &:hover,
+  &:active,
+  &.is-active {
+    text-decoration: none;
+    border-color: var(--button-border-color-hover);
+    background: var(--button-background-hover);
+  }
+
+  &[disabled],
+  &.is-disabled {
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.5;
+  }
 }

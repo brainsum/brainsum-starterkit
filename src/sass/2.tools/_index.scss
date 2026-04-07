@@ -12,6 +12,7 @@
  */
 
 // Import tools
+@forward "tools.animations";
 @forward "tools.box-model";
 @forward "tools.button";
 @forward "tools.clearfix";
@@ -19,6 +20,7 @@
 @forward "tools.form";
 @forward "tools.full-width-image";
 @forward "tools.link";
+@forward "tools.scrollbar";
 @forward "tools.stretched-link";
 @forward "tools.text";
 @forward "tools.transitions";

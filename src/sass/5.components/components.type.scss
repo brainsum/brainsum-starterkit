@@ -13,4 +13,40 @@
 
 .c-type {
   // here should go all variants
+  &--heading-1,
+  &--heading-2,
+  &--heading-3,
+  &--heading-4,
+  &--heading-5,
+  &--heading-6 {
+    @include tools.font-smooth;
+
+    margin-block-end: 1em;
+    font-family: var(--font-family-secondary);
+    font-weight: 700;
+  }
+
+  &--heading-1 {
+    @include tools.type("h1");
+  }
+
+  &--heading-2 {
+    @include tools.type("h2");
+  }
+
+  &--heading-3 {
+    @include tools.type("h3");
+  }
+
+  &--heading-4 {
+    @include tools.type("h4");
+  }
+
+  &--heading-5 {
+    @include tools.type("h5");
+  }
+
+  &--heading-6 {
+    @include tools.type("h6");
+  }
 }

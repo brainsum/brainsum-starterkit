@@ -34,6 +34,7 @@ html {
 
 body {
   min-block-size: 100vh;
+  scroll-behavior: smooth;
 
   @if $body-colors == true {
     color: var(--body-color);

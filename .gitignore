@@ -35,7 +35,7 @@ config.codekit3
 .LSOverride
 
 # Icon must end with two \r
-Icon
+/Icon
 
 
 # Thumbnails

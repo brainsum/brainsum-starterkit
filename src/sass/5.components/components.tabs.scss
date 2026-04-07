@@ -10,8 +10,11 @@
 @use "../tools";
 
 /**
+ * Settings
  */
-.c-tabs {
+$tabs-position: bottom; // it can be bottom or anything else (only bottom is styled)
+
+.c-block-local-tasks-block {
   // Settings
   --tab-background: var(--color-grey);
   --tab-hover-background: var(--color-grey-80);
@@ -22,17 +25,35 @@
   --active-border-size: 0.6rem;
   --tab-font-size: 1.4rem;
 
+  @if $tabs-position == bottom {
+    position: fixed;
+    z-index: 999;
+    inset-block-end: 0;
+    inset-inline: 0;
+    display: flex;
+    justify-content: center;
+    background: var(--tab-background);
+  }
+}
+
+html {
+  @if $tabs-position == bottom {
+    padding-block-end: 4.7rem;
+  }
+}
+
+/**
+ */
+.c-tabs {
   // Theme
   display: flex;
   flex-direction: column;
   inline-size: 100%;
-  margin-block: 0;
-  margin-inline: 0;
-  padding-block: 0;
-  padding-inline: 0;
+  margin: 0;
+  padding: 0;
   list-style: none;
 
-  @media(--tablet-s) {
+  @media (--tablet-s) {
     flex-direction: row;
     flex-wrap: wrap;
   }
@@ -42,11 +63,10 @@
    */
   &__tab {
     display: none;
-    margin-block-start: 0;
-    margin-block-end: -0.1rem;
+    margin-block: 0 0.1rem;
     margin-inline: 0;
 
-    @media(--tablet-s) {
+    @media (--tablet-s) {
       display: flex;
     }
 
@@ -59,7 +79,7 @@
     .c-tabs--secondary & {
       display: block;
 
-      @media(--tablet-s) {
+      @media (--tablet-s) {
         display: flex;
       }
     }
@@ -72,15 +92,14 @@
     display: flex;
     flex-grow: 1;
     align-items: center;
-    block-size: calc(var(--gutter--1x) * 3);
+    block-size: var(--unit-12x);
     padding-block: 0;
     padding-inline: 2.5rem;
     transition: background-color 0.2s;
     text-decoration: none;
     letter-spacing: 0.1rem;
     color: var(--tab-color);
-    border-block: 0.1rem solid var(--tab-background);
-    border-inline: 0.1rem solid var(--tab-background);
+    border: 0.1rem solid var(--tab-background);
     background: var(--tab-background);
     font-size: var(--tab-font-size);
 
@@ -93,7 +112,7 @@
     .c-tabs--secondary & {
       text-transform: none;
 
-      @media(--tablet-s) {
+      @media (--tablet-s) {
         border-block-start-color: transparent;
         border-inline-color: transparent;
         background-color: transparent;
@@ -145,7 +164,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    inline-size: calc(var(--gutter--1x) * 3);
+    inline-size: var(--gutter-12x);
     margin-block: 0;
     margin-inline-start: -0.1rem;
     margin-inline-end: 0;
@@ -178,7 +197,7 @@
     &-icon {
       position: relative;
       display: block;
-      inline-size: var(--gutter--1x);
+      inline-size: var(--gutter-1x);
       block-size: 1rem;
       margin-block-start: -0.2rem;
 
@@ -186,7 +205,10 @@
         position: absolute;
         inset-inline-start: 0;
         inline-size: 100%;
-        transition: transform 0.2s, opacity 0.2s, top 0.2s;
+        transition:
+          transform 0.2s,
+          opacity 0.2s,
+          top 0.2s;
         border-block-start: solid 0.2rem var(--tab-color);
 
         @if settings.$prefers-reduced-motion {

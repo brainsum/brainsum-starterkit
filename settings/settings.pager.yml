@@ -1,0 +1,31 @@
+# Pager Component Configuration
+#
+# Centralized settings for pager display options.
+#
+# @see src/includes/navigation.inc
+# @see templates/navigation/pager.html.twig
+
+# Use Heading for Pager Label
+# Determines whether to use a semantic heading element for the pager label.
+#
+# Default: false (recommended)
+# - false: Uses a <div> element with aria-labelledby for accessibility.
+#   This is the recommended approach because:
+#   * Pagers are navigation elements, not content sections
+#   * They appear on multiple pages with the same label (not unique content)
+#   * Using headings pollutes the document outline with repetitive navigation
+#   * The heading would appear in the page's table of contents, which is not useful
+#   * Accessibility is maintained via aria-labelledby
+#
+# - true: Uses Drupal's admin "Heading level" setting (defaults to <h4>).
+#   Only enable this if you specifically need headings in the document outline.
+#   If enabled, configure the heading level in the Views UI and verify it's
+#   appropriate for the heading hierarchy on all page types where the pager appears.
+use_heading: false
+
+# Use Link Labels
+# Determines how navigation links (first, previous, next, last) are displayed.
+# - true: Use text labels from Drupal (e.g., "‹ Previous", "Next ›")
+# - false: Use inline SVG icons (angle icons for prev/next, double-angle for first/last)
+# Note: Both options include visually-hidden accessible text.
+use_link_labels: true

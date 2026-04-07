@@ -1,0 +1,31 @@
+/**
+ * @file
+ * Drag Scroll Utility
+ *
+ * Horizontal drag-to-scroll container styles.
+ * Pair with `data-drupal-selector="drag-scroll"` and the
+ * `components.drag-scroll.js` behavior.
+ *
+ * @example
+ *   <div class="u-drag-scroll" data-drupal-selector="drag-scroll">
+ *     <button>Item 1</button>
+ *     <button>Item 2</button>
+ *     <button>Item 3</button>
+ *   </div>
+ */
+
+.u-drag-scroll {
+  display: flex;
+  overflow-x: auto;
+  cursor: grab;
+  user-select: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &.is-grabbing {
+    cursor: grabbing;
+  }
+}

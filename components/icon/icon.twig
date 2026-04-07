@@ -1,0 +1,67 @@
+{#
+/**
+ * @file
+ * Icon Component
+ *
+ * Inline SVG icon component. Loads individual SVG files from the theme's
+ * images/icons directory for full CSS colorable via currentColor.
+ *
+ * @code
+ * {{ include('brainsum_starterkit:icon', {
+ *   icon: 'check-solid',
+ *   class: 'c-icon--check',
+ * }) }}
+ * {{ include('brainsum_starterkit:icon', {
+ *   icon: 'angle-down-solid',
+ *   class: 'c-button__icon',
+ *   size: 15,
+ * }) }}
+ * {{ include('brainsum_starterkit:icon', {
+ *   icon: 'check-solid',
+ *   class: 'c-form__icon',
+ *   size: 40,
+ *   alt: 'Success'|t,
+ * }) }}
+ *
+ * When including from inside a Twig macro, pass the theme directory
+ * explicitly (macros have isolated scope and cannot access template
+ * variables like `directory`):
+ *
+ * {{ include('brainsum_starterkit:icon', {
+ *   icon: 'angle-down-solid',
+ *   size: 11,
+ *   directory: theme_directory,
+ * }) }}
+ * @endcode
+ */
+#}
+
+{% set default_size = 24 %}
+{% set icon_size = size|default(default_size) %}
+{% set icon_class = 'c-icon' ~ (class is defined and class ? ' ' ~ class : '') %}
+{% if directory is defined and directory and '/components/' not in directory %}
+  {% set theme_dir = directory %}
+{% elseif directory is defined and directory %}
+  {% set theme_dir = directory|split('/components/')[0] %}
+{% else %}
+  {% set theme_dir = 'themes/custom/brainsum_starterkit' %}
+{% endif %}
+{% set icon_path = '/' ~ theme_dir ~ '/images/icons/' ~ icon ~ '.svg' %}
+{% set svg_content = source(icon_path, true) %}
+
+{% if svg_content %}
+  {% set common_attrs = 'class="' ~ icon_class ~ '" width="' ~ icon_size ~ '" height="' ~ icon_size ~ '" focusable="false"' %}
+
+  {% if alt is defined and alt %}
+    {% set title_id = 'icon-title-' ~ icon ~ '-' ~ random() %}
+    {% set svg_content = svg_content|replace({
+      '<svg': '<svg ' ~ common_attrs ~ ' role="img" aria-labelledby="' ~ title_id ~ '"'
+    }) %}
+    {% set parts = svg_content|split('>', 2) %}
+    {{- (parts[0] ~ '><title id="' ~ title_id ~ '">' ~ alt ~ '</title>' ~ parts[1])|raw -}}
+  {% else %}
+    {{- svg_content|replace({
+      '<svg': '<svg ' ~ common_attrs ~ ' aria-hidden="true"'
+    })|raw -}}
+  {% endif %}
+{% endif %}

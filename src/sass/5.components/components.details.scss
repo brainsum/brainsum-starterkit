@@ -14,36 +14,40 @@
 .c-details {
   // Settings
   --border-width: 0.1rem;
-  --border-radius: 0.2rem;
-  --summary-transition: background-color 0.12s ease-in-out;
-  --gutter: var(--gutter--1x);
-
+  --border-radius: 0.1rem;
+  --summary-background: var(--color-background-light);
+  --summary-background-hover: var(--color-primary-light);
+  --padding-block: var(--unit-4x);
+  --padding-inline: var(--unit-4x);
+  --inline-gap: var(--unit-3x);
+  --description-gap: var(--unit-2x);
+  --color-description: var(--color-grey-40);
 
   // Theming
   display: block;
-  margin-block: var(--gutter);
   color: inherit;
-  border-block: var(--border-width) solid var(--color-grey-20);
-  border-inline: var(--border-width) solid var(--color-grey-20);
+  border: 0.1rem solid var(--color-border);
   border-radius: var(--border-radius);
-  box-shadow: 0 0.1rem 0.4rem var(--color-grey-30);
+
+  &__icon {
+    @include tools.global-transition;
+
+    color: var(--color-primary);
+  }
 
   // Details summary styles
   &__summary {
-    position: relative;
-    padding-block: var(--gutter);
-    padding-inline-start: calc(var(--gutter) * 2);
-    padding-inline-end: var(--gutter);
+    @include tools.type(label);
+
+    display: flex;
+    align-items: center;
+    padding-block: var(--padding-block);
+    padding-inline: var(--padding-inline);
     list-style: none;
     cursor: pointer;
-    transition: var(--summary-transition);
-    overflow-wrap: break-word;
-    hyphens: auto;
-    color: inherit;
-    background-color: var(--color-grey-10);
-    font-size: 1.4rem;
+    background: var(--summary-background);
     font-weight: 700;
-    line-height: 1.28;
+    gap: var(--inline-gap);
 
     @if settings.$prefers-reduced-motion {
       @media (--reduced-motion) {
@@ -51,34 +55,8 @@
       }
     }
 
-    // Arrow icon
-    &::before {
-      @include tools.square(1rem);
-
-      position: absolute;
-      inset-block-start: 50%;
-      inset-inline-start: calc(var(--gutter) * 0.75);
-      display: block;
-      content: "";
-      transform: translateY(-50%) rotate(45deg); // LTR
-      border-block-start: solid 0.2rem currentColor;
-      border-inline-end: solid 0.2rem currentColor;
-
-      // RTL
-      [dir="rtl"] & {
-        transform: translateY(-50%) rotate(-135deg);
-      }
-    }
-
-    // Pseudo-selector to manage focus styles
-    &::after {
-      position: absolute;
-      inset: calc(var(--border-width) * -1);
-      content: "";
-      pointer-events: none;
-      opacity: 0;
-      border-radius: var(--border-radius);
-      box-shadow: inset 0 0 0 0.2rem var(--color-primary);
+    &:hover {
+      background: var(--summary-background-hover);
     }
 
     // Hide the marker
@@ -92,44 +70,27 @@
       outline-offset: -0.4rem;
     }
 
-    // Details summary, hover state
-    &:hover {
-      background-color: var(--color-grey-20);
-    }
-
-    // Details summary, focus and active states
-    &:focus,
-    &:active {
-      &::after {
-        opacity: 1;
-      }
-    }
-
     // Rotate arrow icon of the details summary, when details expanded
     .c-details[open] > & {
-      &::before {
-        margin-block-start: -0.2rem;
-        transform: translateY(-50%) rotate(135deg);
+      .c-details__icon {
+        transform: rotate(180deg);
       }
     }
   }
 
   // Details content wrapper
   &__wrapper {
-    margin-block: var(--gutter);
-    margin-inline: var(--gutter);
+    @include tools.global-transition;
 
-    @media (--tablet-l) {
-      margin-block: calc(var(--gutter) * 1.5);
-      margin-inline: calc(var(--gutter) * 2);
-    }
+    margin-block: var(--padding-block);
+    margin-inline: var(--padding-inline);
   }
 
   // Description
   &__description {
-    margin-block-end: var(--gutter);
-    color: var(--color-grey-90);
-    font-size: 1.3rem;
-    line-height: 1.38;
+    @include tools.type(description);
+
+    margin-block-start: var(--description-gap);
+    color: var(--color-description);
   }
 }

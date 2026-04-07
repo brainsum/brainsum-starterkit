@@ -2,7 +2,11 @@
  * @file
  * Table Wrapper Component
  *
- * Minimal responsive table with horizontal scrollbar.
+ * Wrapper for horizontal scrollable tables.
+ * Used for:
+ *   - all tables in Long text fields
+ *   - when responsive type is set to 'scroll' in settings.tables.yml
+ *     for table.twig.html (in this case the js not needed).
  */
 
 /**
@@ -13,4 +17,5 @@
 
 .c-table__wrapper {
   overflow-x: auto;
+  padding-block-end: 0; // Space between the table and the scrollbar.
 }

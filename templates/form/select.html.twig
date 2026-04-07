@@ -13,9 +13,13 @@
 
 {#
   Building the template structure
+
+  Container is provided by form-element.html.twig
+  js-select class enables Choices.js enhancement for both single and multiple selects
 #}
+{% set select_classes = ['js-select'] %}
 {% apply spaceless %}
-  <select{{ attributes }}>
+  <select{{ attributes.addClass(select_classes) }}>
     {% for option in options %}
       {% if option.type == 'optgroup' %}
         <optgroup label="{{ option.label }}">

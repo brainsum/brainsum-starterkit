@@ -45,15 +45,7 @@
  *   </table>
  */
 
-/**
- * Settings
- */
-
-// Enable/disable responsive table component
-$responsive-table: true !default;
-
-// Breakpoint at which table switches from stacked to normal
-$table-breakpoint: medium !default;
+@custom-media --table (min-width: 64em); // 1024px
 
 /**
  * CSS Custom Properties
@@ -63,13 +55,32 @@ $table-breakpoint: medium !default;
   --table-label-width: 30%;
   --table-label-padding: 0 0.6em 0 0;
   --table-content-width: 67%;
-  --table-cell-padding: 0.75em;
-  --table-border-color: currentColor;
-  --table-stripe-bg: rgb(0 0 0 / 0.03);
-}
+  --table-cell-padding-block: var(--unit-3x);
+  --table-cell-padding-inline: var(--unit-2x);
+  --table-border-color: var(--color-border);
+  --table-stripe-background: var(--color-background-light);
+  --table-hover-background: var(--color-background-dark);
+  --table-active-background: var(--color-background-dark);
 
-@if $responsive-table {
-  .c-table {
+  // Base table theming
+  inline-size: 100%;
+  border-spacing: 0;
+  text-align: start;
+  border-collapse: collapse;
+
+  td,
+  th {
+    padding-block: var(--table-cell-padding-block);
+    padding-inline: var(--table-cell-padding-inline);
+    border-block-end: 0.1rem solid var(--table-border-color);
+  }
+
+  th {
+    text-align: start;
+    border-block-end-width: 0.2rem;
+  }
+
+  &.is-responsive {
     max-inline-size: 100%;
     empty-cells: show;
 
@@ -79,7 +90,7 @@ $table-breakpoint: medium !default;
       inline-size: 100%;
       text-align: start;
 
-      @media (--#{$table-breakpoint}) {
+      @media (--table) {
         display: table-cell;
         inline-size: auto;
       }
@@ -92,7 +103,7 @@ $table-breakpoint: medium !default;
       td {
         display: none;
 
-        @media (--#{$table-breakpoint}) {
+        @media (--table) {
           display: table-cell;
         }
       }
@@ -101,7 +112,7 @@ $table-breakpoint: medium !default;
     tbody tr {
       display: block;
 
-      @media (--#{$table-breakpoint}) {
+      @media (--table) {
         display: table-row;
       }
     }
@@ -113,7 +124,7 @@ $table-breakpoint: medium !default;
       padding: var(--table-label-padding);
       vertical-align: top;
 
-      @media (--#{$table-breakpoint}) {
+      @media (--table) {
         display: none !important;
       }
     }
@@ -130,7 +141,7 @@ $table-breakpoint: medium !default;
       display: inline-block;
       max-inline-size: var(--table-content-width);
 
-      @media (--#{$table-breakpoint}) {
+      @media (--table) {
         display: block;
         max-inline-size: none;
       }
@@ -141,44 +152,38 @@ $table-breakpoint: medium !default;
     th:empty {
       display: none;
 
-      @media (--#{$table-breakpoint}) {
+      @media (--table) {
         display: table-cell;
       }
     }
   }
+}
 
-  // Grouped header styling
-  th.c-table__group {
-    tbody & {
-      margin-block-start: -0.1rem;
-    }
-
-    .c-table__cell-label {
-      display: none !important;
-    }
+// Grouped header styling
+th.c-table__group {
+  tbody & {
+    margin-block-start: -0.1rem;
   }
 
-  /**
-   * Table Modifiers
-   */
-
-  // Striped rows
-  .c-table--striped {
-    tbody tr:nth-child(even) {
-      background-color: var(--table-stripe-bg);
-    }
+  .c-table__cell-label {
+    display: none !important;
   }
+}
 
-  // Bordered table
-  .c-table--bordered {
-    td,
-    th {
-      border: 0.1rem solid var(--table-border-color);
-    }
+/**
+ * Table Modifiers
+ */
+
+// Striped rows
+.c-table--striped {
+  tbody tr:nth-child(even) {
+    background-color: var(--table-stripe-background);
   }
+}
 
-  // Compact table
-  .c-table--compact {
-    --table-cell-padding: 0.4em;
+// Hover rows
+.c-table--hover {
+  tbody tr:hover {
+    background-color: var(--table-hover-background);
   }
 }

@@ -3,79 +3,149 @@
  * @file
  * Theme override for a fieldset element and its children.
  *
+ * Composite elements (radios, checkboxes) render as <div role="group">
+ * instead of <fieldset>/<legend> for better CSS Grid compatibility while
+ * maintaining accessibility via aria-labelledby.
+ *
  * @see template_preprocess_fieldset()
  */
 #}
 
 {#
-  Defining local variables
+  Attaching modular form libraries
 #}
-{% set classes = [
-  'c-fieldset',
-  attributes.hasClass('c-fieldgroup') ? 'c-fieldset--group',
-  'js-form-item',
-  'c-form-item',
-  'js-form-wrapper',
-  'c-form-wrapper',
-] %}
-
-{% set wrapper_classes = [
-  'c-fieldset__wrapper',
-  attributes.hasClass('c-fieldgroup') ? 'c-fieldset__wrapper--group',
-] %}
-
-{% set legend_span_classes = [
-  'c-fieldset__label',
-  attributes.hasClass('c-fieldgroup') ? 'c-fieldset__label--group',
-  required ? 'js-form-required',
-  required ? 'is-form-required',
-] %}
-
-{% set legend_classes = [
-  'c-fieldset__legend',
-  attributes.hasClass('fieldgroup') and not attributes.hasClass('form-composite') ? 'c-fieldset__legend--group',
-  attributes.hasClass('form-composite') ? 'c-fieldset__legend--composite',
-  title_display == 'invisible' ? 'c-fieldset__legend--invisible' : 'c-fieldset__legend--visible',
-] %}
-
-{% set description_classes = [
-  'c-fieldset__description',
-] %}
+{{ attach_library('brainsum_starterkit/forms.layouts') }}
 
 {#
-  Building the template structure
+  Defining local variables
 #}
-<fieldset{{ attributes.addClass(classes) }}>
-  {# Always wrap fieldset legends in a <span> for CSS positioning. #}
-  {% if legend.title %}
-  <legend{{ legend.attributes.addClass(legend_classes) }}>
-    <span{{ legend_span.attributes.addClass(legend_span_classes) }}>{{ legend.title }}</span>
-  </legend>
-  {% endif %}
+{% set description_classes = [
+  'c-fieldset__description',
+  'c-form-item__description',
+] %}
 
-  <div{{ content_attributes.addClass(wrapper_classes) }}>
-    {% if inline_items %}
-      <div class="o-container--inline">
-    {% endif %}
+{% if is_composite %}
+  {#
+    Composite (radios/checkboxes): render as <div role="group">
+    with a regular <div> label for CSS Grid compatibility.
+  #}
+  {% set classes = [
+    'c-fieldset',
+    'c-fieldset--composite',
+    'js-form-item',
+    'c-form-item',
+    'js-form-wrapper',
+    'c-form-wrapper',
+  ] %}
 
-    {% if prefix %}
-      <span class="c-fieldset__prefix">{{ prefix }}</span>
-    {% endif %}
-    {{ children }}
-    {% if suffix %}
-      <span class="c-fieldset__suffix">{{ suffix }}</span>
-    {% endif %}
-    {% if errors %}
-      <div class="c-fieldset__error-message">
-        {{ errors }}
+  {% set label_classes = [
+    'c-form-item__label',
+    'c-fieldset__label',
+    required ? 'js-form-required',
+    required ? 'is-form-required',
+    title_display == 'invisible' ? 'u-visually-hide',
+  ] %}
+
+  <div{{ attributes.addClass(classes) }} role="group"{% if composite_label_id %} aria-labelledby="{{ composite_label_id }}"{% endif %}>
+    {% if legend.title %}
+      <div{% if composite_label_id %} id="{{ composite_label_id }}"{% endif %} class="{{ label_classes|join(' ')|trim }}">
+        {{ legend.title }}
       </div>
     {% endif %}
+
+    <div class="c-fieldset__wrapper">
+      {% if inline_items %}
+        <div class="o-container--inline">
+      {% endif %}
+
+      {% if prefix %}
+        <span class="c-fieldset__prefix">{{ prefix }}</span>
+      {% endif %}
+      {{ children }}
+      {% if suffix %}
+        <span class="c-fieldset__suffix">{{ suffix }}</span>
+      {% endif %}
+      {% if errors %}
+        <div class="c-fieldset__error-message">
+          {{ errors }}
+        </div>
+      {% endif %}
+
+      {% if inline_items %}
+        </div>
+      {% endif %}
+    </div>
+
     {% if description.content %}
       <div{{ description.attributes.addClass(description_classes) }}>{{ description.content }}</div>
     {% endif %}
-
-    {% if inline_items %}
-      </div>
-    {% endif %}
   </div>
-</fieldset>
+
+{% else %}
+  {#
+    Standard fieldset: keep native <fieldset>/<legend> for
+    details, fieldgroups, and other non-composite wrappers.
+  #}
+  {% set classes = [
+    'c-fieldset',
+    attributes.hasClass('c-fieldgroup') ? 'c-fieldset--group',
+    'js-form-item',
+    'c-form-item',
+    'js-form-wrapper',
+    'c-form-wrapper',
+  ] %}
+
+  {% set wrapper_classes = [
+    'c-fieldset__wrapper',
+    attributes.hasClass('c-fieldgroup') ? 'c-fieldset__wrapper--group',
+  ] %}
+
+  {% set legend_span_classes = [
+    'c-fieldset__label',
+    attributes.hasClass('c-fieldgroup') ? 'c-fieldset__label--group',
+    required ? 'js-form-required',
+    required ? 'is-form-required',
+  ] %}
+
+  {% set legend_classes = [
+    'c-fieldset__legend',
+    attributes.hasClass('fieldgroup') and not attributes.hasClass('form-composite') ? 'c-fieldset__legend--group',
+    attributes.hasClass('form-composite') ? 'c-fieldset__legend--composite',
+    title_display == 'invisible' ? 'c-fieldset__legend--invisible u-visually-hide' : 'c-fieldset__legend--visible',
+  ] %}
+
+  <fieldset{{ attributes.addClass(classes) }}>
+    {# Always wrap fieldset legends in a <span> for CSS positioning. #}
+    {% if legend.title %}
+    <legend{{ legend.attributes.addClass(legend_classes) }}>
+      <span{{ legend_span.attributes.addClass(legend_span_classes) }}>{{ legend.title }}</span>
+    </legend>
+    {% endif %}
+
+    <div{{ content_attributes.addClass(wrapper_classes) }}>
+      {% if inline_items %}
+        <div class="o-container--inline">
+      {% endif %}
+
+      {% if prefix %}
+        <span class="c-fieldset__prefix">{{ prefix }}</span>
+      {% endif %}
+      {{ children }}
+      {% if suffix %}
+        <span class="c-fieldset__suffix">{{ suffix }}</span>
+      {% endif %}
+      {% if errors %}
+        <div class="c-fieldset__error-message">
+          {{ errors }}
+        </div>
+      {% endif %}
+      {% if description.content %}
+        <div{{ description.attributes.addClass(description_classes) }}>{{ description.content }}</div>
+      {% endif %}
+
+      {% if inline_items %}
+        </div>
+      {% endif %}
+    </div>
+  </fieldset>
+{% endif %}

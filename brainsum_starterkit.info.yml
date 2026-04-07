@@ -1,12 +1,12 @@
 # Theme's name for admin UI, change for your project, like Diginomica Theme
-name: "BRAINSUM startertkit"
+name: "BRAINSUM starterkit"
 type: theme
 # Defines the base theme, change it for your needs
 base theme: false
 # We don't want to display this theme in the Drupal admin.
 hidden: true
 # Short description text for admin UI, change for your project
-description: "Drupal 10 coding standards ready startertheme powered by Gulp.js 5, bundled with Shake.sass sass framework without any dependency (no base theme too)."
+description: "Drupal 11 coding standards ready startertheme, bundled with Shake.sass sass framework without any dependency (no base theme too)."
 # Screenshot cover image for admin UI (588x438): take a screenshot about the home page
 screenshot: screenshot.png
 # Grouping
@@ -14,7 +14,7 @@ package: brainsum
 # Version number
 version: 5.0.0
 # Dependency resolving for Composer.
-core_version_requirement: ^10 || ^11
+core_version_requirement: ^11
 # website logo, begin with Drupal 8.6 you can use SVG or PNG format too
 logo: logo.svg
 # Defines libraries group in which we can add css/js.
@@ -35,45 +35,54 @@ regions:
   sidebar_second: 'Sidebar Second'
   footer: Footer
   admin: 'Admin Tools'
+# Extend core libraries with theme overrides:
+libraries-extend:
+  core/drupal.ajax:
+    - brainsum_starterkit/forms.ajax
+
 # Here we turn off or replace many css/js files come from core/contrib modules:
 libraries-override:
-  system/base:
+  core/drupal.ajax:
     css:
       component:
-        css/components/ajax-progress.module.css: css/5.components/components.ajax-progress.css
-        css/components/align.module.css: false
-        css/components/autocomplete-loading.module.css: css/5.components/components.autocomplete-loading.css
-        css/components/fieldgroup.module.css: false
-        css/components/container-inline.module.css: false
-        css/components/clearfix.module.css: false
-        css/components/details.module.css: false
-        css/components/hidden.module.css: false
-        css/components/item-list.module.css: false
-        css/components/js.module.css: css/6.utilities/utilities.js.css
-        css/components/nowrap.module.css: false
-        css/components/position-container.module.css: false
-        css/components/progress.module.css: css/5.components/components.progress.css
-        css/components/reset-appearance.module.css: false
-        css/components/resize.module.css: false
-        css/components/sticky-header.module.css: false
-        css/components/tabledrag.module.css: css/5.components/components.tabledrag.css
-        css/components/tree-child.module.css: false
+        misc/components/ajax-progress.module.css: css/5.components/components.ajax-progress.css
+  core/drupal.autocomplete:
+    css:
+      component:
+        misc/components/autocomplete-loading.module.css: css/5.components/components.autocomplete-loading.css
   core/drupal.checkbox: false
+  core/drupal.collapse: brainsum_starterkit/details
   core/drupal.dropbutton: false
+  core/drupal.item-list: false
+  core/drupal.message: brainsum_starterkit/message
+  core/drupal.progress:
+    css:
+      component:
+        misc/components/progress.module.css: css/5.components/components.progress.css
+  core/drupal.reset-appearance: false
+  core/drupal.tabledrag: brainsum_starterkit/tabledrag
+  core/drupal.tableheader: false
+  core/drupal.tableresponsive: brainsum_starterkit/table
+  core/drupal.textarea-resize: false
   core/drupal.vertical-tabs:
     css:
       component:
         misc/vertical-tabs.css: css/5.components/components.vertical-tabs.css
-  admin_toolbar_search/search:
+  dropdown_language/dropdown-language-selector: false
+  system/admin:
     css:
       theme:
-        css/admin.toolbar_search.css: css/5.components/components.admin.toolbar-search.css
-  dropdown_language/dropdown-language-selector: false
+        css/system.admin.css: false
+  system/base:
+    css:
+      component:
+        core/components/align.module.css: false
+        core/components/container-inline.module.css: false
+        core/components/clearfix.module.css: false
+        core/components/hidden.module.css: false
+        core/components/js.module.css: css/6.utilities/utilities.js.css
   user/drupal.user:
     css:
       component:
         css/user.module.css: css/components/5.components.user.css
-  views.module:
-    css: null
-  core/drupal.message: brainsum_starterkit/message
-  core/drupal.collapse: brainsum_starterkit/details
+  views.module: false

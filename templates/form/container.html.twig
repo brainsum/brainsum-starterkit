@@ -25,9 +25,10 @@
 {#
   Defining local variables
 #}
+{% set is_actions = attributes.hasClass('form-actions') %}
 {% set classes = [
   has_parent ? 'js-form__wrapper',
-  has_parent ? 'c-form__wrapper',
+  has_parent and not is_actions ? 'c-form__wrapper',
 ] %}
 
 {#

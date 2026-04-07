@@ -1,0 +1,17 @@
+/**
+ * @file
+ * Theming the maintenance page
+ *
+ * Only maintenance mode related rules (no db connection).
+ */
+
+/**
+  * Imports
+ */
+@use "../settings";
+@use "../tools";
+
+.error-page-content {
+  text-align: center;
+  font-size: 1.2em;
+}

@@ -25,30 +25,33 @@
    *
    * You can change but don't remove them.
    */
-  --color-grey: #333; // default grey color
+  --color-grey: #303742;
 
   /**
    * Different shades of the default grey color
+   *
+   * The number = hsl lightness offset from base (--color-grey).
+   * Higher number = lighter. Above 100 = darker than base.
    */
-  --color-grey-120: color-mix(in oklch, var(--color-grey, var(--color-dark) 20%)); // darkest grey
-  --color-grey-110: color-mix(in oklch, var(--color-grey, var(--color-dark) 10%));
+  --color-grey-120: hsl(from var(--color-grey) h s calc(l - 20)); // darkest grey
+  --color-grey-110: hsl(from var(--color-grey) h s calc(l - 10));
   --color-grey-100: var(--color-grey); // default grey
-  --color-grey-90: color-mix(in oklch, var(--color-grey, var(--color-light) 10%));
-  --color-grey-80: color-mix(in oklch, var(--color-grey, var(--color-light) 20%));
-  --color-grey-70: color-mix(in oklch, var(--color-grey, var(--color-light) 30%));
-  --color-grey-60: color-mix(in oklch, var(--color-grey, var(--color-light) 40%));
-  --color-grey-50: color-mix(in oklch, var(--color-grey, var(--color-light) 50%));
-  --color-grey-40: color-mix(in oklch, var(--color-grey, var(--color-light) 60%));
-  --color-grey-30: color-mix(in oklch, var(--color-grey, var(--color-light) 70%));
-  --color-grey-20: color-mix(in oklch, var(--color-grey, var(--color-light) 80%));
-  --color-grey-10: color-mix(in oklch, var(--color-grey, var(--color-light) 90%)); // lightest grey
+  --color-grey-90: hsl(from var(--color-grey) h s calc(l + 10));
+  --color-grey-80: hsl(from var(--color-grey) h s calc(l + 20));
+  --color-grey-70: hsl(from var(--color-grey) h s calc(l + 30));
+  --color-grey-60: hsl(from var(--color-grey) h s calc(l + 40));
+  --color-grey-50: hsl(from var(--color-grey) h s calc(l + 50));
+  --color-grey-40: hsl(from var(--color-grey) h s calc(l + 60));
+  --color-grey-30: hsl(from var(--color-grey) h s calc(l + 70));
+  --color-grey-20: hsl(from var(--color-grey) h s calc(l + 80));
+  --color-grey-10: hsl(from var(--color-grey) h s calc(l + 90));
+  --color-grey-05: hsl(from var(--color-grey) h s calc(l + 95)); // lightest grey
 
   /**
    * Design needed global color definitions
    */
-  --color-blue: #0091cc;
-  --color-turquoise: #66d1ca;
-  --color-turquoise--dark: #40c5bb;
+  --color-black: #13161a;
+  --color-indigo: #5755d9;
 
   /**
    * System colors
@@ -56,10 +59,9 @@
    * These colors are used for system messages, alerts, and other system
    * components.
    */
-  --color-green: #6ae96a;
-  --color-yellow: #f7ca00;
-  --color-orange: #fda408;
-  --color-red: #fd4f46;
+  --color-green: #32b643;
+  --color-yellow: #ffb700;
+  --color-orange: #e85600;
 
   /**
    * Global colors by functions
@@ -67,15 +69,29 @@
    * Here we associate the defined named colors to functions.
    * If possible use colors by functions only.
    */
-  --color-brand: var(--color-yellow);
-  --color-primary: var(--color-blue);
-  --color-secondary: var(--color-turquoise);
-  --color-text-primary: var(--color-dark);
+  // Base colors
+  --color-brand: var(--color-indigo);
+  --color-primary: var(--color-brand);
+  --color-primary-light: hsl(from var(--color-primary) h s calc(l + 37.5));
+
+  // Text colors
+  --color-text-primary: var(--color-grey-90);
+  --color-text-dark: var(--color-black);
+  --color-text-inverse: var(--color-light);
+  --color-code: #d73e48; // Don't remove this color, it's used in code elements
+
+  // Background colors
   --color-background-primary: var(--color-light);
+  --color-background-light: hsl(from var(--color-grey) h s calc(l + 75));
+  --color-background-dark: hsl(from var(--color-background-light) h s calc(l - 3));
+
+  // Border colors
+  --color-border: hsl(from var(--color-grey) h s calc(l + 60));
+  --color-border-dark: hsl(from var(--color-border) h s calc(l - 15));
 
   // You can change them, but don't remove these
-  --color-success: var(--color-green);
-  --color-warning: var(--color-orange);
-  --color-error: var(--color-red);
+  --color-success: hsl(from var(--color-green) h s calc(l + 15));
+  --color-warning: hsl(from var(--color-yellow) h s calc(l + 15));
+  --color-error: hsl(from var(--color-orange) h s calc(l + 15));
   --color-note: var(--color-light);
 }

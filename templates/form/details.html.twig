@@ -17,6 +17,11 @@
 #}
 
 {#
+  Attaching Drupal libraries
+  It's library is attached by override the collapse library in the info file.
+#}
+
+{#
   Defining local variables
 #}
 {% set classes = [
@@ -41,7 +46,13 @@
 <details{{ attributes.addClass(classes) }}>
   {%- if title -%}
     <summary{{ summary_attributes.addClass(summary_classes) }}>
-      {{- title -}}
+      {{ include('brainsum_starterkit:icon', {
+        icon: 'angle-down-solid',
+        class: 'c-details__icon',
+        size: 18,
+        alt: 'Angle down'|t,
+      }) }}
+      <span class="c-details__title">{{- title -}}</span>
 
       {%- if required -%}
         <span class="c-required__mark"></span>

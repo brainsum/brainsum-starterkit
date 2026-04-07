@@ -1,0 +1,67 @@
+/**
+ * @file
+ * Layout Settings
+ *
+ * Global layout-related and spacing settings.
+ */
+
+:root {
+  /**
+   * Unit Scale
+   *
+   * Generic, 4px-based size values used as spacing, sizing, etc.
+   */
+  --unit-05x: 0.2rem; // 2px
+  --unit-1x: 0.4rem; // 4px
+  --unit-2x: 0.8rem; // 8px
+  --unit-3x: 1.2rem; // 12px
+  --unit-4x: 1.6rem; // 16px
+  --unit-5x: 2rem; // 20px
+  --unit-6x: 2.4rem; // 24px
+  --unit-7x: 2.8rem; // 28px
+  --unit-8x: 3.2rem; // 32px
+  --unit-9x: 3.6rem; // 36px
+  --unit-10x: 4rem; // 40px
+  --unit-12x: 4.8rem; // 48px
+  --unit-16x: 6.4rem; // 64px
+  --unit-18x: 7.2rem; // 72px
+  --unit-20x: 8rem; // 80px
+  --unit-24x: 9.6rem; // 96px
+  --unit-32x: 12.8rem; // 128px
+
+  /**
+   * Gutter
+   */
+
+  /**
+   * Gutter Sizes
+   *
+   * Global gutter/spacing custom properties.
+   * Used by the Container mixin and object.
+   * You can use them to create your own CSS Grid layout as well.
+   *
+   * @example
+   *   gap: var(--gutter);
+   *
+   * Base gutter values used across the framework.
+   */
+  --gutter-1x: var(--unit-4x); // 16px
+  --gutter-2x: calc(var(--gutter-1x) * 2); // 32px
+  --gutter-4x: calc(var(--gutter-1x) * 4); // 64px
+
+  /**
+   * Default Gutter
+   *
+   * Responsive gutter used as default spacing.
+   * Shared between Container, Grid, and other objects.
+   */
+  --gutter: var(--gutter-1x);
+
+  @media (--tablet-s) {
+    --gutter: var(--gutter-2x);
+  }
+
+  @media (--desktop) {
+    --gutter: var(--gutter-4x);
+  }
+}

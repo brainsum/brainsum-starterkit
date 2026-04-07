@@ -2,15 +2,19 @@
  * @file
  * Button Component
  *
- * Theming buttons.
+ * Spectre-inspired button theming with variants, sizes, icon support,
+ * and button groups. Uses mixins from `2.tools/_tools.button.scss`.
  */
 
 /**
-  * Imports
+ * Imports
  */
 @use "../settings";
 @use "../tools";
 
+/**
+ * Base Button
+ */
 .c-button,
 input.button {
   @include tools.button;

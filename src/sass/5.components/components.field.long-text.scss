@@ -16,25 +16,8 @@
  */
 .c-field--type-text-long,
 .c-field--type-text-with-summary {
-  // Settings
-  --vertical-space--1x: 0.5em;
-  --vertical-space--2x: 1em;
-  --vertical-space--3x: 1.5em;
-
   // Theming
   @include tools.type(body);
-
-  @for $i from 2 through 6 {
-    figure + h#{$i} {
-      margin-block-start: 0;
-    }
-
-    ul + h#{$i},
-    ol + h#{$i},
-    table + h#{$i} {
-      margin-block-start: var(--vertical-space--1x);
-    }
-  }
 
   ol {
     list-style-type: decimal;
@@ -73,54 +56,8 @@
     font-weight: 700;
   }
 
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin-block-start: var(--vertical-space--3x);
-    margin-block-end: var(--vertical-space--2x);
-    margin-inline: 0;
-  }
-
-  h2 {
-    @include tools.type(h2);
-  }
-
-  h3 {
-    @include tools.type(h3);
-  }
-
-  h2 + h3 {
-    margin-block-start: var(--vertical-space--1x);
-  }
-
-  h4 {
-    @include tools.type(h4);
-  }
-
-  h3 + h4 {
-    margin-block-start: var(--vertical-space--1x);
-  }
-
-  h5 {
-    @include tools.type(h5);
-  }
-
-  h4 + h5 {
-    margin-block-start: var(--vertical-space--1x);
-  }
-
-  h6 {
-    @include tools.type(h6);
-  }
-
-  h5 + h6 {
-    margin-block-start: var(--vertical-space--1x);
-  }
-
   img {
-    margin-block: var(--vertical-space--2x);
+    margin-block: var(--vertical-space-2x);
   }
 
   p + img,
@@ -128,19 +65,29 @@
     margin-block-start: 0;
   }
 
-  table {
-    margin-block: var(--vertical-space--2x);
-    border: 0.1rem solid var(--color-secondary);
+  figure img {
+    margin-block-end: 0;
   }
 
-  td {
-    padding: 0.5em;
-    border: 0.1rem solid var(--color-secondary);
+  // Tables - Spectre style
+  table {
+    inline-size: 100%;
+    margin-block: var(--vertical-space-2x);
+    border-spacing: 0;
+    text-align: start;
+    border-collapse: collapse;
+  }
+
+  td,
+  th {
+    padding-block: var(--unit-3x);
+    padding-inline: var(--unit-2x);
+    border-block-end: 0.1rem solid var(--color-border);
   }
 
   th {
-    color: var(--color-light);
-    background: var(--color-secondary);
+    text-align: start;
+    border-block-end-width: 0.2rem;
   }
 
   .align-center {

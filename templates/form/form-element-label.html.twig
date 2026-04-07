@@ -29,5 +29,8 @@
   Building the template structure
 #}
 {% if title is not empty or required -%}
-  <label{{ attributes.addClass(classes) }}>{{ title }}</label>
+  <label{{ attributes.addClass(classes) }}>
+    {{ title }}{% if required %} <abbr class="is-required" title="{{ 'required'|t }}">*</abbr>{% endif %}
+  </label>
 {%- endif %}
+

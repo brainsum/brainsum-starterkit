@@ -1,0 +1,176 @@
+/**
+ * @file
+ * Form Icon Fields
+ *
+ * Generic icon support for any form field. Add .has-icon alongside
+ * .has-icon--start or .has-icon--end to the form item (.c-form-item).
+ * The __container child wrapping the input gets the icon via ::after.
+ * Icon images are set per-type on __container::after selectors.
+ *
+ * Auto-attached by form-element.html.twig when select or search inputs are used.
+ *
+ * To add icons for custom fields:
+ * 1. Edit settings/settings.forms.yml and add field name to icons.start.names or icons.end.names
+ * 2. Add icon variable below (e.g., $reason-icon: "lightbulb-regular";)
+ * 3. Add selector in "Per-type icon images" section:
+ *    &-item-field-reason .has-icon::after { background-image: svg-load(...); }
+ */
+
+@use "../../tools";
+
+/**
+ * Settings
+ */
+$browser-input-icons: true;
+$color-icon: #000; // --color-text-primary, but for SVGs we can't use var(), for spinner we use this variable as CSS variable below.
+
+// Per-type icon images
+$select-icon: "angle-down-solid";
+$search-icon: "magnifying-glass-solid";
+$date-icon: "calendar-regular";
+$time-icon: "clock-regular";
+
+/**
+ * Mixins
+ */
+
+/**
+ * Form Icon Field
+ *
+ * Shared container + icon pattern for form fields with icons.
+ * The container wraps the input/select. Position (start/end) is controlled
+ * by .has-icon--start / .has-icon--end classes. Each type sets its own
+ * background-image on &::after.
+ */
+@mixin form-icon-field {
+  position: relative;
+
+  &::after {
+    @include tools.square(var(--icon-size));
+
+    position: absolute;
+    inset-block-start: 50%;
+    display: block;
+    content: "";
+    transform: translateY(-50%);
+    pointer-events: none;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+  }
+}
+
+@if $browser-input-icons == false {
+  input[type="date" i]::-webkit-calendar-picker-indicator,
+  input[type="time" i]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-end: 0;
+    inline-size: var(--icon-size);
+    block-size: 100%;
+    cursor: pointer;
+    opacity: 0;
+  }
+}
+
+.c-form {
+  --color-icon: #{$color-icon};
+  /**
+   * Form Icon Fields
+   */
+  .has-icon {
+    @include form-icon-field;
+
+    &:has(:disabled, .is-disabled)::after {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    &--end {
+      &::after {
+        inset-inline-end: var(--padding-inline);
+      }
+
+      // Hide icon for select[multiple] and select[size]
+      &:has(select[multiple])::after,
+      &:has(select[size])::after {
+        display: none;
+      }
+
+      .c-form-element,
+      select:not([multiple], [size]) {
+        padding-inline-end: calc(var(--icon-size) + 2 * var(--padding-inline));
+      }
+    }
+
+    &--start {
+      &::after {
+        inset-inline-start: var(--padding-inline);
+      }
+
+      .c-form-element,
+      input {
+        padding-inline-start: calc(var(--icon-size) + 2 * var(--padding-inline));
+      }
+    }
+  }
+
+  /**
+   * Per-type icon images
+   */
+  &-item--select .has-icon::after {
+    background-image: svg-load("images/icons/#{$select-icon}.svg", fill=$color-icon);
+  }
+
+  &-item--search .has-icon::after {
+    background-image: svg-load("images/icons/#{$search-icon}.svg", fill=$color-icon);
+  }
+
+  /**
+   * Loading spinner (CSS-only).
+   *
+   * Replaces SVG icon with a pure CSS spinner using border technique.
+   */
+  .is-loading .has-icon::after {
+    @include tools.spinner(var(--icon-size), var(--color-icon), $centered: true);
+
+    background-image: none;
+  }
+
+  /**
+   * Custom date/time icons — DISABLED
+   *
+   * Since Firefox 109, the native calendar button inside <input type="date|time">
+   * lives in an inaccessible shadow DOM (`datetime-calendar-button`) that cannot
+   * be hidden or styled from author CSS. This means we cannot replace the native
+   * icon with a custom one without ending up with **double icons** in Firefox.
+   *
+   * The code below hides the WebKit indicator and renders our own SVG icon
+   * via an ::after pseudo-element. It works perfectly in Chrome / Safari but
+   * breaks in Firefox for the reason above.
+   *
+   * HOW TO RE-ENABLE (once Firefox resolves the bug):
+   * 1. Set `$browser-input-icons` to `false`.
+   * 2. Uncomment the two `@if` blocks below.
+   * 3. In form-element.html.twig:
+   *    - Add 'date' and 'time' back to `icon_end_types`.
+   *    - Add 'date' and 'time' back to `container_types`.
+   * 4. Rebuild caches (`drush cr`).
+   *
+   * @see https://bugzilla.mozilla.org/show_bug.cgi?id=1812397
+   * @see https://bugzilla.mozilla.org/show_bug.cgi?id=1830890
+   * @see https://bugzilla.mozilla.org/show_bug.cgi?id=1817839
+   */
+
+  /* Custom date/time ::after icons — DISABLED (see comment above .c-form).
+  @if $browser-input-icons == false {
+    &-element--type-date .has-icon::after {
+      background-image: svg-load("images/icons/#{$date-icon}.svg", fill=$color-icon);
+    }
+
+    &-element--type-time .has-icon::after {
+      background-image: svg-load("images/icons/#{$time-icon}.svg", fill=$color-icon);
+    }
+  }
+  */
+}

@@ -1,0 +1,107 @@
+/**
+ * @file
+ * Form Layouts
+ *
+ * Fieldset, composite fieldsets, and horizontal (inline label) form layout.
+ *
+ * HORIZONTAL LAYOUT
+ *
+ * Option 1: Whole form via settings/settings.forms.yml:
+ *   horizontal_layout:
+ *     enabled: false        # Global toggle (true = ON, forms = exclusions)
+ *     forms:
+ *       - my_settings_form  # Include these when enabled: false
+ *
+ * Option 2: Subsection via PHP (add class to container):
+ *   $form['section'] = [
+ *     '#type' => 'container',
+ *     '#attributes' => ['class' => ['c-form--horizontal']],
+ *   ];
+ *   // Don't forget to attach library manually for subsection approach:
+ *   $form['#attached']['library'][] = 'brainsum_starterkit/forms.layouts';
+ *
+ * Example HTML structure:
+ *   <form class="c-form">
+ *     <!-- Regular stacked fields -->
+ *     <div class="c-form-item">...</div>
+ *
+ *     <!-- Horizontal subsection -->
+ *     <div class="c-form--horizontal">
+ *       <div class="c-form-item">
+ *         <label class="c-form-item__label">Username</label>
+ *         <div class="c-form-item__container">
+ *           <input class="c-form-item__textfield" />
+ *         </div>
+ *       </div>
+ *     </div>
+ *   </form>
+ *
+ * Auto-attached when form ID matches config.
+ */
+
+.c-form {
+  fieldset {
+    vertical-align: initial;
+    border: 0;
+  }
+
+  legend {
+    display: block;
+    margin-block-end: var(--label-gap);
+    font-weight: 700;
+  }
+
+  /**
+   * Composite fieldsets (radios/checkboxes) rendered as div[role="group"]
+   *
+   * Need explicit stacking so title, options, and description are on
+   * separate rows.
+   */
+  .c-fieldset--composite {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    text-align: start;
+  }
+
+  /**
+   * Horizontal (Inline Label) Form
+   *
+   * Uses CSS Grid for a two-column layout: label left, input + description
+   * right. On mobile the layout stacks vertically.
+   * Add .c-form--horizontal to a <form> or wrapper element.
+   */
+  &--horizontal {
+    --item-gap: var(--unit-2x);
+
+    .c-form-item.c-form-item--label-before,
+    .c-fieldset--composite {
+      @media (--tablet-s) {
+        display: grid;
+        grid-template-columns: var(--horizontal-label-width) 1fr;
+        gap: var(--label-gap);
+
+        > .c-form-item__label {
+          grid-row: 1;
+          grid-column: 1;
+          margin-block-end: 0;
+        }
+
+        > .c-form-element,
+        > [class*="__container"],
+        > .c-fieldset__wrapper,
+        > textarea,
+        > .form-radios,
+        > .form-checkboxes {
+          grid-row: 1;
+          grid-column: 2;
+        }
+
+        > .c-form-item__description {
+          grid-row: 2;
+          grid-column: 2;
+        }
+      }
+    }
+  }
+}

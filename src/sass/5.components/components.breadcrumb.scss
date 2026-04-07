@@ -1,0 +1,46 @@
+/**
+ * @file
+ * Breadcrumb Component
+ *
+ * Drupal core's breadcrumb system does not include the current page title.
+ * For full breadcrumb functionality (current page, configurable options),
+ * install the Easy Breadcrumb module:
+ *   https://www.drupal.org/project/easy_breadcrumb
+ */
+
+/**
+ * Imports
+ */
+@use "../settings";
+@use "../tools";
+
+.c-breadcrumb {
+  --breadcrumb-item-gap: var(--unit-1x);
+
+  padding-block: var(--unit-2x);
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--breadcrumb-item-gap);
+  }
+
+  &__item {
+    display: inline-flex;
+    align-items: center;
+
+    &:not(:first-child)::before {
+      padding-inline-end: var(--breadcrumb-item-gap);
+      content: "/";
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    color: currentColor;
+
+    &:hover {
+      color: var(--color-primary);
+    }
+  }
+}

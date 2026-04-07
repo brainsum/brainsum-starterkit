@@ -1,0 +1,43 @@
+# Table Component Configuration
+#
+# Centralized settings for table styling and responsive behavior.
+#
+# The theme replaces Drupal core's JS-based responsive tables with a CSS-only
+# solution that requires special markup (cell labels/content wrappers).
+#
+# Note: Tables don't have reliable identifiers like forms do, so only global
+# settings are supported. For per-table control, add classes manually in your
+# render arrays or templates.
+#
+# @see src/includes/table.inc
+# @see templates/dataset/table.html.twig
+# @see src/sass/5.components/components.table.scss
+
+# Responsive Table Component
+# CSS-only responsive table solutions.
+#
+# Options:
+#   none  - No responsive behavior (default desktop table)
+#   stack - Cells stack vertically on mobile with visible labels
+#           Requires special markup (cell-label/cell-content wrappers)
+#   scroll - Horizontal scroll on overflow (simpler, no special markup needed)
+#
+responsive:
+  type: 'scroll'
+
+# Table Modifiers
+# Additional CSS classes to apply to tables globally.
+# These work independently of the responsive feature.
+modifiers:
+  # Striped rows (alternating background colors)
+  striped: true
+
+  # Hover effect on rows
+  hover: true
+
+# Remove Core Classes
+# Control which Drupal core classes to remove from tables.
+remove_classes:
+  # Remove 'responsive-enabled' class (added by core when #responsive: TRUE)
+  # This prevents core's JS from initializing on the table.
+  responsive_enabled: true

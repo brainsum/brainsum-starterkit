@@ -20,8 +20,108 @@ final class StarterKit implements StarterKitInterface {
     catch (\Throwable $th) {
     }
 
+    // Restore comments in the .info.yml file.
+    static::restoreInfoYmlComments($working_dir, $machine_name);
+
     // Copy DDEV configuration files to the project root.
     static::installDdevConfig($working_dir);
+  }
+
+  /**
+   * Restore comments from source .info.yml to the generated theme's .info.yml.
+   *
+   * Drupal's core generator strips all comments when parsing/dumping YAML.
+   * This method reads both files and intelligently merges them, preserving
+   * comments from the source while keeping the generated values.
+   *
+   * @param string $working_dir
+   *   The generated theme directory.
+   * @param string $machine_name
+   *   The new theme's machine name.
+   */
+  private static function restoreInfoYmlComments(string $working_dir, string $machine_name): void {
+    $source_file = __DIR__ . '/../brainsum_starterkit.info.yml';
+    $dest_file = $working_dir . '/' . $machine_name . '.info.yml';
+
+    if (!file_exists($source_file) || !file_exists($dest_file)) {
+      return;
+    }
+
+    $source_lines = file($source_file, FILE_IGNORE_NEW_LINES);
+    $dest_lines = file($dest_file, FILE_IGNORE_NEW_LINES);
+
+    if ($source_lines === FALSE || $dest_lines === FALSE) {
+      return;
+    }
+
+    // Build a map of comments that precede each key in the source.
+    $comments_map = static::extractCommentsMap($source_lines);
+
+    // Build the output by processing the generated file and injecting comments.
+    $output = [];
+    $previous_key = NULL;
+
+    foreach ($dest_lines as $line) {
+      $trimmed = trim($line);
+
+      // Detect top-level keys (no leading spaces).
+      if (preg_match('/^([a-z_-]+):/i', $line, $matches)) {
+        $key = $matches[1];
+
+        // Insert comments that belong before this key.
+        if (isset($comments_map[$key])) {
+          foreach ($comments_map[$key] as $comment) {
+            $output[] = $comment;
+          }
+        }
+
+        $output[] = $line;
+        $previous_key = $key;
+      }
+      else {
+        // Not a top-level key, just add the line.
+        $output[] = $line;
+      }
+    }
+
+    // Write the merged content back.
+    $merged_content = implode("\n", $output) . "\n";
+    file_put_contents($dest_file, $merged_content);
+  }
+
+  /**
+   * Extract comments that precede each top-level key in the YAML file.
+   *
+   * @param array $lines
+   *   Lines from the source .info.yml file.
+   *
+   * @return array
+   *   Map of key => array of comment lines that precede it.
+   */
+  private static function extractCommentsMap(array $lines): array {
+    $map = [];
+    $pending_comments = [];
+
+    foreach ($lines as $line) {
+      $trimmed = trim($line);
+
+      // Collect comment lines and blank lines.
+      if ($trimmed === '' || str_starts_with($trimmed, '#')) {
+        $pending_comments[] = $line;
+        continue;
+      }
+
+      // When we hit a top-level key, associate pending comments with it.
+      if (preg_match('/^([a-z_-]+):/i', $line, $matches)) {
+        $key = $matches[1];
+        if (!empty($pending_comments)) {
+          $map[$key] = $pending_comments;
+          $pending_comments = [];
+        }
+      }
+    }
+
+    return $map;
   }
 
   /**

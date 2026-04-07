@@ -1,0 +1,29 @@
+/**
+ * @file
+ * Form Component — Kitchen Sink
+ *
+ * Imports ALL modular form partials into a single compiled CSS file.
+ * Use this for backwards compatibility or when a project needs every
+ * form module loaded at once.
+ *
+ * For modular (per-library) loading, use the individual files in forms/
+ * and attach them via Drupal libraries:
+ *
+ * @see forms/forms.base.scss           — always loaded (custom props, text inputs, layout)
+ * @see forms/forms.boolean.scss        — checkboxes, radios, inline booleans
+ * @see forms/forms.switch.scss         — lightswitch toggle
+ * @see forms/forms.range.scss          — range/slider input
+ * @see forms/forms.icons.scss          — icon fields (select arrow, search, loading)
+ * @see forms/forms.layouts.scss        — fieldset, composite, horizontal layout
+ * @see forms/forms.validation.scss     — error/success states for all field types
+ * @see forms/forms.floating-labels.scss — animated floating labels (Bootstrap-inspired)
+ */
+
+@use "forms/forms.base" as base;
+@use "forms/forms.boolean" as boolean;
+@use "forms/forms.switch" as switch;
+@use "forms/forms.range" as range;
+@use "forms/forms.icons" as icons;
+@use "forms/forms.layouts" as layouts;
+@use "forms/forms.validation" as validation;
+@use "forms/forms.floating-labels" as floating;

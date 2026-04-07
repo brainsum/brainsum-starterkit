@@ -1,0 +1,26 @@
+# Header Component Configuration
+#
+# Centralized settings for header behavior and display options.
+#
+# @see src/includes/html.inc
+# @see src/includes/page.inc
+# @see templates/layout/html.html.twig
+# @see templates/layout/page.html.twig
+
+# Sticky Header Behavior
+# Determines how the header behaves when scrolling.
+#
+# Options:
+# - false: Normal header (no sticky behavior)
+#   The header scrolls out of view naturally as the user scrolls down.
+#
+# - 'sticky': Always visible sticky header (position: sticky)
+#   The header remains fixed at the top of the viewport at all times.
+#   Uses CSS position: sticky for simple, performant implementation.
+#
+# - 'auto-hide': Smart sticky header (hides on scroll down, shows on scroll up)
+#   The header hides when scrolling down to maximize content space.
+#   The header reappears when scrolling up for easy navigation access.
+#   Also known as "headroom" or "smart header" pattern.
+#   Requires JavaScript to detect scroll direction.
+sticky_header: 'auto-hide'

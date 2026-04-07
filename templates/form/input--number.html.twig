@@ -1,0 +1,54 @@
+{#
+/**
+ * @file
+ * Theme override for number input elements.
+ *
+ * Optionally wraps the native number input with custom +/- controls,
+ * hiding the browser's default spinners. The controls are positioned
+ * like right-side icon fields (see forms.icons.scss).
+ *
+ * Configuration:
+ *   number_controls in settings/settings.forms.yml
+ *   When false (default), renders a plain <input>.
+ *   When true, wraps with .c-number-input and attaches the JS/CSS library.
+ *
+ * Available variables:
+ * - attributes: A list of HTML attributes for the input element.
+ * - children: Optional additional rendered elements.
+ * - use_number_controls: Whether to render custom +/- buttons (from preprocess).
+ * - disable_at_limits: Disable individual buttons at min/max boundaries.
+ *
+ * @see template_preprocess_input()
+ * @see settings/settings.forms.yml
+ * @see src/includes/form.inc
+ */
+#}
+
+{#
+  Building the template structure
+#}
+{% if use_number_controls is defined and use_number_controls %}
+  {{ attach_library('brainsum_starterkit/forms.number') }}
+
+  <div class="c-number-input"{{ disable_at_limits ? ' data-disable-at-limits' }}>
+    <input{{ attributes.addClass('c-number-input__field') }}>{{ children }}
+    <div class="c-number-input__controls">
+      <button type="button" class="c-number-input__button c-number-input__button--increment" aria-label="{{ 'Increase value'|t }}" tabindex="-1">
+        {{ include('brainsum_starterkit:icon', {
+          icon: 'angles-up-down-solid--up',
+          class: 'c-number-input__icon',
+          size: 14,
+        }) }}
+      </button>
+      <button type="button" class="c-number-input__button c-number-input__button--decrement" aria-label="{{ 'Decrease value'|t }}" tabindex="-1">
+        {{ include('brainsum_starterkit:icon', {
+          icon: 'angles-up-down-solid--down',
+          class: 'c-number-input__icon',
+          size: 14,
+        }) }}
+      </button>
+    </div>
+  </div>
+{% else %}
+  <input{{ attributes }}>{{ children }}
+{% endif %}

@@ -1,0 +1,1 @@
+@keyframes spinner{0%{transform:rotate(0deg)}to{transform:rotate(360deg)}}@keyframes spinner-centered{0%{transform:translateY(-50%) rotate(0deg)}to{transform:translateY(-50%) rotate(360deg)}}.error-page-content{text-align:center;font-size:1.2em}

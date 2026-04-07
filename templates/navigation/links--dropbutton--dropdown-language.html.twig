@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme override for language selector links to wrapping items together.
+ * Theme override for language selector dropdown.
  *
  * Available variables:
  * - attributes: Attributes for the UL containing the list of links.
@@ -36,48 +36,57 @@
 {% if links -%}
   {%- if heading -%}
     {%- if heading.level -%}
-      <{{ heading.level }}{{ heading.attributes }}>
+      <{{ heading.level }}{{ heading.attributes.addClass('u-visually-hide') }}>
         {{ heading.text }}
       </{{ heading.level }}>
     {%- else -%}
-      <h2{{ heading.attributes }}>{{ heading.text }}</h2>
+      <h2{{ heading.attributes.addClass('u-visually-hide') }}>{{ heading.text }}</h2>
     {%- endif -%}
   {%- endif -%}
-  <ul{{ attributes }}>
+
+  <div class="c-language-dropdown">
+    {# Toggle button #}
     {%- for item in links -%}
-      {% if loop.first %}
-        <li{{ item.attributes }}>
-          {%- if item.link -%}
-            {{ item.link }}
-          {%- elseif item.text_attributes -%}
-            <span{{ item.text_attributes }}>{{ item.text }}</span>
-          {%- else -%}
-            {{ item.text }}
-          {%- endif -%}
-        </li>
-        <div class="dropdown">
-      {% elseif loop.last %}
-        <li{{ item.attributes }}>
-          {%- if item.link -%}
-            {{ item.link }}
-          {%- elseif item.text_attributes -%}
-            <span{{ item.text_attributes }}>{{ item.text }}</span>
-          {%- else -%}
-            {{ item.text }}
-          {%- endif -%}
-        </li>
-        </div>
-      {% else %}
-        <li{{ item.attributes }}>
-          {%- if item.link -%}
-            {{ item.link }}
-          {%- elseif item.text_attributes -%}
-            <span{{ item.text_attributes }}>{{ item.text }}</span>
-          {%- else -%}
-            {{ item.text }}
-          {%- endif -%}
-        </li>
-      {% endif %}
+      {%- if loop.first -%}
+        <button
+          class="c-language-dropdown__toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="language-dropdown-panel"
+          data-drupal-selector="language-dropdown-toggle"
+        >
+          <span class="c-language-dropdown__toggle-text">{{ item.text }}</span>
+          <span class="c-language-dropdown__toggle-icon">
+            {{ include('brainsum_starterkit:icon', {
+              icon: 'angle-down-solid',
+              size: 11,
+              alt: 'Down angle'|t,
+            }) }}
+          </span>
+        </button>
+      {%- endif -%}
     {%- endfor -%}
-  </ul>
+
+    {# Dropdown panel #}
+    <ul
+      id="language-dropdown-panel"
+      class="c-language-dropdown__panel"
+      role="menu"
+      {{ attributes.removeClass('dropbutton') }}
+    >
+      {%- for item in links -%}
+        {%- if not loop.first -%}
+          <li{{ item.attributes.addClass('c-language-dropdown__item').setAttribute('role', 'none') }}>
+            {%- if item.link -%}
+              {{ item.link }}
+            {%- elseif item.text_attributes -%}
+              <span{{ item.text_attributes }}>{{ item.text }}</span>
+            {%- else -%}
+              {{ item.text }}
+            {%- endif -%}
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </div>
 {%- endif %}

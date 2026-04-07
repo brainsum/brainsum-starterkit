@@ -1,0 +1,59 @@
+/**
+ * @file
+ * Scrollbar Tool
+ *
+ * Custom scrollbar styling using standard CSS properties.
+ * Supported in all modern browsers (Chrome 121+, Firefox, Safari).
+ *
+ * @see https://developer.chrome.com/docs/css-ui/scrollbar-styling
+ *
+ * @param {Keyword} $size [thin]
+ *   Width of the scrollbar. Accepted values:
+ *   - auto: Default scrollbar width as provided by the platform
+ *   - thin: A thin variant of scrollbar provided by the platform
+ *   - none: Hides the scrollbar (element is still scrollable)
+ *   Note: <length> values (e.g., 16px) are not supported by scrollbar-width
+ * @param {Color} $thumb-color [var(--color-primary)]
+ *   Background color of the scrollbar thumb (the draggable part).
+ * @param {Color} $track-color [var(--color-background-light)]
+ *   Background color of the scrollbar track (the rail).
+ *
+ * @example Basic usage with defaults
+ *   @use "../tools";
+ *
+ *   .scrollable {
+ *     @include tools.scrollbar;
+ *   }
+ *
+ * @example Thin width scrollbar
+ *   .scrollable--thin {
+ *     @include tools.scrollbar($size: thin);
+ *   }
+ *
+ * @example Hidden scrollbar (still scrollable)
+ *   .scrollable--hidden {
+ *     @include tools.scrollbar($size: none);
+ *   }
+ *
+ * @example Custom colors
+ *   .scrollable--themed {
+ *     @include tools.scrollbar(
+ *       $thumb-color: var(--color-accent),
+ *       $track-color: var(--color-grey-10)
+ *     );
+ *   }
+ *
+ * @example Full customization
+ *   .scrollable--custom {
+ *     @include tools.scrollbar(
+ *       $size: thin,
+ *       $thumb-color: hsl(220, 90%, 50%),
+ *       $track-color: hsl(220, 10%, 95%)
+ *     );
+ *   }
+ */
+
+@mixin scrollbar($size: auto, $thumb-color: var(--color-primary), $track-color: var(--color-background-light)) {
+  scrollbar-color: $thumb-color $track-color;
+  scrollbar-width: $size;
+}

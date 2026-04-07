@@ -10,6 +10,8 @@
  * - site_logo: Logo for site as defined in Appearance or theme settings.
  * - site_name: Name for site as defined in Site information settings.
  * - site_slogan: Slogan for site as defined in Site information settings.
+ * - component_containers: Boolean indicating whether to use component-based
+ *   containers (TRUE) or a single page-level container (FALSE).
  */
 #}
 
@@ -26,11 +28,12 @@
 {#
   Building the template structure
 #}
+
 {% block content %}
   {% if site_logo %}
     <div class="c-branding__logo">
       <a href="{{ path('<front>') }}" rel="home" class="c-branding__logo-link">
-        <img class="c-branding__logo-image" src="{{ site_logo }}" alt="{{ 'Home'|t }}" />
+        <img class="c-branding__logo-image" src="{{ site_logo }}" width="70" height="70" alt="{{ 'Home'|t }}" fetchpriority="high" />
       </a>
     </div>
   {% endif %}

@@ -1,11 +1,15 @@
 /**
  * @file
- * Global Settings
+ * Global SASS Settings
  *
- * Setting files contain **global** configurations that are shared by more than
+ * Setting files contain **global** SASS configurations that are shared by more than
  * one modules.
  * Local configurations should be contained into the modules (objects,
  * components, etc.) that are related to.
+ *
+ * Only Sass variables and functions — no CSS output.
+ * CSS custom properties are output once via base.settings.scss
+ * in the global library.
  */
 
-@forward "1.settings";
+@forward "1.settings/settings.functions";

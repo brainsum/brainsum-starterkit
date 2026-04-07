@@ -5,11 +5,9 @@
 
 $theme-root: "/themes/custom/brainsum_starterkit";
 
-/* @font-face {
+@font-face {
   font-family: "Open Sans";
-  src:
-    url("#{$theme-root}/fonts/opensans-regular.woff2") format("woff2"),
-    url("#{$theme-root}/fonts/opensans-regular.woff") format("woff");
+  src: url("#{$theme-root}/fonts/opensans-regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -17,9 +15,7 @@ $theme-root: "/themes/custom/brainsum_starterkit";
 
 @font-face {
   font-family: "Open Sans";
-  src:
-    url("#{$theme-root}/fonts/opensans-italic.woff2") format("woff2"),
-    url("#{$theme-root}/fonts/opensans-italic.woff") format("woff");
+  src: url("#{$theme-root}/fonts/opensans-italic.woff2") format("woff2");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
@@ -27,10 +23,8 @@ $theme-root: "/themes/custom/brainsum_starterkit";
 
 @font-face {
   font-family: "Open Sans";
-  src:
-    url("#{$theme-root}/fonts/opensans-bold.woff2") format("woff2"),
-    url("#{$theme-root}/fonts/opensans-bold.woff") format("woff");
+  src: url("#{$theme-root}/fonts/opensans-bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
-} */
+}

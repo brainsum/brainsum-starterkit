@@ -1,0 +1,219 @@
+/**
+ * @file
+ * Form Floating Labels
+ *
+ * Bootstrap-inspired floating labels that animate above the input on focus or
+ * when the field has a value. Provides a modern, space-efficient alternative
+ * to traditional above-label layout.
+ *
+ * REQUIREMENTS:
+ * - Input/select must come BEFORE label in HTML (uses ~ sibling selector)
+ * - Input must have a placeholder attribute (can be empty: placeholder="")
+ * - Wrapper element must have .c-form-floating class
+ *
+ * SUPPORTED FIELD TYPES:
+ * - Text inputs (text, email, password, number, date, time, etc.)
+ * - Textarea
+ * - Select (single only, not multiple or size)
+ *
+ * ACCESSIBILITY:
+ * - Uses native <label> elements (always visible, just repositioned)
+ * - Proper for/id association maintained
+ * - Works with screen readers
+ * - Supports browser autofill detection
+ *
+ * CONFIGURATION (settings/settings.forms.yml):
+ *   floating_labels:
+ *     enabled: false        # Global toggle (true = ON, forms = exclusions)
+ *     forms:
+ *       - user_login_form   # Include these when enabled: false
+ *
+ * Auto-attached by form-element.html.twig when enabled for the form.
+ *
+ * @see https://getbootstrap.com/docs/5.0/forms/floating-labels/
+ */
+
+@use "../../tools";
+
+.c-form {
+  &-floating {
+    /**
+     * When floating (focused or has value), inputs need extra top padding to
+     * make room for the scaled label.
+     */
+    --padding-block: calc(var(--unit-4x) + 0.2rem);
+    --padding-inline: var(--unit-3x);
+    --border-radius: 0.3rem;
+    --input-height: 5.8rem;
+
+    position: relative;
+
+    /**
+     * Input/Select height and line-height
+     */
+    .c-form-element {
+      min-block-size: var(--input-height);
+      line-height: 1.25;
+    }
+
+    /**
+     * Label Positioning
+     *
+     * Label sits absolutely positioned over the input. It will animate/scale
+     * when the input gains focus or has a value.
+     */
+    .c-form-item__label {
+      position: absolute;
+      z-index: 2;
+      inset-block: 0;
+      inset-inline: 0;
+      overflow: hidden;
+      block-size: 100%;
+      margin-block-end: 0; // Override default label margin
+      padding-block: var(--padding-block);
+      padding-inline: var(--padding-inline);
+      transition:
+        color 0.1s ease-in-out,
+        transform 0.1s ease-in-out;
+      transform-origin: 0 0;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      pointer-events: none;
+      color: var(--color-input); // Initial state: same as input text color
+      border: 0.1rem solid transparent; // Required for aligning text with input
+    }
+
+    /**
+     * Icon Field Adjustments
+     *
+     * When form field has icons, adjust label padding to prevent overlap.
+     */
+
+    &.has-icon--end .c-form-item__label {
+      padding-inline-end: calc(var(--icon-size) + var(--padding-inline));
+    }
+
+    &.has-icon--start .c-form-item__label {
+      // Start from icon position, not field start
+      inset-inline-start: calc(var(--icon-size) + var(--padding-inline));
+    }
+
+    /**
+     * Input Padding Adjustments
+     */
+    .c-form-element {
+      // Hide placeholder initially (shown only when focused)
+      &::placeholder {
+        color: transparent;
+      }
+
+      // Adjust padding when label is floating
+      &:focus,
+      &:not(:placeholder-shown) {
+        padding-block-end: 0.7rem;
+      }
+
+      &:focus,
+      &:not(:placeholder-shown, [multiple]) {
+        padding-block-start: 2.5rem;
+      }
+
+      &:not(:placeholder-shown):is([multiple]) {
+        padding-block-start: 3rem;
+      }
+
+      // Duplicated for browser autofill (:-webkit-autofill invalidates grouped selectors)
+      &:-webkit-autofill {
+        padding-block-start: 2.5rem;
+        padding-block-end: 0.7rem;
+      }
+    }
+
+    /**
+     * Select Elements
+     *
+     * Selects always show the label in floated state since they always have
+     * a selected value.
+     */
+    > select {
+      padding-block-start: 2.5rem;
+      padding-block-end: 0.7rem;
+      padding-inline-start: var(--padding-inline);
+    }
+
+    /**
+     * Label Float Animation
+     *
+     * Transform the label when input has focus, value, or autofill.
+     * Change color to placeholder color for better visual hierarchy.
+     */
+    .c-form-element {
+      &:focus,
+      &:not(:placeholder-shown),
+      &:-webkit-autofill {
+        ~ .c-form-item__label {
+          transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+          color: var(--color-placeholder);
+        }
+      }
+    }
+
+    /**
+     * Number Input Controls
+     *
+     * When number controls are enabled, the <input> is wrapped inside
+     * .c-number-input so the direct sibling selectors above don't reach
+     * the label. Use :has() to detect input state through the wrapper.
+     */
+    .c-number-input {
+      --button-gap: var(--unit-1x);
+    }
+
+    .c-number-input:has(.c-form-element:focus) ~ .c-form-item__label,
+    .c-number-input:has(.c-form-element:not(:placeholder-shown)) ~ .c-form-item__label,
+    .c-number-input:has(.c-form-element:-webkit-autofill) ~ .c-form-item__label {
+      transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+      color: var(--color-placeholder);
+    }
+
+    .c-number-input:has(.c-form-element:focus),
+    .c-number-input:has(.c-form-element:not(:placeholder-shown)) {
+      .c-form-element {
+        padding-block-start: 2.5rem;
+        padding-block-end: 0.7rem;
+      }
+    }
+
+    /**
+     * Textarea Background Mask
+     *
+     * For textareas, create a background behind the floated label so the
+     * textarea content doesn't show through.
+     */
+    .c-form-element__container > textarea:focus ~ .c-form-item__label::after,
+    .c-form-element__container > textarea:not(:placeholder-shown) ~ .c-form-item__label::after {
+      position: absolute;
+      z-index: -1;
+      inset-block: 1.6rem;
+      inset-inline: calc(var(--padding-inline) * 0.5);
+      block-size: 1.5em;
+      content: "";
+      border-radius: var(--border-radius);
+      background: var(--color-input-background);
+    }
+
+    > textarea:disabled ~ .c-form-item__label::after {
+      background: var(--color-background-dark);
+    }
+
+    /**
+     * Disabled State
+     */
+    > :disabled ~ .c-form-item__label,
+    > .c-form-element:disabled ~ .c-form-item__label,
+    .c-number-input:has(.c-form-element:disabled) ~ .c-form-item__label {
+      opacity: 0.5;
+      color: var(--color-placeholder);
+    }
+  }
+}

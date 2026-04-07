@@ -1,0 +1,178 @@
+/**
+ * @file
+ * Form Base
+ *
+ * Core form styles: custom properties, form-item layout, labels, descriptions,
+ * text inputs, textarea, select base, and validation messages.
+ *
+ * This library is attached to every <form> via form.html.twig.
+ *
+ * @see forms.boolean.scss  — checkboxes, radios, inline booleans
+ * @see forms.switch.scss   — lightswitch toggle
+ * @see forms.range.scss    — range/slider input
+ * @see forms.icons.scss    — icon fields (select arrow, search, loading)
+ * @see forms.layouts.scss  — fieldset, composite, horizontal layout
+ */
+
+@use "../../settings";
+@use "../../tools";
+
+/**
+ * Form Custom Properties
+ *
+ * Override globals for form context. Only unique values defined here.
+ */
+form {
+  // Layout
+  --border-radius: 0.2rem;
+  --item-gap: var(--unit-12x);
+  --label-gap: var(--unit-2x);
+  --description-gap: var(--unit-2x);
+  --inline-gap: var(--unit-3x);
+  --horizontal-label-width: 25%;
+  --input-height: 3.6rem;
+
+  // Paddings
+  --padding-block: var(--unit-2x);
+  --padding-inline: var(--unit-2x);
+
+  // Colors
+  --color-input: var(--color-black);
+  --color-input-background: var(--color-light);
+  --color-input-border: var(--color-border-dark);
+  --color-placeholder: var(--color-grey-40);
+  --color-label: var(--color-text-primary);
+  --color-description: var(--color-grey-40);
+  --color-required: var(--color-error);
+
+  // Sizing
+  --icon-size: 1.6rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--item-gap);
+}
+
+.c-form {
+  &__wrapper,
+  .o-layout__region {
+    display: flex;
+    flex-direction: column;
+    gap: var(--item-gap);
+  }
+
+  /**
+   * Forms with no visible form items
+   *
+   * Removes flexbox gaps for forms that only contain tables, hidden fields,
+   * or other non-visible elements (e.g., tabledrag forms). The hidden toggle
+   * buttons and warning messages shouldn't create spacing.
+   */
+  &.has-no-visible-form-items &__wrapper {
+    gap: 0;
+  }
+
+  &-item {
+    &.has-label {
+      display: flex;
+    }
+
+    &.c-form-item--label-before {
+      flex-direction: column;
+    }
+
+    &.c-form-item--label-after {
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      > .c-form-item__description {
+        flex-basis: 100%;
+      }
+    }
+
+    &__label {
+      @include tools.type(label);
+
+      display: block;
+      margin-block-end: var(--label-gap);
+      color: var(--color-label);
+    }
+
+    &__description {
+      @include tools.type(description);
+
+      margin-block-start: var(--description-gap);
+      color: var(--color-description);
+    }
+
+    .is-required {
+      color: var(--color-required);
+      border-block-end: 0;
+    }
+  }
+
+  /**
+   * Text form elements
+   *   - input type: text, email, number, date, time, password...
+   *   - textarea
+   */
+  &-element {
+    @include tools.type(input);
+    @include tools.global-transition;
+
+    box-sizing: border-box;
+    inline-size: 100%;
+    min-block-size: var(--input-height);
+    padding-block: var(--padding-block);
+    padding-inline: var(--padding-inline);
+    color: var(--color-input);
+    border: 0.1rem solid var(--color-input-border);
+    border-radius: var(--border-radius);
+    background: var(--color-input-background);
+    appearance: none;
+
+    &:hover:not(:disabled, .is-disabled) {
+      border-color: var(--color-primary);
+    }
+
+    &::placeholder {
+      color: var(--color-placeholder);
+    }
+
+    &.form-textarea {
+      block-size: auto;
+      min-block-size: 12rem;
+    }
+
+    &[type="file"] {
+      block-size: auto;
+    }
+
+    &[readonly] {
+      background: var(--color-background);
+    }
+
+    &:disabled,
+    &.is-disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+      background: var(--color-background-dark);
+    }
+  }
+
+  textarea {
+    block-size: auto;
+    resize: vertical;
+    vertical-align: top;
+  }
+
+  /**
+   * Select Elements
+   */
+  &-item--select,
+  &-item-created {
+    select:not([multiple], [size]) {
+      cursor: pointer;
+    }
+  }
+}

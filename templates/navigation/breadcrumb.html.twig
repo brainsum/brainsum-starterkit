@@ -3,10 +3,22 @@
  * @file
  * Theme override for a breadcrumb trail.
  *
+ * Drupal core's breadcrumb system does not include the current page title.
+ * For full breadcrumb functionality (current page, configurable options),
+ * install the Easy Breadcrumb module:
+ *   https://www.drupal.org/project/easy_breadcrumb
+ *
  * Available variables:
  * - breadcrumb: Breadcrumb trail items.
  */
 #}
+
+{#
+  Attaching Drupal libraries
+#}
+{% block attachments %}
+  {{ attach_library('brainsum_starterkit/breadcrumb') }}
+{% endblock %}
 
 {#
   Building the template structure
@@ -17,12 +29,12 @@
     role="navigation"
     aria-labelledby="system-breadcrumb"
   >
-    <span
+    <div
       id="system-breadcrumb"
       class="u-visually-hide u-visually-hide--focusable"
     >
       {{ 'Breadcrumb'|t }}
-    </span>
+    </div>
     <div class="c-breadcrumb__content">
       <ol class="c-breadcrumb__list">
         {% for item in breadcrumb %}

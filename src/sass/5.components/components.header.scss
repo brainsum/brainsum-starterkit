@@ -1,0 +1,58 @@
+/**
+ * @file
+ * Header Component
+ *
+ * Layout of the site header.
+ */
+
+/**
+ * Imports
+ */
+@use "../settings";
+@use "../tools";
+
+.c-header {
+  --header-background: var(--color-background-primary);
+  --header-transition-timing: 400ms;
+  --header-transition-easing: ease-in-out;
+
+  &.is-sticky {
+    position: sticky;
+    z-index: 400;
+    inset-block-start: 0;
+    background: var(--header-background);
+
+    .has-mobile-menu-open & {
+      position: static;
+      z-index: 1000;
+    }
+  }
+
+  &.is-sticky--auto-hide {
+    transition: transform var(--header-transition-timing) var(--header-transition-easing);
+    transform: translateY(0);
+
+    .has-mobile-menu-open & {
+      transition: none;
+      transform: none;
+    }
+
+    // Hidden state (scrolling down)
+    &.is-hidden {
+      transform: translateY(-100%);
+    }
+
+    // Fixed state (scrolled past header height)
+    // Can be used for styling changes when header is in fixed mode
+    &.is-fixed {
+      // Add any fixed-state specific styles here
+      // Example: box-shadow, different background, etc.
+    }
+  }
+}
+
+.c-region--header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

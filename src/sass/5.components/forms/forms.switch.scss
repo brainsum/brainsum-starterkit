@@ -1,0 +1,100 @@
+/**
+ * @file
+ * Form Switch (Lightswitch)
+ *
+ * Transforms a checkbox into a toggle switch.
+ * The `.c-form-switch` class is applied via form-element.html.twig when
+ * the field name matches config or `is_form_switch` is true.
+ *
+ * OPTION 1: Form field via settings
+ *   Edit settings/settings.forms.yml:
+ *     switch:
+ *       names:
+ *         - field_newsletter
+ *
+ * OPTION 2: Form field via PHP (dynamic cases)
+ *   $form['my_checkbox']['#is_form_switch'] = TRUE;
+ *
+ * OPTION 3: Standalone switch (outside forms)
+ *   For switches outside Drupal forms (e.g., dark mode toggle), manually
+ *   attach the library and add the required classes:
+ *
+ *   add as dependency in your form's library:
+ *     dependencies:
+ *       - brainsum_starterkit/forms.switch
+ *
+ *   or in Twig:
+ *     {{ attach_library('brainsum_starterkit/forms.switch') }}
+ *
+ *   HTML:
+ *     <label class="c-form-type--boolean c-form-type--checkbox c-form-switch">
+ *       <input type="checkbox" class="c-form-boolean c-form-boolean--type-checkbox">
+ *       <span>Dark mode</span>
+ *     </label>
+ *
+ * Requires: forms.boolean
+ * Auto-attached by form-element.html.twig when field matches config.
+ */
+
+@use "../../tools";
+
+.c-form {
+  &-switch {
+    // Sizes
+    --switch-width: 3.2rem;
+    --switch-height: 1.8rem;
+    --switch-knob: 1.6rem;
+
+    // colors
+    --switch-background: var(--color-grey-40);
+    --switch-knob-color: var(--color-light);
+
+    // the active state color is inherited from the boolean color
+
+    input {
+      // Reset base boolean grid layout
+      display: flex;
+      place-content: normal;
+      align-items: center;
+      inline-size: var(--switch-width);
+      block-size: var(--switch-height);
+      border-color: var(--color-grey-40);
+      border-radius: calc(var(--switch-height) / 2);
+      background: var(--switch-background);
+
+      // Knob — always visible white circle
+      // Reset checkbox check-mark properties inherited from &-type--checkbox
+      &::before,
+      &:checked::before,
+      &:indeterminate::before {
+        @include tools.circle(var(--switch-knob));
+
+        flex-shrink: 0;
+        margin-block-start: 0;
+        transition:
+          margin-inline-start 0.2s,
+          background 0.2s;
+        transform: none;
+        border: 0;
+        background: var(--switch-knob-color);
+      }
+
+      // Checked — knob slides to end
+      &:checked::before {
+        margin-inline-start: calc(var(--switch-width) - var(--switch-knob) - 0.2rem);
+      }
+
+      // Active (pressing) — knob dims slightly
+      &:active::before {
+        background: var(--color-background);
+      }
+
+      &:disabled,
+      &.is-disabled {
+        &::before {
+          background: var(--color-light);
+        }
+      }
+    }
+  }
+}

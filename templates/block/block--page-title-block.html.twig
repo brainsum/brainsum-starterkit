@@ -25,6 +25,8 @@
  *   displayed in front of the main title tag that appears in the template.
  * - title_suffix: Additional output populated by modules, intended to be
  *   displayed after the main title tag that appears in the template.
+ * - component_containers: Boolean indicating whether to use component-based
+ *   containers (TRUE) or a single page-level container (FALSE).
  *
  * @see template_preprocess_block()
  *
@@ -47,8 +49,10 @@
 #}
 <div{{ attributes.addClass(classes) }}>
   {% block content %}
-    {{ title_prefix }}
-    {{ content }}
-    {{ title_suffix }}
+    {% if component_containers %}<div class="o-container">{% endif %}
+      {{ title_prefix }}
+      {{ content }}
+      {{ title_suffix }}
+    {% if component_containers %}</div>{% endif %}
   {% endblock %}
 </div>

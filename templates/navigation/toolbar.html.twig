@@ -29,15 +29,15 @@
 <div{{ attributes.addClass('toolbar') }}>
   <nav
     {{ toolbar_attributes.addClass('toolbar-bar').setAttribute(
-      'aria-labelledby', 'toolbar-bar-name'
+      'aria-labelledby', 'toolbar-bar-name',
     ) }}
   >
-    <span
+    <div
       class="u-visually-hide u-visually-hide--focusable"
       id="toolbar-bar-name"
     >
         {{ toolbar_heading }}
-    </span>
+    </div>
     {% for key, tab in tabs %}
       {% set tray = trays[key] %}
 

@@ -14,174 +14,183 @@
 /**
  * Settings
  */
+// display the weight column and headings
 $manual-weight-input: false;
 
 :root {
-  --region-message-color: #999;
-  --background-hover: var(--color-grey-10);
-  --background-drag: var(--background-hover);
-  --background-previous-drag: var(--color-grey-20);
+  // Items
+  --item-padding: var(--unit-4x);
+  --items-gap: var(--unit-2x);
+  --item-background: var(--color-background-light);
+  --item-background-hover: var(--color-primary-light);
+  --handle-color-hover: var(--color-primary);
 
-  // Drupal's move.svg in #787878 color
-  // web/core/misc/icons/787878/move.svg
-  // base64 encoded by https://yoksel.github.io/url-encoder/
-  --move-icon-normal: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath fill='%23787878' d='M14.904 7.753l-2.373-2.372c-.291-.292-.529-.193-.529.22v1.399h-3v-3h1.398c.414 0 .512-.239.221-.53l-2.371-2.372c-.137-.136-.36-.136-.497 0l-2.372 2.372c-.292.292-.193.53.22.53h1.399v3h-3v-1.369c0-.413-.239-.511-.53-.22l-2.372 2.372c-.136.136-.136.359 0 .494l2.372 2.372c.291.292.53.192.53-.219v-1.43h3v3h-1.4c-.413 0-.511.238-.22.529l2.374 2.373c.137.137.36.137.495 0l2.373-2.373c.29-.291.19-.529-.222-.529h-1.398v-3h3v1.4c0 .412.238.511.529.219l2.373-2.371c.137-.137.137-.359 0-.495z'/%3E%3C/svg%3E");
-
-  // Drupal's move.svg in #000000 color
-  // web/core/misc/icons/000000/move.svg
-  // base64 encoded by https://yoksel.github.io/url-encoder/
-  --move-icon-hover: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath fill='%23000000' d='M14.904 7.753l-2.373-2.372c-.291-.292-.529-.193-.529.22v1.399h-3v-3h1.398c.414 0 .512-.239.221-.53l-2.371-2.372c-.137-.136-.36-.136-.497 0l-2.372 2.372c-.292.292-.193.53.22.53h1.399v3h-3v-1.369c0-.413-.239-.511-.53-.22l-2.372 2.372c-.136.136-.136.359 0 .494l2.372 2.372c.291.292.53.192.53-.219v-1.43h3v3h-1.4c-.413 0-.511.238-.22.529l2.374 2.373c.137.137.36.137.495 0l2.373-2.373c.29-.291.19-.529-.222-.529h-1.398v-3h3v1.4c0 .412.238.511.529.219l2.373-2.371c.137-.137.137-.359 0-.495z'/%3E%3C/svg%3E");
+  // Actions
+  --actions-button-padding-block: var(--unit-1x);
+  --actions-button-padding-inline: 1rem;
+  --actions-button-border-radius: 0.2rem;
+  --actions-button-border: 0.1rem solid var(--color-primary);
+  --actions-button-background: var(--color-primary);
+  --actions-button-color: var(--color-text-inverse);
+  --actions-button-background-hover: var(--color-primary-light);
+  --actions-button-color-hover: currentColor;
 }
 
-body.drag {
-  cursor: move;
-}
-
-tr.region-title {
-  font-weight: 700;
-}
-
-tr.region-message {
-  color: var(--region-message-color);
-}
-
-tr.region-populated {
-  display: none;
-}
-
-tr.add-new .tabledrag-changed {
-  display: none;
-}
-
-.tabledrag-toggle-weight-wrapper {
-  text-align: end;
-}
-
-.indentation {
-  float: left; // LTR
-  inline-size: 2rem;
-  block-size: 1.7em;
-  margin-block: -0.4em;
-  margin-inline-start: -0.4em;
-  margin-inline-end: 0.2em;
-  padding-block: 0.42em;
-  padding-inline-start: 0.6em;
-  padding-inline-end: 0.42em;
-
-  [dir="rtl"] & {
-    float: right;
+.c-tabledrag,
+.c-messages {
+  abbr {
+    border-block-end: 0;
   }
 }
 
-body div.tabledrag-changed-warning {
-  margin-block-end: 0.5em;
+.c-messages + .c-tabledrag {
+  margin-block-start: var(--unit-3x);
+}
+
+.c-tabledrag {
+  &__cell--name {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: var(--item-padding);
+    border-radius: 0.2rem;
+    background-color: var(--item-background);
+  }
+
+  &__item {
+    &:hover {
+      .c-tabledrag__cell--name {
+        background-color: var(--item-background-hover);
+      }
+
+      .c-tabledrag-handle {
+        color: var(--handle-color-hover);
+      }
+    }
+  }
+
+  &__item + &__item {
+    .c-tabledrag__cell--name {
+      margin-block-start: var(--items-gap);
+    }
+  }
+
+  &-handle {
+    inline-size: 0.5em;
+  }
+
+  &__actions {
+    position: relative;
+    display: inline-block;
+    margin-inline-start: auto;
+  }
+
+  &__actions-button {
+    @include tools.global-transition;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: var(--actions-button-padding-block);
+    padding-inline: var(--actions-button-padding-inline);
+    cursor: pointer;
+    color: var(--actions-button-color);
+    border: var(--actions-button-border);
+    border-radius: var(--actions-button-border-radius);
+    background: var(--actions-button-background);
+
+    &:hover {
+      color: var(--actions-button-color-hover);
+      background: var(--actions-button-background-hover);
+    }
+  }
+
+  &__actions-menu {
+    --transition-easing: ease-out;
+    --transition-timing: 0.25s;
+    --dropdown-offset: var(--unit-2x);
+
+    position: absolute;
+    z-index: 1000;
+    inset-block-start: 100%;
+    inset-inline-end: 0;
+    display: flex;
+    visibility: hidden;
+    overflow: hidden;
+    flex-direction: column;
+    min-inline-size: 15rem;
+    max-block-size: 0;
+    margin: 0;
+    margin-block-start: var(--dropdown-offset);
+    padding: 0;
+    list-style: none;
+    transition:
+      visibility var(--transition-timing) var(--transition-easing),
+      max-block-size var(--transition-timing) var(--transition-easing),
+      transform var(--transition-timing) var(--transition-easing),
+      opacity var(--transition-timing) var(--transition-easing);
+    transform: translateY(calc(-1 * var(--dropdown-offset)));
+    opacity: 0;
+    border-radius: 0.2rem;
+    background: white;
+    box-shadow: 0 0.125rem 0.5rem rgb(0, 0, 0, 0.15);
+    gap: var(--unit-1x);
+
+    // Open state
+    &.is-open {
+      visibility: visible;
+      overflow: visible;
+      max-block-size: 50rem;
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  &__actions-menu-item {
+    display: block;
+    box-sizing: border-box;
+    inline-size: 100%;
+    padding-block: var(--unit-3x);
+    padding-inline: var(--unit-3x);
+    cursor: pointer;
+    text-align: start;
+    border: 0;
+    background: none;
+
+    &:hover {
+      color: var(--color-primary);
+      background: var(--color-primary-light);
+    }
+  }
 }
 
 .draggable {
-  &:hover {
-    background: var(--color-grey-10);
-  }
+  position: relative;
 
-  &.drag {
-    background: var(--color-grey-10);
+  /**
+   * Smooth animation states
+   *
+   * .is-idle: Row is in resting state, ready to be dragged or moved
+   * .is-draggable: Row is currently being dragged by user
+   */
+  &.is-idle {
+    transition: 0.25s ease transform;
 
-    &-previous {
-      background: var(--color-grey-20);
+    &.no-transition {
+      transition: none;
+    }
+
+    .c-tabledrag-handle {
+      cursor: grab;
     }
   }
 
-  td {
-    .touchevents & {
-      padding-block: calc(var(--gutter--1x) / 2);
-      padding-inline-start: 0;
-      padding-inline-end: calc(var(--gutter--1x) / 2);
-    }
-  }
+  &.is-draggable {
+    z-index: 10;
+    cursor: grabbing;
 
-  .menu-item__link {
-    .touchevents & {
-      display: inline-block;
-      padding-block: 0;
-      padding-inline: 0;
-    }
-  }
-}
-
-.drag-previous {
-  a {
-    // Ensure proper contrast.
-    color: var(--color-grey-120);
-  }
-}
-
-a.tabledrag-handle {
-  &,
-  .touchevents & {
-    @include tools.square(3.6rem);
-  }
-
-  .draggable & {
-    float: left; // LTR
-    overflow: hidden;
-    block-size: 1.7em;
-    margin-inline-start: 0;
-    cursor: move;
-    text-decoration: none;
-
-    [dir="rtl"] & {
-      float: right;
-    }
-  }
-
-  .handle {
-    @include tools.square(var(--gutter--2x));
-
-    margin-block: 0;
-    margin-inline: 0;
-    padding-block: 0.42em;
-    padding-inline: 0.5em;
-    background: var(--move-icon-normal) no-repeat 50% 0.7rem;
-
-    @media (forced-colors: active) {
-      background: linktext;
-      -webkit-mask: var(--move-icon-normal) no-repeat 50% 0.7rem;
-      mask: var(--move-icon-normal) no-repeat 50% 0.7rem;
-    }
-
-    .touchevents & {
-      block-size: var(--gutter--2x);
-      background-position: 50% 0.5rem;
-
-      [dir="rtl"] & {
-        background-position: right 50% top 0.5rem;
-      }
-    }
-  }
-
-  &:hover,
-  &:focus {
-    .handle {
-      background-image: var(--move-icon-hover);
-
-      @media (forced-colors: active) {
-        background: linktext;
-        -webkit-mask: var(--move-icon-normal) no-repeat 50% 0.7rem;
-        mask: var(--move-icon-normal) no-repeat 50% 0.7rem;
-      }
-    }
-  }
-
-  &:focus {
-    @media (forced-colors: active) {
-      outline: solid 0.1rem transparent;
-    }
-  }
-
-  .draggable.drag & {
-    .touchevents & {
-      .handle {
-        background-position: 50% -3.2rem;
-      }
+    .c-tabledrag-handle {
+      cursor: grabbing;
     }
   }
 }
@@ -198,7 +207,7 @@ a.tabledrag-handle {
 }
 
 @if $manual-weight-input == false {
-  [data-drupal-selector="tabledrag-toggle-weight"] {
+  .c-tabledrag-hide {
     display: none !important;
   }
 }

@@ -1,0 +1,1 @@
+.u-drag-scroll{display:flex;overflow-x:auto;cursor:grab;-webkit-user-select:none;user-select:none;scrollbar-width:none}.u-drag-scroll::-webkit-scrollbar{display:none}.u-drag-scroll.is-grabbing{cursor:grabbing}

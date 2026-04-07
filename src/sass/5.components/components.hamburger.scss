@@ -25,19 +25,22 @@
   --padding-block: 0;
   --background: none;
   --border-radius: 0;
-  --spinner-width: 3.1rem;
+  --spinner-width: 2rem;
   --spinner-width--middle: var(--spinner-width);
-  --spinner-height: 0.5rem;
-  --spinner-spacing: 0.6rem; // vertical distance between horizontal lines
+  --spinner-height: 0.3rem;
+  --spinner-spacing: 0.3rem; // vertical distance between horizontal lines
   --spinner-border-radius: calc(var(--spinner-height) / 2);
   --spinner-color: var(--color-primary);
   --spinner-color--active: var(--spinner-color);
 
   // Theming
+  @include tools.square(var(--size-touch-target));
+
+  display: inline-flex;
   overflow: visible;
-  margin-block-start: 3rem;
-  margin-block-end: 3.5rem;
-  margin-inline-start: 4rem;
+  align-items: center;
+  justify-content: center;
+  margin-inline-start: auto;
   margin-inline-end: 0;
   padding-block: var(--padding-block);
   padding-inline: var(--padding-inline);
@@ -55,7 +58,7 @@
     }
   }
 
-  @media (--tablet-s) {
+  @media (--navigation) {
     display: none;
   }
 
@@ -64,6 +67,10 @@
   }
 
   &.is-active {
+    position: fixed;
+    z-index: 1001;
+    inset-block-start: 0;
+    inset-inline-end: 0;
     visibility: visible;
     opacity: 1;
   }
@@ -114,7 +121,8 @@
       inset-block-start: calc(var(--spinner-height) + var(--spinner-spacing));
       inset-inline-end: 0;
       inline-size: var(--spinner-width--middle);
-      transition: top 0.1s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1),
+      transition:
+        top 0.1s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1),
         transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 
       @if settings.$prefers-reduced-motion {
@@ -127,7 +135,8 @@
         inset-block-start: 0;
         inset-inline-end: auto;
         inline-size: var(--spinner-width);
-        transition: top 0.1s 0.15s cubic-bezier(0.33333, 0, 0.66667, 0.33333),
+        transition:
+          top 0.1s 0.15s cubic-bezier(0.33333, 0, 0.66667, 0.33333),
           transform 0.13s 0.22s cubic-bezier(0.215, 0.61, 0.355, 1);
         transform: translate3d(0, calc(var(--spinner-spacing) + var(--spinner-height)), 0) rotate(45deg);
         background: var(--spinner-color--active);
@@ -143,7 +152,8 @@
     &::after {
       inset-block-start: calc((var(--spinner-height) * 2) + (var(--spinner-spacing) * 2));
       inset-block-end: calc((var(--spinner-spacing) + var(--spinner-height)) * -1);
-      transition: top 0.2s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1),
+      transition:
+        top 0.2s 0.2s cubic-bezier(0.33333, 0.66667, 0.66667, 1),
         transform 0.13s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 
       @if settings.$prefers-reduced-motion {
@@ -154,7 +164,8 @@
 
       .c-hamburger.is-active & {
         inset-block-start: 0;
-        transition: top 0.2s cubic-bezier(0.33333, 0, 0.66667, 0.33333),
+        transition:
+          top 0.2s cubic-bezier(0.33333, 0, 0.66667, 0.33333),
           transform 0.13s 0.22s cubic-bezier(0.215, 0.61, 0.355, 1);
         transform: translate3d(0, calc(var(--spinner-spacing) + var(--spinner-height)), 0) rotate(-45deg);
         background: var(--spinner-color--active);

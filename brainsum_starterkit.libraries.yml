@@ -1,28 +1,53 @@
+# The global library
+# This library is loaded on all pages.
 global:
   version: 1.0.0
   css:
     base:
+      css/3.base/base.settings.css: {}
       css/3.base/base.reset.css: {}
       css/3.base/base.page.css: {}
       css/3.base/base.type.css: {}
     layout:
       css/4.objects/objects.container.css: {}
-      css/4.objects/objects.grid.css: {}
-      css/4.objects/objects.media.css: {}
     component:
       css/5.components/components.icon.css: {}
       css/5.components/components.page.css: {}
       css/5.components/components.type.css: {}
     theme:
       css/6.utilities/utilities.clearfix.css: {}
-      css/6.utilities/utilities.full-width-image.css: {}
       css/6.utilities/utilities.js.css: {}
-      css/6.utilities/utilities.stretched-link.css: {}
-      css/6.utilities/utilities.text.css: {}
-      css/6.utilities/utilities.video.css: {}
       css/6.utilities/utilities.visibility.css: {}
 # js:
 #    js/base/base.global.js: {}
+
+
+# Third party libraries
+# Add them as dependencies to other libraries
+
+choices:
+  version: 11.1.0
+  remote: https://github.com/Choices-js/Choices
+  license:
+    name: MIT
+    url: https://github.com/Choices-js/Choices/blob/master/LICENSE
+    gpl-compatible: true
+  js:
+    /libraries/choices.js/public/assets/scripts/choices.min.js: { minified: true, preprocess: false }
+
+just-validate:
+  version: 4.3.0
+  remote: https://github.com/horprogs/Just-validate
+  license:
+    name: MIT
+    url: https://github.com/horprogs/Just-validate/blob/master/LICENSE
+    gpl-compatible: true
+  js:
+    /libraries/just-validate/dist/just-validate.production.min.js: { minified: true, preprocess: false }
+
+
+# Components
+# Attach them where needed
 
 admin.toolbar:
   version: 1.0.0
@@ -38,6 +63,12 @@ block.language-dropdown:
   js:
     js/components/components.block.language-dropdown.js: {}
 
+breadcrumb:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.breadcrumb.css: {}
+
 button:
   version: 1.0.0
   css:
@@ -49,6 +80,17 @@ details:
   css:
     theme:
       css/5.components/components.details.css: {}
+
+drag-scroll:
+  version: 1.0.0
+  css:
+    theme:
+      css/6.utilities/utilities.drag-scroll.css: {}
+  js:
+    js/utilities/utilities.drag-scroll.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
 
 field.long-text:
   version: 1.0.0
@@ -64,30 +106,152 @@ file:
     component:
       css/5.components/components.file.css: {}
 
-form:
+footer:
   version: 1.0.0
   css:
     component:
-      css/5.components/components.form.css: {}
+      css/5.components/components.footer.css: {}
+
+forms.ajax:
+  version: 1.0.0
+  js:
+    js/components/components.forms.ajax.js: {}
+  dependencies:
+    - core/jquery
+    - brainsum_starterkit/forms.icons
+
+forms.base:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/forms/forms.base.css: {}
   dependencies:
     - brainsum_starterkit/button
+
+forms.boolean:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/forms/forms.boolean.css: {}
+  dependencies:
+    - brainsum_starterkit/forms.base
+
+forms.floating-labels:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/forms/forms.floating-labels.css: {}
+  dependencies:
+    - brainsum_starterkit/forms.base
+
+forms.icons:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/forms/forms.icons.css: {}
+  dependencies:
+    - brainsum_starterkit/forms.base
+
+forms.select:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/forms/forms.select.css: {}
+  js:
+    js/components/components.forms.select.js: {}
+  dependencies:
+    - brainsum_starterkit/forms.base
+    - brainsum_starterkit/choices
+    - core/drupal
+    - core/once
+
+forms.layouts:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/forms/forms.layouts.css: {}
+  dependencies:
+    - brainsum_starterkit/forms.base
+
+forms.number:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/forms/forms.number.css: {}
+  js:
+    js/components/components.forms.number.js: {}
+  dependencies:
+    - brainsum_starterkit/forms.base
+    - core/drupal
+    - core/once
+
+forms.range:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/forms/forms.range.css: {}
+  dependencies:
+    - brainsum_starterkit/forms.base
+
+forms.search:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.forms.search.css: {}
+  dependencies:
+    - brainsum_starterkit/forms.base
+
+forms.switch:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/forms/forms.switch.css: {}
+  dependencies:
+    - brainsum_starterkit/forms.boolean
+
+forms.validation:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/forms/forms.validation.css: {}
+  js:
+    js/components/components.forms.validation.js: {}
+  dependencies:
+    - brainsum_starterkit/just-validate
+    - core/drupal
+    - core/once
+
+full-width-image:
+  version: 1.0.0
+  css:
+    theme:
+      css/6.utilities/utilities.full-width-image.css: {}
+
+gin.toolbar:
+  version: 1.0.0
+  css:
+    theme:
+      css/5.components/components.gin.toolbar.css: {}
+
+header:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.header.css: {}
+
+header.auto-hide:
+  version: 1.0.0
+  js:
+    js/components/components.header.auto-hide.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
 
 local-actions:
   version: 1.0.0
   css:
     component:
       css/5.components/components.action-links.css: {}
-
-navigation:
-  version: 1.0.0
-  css:
-    component:
-      css/5.components/components.hamburger.css: {}
-  js:
-    js/components/components.navigation.js: {}
-  dependencies:
-    - core/drupal
-    - core/once
 
 message:
   version: 1.0.0
@@ -107,17 +271,29 @@ messages:
     - core/drupal
     - core/once
 
+navigation:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.navigation.css: {}
+      css/5.components/components.hamburger.css: {}
+  js:
+    js/components/components.navigation.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
+page.error:
+  version: 1.0.0
+  css:
+    theme:
+      css/7.pages/pages.error.css: {}
+
 page.home:
   version: 1.0.0
   css:
     theme:
       css/7.pages/pages.home.css: {}
-
-page.maintenance:
-  version: 1.0.0
-  css:
-    theme:
-      css/7.pages/pages.maintenance.css: {}
 
 page.subpage:
   version: 1.0.0
@@ -125,11 +301,36 @@ page.subpage:
     theme:
       css/7.pages/pages.subpage.css: {}
 
+pager:
+  version: 1.0.0
+  css:
+    theme:
+      css/5.components/components.pager.css: {}
+
 progress:
   version: 1.0.0
   css:
     component:
       css/5.components/components.progress.css: {}
+
+skiplinks:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.skiplinks.css: {}
+
+stretched-link:
+  version: 1.0.0
+  css:
+    theme:
+      css/6.utilities/utilities.stretched-link.css: {}
+
+table:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.table.css: {}
+      css/5.components/components.table-wrapper.css: {}
 
 table-wrapper:
   version: 1.0.0
@@ -139,6 +340,18 @@ table-wrapper:
   js:
     js/components/components.table-wrapper.js: {}
   dependencies:
+    - core/drupal
+    - core/once
+
+tabledrag:
+  version: 1.0.0
+  css:
+    component:
+      css/5.components/components.tabledrag.css: {}
+  js:
+    js/components/components.tabledrag.js: {}
+  dependencies:
+    - brainsum_starterkit/messages
     - core/drupal
     - core/once
 
@@ -152,3 +365,9 @@ tabs:
   dependencies:
     - core/drupal
     - core/once
+
+video:
+  version: 1.0.0
+  css:
+    theme:
+      css/6.utilities/utilities.video.css: {}

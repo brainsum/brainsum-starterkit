@@ -60,9 +60,7 @@
     @if $mode == dark {
       // Dark link → darken on hover
       color: color-mix(in oklch, $color, black 20%);
-    }
-
-    @else {
+    } @else {
       // Light link → lighten on hover
       color: color-mix(in oklch, $color, white 30%);
     }

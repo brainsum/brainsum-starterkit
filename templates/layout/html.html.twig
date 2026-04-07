@@ -21,6 +21,10 @@
  *   placeholders.
  * - brainsum_starterkit_path: Returns the path to an Brainsum starterkit theme.
  * - noscript_styles: <noscript> content.
+ * - component_containers: Boolean indicating whether to use component-based
+ *   containers (TRUE) or a single page-level container (FALSE).
+ * - sticky_header: Header sticky behavior. Options: FALSE (normal),
+ *   'sticky' (always visible), 'auto-hide' (hides on scroll down, shows on scroll up).
  *
  * @see template_preprocess_html()
  */
@@ -35,16 +39,21 @@
   node_type ? 'page-node-type-' ~ node_type|clean_class,
   db_offline ? 'db-offline',
   path_info.args ? 'path-' ~ path_info.args,
+  sticky_header ? 'has-sticky-header sticky-header--' ~ sticky_header,
 ] %}
 
 {#
   Attaching Drupal libraries
 #}
-{% if not root_path %}
-  {{ attach_library('brainsum_starterkit/page.home') }}
-{% else %}
-  {{ attach_library('brainsum_starterkit/page.subpage') }}
-{% endif %}
+{% block includes %}
+  {{ attach_library('brainsum_starterkit/skiplinks') }}
+
+  {% if not root_path %}
+    {{ attach_library('brainsum_starterkit/page.home') }}
+  {% else %}
+    {{ attach_library('brainsum_starterkit/page.subpage') }}
+  {% endif %}
+{% endblock %}
 
 {#
   Building the template structure
@@ -100,13 +109,32 @@
     {#
       Keyboard navigation/accessibility link to main content section in
       page.html.twig.
+      Be default here is a link for navigation menu and main content.
+      For accessibility we need to have links to all important sections: like
+      footer, search, language switcher, etc.
     #}
-    <a
-      href="#main-content"
-      class="u-visually-hide u-visually-hide--focusable skip-link"
-    >
-      {{ 'Skip to main content'|t }}
-    </a>
+    <div class="c-skip-links">
+      <div class="o-container">
+        <ul class="c-skip-links__list">
+          <li class="c-skip-link">
+            <a
+              href="#c-navigation--main-menu"
+              class="u-visually-hide u-visually-hide--focusable skip-link"
+            >
+              {{ 'Skip to navigation menu'|t }}
+            </a>
+          </li>
+          <li class="c-skip-link">
+            <a
+              href="#main-content"
+              class="u-visually-hide u-visually-hide--focusable skip-link"
+            >
+              {{ 'Skip to main content'|t }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
     {{ page_top }}
     {{ page }}
     {{ page_bottom }}

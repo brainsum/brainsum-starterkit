@@ -2,7 +2,7 @@
  * @file
  * Messages Component
  *
- * Based on Olivero Theme.
+ * Toast-style messages inspired by Spectre.css.
  */
 
 /**
@@ -11,37 +11,50 @@
 @use "../settings";
 @use "../tools";
 
+/**
+ * Close animation
+ */
+@keyframes message-fade-out-left {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    transform: translate3d(-100%, 0, 0);
+    opacity: 0;
+  }
+}
+
 .c-messages {
-  // Settings
-  --icon-size: 3.2rem;
-  --close-icon-size: 2.5rem;
-  --color: var(--color-light);
-  --color--error: var(--color-error);
-  --color--warning: var(--color-warning);
-  --color--status: var(--color-note);
-  --color--info: var(--color-note);
-  --focus-color: var(--color-note);
-  --gutter: var(--gutter--1x);
+  // Settings - Spectre-inspired compact design
+  --icon-size: 1.6rem;
+  --close-icon-size: 1.6rem;
+  --message-color: var(--color-text-dark);
+  --message-background: var(--color-grey-30);
+  --message-border-color: var(--color-grey-30);
+  --gutter: var(--unit-2x);
+  --animation-duration: 0.3s;
+  --border-radius: 0.2rem;
 
   // Theming
-  min-block-size: calc(var(--icon-size) + var(--gutter--2x));
   padding-block: var(--gutter);
-  padding-inline: calc(var(--gutter) * 1.5);
-  color: var(--color);
-  outline: solid 0.1rem transparent;
-  background-color: var(--color-grey);
+  padding-inline: var(--gutter);
+  color: var(--message-color);
+  border: 0.1rem solid var(--message-border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--message-background);
+  font-size: var(--font-size--1);
 
   & * {
     color: inherit;
   }
 
+  &.is-closing {
+    animation: message-fade-out-left var(--animation-duration) ease-out forwards;
+  }
+
   &.is-hidden {
-    visibility: hidden;
-    overflow: hidden;
-    block-size: 0;
-    min-block-size: 0;
-    padding-block: 0;
-    padding-inline: 0;
+    display: none;
   }
 
   &-list {
@@ -56,6 +69,11 @@
     margin-inline: 0;
     padding-block: 0;
     list-style: none;
+  }
+
+  .c-item-list__comma-list {
+    padding-inline-start: 2em;
+    list-style: disc;
   }
 
   /* Additional specificity to override contrib modules. */
@@ -73,40 +91,38 @@
 
   &__container {
     display: flex;
+    flex-direction: column;
+    gap: var(--gutter);
   }
 
   &__header {
-    flex-shrink: 0;
-    margin-inline-end: var(--gutter);
-
-    &.no-icon {
-      margin-inline-end: 0;
-    }
+    display: flex;
+    gap: var(--gutter);
+    align-items: center;
   }
 
-  &__content {
-    // Ensure large code blocks can be scrolled to.
-    overflow: auto;
+  &__icon {
+    @include tools.square(var(--icon-size));
+
+    flex-shrink: 0;
+    fill: var(--message-color);
+  }
+
+  &__title {
     flex: 1;
-    padding-block-start: 0.3rem;
-  }
-
-  &__button {
-    flex-shrink: 0;
-    margin-inline-start: var(--gutter);
-    padding-block-start: 0.3rem;
+    margin-block: 0;
+    font-size: inherit;
+    font-weight: 700;
   }
 
   &__close {
     @include tools.square(var(--close-icon-size));
 
     position: relative;
-    padding-block: 0;
-    padding-inline: 0;
+    flex-shrink: 0;
+    padding: 0.2rem;
     cursor: pointer;
-    vertical-align: top;
-    border-block: 0;
-    border-inline: 0;
+    border: 0;
     background: none;
     appearance: none;
 
@@ -116,10 +132,10 @@
       inset-block-start: 50%;
       inset-inline-start: 50%;
       display: block;
-      inline-size: 3.3rem;
+      inline-size: var(--close-icon-size);
       block-size: 0;
       content: "";
-      border-block-start: solid 0.2rem var(--color-grey-70);
+      border-block-start: solid 0.2rem var(--message-color);
     }
 
     &::before {
@@ -131,40 +147,51 @@
     }
 
     &:hover {
-      &::before,
-      &::after {
-        border-color: var(--color);
-      }
+      opacity: 0.95;
+      background: rgb(from var(--color-background) r g b / 0.5);
     }
 
-    &:focus {
-      outline: 0.2rem solid var(--focus-color);
+    &:focus-visible {
+      outline: 0.2rem solid var(--message-color);
       outline-offset: 0.2rem;
     }
   }
 
-  &__icon {
-    vertical-align: top;
+  &__content {
+    // Ensure large code blocks can be scrolled to.
+    overflow: auto;
+  }
 
-    .c-messages--error & {
-      fill: var(--color--error);
-    }
+  // Message type variants - Spectre-style solid backgrounds with white text
+  &--error {
+    --message-background: var(--color-error);
+    --message-border-color: var(--color-error);
+  }
 
-    .c-messages--warning & {
-      fill: var(--color--warning);
-    }
+  &--warning {
+    --message-background: var(--color-warning);
+    --message-border-color: var(--color-warning);
+  }
 
-    .c-messages--status & {
-      fill: var(--color--status);
-    }
+  &--status {
+    --message-background: var(--color-success);
+    --message-border-color: var(--color-success);
+  }
 
-    .c-messages--info & {
-      fill: var(--color--info);
-    }
+  &--info {
+    --message-background: var(--color-primary);
+    --message-border-color: var(--color-primary);
   }
 
   a:not([class]) {
-    @include tools.link(var(--color));
+    text-decoration: underline;
+    color: var(--message-color);
+
+    &:hover,
+    &:focus,
+    &:active {
+      opacity: 0.75;
+    }
   }
 
   pre {
@@ -175,6 +202,6 @@
 
   .js-form-managed-file & {
     margin-block-end: var(--gutter);
-    border-inline-start: solid 0.6rem var(--color--error);
+    border-inline-start: solid 0.6rem var(--color-error);
   }
 }

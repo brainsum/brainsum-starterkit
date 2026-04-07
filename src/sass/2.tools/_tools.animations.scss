@@ -1,0 +1,68 @@
+/**
+ * @file
+ * Animations Tool
+ *
+ * Common animation mixins used across the theme.
+ */
+
+/**
+ * Animations
+ */
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner-centered {
+  0% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+/**
+ * Spinner Mixin
+ *
+ * Creates a rotating spinner using the border technique.
+ *
+ * @param {Length} $size - The width and height of the spinner.
+ * @param {Color} $color - The color of the visible arc.
+ * @param {Length} $border-width - The thickness of the spinner arc.
+ * @param {Bool} $centered - Use centered variant with translateY(-50%).
+ *
+ * @example
+ *   .my-spinner {
+ *     @include spinner(1.6rem, var(--color-primary), 0.2rem);
+ *   }
+ *
+ *   // For vertically centered elements using transform: translateY(-50%)
+ *   .my-centered-spinner {
+ *     @include spinner(1.6rem, var(--color-primary), 0.2rem, $centered: true);
+ *   }
+ */
+@mixin spinner($size, $color, $border-width: 0.2rem, $centered: false) {
+  inline-size: $size;
+  block-size: $size;
+  border: $border-width solid transparent;
+  border-block-start-color: $color;
+  border-inline-start-color: $color;
+  border-radius: 50%;
+
+  @if $centered {
+    animation: spinner-centered 0.75s linear infinite;
+  } @else {
+    animation: spinner 0.75s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
