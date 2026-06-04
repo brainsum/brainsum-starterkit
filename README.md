@@ -2,7 +2,7 @@
 
 - Created by: [Krisztian Pinter](kpinter@brainsum.com)
 - Created in: 2020.
-- Updated on: 2026.04.08.
+- Updated on: 2026.06.04.
 
 ## Table of Contents
 
@@ -225,7 +225,7 @@ css and sass version of the same thing, use the css version. For example, for
 50% lighter color shade, use:
 
 ```sass
-color: hsl(from var(--color-primary) h s l / 50%);
+color: hsl(from var(--color-primary) h s calc(l + 50));
 ```
 
 instead of:

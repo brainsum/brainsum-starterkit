@@ -332,6 +332,14 @@ $button-element: false !default;
       -webkit-appearance: button;
     }
 
+    /**
+     * Make buttons to inherit the color from parent element to override iOS'
+     * default blue color.
+     */
+    button {
+      color: inherit;
+    }
+
     // Legend padding
     legend {
       padding: 0;
